@@ -22,15 +22,12 @@
     import NewsMainBlock from './components/NewsMainBlock.vue'
     import VideoMainBlock from './components/VideoMainBlock.vue'
 
-    import NewsMainSlider from './components/NewsMainSlider.vue'
-
     export default {
         name: 'app',
         components: {
             Header,
             FirstMainBlock,
             NewsMainBlock,
-            NewsMainSlider,
             VideoMainBlock
 
         }
