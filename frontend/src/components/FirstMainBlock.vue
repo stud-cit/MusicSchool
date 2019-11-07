@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id = "text-style">
+        <div id="text-style">
             <div class="inf-foto"></div>
 
             <div class="inf"></div>
@@ -8,7 +8,7 @@
             <b-container>
                 <b-row>
                     <b-col cols="6">
-                        <div  class="main_text">
+                        <div class="main_text">
                             <p class="text_style_mid">Вас запрошує до себе</p>
                             <p class="text_style_big"><small>Сумська</small><br> музича <br> школа №2</p>
                             <p>Lorem Ipsum is simply dummy text of the printing and
