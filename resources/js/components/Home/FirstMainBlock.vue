@@ -13,7 +13,7 @@
                             <p>Lorem Ipsum is simply dummy text of the printing and
                                 typesetting industry.
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                unknown printer.</p>
+                                unknown printer</p>
                         </div>
                     </b-col>
                     <b-col lg="6" md="auto" sm ="12">

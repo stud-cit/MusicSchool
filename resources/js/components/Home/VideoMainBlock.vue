@@ -8,7 +8,7 @@
         ></b-embed>
         <b-container>
             <b-row align-h="center">
-                <b-col cols="5">
+                <b-col cols="12" sm="6" md="8" lg="6" xl="6">
                     <div class="btn_space">
                         <div class="btn">
                             <ButtonInformation/>
