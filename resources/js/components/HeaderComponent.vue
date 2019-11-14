@@ -3,7 +3,7 @@
         <b-container>
             <b-col cols="12">
                 <b-navbar toggleable="lg">
-                    <b-navbar-brand href="/home">
+                    <b-navbar-brand href="/">
                         <img src="/img/logo.png" alt="" class="logo">
                     </b-navbar-brand>
 
@@ -22,7 +22,7 @@
                             </b-nav-item-dropdown>
 
                             <b-navbar-nav>
-                                <b-nav-item href="/achievements" id ="qqq">Досягнення</b-nav-item>
+                                <b-nav-item href="/achievements">Досягнення</b-nav-item>
                                 <b-nav-item href="/introduction">Вступ</b-nav-item>
                                 <b-nav-item href="/gallery">Галерея</b-nav-item>
                                 <b-nav-item href="/contacts">Контакти</b-nav-item>
@@ -51,9 +51,6 @@
 
     .navbar-light .navbar-nav .nav-link {
         color: black;
-    }
-    #qqq {
-        background: red;
     }
 
 </style>
