@@ -4,16 +4,19 @@
         <NewsMainBlock/>
         <VideoMainBlock/>
         <ContactsMap/>
-<!--        <NewsMainSlider/>-->
+        <FooterComponent/>
     </div>
 
 </template>
+
+
 
 <script>
     import FirstMainBlock from './FirstMainBlock.vue'
     import NewsMainBlock from './NewsMainBlock.vue'
     import VideoMainBlock from './VideoMainBlock.vue'
     import ContactsMap from './ContactsMap.vue'
+    import FooterComponent from './FooterComponent.vue'
 
     export default {
         name: 'home',
@@ -21,7 +24,8 @@
             FirstMainBlock,
             NewsMainBlock,
             VideoMainBlock,
-            ContactsMap
+            ContactsMap,
+            FooterComponent
         },
         data() {
             return {}
