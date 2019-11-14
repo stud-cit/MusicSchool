@@ -22,7 +22,7 @@
                             </b-nav-item-dropdown>
 
                             <b-navbar-nav>
-                                <b-nav-item href="/achievements">Досягнення</b-nav-item>
+                                <b-nav-item href="/achievements" id ="qqq">Досягнення</b-nav-item>
                                 <b-nav-item href="/introduction">Вступ</b-nav-item>
                                 <b-nav-item href="/gallery">Галерея</b-nav-item>
                                 <b-nav-item href="/contacts">Контакти</b-nav-item>
@@ -51,6 +51,9 @@
 
     .navbar-light .navbar-nav .nav-link {
         color: black;
+    }
+    #qqq {
+        background: red;
     }
 
 </style>
