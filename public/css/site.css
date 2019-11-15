@@ -1,0 +1,41 @@
+.title-block {
+  background: -webkit-gradient(linear, left top, left bottom, from(#e91b47), to(#6a0017));
+  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);
+}
+
+.title-block .notes {
+  background: url(/images/title-bg-notes.png?4ad2d7502f67d527f90a89db7cbd9970) no-repeat left 68%;
+  padding: 36px 0 32px 0;
+}
+
+.title-block .container .row {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.title-block .title {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.title-block .title .uptitle {
+  font-size: 54px;
+  font-weight: 600;
+}
+
+.title-block .text {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+}
+

@@ -26,6 +26,6 @@ export default new Router({
         {   path: '/', name: 'introduction', component: IntroductionComponent },
         {   path: '/', name: 'achievements', component: AchievementsComponent },
         {   path: '/', name: 'gallery', component: GalleryComponent },
-        {   path: '/', name: 'contacts', component: ContactsComponent }
+        {   path: '/contacts', name: 'contacts', component: ContactsComponent }
     ]
 })
