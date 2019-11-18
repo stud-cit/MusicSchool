@@ -13,12 +13,12 @@ class CreateNewsArchieveStoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_archieve_story');
+        Schema::dropIfExists('news_achieve_story');
     }
     public function up()
     {
-        Schema::dropIfExists('news_archieve_story');
-        Schema::create('news_archieve_story', function (Blueprint $table) {
+        Schema::dropIfExists('news_achieve_story');
+        Schema::create('news_achieve_story', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('nas_id');
             $table->string('title', 30);
