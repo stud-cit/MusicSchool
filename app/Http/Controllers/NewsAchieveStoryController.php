@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NewsAchieveStory;
 use Illuminate\Http\Request;
+use App\Models\NewsAchieveStory;
+use Illuminate\Support\Facades\DB;
 
 class NewsAchieveStoryController extends Controller
 {
+    public function getNewsAchieveStory()
+    {
+        $data = DB::select('select * from news_achieve_story');
+        return response()->json(['newsAchieveStory' => $data]);
+    }
+
     public function getNews()
     {
         $data = NewsAchieveStory::with('images')
