@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>School</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200i,300,400,600,600i,800,800i,900&display=swap" rel="stylesheet">
-    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
+    {{--<link href="{{ asset('css/reset.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/site.css') }}" rel="stylesheet">
 </head>
 <body>
