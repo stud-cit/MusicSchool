@@ -20,7 +20,7 @@ class CreateImagesTable extends Migration
         Schema::dropIfExists('images');
         Schema::create('images', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id_images');
+            $table->increments('images_id');
             $table->integer('nas_id')->unsigned();
             $table->string('file');
             $table->timestamps();
