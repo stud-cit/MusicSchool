@@ -7,11 +7,26 @@ use App\Models\Document;
 
 class DocumentController extends Controller
 {
-    protected $introStorage = "site-files/";
+    protected $publicStorage = "site-files/";
 
-    public function getIntro()
+    public function getDocument()
     {
         $data = Document::get();
         return response()->json($data);
+    }
+
+    public function postDocument(Request $request)
+    {
+        $document = new Document;
+
+        $document->text = $document->documentText;
+
+        if($request->hasFile('file')) {
+            $file = $request->file;
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . $this->publicStorage, $name);
+            $document->file = $this->publicStorage.$name;
+        }
+        $document->save();
     }
 }
