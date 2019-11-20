@@ -20,13 +20,9 @@
             </div>
         </div>
         <section class="history-section">
-            <b-container class="history-list"
-                         :items="items"
-                         :per-page="perPage"
-                         :current-page="currentPage"
-                         small>
+            <b-container class="history-list">
 
-                <b-row class="list-item d-flex" v-for="item in items" :key="item.id" >
+                <b-row class="list-item d-flex" v-for="item in paginateList" :key="item.id" >
                     <b-col xl=4 class="history-title-block">
                         <p class="year">2005</p>
                         <p class="title">Новий відділ {{item.id}}</p>
@@ -90,6 +86,7 @@
                         prev-text="<"
                         next-text=">"
                         last-text=">>"
+                        class="justify-content-center"
                 ></b-pagination>
             </b-container>
         </section>
@@ -120,8 +117,13 @@
         computed: {
             rows() {
                 return this.items.length
+            },
+            paginateList() {
+                return this.items.slice((this.currentPage-1)*this.perPage, this.currentPage*this.perPage);
             }
-        }
+
+        },
+
     }
 </script>
 
