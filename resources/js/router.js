@@ -16,16 +16,17 @@ Vue.use(Router)
 export default new Router({
     mode: 'history',
     routes: [
-        {   path: '/', name: 'home', component: HomeComponent   },
+        {   path: '/home', name: 'home', component: HomeComponent   },
         {   path: '/history', name: 'history', component: HistoryComponent },
-        {   path: '/', name: 'news', component: NewsComponent },
+        {   path: '/news', name: 'news', component: NewsComponent },
 
-        {   path: '/', name: 'teachers', component: TeachersComponent },
+        {   path: '/teachers', name: 'teachers', component: TeachersComponent },
+
         {   path: '/instruments', name: 'instruments', component: MusicInstruments },
 
-        {   path: '/', name: 'introduction', component: IntroductionComponent },
-        {   path: '/', name: 'achievements', component: AchievementsComponent },
-        {   path: '/', name: 'gallery', component: GalleryComponent },
+        {   path: '/introduction', name: 'introduction', component: IntroductionComponent },
+        {   path: '/achievements', name: 'achievements', component: AchievementsComponent },
+        {   path: '/gallery', name: 'gallery', component: GalleryComponent },
         {   path: '/contacts', name: 'contacts', component: ContactsComponent }
     ]
 })
