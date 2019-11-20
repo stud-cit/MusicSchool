@@ -9,13 +9,7 @@ class Instruments extends Model
     protected $table = 'instruments';
     protected $primaryKey = 'instruments_id';
 
-    protected $fillable = [
-        'title',
-        'text',
-        'photo'
-    ];
-
-    public function app()
+    public function dep()
     {
         return $this->belongsTo('App\Models\Departments', 'departments_id');
     }

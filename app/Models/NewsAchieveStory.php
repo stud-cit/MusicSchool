@@ -12,12 +12,6 @@ class NewsAchieveStory extends Model
     public const ACHIEVE = 'achieve';
     public const STORY = 'story';
 
-    protected $fillable = [
-        'title',
-        'text',
-        'date'
-    ];
-
     public function images()
     {
         return $this->hasMany('App\Models\Images', 'nas_id');

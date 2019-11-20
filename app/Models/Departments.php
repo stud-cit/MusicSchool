@@ -9,11 +9,6 @@ class Departments extends Model
     protected $table = 'departments';
     protected $primaryKey = 'departments_id';
 
-    protected $fillable = [
-        'title',
-        'text'
-    ];
-
     public function teachers()
     {
         return $this->hasMany('App\Models\Teachers', 'departments_id');

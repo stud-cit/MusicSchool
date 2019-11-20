@@ -9,11 +9,7 @@ class Images extends Model
     protected $table = 'images';
     protected $primaryKey = 'images_id';
 
-    protected $fillable = [
-        'file'
-    ];
-
-    public function app()
+    public function nas()
     {
         return $this->belongsTo('App\Models\NewsAchieveStory', 'nas_id');
     }
