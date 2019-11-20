@@ -1,7 +1,7 @@
 <template>
     <div>
         <page-title title="історія школи" uptitle="дивовижна"></page-title>
-        <section class="history-section">
+        <section class="history-section mt-50">
             <b-container class="history-list">
 
                 <b-row class="list-item d-flex" v-for="item in paginateList" :key="item.id" >
@@ -51,23 +51,21 @@
 </template>
 
 <script>
-    // import PageTitleComponent from "../PageTitleComponent";
     export default {
-        // components: {PageTitleComponent},
         data() {
             return {
-                perPage: 4,
+                perPage: 3,
                 currentPage: 1,
                 items: [
-                    { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-                    { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-                    { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-                    { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-                    { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-                    { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-                    { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-                    { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-                    { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' },
+                    { id: 1 },
+                    { id: 2 },
+                    { id: 3 },
+                    { id: 4 },
+                    { id: 5 },
+                    { id: 6 },
+                    { id: 7 },
+                    { id: 8 },
+                    { id: 9 },
                 ]
             }
         },
@@ -86,7 +84,6 @@
 
 <style lang="sass" scoped>
     .history-section
-        margin-top: 50px
         .history-title-block
             display: flex
             flex-direction: column
@@ -128,11 +125,9 @@
                 width: 18px
                 height: 31px
                 background-image: url("/img/history-arrow.png")
+        .content-block
+            padding: 25px 0 25px 30px
         .list-item:last-of-type .content-block
                 padding-bottom: 0
-        .content-block
-            padding-bottom: 50px
-            padding-left: 30px
-            padding-right: 0
 
 </style>

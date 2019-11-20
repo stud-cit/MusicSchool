@@ -21,7 +21,7 @@ export default new Router({
         {   path: '/', name: 'news', component: NewsComponent },
 
         {   path: '/', name: 'teachers', component: TeachersComponent },
-        {   path: '/', name: 'instruments', component: MusicInstruments },
+        {   path: '/instruments', name: 'instruments', component: MusicInstruments },
 
         {   path: '/', name: 'introduction', component: IntroductionComponent },
         {   path: '/', name: 'achievements', component: AchievementsComponent },
