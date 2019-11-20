@@ -1,24 +1,6 @@
 <template>
     <div>
-        <div class="title-block">
-            <div class="notes">
-                <b-container>
-                    <b-row>
-                        <b-col xl="8">
-                            <h1 class="title">
-                                <span class="uptitle">дивовижна</span><br>
-                                історія школи
-                            </h1>
-                        </b-col>
-                        <b-col xl="4">
-                            <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text simply dummy text dum</div>
-                        </b-col>
-                    </b-row>
-
-
-                </b-container>
-            </div>
-        </div>
+        <page-title title="історія школи" uptitle="дивовижна"></page-title>
         <section class="history-section">
             <b-container class="history-list">
 
@@ -50,34 +32,7 @@
                         </b-carousel>
                     </b-col>
                 </b-row>
-                <!--<b-row class="list-item d-flex">-->
-                    <!--<b-col xl=4 class="history-title-block">-->
-                        <!--<p class="year">2005</p>-->
-                        <!--<p class="title">Новий відділ</p>-->
-                    <!--</b-col>-->
-                    <!--<b-col xl="8" class="content-block">-->
-                        <!--<b-carousel-->
-                                <!--id="carousel-fade"-->
-                                <!--fade-->
-                                <!--indicators >-->
-                            <!--<b-carousel-slide-->
-                                    <!--caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry-->
-                                <!--Lorem Ipsum is simply dummy text of the printing orem Ipsum is simply dummy"-->
-                                    <!--img-src="https://picsum.photos/1024/480/?image=10"-->
-                            <!--&gt;</b-carousel-slide>-->
-                            <!--<b-carousel-slide-->
-                                    <!--caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry-->
-                                <!--Lorem Ipsum is simply dummy text of the printing orem Ipsum is simply dummy"-->
-                                    <!--img-src="https://picsum.photos/1024/480/?image=12"-->
-                            <!--&gt;</b-carousel-slide>-->
-                            <!--<b-carousel-slide-->
-                                    <!--caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry-->
-                                <!--Lorem Ipsum is simply dummy text of the printing orem Ipsum is simply dummy"-->
-                                    <!--img-src="https://picsum.photos/1024/480/?image=22"-->
-                            <!--&gt;</b-carousel-slide>-->
-                        <!--</b-carousel>-->
-                    <!--</b-col>-->
-                <!--</b-row>-->
+
                 <b-pagination
                         v-model="currentPage"
                         :total-rows="rows"
@@ -96,7 +51,9 @@
 </template>
 
 <script>
+    // import PageTitleComponent from "../PageTitleComponent";
     export default {
+        // components: {PageTitleComponent},
         data() {
             return {
                 perPage: 4,

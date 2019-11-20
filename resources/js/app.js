@@ -8,15 +8,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import HeaderComponent from './components/HeaderComponent';
+import PageTitleComponent from './components/PageTitleComponent';
 
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue);
 
+Vue.component('page-title', PageTitleComponent);
+
 const app = new Vue({
     el: '#app',
     components: {
-        HeaderComponent
+        HeaderComponent,
+
     },
     router
 });

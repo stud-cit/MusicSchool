@@ -1,25 +1,6 @@
 <template>
     <div>
-        <div class="title-block">
-            <div class="notes">
-                <b-container>
-                    <b-row>
-                        <b-col xl="8">
-                            <h1 class="title">
-                                <span class="uptitle">доступні</span><br>
-                                Контакти
-                            </h1>
-                        </b-col>
-                        <b-col xl="4">
-                            <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text simply dummy text dum</div>
-                        </b-col>
-                    </b-row>
-
-
-                </b-container>
-            </div>
-
-        </div>
+        <page-title title="Контакти" uptitle="доступні"></page-title>
         <section class="map-section">
 
             <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1257.746539782796!2d34.79343155826581!3d50.914595194885536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4129022862ea422f%3A0x1620189a40515f9f!2z0LLRg9C70LjRhtGPINCX0LDRgdGD0LzRgdGM0LrQsCwgMTDQsCwg0KHRg9C80LgsINCh0YPQvNGB0YzQutCwINC-0LHQu9Cw0YHRgtGMLCA0MDAwMA!5e0!3m2!1suk!2sua!4v1573816488313!5m2!1suk!2sua" width="130%"  frameborder="0" style="border:0;" allowfullscreen=""></iframe>
@@ -61,6 +42,7 @@
 </template>
 
 <script>
+
     export default {
         data() {
             return {
@@ -100,21 +82,27 @@
                 box-shadow: 0 3px 19px rgba(0, 0, 0, 0.15)
                 border-radius: 4px
                 background-color: #ffffff
-                padding: 50px 185px 50px 50px
+                padding: 50px 187px 50px 50px
                 .contacts-title
                     color: #2b2b2b
                     font-family: Montserrat
                     font-size: 40px
                     font-weight: 700
                     margin-bottom: 60px
+                    padding-left: 40px
+                    border-left: 11px solid #6a0017
                 .contacts-list
+                    padding-left: 0
                     .list-item
                         margin-bottom: 35px
                         display: flex
                         align-items: flex-start
+
                     .text
                         margin-left: 36px
-                        line-height: 1
+                        line-height: 1.2
+                        p
+                            margin-bottom: 0
                         .title
                             color: #2b2b2b
                             font-family: Montserrat
@@ -127,6 +115,7 @@
                             font-family: Montserrat
                             font-size: 20px
                             font-weight: 600
+
 
 
 
