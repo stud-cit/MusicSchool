@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import HeaderComponent from './components/HeaderComponent';
+import FooterComponent from './components/FooterComponent';
 import PageTitleComponent from './components/PageTitleComponent';
 
 Vue.config.productionTip = false
@@ -20,6 +21,7 @@ const app = new Vue({
     el: '#app',
     components: {
         HeaderComponent,
+        FooterComponent
 
     },
     router
