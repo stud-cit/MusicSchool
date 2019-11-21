@@ -16,3 +16,18 @@ export default {
 </script>
 
 <style scoped></style>
+
+</template>
+
+<script>
+    export default {
+        name: "IntroductionComponent",
+        component:{
+PageTitleComponent
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
