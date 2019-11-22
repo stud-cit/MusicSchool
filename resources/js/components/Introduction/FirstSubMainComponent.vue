@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .article__block {
   padding: 100px 0 100px 0;
 }
@@ -61,5 +61,11 @@ export default {
 .article__img img {
   width: 100%;
   height: auto;
+}
+
+@media screen and (max-width: 475px) {
+  .article__block {
+    padding-top: 50px;
+  }
 }
 </style>
