@@ -2179,10 +2179,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FirstSubMainComponent"
 });
@@ -31683,7 +31679,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.article__title {\r\n  font-family: \"Montserrat Bold\", sans-serif;\n}\n.article__title__small {\r\n  font-size: 32px;\n}\n.article__title__big {\r\n  font-size: 80px;\n}\r\n", ""]);
+exports.push([module.i, "\n.article__block {\r\n  padding: 100px 0 100px 0;\n}\n.article__title {\r\n  padding: 0;\r\n  line-height: 80px;\r\n  text-transform: uppercase;\r\n  font-family: \"Montserrat Bold\", sans-serif;\r\n  margin-bottom: 20px;\r\n  font-size: 80px;\n}\n.article__title__small {\r\n  font-size: 32px;\n}\n.article__body {\r\n  font-family: \"Montserrat Regular\", sans-serif;\r\n  font-size: 18px;\r\n  margin-bottom: 40px;\n}\n.article__img img {\r\n  width: 100%;\r\n  height: auto;\n}\r\n", ""]);
 
 // exports
 
@@ -54093,58 +54089,55 @@ var render = function() {
           "div",
           { staticClass: "article__block" },
           [
-            _c("b-row", [
-              _c(
-                "div",
-                { attrs: { xl: "4", lg: "4", md: "12", sm: "12", cols: "12" } },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "article" },
-                    [
-                      _c("b-row", [
-                        _c("div", { staticClass: "article__title" }, [
-                          _c("div", { staticClass: "article__title__small" }, [
-                            _vm._v("Lorem ipsum dolor sit amet.")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "article__title__big" }, [
-                            _vm._v("Lorem, ipsum dolor.")
-                          ])
+            _c(
+              "b-row",
+              [
+                _c(
+                  "b-col",
+                  {
+                    attrs: { xl: "4", lg: "4", md: "12", sm: "12", cols: "12" }
+                  },
+                  [
+                    _c("div", { staticClass: "article" }, [
+                      _c("div", { staticClass: "article__title" }, [
+                        _c("div", { staticClass: "article__title__small" }, [
+                          _vm._v("ми чекаємо на")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "article__title__big" }, [
+                          _vm._v("вас!")
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("b-row", [
-                        _c("div", { staticClass: "article__body" }, [
-                          _vm._v(
-                            "\n                Lorem Ipsum is simply dummy text of the printing and typesetting industry\n                Lorem Ipsum is simply dummy text of the printing orem\n                Ipsum is simply dummy text of the printing and typesetting industry\n                Lorem Ipsum is simply dummy text of the printing\n              "
-                          )
-                        ])
+                      _c("div", { staticClass: "article__body" }, [
+                        _vm._v(
+                          "\n              Lorem Ipsum is simply dummy text of the printing and typesetting industry\n              Lorem Ipsum is simply dummy text of the printing orem\n              Ipsum is simply dummy text of the printing and typesetting industry\n              Lorem Ipsum is simply dummy text of the printing\n            "
+                        )
                       ])
-                    ],
-                    1
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "article__img",
-                  attrs: { xl: "4", lg: "4", md: "12", sm: "12", cols: "12" }
-                },
-                [
-                  _c("div", { staticClass: "article__img" }, [
-                    _c("img", {
-                      attrs: {
-                        src: "/img/introduction/article_img.png",
-                        alt: "Image with kids"
-                      }
-                    })
-                  ])
-                ]
-              )
-            ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-col",
+                  {
+                    staticClass: "article__img",
+                    attrs: { xl: "8", lg: "8", md: "12", sm: "12", cols: "12" }
+                  },
+                  [
+                    _c("div", { staticClass: "article__img" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "/img/introduction/article_img.png",
+                          alt: "Image with kids"
+                        }
+                      })
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
           ],
           1
         )
@@ -69989,9 +69982,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.config.productionTip = false;
 Vue.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
-Vue.component('page-title', _components_PageTitleComponent__WEBPACK_IMPORTED_MODULE_6__["default"]);
+Vue.component("page-title", _components_PageTitleComponent__WEBPACK_IMPORTED_MODULE_6__["default"]);
 var app = new Vue({
-  el: '#app',
+  el: "#app",
   components: {
     HeaderComponent: _components_HeaderComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
     FooterComponent: _components_FooterComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
