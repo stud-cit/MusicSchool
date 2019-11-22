@@ -31679,7 +31679,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.article__block {\r\n  padding: 100px 0 100px 0;\n}\n.article__title {\r\n  padding: 0;\r\n  line-height: 80px;\r\n  text-transform: uppercase;\r\n  font-family: \"Montserrat Bold\", sans-serif;\r\n  margin-bottom: 20px;\r\n  font-size: 80px;\n}\n.article__title__small {\r\n  font-size: 32px;\n}\n.article__body {\r\n  font-family: \"Montserrat Regular\", sans-serif;\r\n  font-size: 18px;\r\n  margin-bottom: 40px;\n}\n.article__img img {\r\n  width: 100%;\r\n  height: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n.article__block {\r\n  padding: 100px 0 100px 0;\n}\n.article__title {\r\n  padding: 0;\r\n  line-height: 80px;\r\n  text-transform: uppercase;\r\n  font-family: \"Montserrat Bold\", sans-serif;\r\n  margin-bottom: 20px;\r\n  font-size: 80px;\n}\n.article__title__small {\r\n  font-size: 32px;\n}\n.article__body {\r\n  font-family: \"Montserrat Regular\", sans-serif;\r\n  font-size: 18px;\r\n  margin-bottom: 40px;\r\n  text-align: justify;\n}\n.article__img img {\r\n  width: 100%;\r\n  height: auto;\n}\r\n", ""]);
 
 // exports
 

@@ -55,6 +55,7 @@ export default {
   font-family: "Montserrat Regular", sans-serif;
   font-size: 18px;
   margin-bottom: 40px;
+  text-align: justify;
 }
 
 .article__img img {
