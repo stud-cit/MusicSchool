@@ -1,8 +1,8 @@
 <template>
   <div>
     <page-title title="про вступ" uptitle="інформіція"></page-title>
-    <HeaderComponent></HeaderComponent>
-    <MainComponent />
+    <header-component></header-component>
+    <main-component />
   </div>
 </template>
 
