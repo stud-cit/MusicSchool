@@ -104,6 +104,9 @@ export default {
   }
 }
 @media screen and (max-width: 475px) {
+  .header__inner img {
+    width: 180%;
+  }
   .card__block {
     margin-top: -40px;
   }

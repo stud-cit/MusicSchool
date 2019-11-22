@@ -49,6 +49,7 @@ export default {
 
 .article__title__small {
   font-size: 32px;
+  line-height: 40px;
 }
 
 .article__body {
