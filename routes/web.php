@@ -13,6 +13,11 @@
 
 Route::get('/{any}', 'SpaController@index')->where('any', '.*');
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin', function () {
+        return view('admin.home');
+    })->name('admin');
+});
 //Backend
 //Отделы
 Route::get('get-all-department', 'DepartmentController@getDepartments');
