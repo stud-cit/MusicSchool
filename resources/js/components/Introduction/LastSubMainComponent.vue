@@ -92,7 +92,6 @@ export default {
   height: 100%;
   background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);
   border-radius: 50% 50% 0 0;
-  margin-bottom: 30px;
 }
 
 .card__img {

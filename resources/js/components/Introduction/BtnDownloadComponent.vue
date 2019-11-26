@@ -19,6 +19,7 @@ export default {
 <style scoped>
 .btn_align {
   text-align: center;
+  margin-top: 50px;
   margin-bottom: 25px;
 }
 
