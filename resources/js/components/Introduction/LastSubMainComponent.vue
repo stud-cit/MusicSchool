@@ -9,6 +9,7 @@
       <b-row>
         <div class="card__block__inner">
           <b-col
+            class="cards"
             xl="2"
             lg="3"
             md="4"
@@ -17,7 +18,7 @@
             v-for="(card, index) in cards"
             v-bind:key="index"
           >
-            <div class="cards">
+            <div class="card">
               <div class="card__img">
                 <img v-bind:src="card.img" alt="file with properties" />
               </div>
@@ -86,12 +87,17 @@ export default {
 }
 
 .cards {
+  margin-bottom: 30px;
+}
+
+.card {
   display: flex;
   flex-flow: column;
   align-items: center;
   height: 100%;
   background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);
   border-radius: 50% 50% 0 0;
+  border: 0;
 }
 
 .card__img {

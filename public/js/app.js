@@ -2345,6 +2345,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "LastSubMainComponent",
@@ -31797,7 +31798,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.header__inner[data-v-4f1fc946] {\r\n  width: 100%;\r\n  margin: 0;\r\n  padding: 0;\n}\n.header__inner img[data-v-4f1fc946] {\r\n  width: 100%;\r\n  height: auto;\n}\n.header_gradient[data-v-4f1fc946] {\r\n  width: 100%;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  background-size: cover;\n}\n.card__block[data-v-4f1fc946] {\r\n  padding-bottom: 50px;\r\n  margin-top: -100px;\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card[data-v-4f1fc946] {\r\n  top: 0;\r\n  text-align: center;\r\n  margin-bottom: 20px;\n}\n.card__img[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding-top: 30px;\n}\n.card__img img[data-v-4f1fc946] {\r\n  height: 100px;\n}\n.card__text[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding: 25px 30px 30px 15px;\r\n  font-family: \"Montserrat Regular\", sans-serif;\r\n  font-size: 18px;\n}\n@media screen and (max-width: 800px) {\n.card__img img[data-v-4f1fc946] {\r\n    height: 150px;\n}\n}\n@media screen and (max-width: 475px) {\n.header__inner img[data-v-4f1fc946] {\r\n    width: 180%;\n}\n.card__block[data-v-4f1fc946] {\r\n    margin-top: -40px;\n}\n.card__img img[data-v-4f1fc946] {\r\n    height: 90px;\n}\n.card__text[data-v-4f1fc946] {\r\n    height: 50%;\r\n    width: 100%;\r\n    padding: 20px 25px 25px 10px;\r\n    font-family: \"Montserrat Regular\", sans-serif;\r\n    font-size: 18px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.header__inner[data-v-4f1fc946] {\r\n  width: 100%;\r\n  margin: 0;\r\n  padding: 0;\n}\n.header__inner img[data-v-4f1fc946] {\r\n  width: 100%;\r\n  height: auto;\n}\n.header_gradient[data-v-4f1fc946] {\r\n  width: 100%;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  background-size: cover;\n}\n.card__block[data-v-4f1fc946] {\r\n  padding-bottom: 50px;\r\n  margin-top: -100px;\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card[data-v-4f1fc946] {\r\n  top: 0;\r\n  text-align: center;\r\n  margin-bottom: 20px;\n}\n.card__img[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding-top: 30px;\n}\n.card__img img[data-v-4f1fc946] {\r\n  height: 100px;\n}\n.card__text[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding: 25px 30px 30px 15px;\r\n  font-family: \"Montserrat Regular\", sans-serif;\r\n  font-size: 18px;\n}\n@media screen and (max-width: 800px) {\n.card__img img[data-v-4f1fc946] {\r\n    height: 150px;\n}\n}\n@media screen and (max-width: 475px) {\n.header__inner img[data-v-4f1fc946] {\r\n    width: 100%;\n}\n.card__block[data-v-4f1fc946] {\r\n    margin-top: -40px;\n}\n.card__img img[data-v-4f1fc946] {\r\n    height: 90px;\n}\n.card__text[data-v-4f1fc946] {\r\n    height: 50%;\r\n    width: 100%;\r\n    padding: 20px 25px 25px 10px;\r\n    font-family: \"Montserrat Regular\", sans-serif;\r\n    font-size: 18px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -31816,7 +31817,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.card__block__inner[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card__block__title[data-v-19b03234] {\r\n  text-transform: uppercase;\r\n  font-size: 32px;\r\n  line-height: 40px;\r\n  font-weight: 600;\r\n  text-align: center;\r\n  margin-bottom: 40px;\n}\n.cards[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: column;\r\n  align-items: center;\r\n  height: 100%;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  border-radius: 50% 50% 0 0;\n}\n.card__img[data-v-19b03234] {\r\n  box-shadow: 0px 0px 12px -5px rgba(0, 0, 0, 0.75);\r\n  background-color: #fff;\r\n  width: 100%;\r\n  height: auto;\r\n  text-align: center;\r\n  border: 0;\r\n  border-radius: 50%;\n}\n.card__img img[data-v-19b03234] {\r\n  width: 35%;\r\n  margin: 45px 0;\n}\n.card__body[data-v-19b03234] {\r\n  width: 100%;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-size: 12px;\r\n  padding: 5px 20px 20px 20px;\r\n  font-family: \"Montserrat Light\", sans-serif;\n}\n@media screen and (max-width: 415px) {\n.card__block__title[data-v-19b03234] {\r\n    font-size: 24px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.card__block__inner[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card__block__title[data-v-19b03234] {\r\n  text-transform: uppercase;\r\n  font-size: 32px;\r\n  line-height: 40px;\r\n  font-weight: 600;\r\n  text-align: center;\r\n  margin-bottom: 40px;\n}\n.cards[data-v-19b03234] {\r\n  margin-bottom: 30px;\n}\n.card[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: column;\r\n  align-items: center;\r\n  height: 100%;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  border-radius: 50% 50% 0 0;\r\n  border: 0;\n}\n.card__img[data-v-19b03234] {\r\n  box-shadow: 0px 0px 12px -5px rgba(0, 0, 0, 0.75);\r\n  background-color: #fff;\r\n  width: 100%;\r\n  height: auto;\r\n  text-align: center;\r\n  border: 0;\r\n  border-radius: 50%;\n}\n.card__img img[data-v-19b03234] {\r\n  width: 35%;\r\n  margin: 45px 0;\n}\n.card__body[data-v-19b03234] {\r\n  width: 100%;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-size: 12px;\r\n  padding: 5px 20px 20px 20px;\r\n  font-family: \"Montserrat Light\", sans-serif;\n}\n@media screen and (max-width: 415px) {\n.card__block__title[data-v-19b03234] {\r\n    font-size: 24px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -54523,10 +54524,11 @@ var render = function() {
                   "b-col",
                   {
                     key: index,
+                    staticClass: "cards",
                     attrs: { xl: "2", lg: "3", md: "4", sm: "6", cols: "8" }
                   },
                   [
-                    _c("div", { staticClass: "cards" }, [
+                    _c("div", { staticClass: "card" }, [
                       _c("div", { staticClass: "card__img" }, [
                         _c("img", {
                           attrs: { src: card.img, alt: "file with properties" }
