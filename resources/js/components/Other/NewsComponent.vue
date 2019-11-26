@@ -4,119 +4,19 @@
         <section class="history-section mt-50">
             <b-container class="news-list">
 
-                <div class="news">
+                <div class="news" v-for="i in items">
                     <div class="news-description">
-                        <h3 class="news-date">01.10.19</h3>
-                        <p class="news-text">Lorem Ipsum is simply dummy text </p>
+                        <h3 class="news-date">{{i.date}}</h3>
+                        <p class="news-text">{{i.title}}</p>
                         <hr class="news-line">
                     </div>
                     <div class="img">
                         <img src="/img/man_scream.png" alt="" class="news-img">
                     </div>
                 </div>
-
-                <div class="news">
-                    <div class="news-description">
-                        <h3 class="news-date">01.10.19</h3>
-                        <p class="news-text">Lorem Ipsum is simply dummy text </p>
-                        <hr class="news-line">
-                    </div>
-                    <div class="img">
-                        <img src="/img/man_scream.png" alt="" class="news-img">
-                    </div>
-                </div>
-
-                <div class="news">
-                    <div class="news-description">
-                        <h3 class="news-date">01.10.19</h3>
-                        <p class="news-text">Lorem Ipsum is simply dummy text </p>
-                        <hr class="news-line">
-                    </div>
-                    <div class="img">
-                        <img src="/img/man_scream.png" alt="" class="news-img">
-                    </div>
-                </div>
-
-                <div class="news">
-                    <div class="news-description">
-                        <h3 class="news-date">01.10.19</h3>
-                        <p class="news-text">Lorem Ipsum is simply dummy text </p>
-                        <hr class="news-line">
-                    </div>
-                    <div class="img">
-                        <img src="/img/man_scream.png" alt="" class="news-img">
-                    </div>
-                </div>
-
-                <div class="news">
-                    <div class="news-description">
-                        <h3 class="news-date">01.10.19</h3>
-                        <p class="news-text">Lorem Ipsum is simply dummy text </p>
-                        <hr class="news-line">
-                    </div>
-                    <div class="img">
-                        <img src="/img/man_scream.png" alt="" class="news-img">
-                    </div>
-                </div>
-
-                <div class="news">
-                    <div class="news-description">
-                        <h3 class="news-date">01.10.19</h3>
-                        <p class="news-text">Lorem Ipsum is simply dummy text </p>
-                        <hr class="news-line">
-                    </div>
-                    <div class="img">
-                        <img src="/img/man_scream.png" alt="" class="news-img">
-                    </div>
-                </div>
-
-                <div class="news">
-                    <div class="news-description">
-                        <h3 class="news-date">01.10.19</h3>
-                        <p class="news-text">Lorem Ipsum is simply dummy text </p>
-                        <hr class="news-line">
-                    </div>
-                    <div class="img">
-                        <img src="/img/man_scream.png" alt="" class="news-img">
-                    </div>
-                </div>
-
-                <div class="news">
-                    <div class="news-description">
-                        <h3 class="news-date">01.10.19</h3>
-                        <p class="news-text">Lorem Ipsum is simply dummy text </p>
-                        <hr class="news-line">
-                    </div>
-                    <div class="img">
-                        <img src="/img/man_scream.png" alt="" class="news-img">
-                    </div>
-                </div>
-
-                <div class="news">
-                    <div class="news-description">
-                        <h3 class="news-date">01.10.19</h3>
-                        <p class="news-text">Lorem Ipsum is simply dummy text </p>
-                        <hr class="news-line">
-                    </div>
-                    <div class="img">
-                        <img src="/img/man_scream.png" alt="" class="news-img">
-                    </div>
-                </div>
-
-
-
             </b-container>
 
-            <b-pagination
-                v-model="currentPage"
-                :total-rows="rows"
-                :per-page="perPage"
-                first-text="<<"
-                prev-text="<"
-                next-text=">"
-                last-text=">>"
-                class="justify-content-center"
-            ></b-pagination>
+
         </section>
     </div>
 </template>
@@ -126,28 +26,20 @@
         name: "NewsComponent",
         data() {
             return {
-                perPage: 3,
-                currentPage: 1,
                 items: [
-                    { id: 1 },
-                    { id: 2 },
-                    { id: 3 },
-                    { id: 4 },
-                    { id: 5 },
-                    { id: 6 },
-                    { id: 7 },
-                    { id: 8 },
-                    { id: 9 },
+                    { id: 1, date: '01.01.19', title: 'kek lol kek lol kek lol kek lol', img: ''},
+                    { id: 2, date: '01.01.01', title: 'heute ist goot', img: '' },
+                    { id: 3, date: '01.01.18', title: 'abra kadabra', img: '' },
+                    { id: 4, date: '01.01.15', title: 'peremoga', img: '' },
+                    { id: 5, date: '01.01.16', title: 'ne mogu bez', img: '' },
+                    { id: 6, date: '01.01.18', title: 'start rofl', img: '' },
+                    { id: 7, date: '01.01.18', title: 'omg', img: '' },
+                    { id: 8, date: '01.01.19', title: 'kek lol arbidol', img: '' },
+                    { id: 9, date: '01.01.18', title: `peremogen'ka`, img: '' },
                 ]
             }
         },
         computed: {
-            rows() {
-                return this.items.length
-            },
-            paginateList() {
-                return this.items.slice((this.currentPage-1)*this.perPage, this.currentPage*this.perPage);
-            }
 
         }
     }
