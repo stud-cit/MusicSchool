@@ -6,34 +6,20 @@
     <div class="header_gradient">
       <b-container>
         <b-row class="card__block">
-          <b-col xl="4" lg="4" md="6" sm="10" cols="10">
+          <b-col
+            xl="4"
+            lg="4"
+            md="6"
+            sm="10"
+            cols="10"
+            v-for="(card, index) in cards"
+            v-bind:key="index"
+          >
             <div class="card">
               <div class="card__img">
-                <img src="/img/introduction/contract.png" alt="contract" />
+                <img v-bind:src="card.img" alt="image" />
               </div>
-              <div
-                class="card__text"
-              >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam.</div>
-            </div>
-          </b-col>
-          <b-col xl="4" lg="4" md="6" sm="10" cols="10">
-            <div class="card">
-              <div class="card__img">
-                <img src="/img/introduction/file.png" alt="file" />
-              </div>
-              <div
-                class="card__text"
-              >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam.</div>
-            </div>
-          </b-col>
-          <b-col xl="4" lg="4" md="6" sm="10" cols="10">
-            <div class="card">
-              <div class="card__img">
-                <img src="/img/introduction/education.png" alt="education" />
-              </div>
-              <div
-                class="card__text"
-              >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam.</div>
+              <div class="card__text">{{card.text}}</div>
             </div>
           </b-col>
         </b-row>
@@ -44,7 +30,28 @@
 
 <script>
 export default {
-  name: "HeaderComponent"
+  name: "HeaderComponent",
+  data() {
+    return {
+      cards: [
+        {
+          img: "/img/introduction/contract.png",
+          text:
+            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
+        },
+        {
+          img: "/img/introduction/file.png",
+          text:
+            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
+        },
+        {
+          img: "/img/introduction/education.png",
+          text:
+            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
+        }
+      ]
+    };
+  }
 };
 </script>
 

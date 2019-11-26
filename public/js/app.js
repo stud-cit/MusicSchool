@@ -2251,22 +2251,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "HeaderComponent"
+  name: "HeaderComponent",
+  data: function data() {
+    return {
+      cards: [{
+        img: "/img/introduction/contract.png",
+        text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
+      }, {
+        img: "/img/introduction/file.png",
+        text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
+      }, {
+        img: "/img/introduction/education.png",
+        text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
+      }]
+    };
+  }
 });
 
 /***/ }),
@@ -2345,43 +2345,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "LastSubMainComponent",
+  data: function data() {
+    return {
+      cards: [{
+        img: "/img/introduction/file_for_cart.png",
+        text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
+      }, {
+        img: "/img/introduction/file_for_cart.png",
+        text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
+      }, {
+        img: "/img/introduction/file_for_cart.png",
+        text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
+      }, {
+        img: "/img/introduction/file_for_cart.png",
+        text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
+      }, {
+        img: "/img/introduction/file_for_cart.png",
+        text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
+      }]
+    };
+  },
+  computed: {},
   components: {
     BtnDownloadComponent: _BtnDownloadComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -31829,7 +31816,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.card__block__inner[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card__block__title[data-v-19b03234] {\r\n  text-transform: uppercase;\r\n  font-size: 32px;\r\n  line-height: 40px;\r\n  font-weight: 600;\r\n  text-align: center;\r\n  margin-bottom: 40px;\n}\n.cards[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: column;\r\n  align-items: center;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  border-radius: 50% 50% 0 0;\r\n  margin-bottom: 30px;\n}\n.card__img[data-v-19b03234] {\r\n  box-shadow: 0px 0px 12px -5px rgba(0, 0, 0, 0.75);\r\n  background-color: #fff;\r\n  width: 100%;\r\n  height: auto;\r\n  text-align: center;\r\n  border: 0;\r\n  border-radius: 50%;\n}\n.card__img img[data-v-19b03234] {\r\n  width: 35%;\r\n  margin: 45px 0;\n}\n.card__body[data-v-19b03234] {\r\n  width: 100%;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-size: 12px;\r\n  padding: 5px 20px 20px 20px;\r\n  font-family: \"Montserrat Light\", sans-serif;\n}\n@media screen and (max-width: 415px) {\n.card__block__title[data-v-19b03234] {\r\n    font-size: 24px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.card__block__inner[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card__block__title[data-v-19b03234] {\r\n  text-transform: uppercase;\r\n  font-size: 32px;\r\n  line-height: 40px;\r\n  font-weight: 600;\r\n  text-align: center;\r\n  margin-bottom: 40px;\n}\n.cards[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: column;\r\n  align-items: center;\r\n  height: 100%;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  border-radius: 50% 50% 0 0;\r\n  margin-bottom: 30px;\n}\n.card__img[data-v-19b03234] {\r\n  box-shadow: 0px 0px 12px -5px rgba(0, 0, 0, 0.75);\r\n  background-color: #fff;\r\n  width: 100%;\r\n  height: auto;\r\n  text-align: center;\r\n  border: 0;\r\n  border-radius: 50%;\n}\n.card__img img[data-v-19b03234] {\r\n  width: 35%;\r\n  margin: 45px 0;\n}\n.card__body[data-v-19b03234] {\r\n  width: 100%;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-size: 12px;\r\n  padding: 5px 20px 20px 20px;\r\n  font-family: \"Montserrat Light\", sans-serif;\n}\n@media screen and (max-width: 415px) {\n.card__block__title[data-v-19b03234] {\r\n    font-size: 24px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -54409,82 +54396,26 @@ var render = function() {
             _c(
               "b-row",
               { staticClass: "card__block" },
-              [
-                _c(
+              _vm._l(_vm.cards, function(card, index) {
+                return _c(
                   "b-col",
                   {
+                    key: index,
                     attrs: { xl: "4", lg: "4", md: "6", sm: "10", cols: "10" }
                   },
                   [
                     _c("div", { staticClass: "card" }, [
                       _c("div", { staticClass: "card__img" }, [
-                        _c("img", {
-                          attrs: {
-                            src: "/img/introduction/contract.png",
-                            alt: "contract"
-                          }
-                        })
+                        _c("img", { attrs: { src: card.img, alt: "image" } })
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "card__text" }, [
-                        _vm._v(
-                          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  {
-                    attrs: { xl: "4", lg: "4", md: "6", sm: "10", cols: "10" }
-                  },
-                  [
-                    _c("div", { staticClass: "card" }, [
-                      _c("div", { staticClass: "card__img" }, [
-                        _c("img", {
-                          attrs: {
-                            src: "/img/introduction/file.png",
-                            alt: "file"
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "card__text" }, [
-                        _vm._v(
-                          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  {
-                    attrs: { xl: "4", lg: "4", md: "6", sm: "10", cols: "10" }
-                  },
-                  [
-                    _c("div", { staticClass: "card" }, [
-                      _c("div", { staticClass: "card__img" }, [
-                        _c("img", {
-                          attrs: {
-                            src: "/img/introduction/education.png",
-                            alt: "education"
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "card__text" }, [
-                        _vm._v(
-                          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
-                        )
+                        _vm._v(_vm._s(card.text))
                       ])
                     ])
                   ]
                 )
-              ],
+              }),
               1
             )
           ],
@@ -54587,122 +54518,28 @@ var render = function() {
             _c(
               "div",
               { staticClass: "card__block__inner" },
-              [
-                _c(
+              _vm._l(_vm.cards, function(card, index) {
+                return _c(
                   "b-col",
-                  { attrs: { xl: "2", lg: "3", md: "4", sm: "6", cols: "8" } },
+                  {
+                    key: index,
+                    attrs: { xl: "2", lg: "3", md: "4", sm: "6", cols: "8" }
+                  },
                   [
                     _c("div", { staticClass: "cards" }, [
                       _c("div", { staticClass: "card__img" }, [
                         _c("img", {
-                          attrs: {
-                            src: "/img/introduction/file_for_cart.png",
-                            alt: "file with properties"
-                          }
+                          attrs: { src: card.img, alt: "file with properties" }
                         })
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "card__body" }, [
-                        _vm._v(
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  { attrs: { xl: "2", lg: "3", md: "4", sm: "6", cols: "8" } },
-                  [
-                    _c("div", { staticClass: "cards" }, [
-                      _c("div", { staticClass: "card__img" }, [
-                        _c("img", {
-                          attrs: {
-                            src: "/img/introduction/file_for_cart.png",
-                            alt: "file with properties"
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "card__body" }, [
-                        _vm._v(
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  { attrs: { xl: "2", lg: "3", md: "4", sm: "6", cols: "8" } },
-                  [
-                    _c("div", { staticClass: "cards" }, [
-                      _c("div", { staticClass: "card__img" }, [
-                        _c("img", {
-                          attrs: {
-                            src: "/img/introduction/file_for_cart.png",
-                            alt: "file with properties"
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "card__body" }, [
-                        _vm._v(
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  { attrs: { xl: "2", lg: "3", md: "4", sm: "6", cols: "8" } },
-                  [
-                    _c("div", { staticClass: "cards" }, [
-                      _c("div", { staticClass: "card__img" }, [
-                        _c("img", {
-                          attrs: {
-                            src: "/img/introduction/file_for_cart.png",
-                            alt: "file with properties"
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "card__body" }, [
-                        _vm._v(
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  { attrs: { xl: "2", lg: "3", md: "4", sm: "6", cols: "8" } },
-                  [
-                    _c("div", { staticClass: "cards" }, [
-                      _c("div", { staticClass: "card__img" }, [
-                        _c("img", {
-                          attrs: {
-                            src: "/img/introduction/file_for_cart.png",
-                            alt: "file with properties"
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "card__body" }, [
-                        _vm._v(
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
-                        )
+                        _vm._v(_vm._s(card.text))
                       ])
                     ])
                   ]
                 )
-              ],
+              }),
               1
             )
           ])
@@ -71346,14 +71183,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************************************!*\
   !*** ./resources/js/components/Introduction/LastSubMainComponent.vue ***!
   \***********************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LastSubMainComponent_vue_vue_type_template_id_19b03234_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LastSubMainComponent.vue?vue&type=template&id=19b03234&scoped=true& */ "./resources/js/components/Introduction/LastSubMainComponent.vue?vue&type=template&id=19b03234&scoped=true&");
 /* harmony import */ var _LastSubMainComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LastSubMainComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Introduction/LastSubMainComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _LastSubMainComponent_vue_vue_type_style_index_0_id_19b03234_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LastSubMainComponent.vue?vue&type=style&index=0&id=19b03234&scoped=true&lang=css& */ "./resources/js/components/Introduction/LastSubMainComponent.vue?vue&type=style&index=0&id=19b03234&scoped=true&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _LastSubMainComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _LastSubMainComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _LastSubMainComponent_vue_vue_type_style_index_0_id_19b03234_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LastSubMainComponent.vue?vue&type=style&index=0&id=19b03234&scoped=true&lang=css& */ "./resources/js/components/Introduction/LastSubMainComponent.vue?vue&type=style&index=0&id=19b03234&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -71385,7 +71223,7 @@ component.options.__file = "resources/js/components/Introduction/LastSubMainComp
 /*!************************************************************************************************!*\
   !*** ./resources/js/components/Introduction/LastSubMainComponent.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
