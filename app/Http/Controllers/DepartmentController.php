@@ -12,6 +12,19 @@ class DepartmentController extends Controller
 {
     protected $publicStorage = "site-files/";
 
+    public function pageDepartments()
+    {	
+        return view('admin.department');
+    }
+    public function pageTeacher()
+    {	
+        return view('admin.teacher');
+    }
+    public function pageInstrument()
+    {	
+        return view('admin.instrument');
+    }
+
     public function getDepartments()
     {
         $departments = DB::select('select * from departments');

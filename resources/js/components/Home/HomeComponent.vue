@@ -16,7 +16,7 @@
     import VideoMainBlock from './VideoMainBlock.vue'
     import MapComponent from '../Other/MapComponent.vue'
     
-
+    
     export default {
         name: 'home',
         components: {

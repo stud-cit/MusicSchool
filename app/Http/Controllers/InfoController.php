@@ -9,6 +9,15 @@ class InfoController extends Controller
 {
     protected $publicStorage = "site-files/";
 
+    public function pageInfo()
+    {	
+        return view('admin.info');
+    }
+    public function pageContact()
+    {	
+        return view('admin.contact');
+    }
+
     public function getInfo()
     {
         $data = Info::get();
