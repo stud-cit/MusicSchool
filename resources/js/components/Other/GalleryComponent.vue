@@ -4,14 +4,14 @@
         <section class="gallery-section mt-50">
             <b-container >
                 <div class="btn-group">
-                    <button :class="{active: this.category == 'all'} " @click="setFilter('all')">Всі файли</button>
-                    <button :class="{active: this.category == 'image'} " @click="setFilter('image')">Фотографії</button>
-                    <button :class="{active: this.category == 'video'} " @click="setFilter('video')">Відеоролики</button>
+                    <button :class="[{active: this.category == 'all'}, 'mr-4']" @click="setFilter('all')">Всі файли</button>
+                    <button :class="[{active: this.category == 'image'}, 'mr-4']" @click="setFilter('image')">Фотографії</button>
+                    <button :class="[{active: this.category == 'video'}, 'mr-4']" @click="setFilter('video')">Відеоролики</button>
                 </div>
-                <transition-group name="list" tag="div" class="row items-list">
+                <transition-group name="list" tag="div" class="row gallery-list">
 
                     <b-col xl="4" v-for="item of paginateList" class="list-item" :key="item.id">
-                        {{item.type}}
+                        <!--{{item.type}}-->
                         <img src="img/gallery-1.png" alt="">
                     </b-col>
 
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+    // import pagination from '../PaginationComponent';
     export default {
         data() {
             return {
@@ -94,28 +95,55 @@
 
             },
 
-        }
+
+        },
+        // components: {
+        //     pagination,
+        // }
     }
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
+    .gallery-section
+        /*animation*/
+        .list-enter
+            transform: scale(0.5) translateY(-80px)
+            opacity: 0
 
-    .list-enter {
-        transform: scale(0.5) translatey(-80px);
-        opacity:0;
-    }
 
-    .list-leave-to{
-        transform: translatey(30px);
-        opacity:0;
-    }
+        .list-leave-to
+            transform: translateY(30px)
+            opacity: 0
 
-    .list-leave-active {
-        position: absolute;
-        z-index:-1;
-    }
-    .list-item
-    {
-        transition: all .5s ease-in-out;
-    }
+
+        .list-leave-active
+            position: absolute
+            z-index: -1
+
+        .list-item
+            transition: all .5s ease-in-out
+
+        /*style*/
+        .btn-group
+            display: flex
+            button
+                padding: 16px 25px
+                border: 1px solid #707070
+                background-color: #ffffff
+                outline: none
+                color: #707070
+                font-family: Montserrat
+                font-size: 20px
+                font-weight: 400
+
+            .active
+                background-color: #6a0017
+                color: #ffffff
+        .list-item
+            margin-top: 30px
+            img
+                width: 100%
+                height: 316px
+                object-fit: cover
+                object-position: center 0
 </style>
