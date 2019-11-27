@@ -9,6 +9,11 @@ class IntroController extends Controller
 {
     protected $publicStorage = "site-files/";
 
+    public function pageIntro()
+    {	
+        return view('admin.intro');
+    }
+
     public function getIntro()
     {
         $data = Intro::get();
