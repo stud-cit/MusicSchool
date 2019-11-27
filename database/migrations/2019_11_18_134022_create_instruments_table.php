@@ -22,8 +22,8 @@ class CreateInstrumentsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('instruments_id');
             $table->integer('departments_id')->unsigned();
-            $table->string('title', 30);
-            $table->string('text', 50);
+            $table->string('name_instruments', 30);
+            $table->string('instruments_info', 50);
             $table->string('photo', 50);
             $table->timestamps();
         });

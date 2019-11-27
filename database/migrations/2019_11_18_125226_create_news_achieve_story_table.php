@@ -23,7 +23,7 @@ class CreateNewsAchieveStoryTable extends Migration
             $table->increments('nas_id');
             $table->string('title', 30);
             $table->string('text', 50);
-            $table->string('date', 8);
+            $table->date('date');
             $table->string('type', 20);
             $table->timestamps();
         });

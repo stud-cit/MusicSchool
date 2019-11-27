@@ -34,8 +34,8 @@ class DepartmentController extends Controller
     {
         $departments = new Departments;
 
-        $departments->title = $request->departmentsTitle;
-        $departments->text = $request->departmentsText;
+        $departments->name_department = $request->nameDepartment;
+        $departments->departments_info = $request->departmentsInfo;
         $departments->save();
     }
 
@@ -43,8 +43,8 @@ class DepartmentController extends Controller
     {
         $teachers = new Teachers;
 
-        $teachers->title = $request->teachersTitle;
-        $teachers->text = $request->teachersText;
+        $teachers->teacher_name = $request->teachersName;
+        $teachers->teacher_info = $request->teachersInfo;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
@@ -58,8 +58,8 @@ class DepartmentController extends Controller
     {
         $instruments = new Instruments;
 
-        $instruments->title = $request->instrumentsTitle;
-        $instruments->text = $request->instrumentsText;
+        $instruments->name_instruments = $request->instrumentsName;
+        $instruments->instruments_info = $request->instrumentsInfo;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
@@ -73,8 +73,8 @@ class DepartmentController extends Controller
     {
         $departments = Departments::find($id);
 
-        $departments->title = $request->departmentsTitle;
-        $departments->text = $request->departmentsText;
+        $departments->name_department = $request->nameDepartment;
+        $departments->departments_info = $request->departmentsInfo;
         $departments->save();
     }
 
@@ -82,8 +82,8 @@ class DepartmentController extends Controller
     {
         $teachers = Teachers::find($id);
 
-        $teachers->title = $request->teachersTitle;
-        $teachers->text = $request->teachersText;
+        $teachers->teacher_name = $request->teachersName;
+        $teachers->teacher_info = $request->teachersInfo;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
@@ -97,8 +97,8 @@ class DepartmentController extends Controller
     {
         $instruments = Instruments::find($id);
 
-        $instruments->title = $request->instrumentsTitle;
-        $instruments->text = $request->instrumentsText;
+        $instruments->name_instruments = $request->instrumentsName;
+        $instruments->instruments_info = $request->instrumentsInfo;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();

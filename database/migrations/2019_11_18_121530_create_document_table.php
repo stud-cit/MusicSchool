@@ -13,12 +13,12 @@ class CreateDocumentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('document');
+        Schema::dropIfExists('documents');
     }
     public function up()
     {
-        Schema::dropIfExists('document');
-        Schema::create('document', function (Blueprint $table) {
+        Schema::dropIfExists('documents');
+        Schema::create('documents', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('documents_id');
             $table->string('text', 50);

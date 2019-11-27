@@ -12,12 +12,12 @@ class IntroTableSeeder extends Seeder
     public function run()
     {
         DB::table('intro')->insert([
-            'block1' => '',
-            'block2' => '',
-            'block3' => '',
-            'bg' => '/img/intro_bg.jpg',
-            'info' => 'заохочувальна інформація в категорії про вступ',
-            'photo' => ''
+            'block1' => 'перший блок з інформацією про вступ',
+            'block2' => 'другий блок з інформацією про вступ',
+            'block3' => 'третій блок з інформацією про вступ',
+            'bg' => '/site-files/intro_bg.jpg',
+            'info' => 'інформація про вступ',
+            'photo' => '/site-files/intro_photo.jpg'
         ]);
     }
 }

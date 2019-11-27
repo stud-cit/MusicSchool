@@ -7,7 +7,7 @@ use App\Models\Info;
 
 class InfoController extends Controller
 {
-    protected $publicStorage = "site-files/";
+    protected $publicStorage = "video/";
 
     public function getInfo()
     {

@@ -7,7 +7,7 @@ use App\Models\Document;
 
 class DocumentController extends Controller
 {
-    protected $publicStorage = "site-files/";
+    protected $publicStorage = "documents/";
 
     public function getDocument()
     {
