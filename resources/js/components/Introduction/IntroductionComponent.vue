@@ -1,13 +1,18 @@
 <template>
-
+    <div>
+        <PageTitleComponent></PageTitleComponent>
+        <b-container>
+            <b-col cols="12"></b-col>
+        </b-container>
+    </div>
 </template>
 
 <script>
-    export default {
-        name: "IntroductionComponent"
-    }
+import PageTitleComponent from "../PageTitleComponent.vue";
+
+export default {
+    name: "IntroductionComponent"
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
