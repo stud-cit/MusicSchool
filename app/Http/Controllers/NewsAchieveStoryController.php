@@ -11,19 +11,6 @@ class NewsAchieveStoryController extends Controller
 {
     protected $publicStorage = "site-files/";
 
-    public function pageStory()
-    {	
-        return view('admin.story');
-    }
-    public function pageAchieve()
-    {	
-        return view('admin.achieve');
-    }
-    public function pageNews()
-    {	
-        return view('admin.news');
-    }
-
     public function getNewsAchieveStory()
     {
         $data = DB::select('select * from news_achieve_story');

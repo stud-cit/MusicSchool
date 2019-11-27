@@ -9,15 +9,6 @@ class InfoController extends Controller
 {
     protected $publicStorage = "video/";
 
-    public function pageInfo()
-    {	
-        return view('admin.info');
-    }
-    public function pageContact()
-    {	
-        return view('admin.contact');
-    }
-
     public function getInfo()
     {
         $data = Info::get();

@@ -6,8 +6,5 @@ use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
-    public function pageGallery()
-    {	
-        return view('admin.gallery');
-    }
+    //
 }

@@ -3,7 +3,7 @@
         <b-container>
             <b-col cols="12">
                 <b-navbar toggleable="lg">
-                    <b-navbar-brand href="/home">
+                    <b-navbar-brand href="/">
                         <img src="/img/logo.png" alt="" class="logo">
                     </b-navbar-brand>
 

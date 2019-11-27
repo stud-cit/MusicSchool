@@ -26,6 +26,7 @@
         "bootstrap": "^4.3.1",
         "bootstrap-vue": "^2.0.4",
         "sweetalert": "^2.1.2",
+        "vee-validate": "^3.1.1",
         "vue-router": "^3.1.3"
     }
 }
