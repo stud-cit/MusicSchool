@@ -10,35 +10,25 @@
                 </div>
                 <transition-group name="list" tag="div" class="row gallery-list">
 
-                    <b-col xl="4" v-for="item of paginateList" class="list-item" :key="item.id">
+                    <b-col xl="4" v-for="item of paginateArray" class="list-item" :key="item.id">
                         <!--{{item.type}}-->
                         <img src="img/gallery-1.png" alt="">
                     </b-col>
 
                 </transition-group>
-                <b-pagination
-                        v-model="currentPage"
-                        :total-rows="rows"
-                        :per-page="perPage"
-                        first-text="<<"
-                        prev-text="<"
-                        next-text=">"
-                        last-text=">>"
-                        class="justify-content-center"
-                ></b-pagination>
+
             </b-container>
+            <paginate :items="filteredItems" @paginateArray="paginateArray = $event"></paginate>
         </section>
     </div>
 
 </template>
 
 <script>
-    // import pagination from '../PaginationComponent';
+    import paginate from '../PaginationComponent';
     export default {
         data() {
             return {
-                perPage: 6,
-                currentPage: 1,
                 category: 'all',
                 items: [
                     { id: 1, type: 'video' },
@@ -58,21 +48,13 @@
                     { id: 15, type: 'image' },
                 ],
                 filteredItems: [],
+                paginateArray: []
             }
         },
         created() {
           this.filterList();
         },
         computed: {
-
-
-            rows() {
-                return this.filteredItems.length
-            },
-            paginateList() {
-                return this.filteredItems.slice((this.currentPage-1)*this.perPage, this.currentPage*this.perPage);
-            },
-
 
 
         },
@@ -97,9 +79,9 @@
 
 
         },
-        // components: {
-        //     pagination,
-        // }
+        components: {
+            paginate,
+        }
     }
 </script>
 
