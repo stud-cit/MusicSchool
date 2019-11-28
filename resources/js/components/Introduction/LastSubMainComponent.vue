@@ -81,7 +81,7 @@ export default {
   text-transform: uppercase;
   font-size: 32px;
   line-height: 40px;
-  font-weight: 600;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 40px;
 }

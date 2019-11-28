@@ -31760,7 +31760,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.btn_align[data-v-66e9f173] {\r\n  text-align: center;\r\n  margin-top: 50px;\r\n  margin-bottom: 25px;\n}\n.btn-outline-dark[data-v-66e9f173] {\r\n  color: #af0126;\r\n  border-color: #af0126;\r\n  width: 255px;\r\n  height: 65px;\r\n  font-size: 22px;\r\n  text-transform: uppercase;\n}\n.btn-outline-dark[data-v-66e9f173]:hover {\r\n  color: white;\r\n  background-color: black;\r\n  border-color: black;\n}\n.just__text[data-v-66e9f173] {\r\n  color: #af0126;\r\n  margin: 25px 0 50px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.btn_align[data-v-66e9f173] {\r\n  text-align: center;\r\n  margin-top: 50px;\r\n  margin-bottom: 25px;\n}\n.btn-outline-dark[data-v-66e9f173] {\r\n  color: #af0126;\r\n  border: 3px solid #af0126;\r\n  width: 255px;\r\n  height: 65px;\r\n  font-size: 22px;\r\n  text-transform: uppercase;\n}\n.btn-outline-dark[data-v-66e9f173]:hover {\r\n  color: white;\r\n  background-color: black;\r\n  border-color: black;\n}\n.just__text[data-v-66e9f173] {\r\n  color: #af0126;\r\n  margin: 25px 0 50px 0;\n}\r\n", ""]);
 
 // exports
 
@@ -31779,7 +31779,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.article__block[data-v-72e000ec] {\r\n  padding: 100px 0 100px 0;\n}\n.article__title[data-v-72e000ec] {\r\n  padding: 0;\r\n  line-height: 80px;\r\n  text-transform: uppercase;\r\n  font-family: \"Montserrat Bold\", sans-serif;\r\n  margin-bottom: 20px;\r\n  font-size: 80px;\n}\n.article__title__small[data-v-72e000ec] {\r\n  font-size: 32px;\r\n  line-height: 40px;\n}\n.article__body[data-v-72e000ec] {\r\n  font-family: \"Montserrat Regular\", sans-serif;\r\n  font-size: 18px;\r\n  margin-bottom: 40px;\r\n  text-align: justify;\n}\n.article__img img[data-v-72e000ec] {\r\n  width: 100%;\r\n  height: auto;\n}\n@media screen and (max-width: 475px) {\n.article__block[data-v-72e000ec] {\r\n    padding-top: 50px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.article__block[data-v-72e000ec] {\r\n  padding: 60px 0 100px 0;\n}\n.article__title[data-v-72e000ec] {\r\n  padding: 0;\r\n  line-height: 80px;\r\n  text-transform: uppercase;\r\n  font-family: \"Montserrat Bold\", sans-serif;\r\n  margin-bottom: 20px;\r\n  font-size: 80px;\r\n  font-weight: bold;\n}\n.article__title__small[data-v-72e000ec] {\r\n  font-size: 32px;\r\n  line-height: 40px;\n}\n.article__body[data-v-72e000ec] {\r\n  font-family: \"Montserrat Regular\", sans-serif;\r\n  font-size: 18px;\r\n  margin-bottom: 40px;\r\n  text-align: justify;\n}\n.article__img img[data-v-72e000ec] {\r\n  width: 100%;\r\n  height: auto;\n}\n@media screen and (max-width: 475px) {\n.article__block[data-v-72e000ec] {\r\n    padding-top: 50px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -31798,7 +31798,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.header__inner[data-v-4f1fc946] {\r\n  width: 100%;\r\n  margin: 0;\r\n  padding: 0;\n}\n.header__inner img[data-v-4f1fc946] {\r\n  width: 100%;\r\n  height: auto;\n}\n.header_gradient[data-v-4f1fc946] {\r\n  width: 100%;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  background-size: cover;\n}\n.card__block[data-v-4f1fc946] {\r\n  padding-bottom: 50px;\r\n  margin-top: -100px;\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card[data-v-4f1fc946] {\r\n  top: 0;\r\n  text-align: center;\r\n  margin-bottom: 20px;\n}\n.card__img[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding-top: 30px;\n}\n.card__img img[data-v-4f1fc946] {\r\n  height: 100px;\n}\n.card__text[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding: 25px 30px 30px 15px;\r\n  font-family: \"Montserrat Regular\", sans-serif;\r\n  font-size: 18px;\n}\n@media screen and (max-width: 800px) {\n.card__img img[data-v-4f1fc946] {\r\n    height: 150px;\n}\n}\n@media screen and (max-width: 475px) {\n.header__inner img[data-v-4f1fc946] {\r\n    width: 100%;\n}\n.card__block[data-v-4f1fc946] {\r\n    margin-top: -40px;\n}\n.card__img img[data-v-4f1fc946] {\r\n    height: 90px;\n}\n.card__text[data-v-4f1fc946] {\r\n    height: 50%;\r\n    width: 100%;\r\n    padding: 20px 25px 25px 10px;\r\n    font-family: \"Montserrat Regular\", sans-serif;\r\n    font-size: 18px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.header__inner[data-v-4f1fc946] {\r\n  width: 100%;\r\n  margin: 0;\r\n  padding: 0;\n}\n.header__inner img[data-v-4f1fc946] {\r\n  height: 200px;\r\n  object-fit: cover;\r\n  object-position: -10 -10;\n}\n.header_gradient[data-v-4f1fc946] {\r\n  width: 100%;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  background-size: cover;\n}\n.card__block[data-v-4f1fc946] {\r\n  padding-bottom: 50px;\r\n  margin-top: -100px;\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card[data-v-4f1fc946] {\r\n  top: 0;\r\n  text-align: center;\r\n  margin-bottom: 20px;\n}\n.card__img[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding-top: 30px;\n}\n.card__img img[data-v-4f1fc946] {\r\n  height: 100px;\n}\n.card__text[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding: 25px 30px 30px 15px;\r\n  font-family: \"Montserrat Regular\", sans-serif;\r\n  font-size: 18px;\n}\n@media screen and (max-width: 800px) {\n.card__img img[data-v-4f1fc946] {\r\n    height: 150px;\n}\n}\n@media screen and (max-width: 475px) {\n.header__inner img[data-v-4f1fc946] {\r\n    width: 100%;\n}\n.card__block[data-v-4f1fc946] {\r\n    margin-top: -40px;\n}\n.card__img img[data-v-4f1fc946] {\r\n    height: 90px;\n}\n.card__text[data-v-4f1fc946] {\r\n    height: 50%;\r\n    width: 100%;\r\n    padding: 20px 25px 25px 10px;\r\n    font-family: \"Montserrat Regular\", sans-serif;\r\n    font-size: 18px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -31817,7 +31817,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.card__block__inner[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card__block__title[data-v-19b03234] {\r\n  text-transform: uppercase;\r\n  font-size: 32px;\r\n  line-height: 40px;\r\n  font-weight: 600;\r\n  text-align: center;\r\n  margin-bottom: 40px;\n}\n.cards[data-v-19b03234] {\r\n  margin-bottom: 30px;\n}\n.card[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: column;\r\n  align-items: center;\r\n  height: 100%;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  border-radius: 50% 50% 0 0;\r\n  border: 0;\n}\n.card__img[data-v-19b03234] {\r\n  box-shadow: 0px 0px 12px -5px rgba(0, 0, 0, 0.75);\r\n  background-color: #fff;\r\n  width: 100%;\r\n  height: auto;\r\n  text-align: center;\r\n  border: 0;\r\n  border-radius: 50%;\n}\n.card__img img[data-v-19b03234] {\r\n  width: 35%;\r\n  margin: 45px 0;\n}\n.card__body[data-v-19b03234] {\r\n  width: 100%;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-size: 12px;\r\n  padding: 5px 20px 20px 20px;\r\n  font-family: \"Montserrat Light\", sans-serif;\n}\n@media screen and (max-width: 415px) {\n.card__block__title[data-v-19b03234] {\r\n    font-size: 24px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.card__block__inner[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card__block__title[data-v-19b03234] {\r\n  text-transform: uppercase;\r\n  font-size: 32px;\r\n  line-height: 40px;\r\n  font-weight: bold;\r\n  text-align: center;\r\n  margin-bottom: 40px;\n}\n.cards[data-v-19b03234] {\r\n  margin-bottom: 30px;\n}\n.card[data-v-19b03234] {\r\n  display: flex;\r\n  flex-flow: column;\r\n  align-items: center;\r\n  height: 100%;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  border-radius: 50% 50% 0 0;\r\n  border: 0;\n}\n.card__img[data-v-19b03234] {\r\n  box-shadow: 0px 0px 12px -5px rgba(0, 0, 0, 0.75);\r\n  background-color: #fff;\r\n  width: 100%;\r\n  height: auto;\r\n  text-align: center;\r\n  border: 0;\r\n  border-radius: 50%;\n}\n.card__img img[data-v-19b03234] {\r\n  width: 35%;\r\n  margin: 45px 0;\n}\n.card__body[data-v-19b03234] {\r\n  width: 100%;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-size: 12px;\r\n  padding: 5px 20px 20px 20px;\r\n  font-family: \"Montserrat Light\", sans-serif;\n}\n@media screen and (max-width: 415px) {\n.card__block__title[data-v-19b03234] {\r\n    font-size: 24px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -71185,15 +71185,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************************************!*\
   !*** ./resources/js/components/Introduction/LastSubMainComponent.vue ***!
   \***********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LastSubMainComponent_vue_vue_type_template_id_19b03234_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LastSubMainComponent.vue?vue&type=template&id=19b03234&scoped=true& */ "./resources/js/components/Introduction/LastSubMainComponent.vue?vue&type=template&id=19b03234&scoped=true&");
 /* harmony import */ var _LastSubMainComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LastSubMainComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Introduction/LastSubMainComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _LastSubMainComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _LastSubMainComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _LastSubMainComponent_vue_vue_type_style_index_0_id_19b03234_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LastSubMainComponent.vue?vue&type=style&index=0&id=19b03234&scoped=true&lang=css& */ "./resources/js/components/Introduction/LastSubMainComponent.vue?vue&type=style&index=0&id=19b03234&scoped=true&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _LastSubMainComponent_vue_vue_type_style_index_0_id_19b03234_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LastSubMainComponent.vue?vue&type=style&index=0&id=19b03234&scoped=true&lang=css& */ "./resources/js/components/Introduction/LastSubMainComponent.vue?vue&type=style&index=0&id=19b03234&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -71225,7 +71224,7 @@ component.options.__file = "resources/js/components/Introduction/LastSubMainComp
 /*!************************************************************************************************!*\
   !*** ./resources/js/components/Introduction/LastSubMainComponent.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

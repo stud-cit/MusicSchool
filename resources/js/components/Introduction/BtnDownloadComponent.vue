@@ -25,7 +25,7 @@ export default {
 
 .btn-outline-dark {
   color: #af0126;
-  border-color: #af0126;
+  border: 3px solid #af0126;
   width: 255px;
   height: 65px;
   font-size: 22px;

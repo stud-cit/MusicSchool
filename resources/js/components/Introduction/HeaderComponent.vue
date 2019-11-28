@@ -63,8 +63,9 @@ export default {
 }
 
 .header__inner img {
-  width: 100%;
-  height: auto;
+  height: 200px;
+  object-fit: cover;
+  object-position: -10 -10;
 }
 
 .header_gradient {
