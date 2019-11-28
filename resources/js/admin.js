@@ -20,6 +20,9 @@ import StoryComponent from './components/Admin/StoryComponent'
 import TeacherComponent from './components/Admin/TeacherComponent'
 import ProfileComponent from './components/Admin/ProfileComponent'
 
+import VueSilentbox from 'vue-silentbox';
+Vue.use(VueSilentbox);
+
 Vue.config.productionTip = false;
 
 // Validator.localize('uk', uk);
