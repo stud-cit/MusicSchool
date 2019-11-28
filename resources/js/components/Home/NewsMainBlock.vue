@@ -36,23 +36,23 @@
             </b-container>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
+import ButtonInformation from "./ButtonInformation.vue";
 
-    import ButtonInformation from './ButtonInformation.vue'
-
-    export default {
-        name: 'NewsMainBlock',
-        components: {
-            ButtonInformation
-        },
-        data(){
-            return{
-                btn: "Новость"
-            }
-        }
-    }
+export default {
+  name: "NewsMainBlock",
+  components: {
+    ButtonInformation
+  },
+  data() {
+    return {
+      btn: "Новость"
+    };
+  }
+};
 </script>
 
 <style scoped>

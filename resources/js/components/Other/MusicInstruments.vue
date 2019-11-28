@@ -6,7 +6,7 @@
                 <div class="content-layout"></div>
                 <b-container>
                     <ul class="instrument-list">
-                        <li class="list-item" v-for="item of paginateList">
+                        <li class="list-item" v-for="item of paginateArray">
                             <div class="description">
                                 <h3 class="item-title">Рояль {{item.id}}</h3>
                                 <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem
@@ -20,16 +20,7 @@
 
                 </b-container>
             </div>
-            <b-pagination
-                    v-model="currentPage"
-                    :total-rows="rows"
-                    :per-page="perPage"
-                    first-text="<<"
-                    prev-text="<"
-                    next-text=">"
-                    last-text=">>"
-                    class="justify-content-center"
-            ></b-pagination>
+            <paginate :items="items" perPage="3" @paginateArray="paginateArray = $event"></paginate>
         </section>
 
     </div>
@@ -37,11 +28,10 @@
 </template>
 
 <script>
+    import paginate from '../PaginationComponent';
     export default {
         data() {
             return {
-                perPage: 3,
-                currentPage: 1,
                 items: [
                     { id: 1 },
                     { id: 2 },
@@ -52,18 +42,17 @@
                     { id: 7 },
                     { id: 8 },
                     { id: 9 },
-                ]
+                ],
+                paginateArray: []
             }
         },
         computed: {
-            rows() {
-                return this.items.length
-            },
-            paginateList() {
-                return this.items.slice((this.currentPage-1)*this.perPage, this.currentPage*this.perPage);
-            }
+
 
         },
+        components: {
+            paginate
+        }
 
     }
 </script>
