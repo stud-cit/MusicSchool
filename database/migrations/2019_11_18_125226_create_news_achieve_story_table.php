@@ -21,8 +21,8 @@ class CreateNewsAchieveStoryTable extends Migration
         Schema::create('news_achieve_story', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('nas_id');
-            $table->string('title', 30);
-            $table->string('text', 50);
+            $table->string('nas_name', 30);
+            $table->string('nas_info', 50);
             $table->date('date');
             $table->string('type', 20);
             $table->timestamps();

@@ -1,5 +1,4 @@
 require('./bootstrap');
-require('./sidenavToggler');
 
 window.Vue = require("vue");
 
@@ -22,13 +21,13 @@ import ProfileComponent from './components/Admin/ProfileComponent'
 
 Vue.config.productionTip = false;
 
-// Validator.localize('uk', uk);
+Validator.localize('uk', uk);
 
 Vue.use(VueRouter);
 
-// Vue.use(VeeValidate, {
-//     locale: 'uk',
-// });
+Vue.use(VeeValidate, {
+  locale: 'uk',
+});
 
 const router = new VueRouter({
     mode: 'history',

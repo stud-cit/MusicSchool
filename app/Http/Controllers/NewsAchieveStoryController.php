@@ -45,8 +45,8 @@ class NewsAchieveStoryController extends Controller
     {
         $news = new NewsAchieveStory;
 
-        $news->title = $news->newsTitle;
-        $news->text = $news->newsText;
+        $news->nas_name = $news->newsName;
+        $news->nas_info = $news->newsInfo;
         $news->date = date("Y-m-d", strtotime($news->newsDate));
         $news->type = NewsAchieveStory::NEWS;
 
@@ -58,17 +58,23 @@ class NewsAchieveStoryController extends Controller
                 $file->move(public_path() . $this->publicStorage, $name);
                 $images->file = $this->publicStorage . $name;
                 $images->save();
+                return response()->json([
+                    "image_id" => $images->images_id
+                ]);
             }
         }
         $news->save();
+        return response()->json([
+            "news_id" => $news->nas_id
+        ]);
     }
 
     public function updateNews(Request $request, $id)
     {
         $update_news = NewsAchieveStory::find($id);
 
-        $update_news->title = $update_news->newsTitle;
-        $update_news->text = $update_news->newsText;
+        $update_news->nas_name = $update_news->newsName;
+        $update_news->nas_info = $update_news->newsInfo;
         $update_news->date = date("Y-m-d", strtotime($update_news->newsDate));
         $update_news->type = NewsAchieveStory::NEWS;
 
@@ -88,8 +94,8 @@ class NewsAchieveStoryController extends Controller
     {
         $achieve = new NewsAchieveStory;
 
-        $achieve->title = $achieve->achieveTitle;
-        $achieve->text = $achieve->achieveText;
+        $achieve->nas_name = $achieve->achieveName;
+        $achieve->nas_info = $achieve->achieveInfo;
         $achieve->date = date("Y-m-d", strtotime($achieve->achieveDate));
         $achieve->type = NewsAchieveStory::ACHIEVE;
 
@@ -110,8 +116,8 @@ class NewsAchieveStoryController extends Controller
     {
         $update_achieve = NewsAchieveStory::find($id);
 
-        $update_achieve->title = $update_achieve->achieveTitle;
-        $update_achieve->text = $update_achieve->achieveText;
+        $update_achieve->nas_name = $update_achieve->achieveName;
+        $update_achieve->nas_info = $update_achieve->achieveInfo;
         $update_achieve->date = date("Y-m-d", strtotime($update_achieve->achieveDate));
         $update_achieve->type = NewsAchieveStory::ACHIEVE;
 
@@ -131,8 +137,8 @@ class NewsAchieveStoryController extends Controller
     {
         $story = new NewsAchieveStory;
 
-        $story->title = $story->storyTitle;
-        $story->text = $story->storyText;
+        $story->nas_name = $story->storyName;
+        $story->nas_info = $story->storyInfo;
         $story->date = date("Y-m-d", strtotime($story->storyDate));
         $story->type = NewsAchieveStory::STORY;
 
@@ -153,8 +159,8 @@ class NewsAchieveStoryController extends Controller
     {
         $update_story = NewsAchieveStory::find($id);
 
-        $update_story->title = $update_story->storyTitle;
-        $update_story->text = $update_story->storyText;
+        $update_story->nas_name = $update_story->storyName;
+        $update_story->nas_info = $update_story->storyInfo;
         $update_story->date = date("Y-m-d", strtotime($update_story->storyDate));
         $update_story->type = NewsAchieveStory::STORY;
 
