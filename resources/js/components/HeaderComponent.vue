@@ -15,12 +15,13 @@
                                 <b-dropdown-item href="/news">Новини</b-dropdown-item>
                             </b-nav-item-dropdown>
 
-                            <b-nav-item-dropdown toggle-class="text-dark" text="Відділи" right id="dropdown_style">
-                                <b-dropdown-item href="/teachers" id="loool">Викладачі</b-dropdown-item>
+                            <!-- <b-nav-item-dropdown toggle-class="text-dark" text="Відділи" right id="dropdown_style">
+                                <b-dropdown-item href="/teachers">Викладачі</b-dropdown-item>
                                 <b-dropdown-item href="/instruments">Інструменти</b-dropdown-item>
-                            </b-nav-item-dropdown>
+                            </b-nav-item-dropdown> -->
 
                             <b-navbar-nav>
+                                <b-nav-item href="/achievements">Відділи</b-nav-item>
                                 <b-nav-item href="/achievements">Досягнення</b-nav-item>
                                 <b-nav-item href="/introduction">Вступ</b-nav-item>
                                 <b-nav-item href="/gallery">Галерея</b-nav-item>
