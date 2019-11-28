@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 
-Route::get('/information', 'SpaController@index')->where('any', '.*');
+Route::get('gallery', 'GalleryController@getFile');
+Route::post('gallery', 'GalleryController@postFile');
+Route::delete('gallery', 'GalleryController@deleteFile');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
