@@ -59,6 +59,7 @@ class NewsAchieveStoryController extends Controller
                 $images->file = $this->publicStorage . $name;
                 $images->save();
                 return response()->json([
+                    "file" => $images->file,
                     "image_id" => $images->images_id
                 ]);
             }

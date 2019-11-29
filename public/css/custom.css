@@ -18,6 +18,13 @@
     color: #fff;
 }
 
+.brtop {
+    margin-bottom:-5px;
+    font-weight: bold;
+    font-size: 12px;
+    display:inline-block;
+}
+
 .fotoGallery .fa-download {
     position: absolute;
     color: #999;
