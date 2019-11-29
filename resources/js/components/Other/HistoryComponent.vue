@@ -1,10 +1,12 @@
 <template>
     <div>
+
         <page-title title="історія школи" uptitle="дивовижна"></page-title>
+
         <section class="history-section mt-50">
             <b-container class="history-list">
 
-                <b-row class="list-item d-flex" v-for="item in paginateList" :key="item.id" >
+                <b-row class="list-item d-flex" v-for="item in paginateArray" :key="item.id" >
                     <b-col xl=4 class="history-title-block">
                         <p class="year">2005</p>
                         <p class="title">Новий відділ {{item.id}}</p>
@@ -33,16 +35,8 @@
                     </b-col>
                 </b-row>
 
-                <b-pagination
-                        v-model="currentPage"
-                        :total-rows="rows"
-                        :per-page="perPage"
-                        first-text="<<"
-                        prev-text="<"
-                        next-text=">"
-                        last-text=">>"
-                        class="justify-content-center"
-                ></b-pagination>
+                <paginate :items="items" @paginateArray="paginateArray = $event" perPage="3"></paginate>
+
             </b-container>
         </section>
 
@@ -51,11 +45,12 @@
 </template>
 
 <script>
+    import paginate from '../PaginationComponent';
+
     export default {
         data() {
             return {
-                perPage: 3,
-                currentPage: 1,
+
                 items: [
                     { id: 1 },
                     { id: 2 },
@@ -66,18 +61,16 @@
                     { id: 7 },
                     { id: 8 },
                     { id: 9 },
-                ]
+                ],
+                paginateArray: [],
             }
         },
         computed: {
-            rows() {
-                return this.items.length
-            },
-            paginateList() {
-                return this.items.slice((this.currentPage-1)*this.perPage, this.currentPage*this.perPage);
-            }
 
         },
+        components: {
+            paginate
+        }
 
     }
 </script>
