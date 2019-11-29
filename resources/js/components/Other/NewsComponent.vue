@@ -4,14 +4,14 @@
         <section class="history-section mt-50">
             <b-container class="news-list">
 
-                <div class="news" v-for="i in items">
+                <div class="news" v-for="i in news">
                     <div class="news-description">
                         <h3 class="news-date">{{i.date}}</h3>
                         <p class="news-text">{{i.title}}</p>
                         <hr class="news-line">
                     </div>
-                    <div class="img">
-                        <img src="/img/man_scream.png" alt="" class="news-img">
+                    <div class="news-img">
+                        <img :src="i.img" alt="" class="news-img">
                     </div>
                 </div>
             </b-container>
@@ -26,16 +26,16 @@
         name: "NewsComponent",
         data() {
             return {
-                items: [
-                    { id: 1, date: '01.01.19', title: 'kek lol kek lol kek lol kek lol', img: ''},
-                    { id: 2, date: '01.01.01', title: 'heute ist goot', img: '' },
-                    { id: 3, date: '01.01.18', title: 'abra kadabra', img: '' },
-                    { id: 4, date: '01.01.15', title: 'peremoga', img: '' },
-                    { id: 5, date: '01.01.16', title: 'ne mogu bez', img: '' },
-                    { id: 6, date: '01.01.18', title: 'start rofl', img: '' },
-                    { id: 7, date: '01.01.18', title: 'omg', img: '' },
-                    { id: 8, date: '01.01.19', title: 'kek lol arbidol', img: '' },
-                    { id: 9, date: '01.01.18', title: `peremogen'ka`, img: '' },
+                news: [
+                    { id: 1, date: '01.01.19', title: 'kek lol kek lol kek lol kek lol', img: "/img/man_scream.png"},
+                    { id: 2, date: '01.01.01', title: 'heute ist goot', img: "/img/man_scream.png" },
+                    { id: 3, date: '01.01.18', title: 'abra kadabra', img: "/img/man_scream.png" },
+                    { id: 4, date: '01.01.15', title: 'peremoga', img: "/img/man_scream.png" },
+                    { id: 5, date: '01.01.16', title: 'ne mogu bez', img: "/img/man_scream.png" },
+                    { id: 6, date: '01.01.18', title: 'start rofl', img: "/img/man_scream.png" },
+                    { id: 7, date: '01.01.18', title: 'omg', img: "/img/man_scream.png" },
+                    { id: 8, date: '01.01.19', title: 'kek lol arbidol', img: "/img/man_scream.png" },
+                    { id: 9, date: '01.01.18', title: `peremogen'ka`, img: "/img/man_scream.png" },
                 ]
             }
         },
@@ -52,10 +52,12 @@
     }
 
     .news {
+        position: relative;
         width: 30%;
         margin: 15px 15px;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         text-align: center;
         overflow: hidden;
         box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.16);
@@ -81,6 +83,7 @@
     }
 
     .news-text {
+        font-weight: 600;
         color: #2b2b2b;
         font-size: 16px;
         font-style: italic;
