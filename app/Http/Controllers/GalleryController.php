@@ -7,7 +7,7 @@ use App\Models\Gallery;
 
 class GalleryController extends Controller
 {
-    protected $publicStorage = '/gallery';
+    protected $publicStorage = '/gallery/';
 
     function getFile() {
         $data = Gallery::get();
@@ -33,13 +33,15 @@ class GalleryController extends Controller
             $foto->type = $request->type;
             $foto->save();
             return response()->json($foto);
-        }
-        // $model = new Gallery();
-        // $data = $request->all();
-        // $response = $model->create($data);
-        // return response()->json($response);
+        } 
     }
-    function deleteFile() {
-        //
+    function deleteFile(Request $request) {
+        var_dump($request['files']);
+        foreach($request['files'] as $key => $value) {
+            Gallery::find($value['id'])->delete();
+            if($value['type'] == 'img') {
+                unlink(public_path($this->publicStorage.$value['file']));
+            }
+        }
     }
 }

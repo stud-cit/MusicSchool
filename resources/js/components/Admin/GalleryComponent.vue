@@ -4,8 +4,8 @@
 			<div class="col-12 mt-1 mb-2">
 				<button type="button" class="btn btn-primary float-left" @click="showFormFoto = !showFormFoto, showFormVideo = false">Додати фото</button>
                 <button type="button" class="btn btn-primary float-left mx-2" @click="showFormVideo = !showFormVideo, showFormFoto = false">Додати відео</button>
-				<button type="button" class="btn btn-primary float-right" @click="delArrayFoto">Видалити</button>
-				<span class="btn float-right">Обрано {{id.length}} елементів</span>
+				<button type="button" v-if="selectFiles.length" class="btn btn-primary float-right" @click="deleteFiles">Видалити</button>
+				<span  v-if="selectFiles.length" class="btn float-right">Обрано {{selectFiles.length}} елементів</span>
 			</div>
 		</div>
 
@@ -42,18 +42,18 @@
         <br>
         <div class="row">
             <silentbox-group v-for="(item, index) in file" :key="index" class="col-4 fotoGallery">
-                <div class="circle"><i class="fa fa-times-circle btn btn-default p-0" @click="delFoto(item.foto_id, index)"></i></div>
                 <silentbox-item :src="'/gallery/'+item.file" class="foto" v-if="item.type == 'img'">
                     <img :src="'/gallery/'+item.file">
                     <a :href="'/img/uploads/'+item.file" download><i class="fa fa-download"></i></a>
                 </silentbox-item>
                 <silentbox-item :src="'//img.youtube.com/vi/'+item.file" class="foto" v-if="item.type == 'video'">
+					<i class="fa fa-play-circle-o"></i>
                     <img :src="'//img.youtube.com/vi/'+item.file.slice(item.file.length - 11, item.file.length)+'/mqdefault.jpg'">
                 </silentbox-item>
                 <div class="edit">
                     <div class="chekbox-two">
                         <label class="checkbox">
-                            <input type="checkbox" class="checkPhoto" :checked="id.indexOf(item.id) != -1 ? true : false" @click="itemFile(item.id)">
+                            <input type="checkbox" class="checkPhoto" :checked="selectFiles.indexOf(item) != -1 ? true : false" @click="itemFile(item)">
                             <span class="checkbox__icon"></span>
                         </label>
                     </div>
@@ -80,14 +80,14 @@
 					pageNumber: 0,
 					size: 9
 				},
-                id: [],
+                selectFiles: [],
 				load: false,
                 showFormVideo: false,
                 showFormFoto: false
 			}
 		},
 		created() {
-			this.getFoto();
+			this.getFiles();
 		},
 		computed: {
 			paginatedData(){
@@ -106,17 +106,17 @@
 			prevPage(){
 				this.pagination.pageNumber--;
 			},
-			getFoto() {
+			getFiles() {
 				axios.get('/api/gallery')
 					.then((response) => {
 						this.file = response.data;
 					})
 			},
-			itemFile(id) {
-				if(this.id.indexOf(id) == -1) {
-					this.id.push(id);
+			itemFile(item) {
+				if(this.selectFiles.indexOf(item) == -1) {
+					this.selectFiles.push(item);
 				} else {
-					this.id.splice(this.id.indexOf(id), 1);
+					this.selectFiles.splice(this.selectFiles.indexOf(item), 1);
 				}
 			},
 			fieldChange(){
@@ -151,6 +151,7 @@
                     file: this.uploadVideo,
                     type: 'video'
                 }).then((res) => {
+					this.uploadVideo = '';
                     this.file.push(res.data);
                 }).catch(() => {
                     swal({
@@ -160,10 +161,10 @@
                     });
                 })
             },
-			delFile(index) {
+			deleteUploadFile(index) {
 				this.uploadPhotos.splice(index, 1);
 			},
-			delArrayFoto() {
+			deleteFiles() {
 				swal({
 					title: "Бажаєте видалити?",
 					text: "Після видалення ви не зможете відновити ці файли!",
@@ -172,40 +173,19 @@
 					dangerMode: true,
 				}).then((willDelete) => {
 					if (willDelete) {
-						axios.post('/delete-foto', {
-							id: this.id
+						axios.post('/api/delete-gallery', {
+							files: this.selectFiles
 						})
-							.then(() => {
-								this.getFoto();
-								swal("Файли успішно видалені", {
-									icon: "success",
-								});
+						.then((res) => {
+							this.getFiles();
+							this.selectFiles = [];
+							swal("Файли успішно видалені", {
+								icon: "success",
 							});
+						});
 					}
 				});
 			},
-			delFoto(id, index) {
-				swal({
-					title: "Бажаєте видалити?",
-					text: "Після видалення ви не зможете відновити цей файл!",
-					icon: "warning",
-					buttons: true,
-					dangerMode: true,
-				})
-					.then((willDelete) => {
-						if (willDelete) {
-							axios.post('/delete-foto', {
-								id: [id]
-							})
-								.then(() => {
-									this.file.splice(index, 1);
-									swal("Файл успішно видалено", {
-										icon: "success",
-									});
-								});
-						}
-					});
-			}
 		}
 	}
 </script>
@@ -221,19 +201,5 @@
     .uploadFiles i {
         position: absolute;
         right: 10px;
-    }
-    .fotoGallery{
-        height: auto
-    }
-    .fotoGallery .fa-calendar{
-        position: static
-    }
-    .fotoGallery .width-100{
-        width: calc(100% - 30px);
-    }
-    .gallery-img{
-        background-size: cover;
-        margin-bottom: 10px;
-        height: 200px;
     }
 </style>
