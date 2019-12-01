@@ -41,6 +41,10 @@ Route::get('get-news', 'NewsAchieveStoryController@getNews');
 Route::get('get-achieve', 'NewsAchieveStoryController@getAchieve');
 Route::get('get-story', 'NewsAchieveStoryController@getStory');
 
+//Фото новостей
+Route::get('get-news-image/{id}/', 'NewsAchieveStoryController@getNewsImage');
+Route::post('post-news-image', 'NewsAchieveStoryController@postNewsImage');
+
 Route::post('post-news', 'NewsAchieveStoryController@postNews');
 Route::post('post-achieve', 'NewsAchieveStoryController@postAchieve');
 Route::post('post-story', 'NewsAchieveStoryController@postStory');
