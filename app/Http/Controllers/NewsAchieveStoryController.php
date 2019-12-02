@@ -25,6 +25,12 @@ class NewsAchieveStoryController extends Controller
         return response()->json($data);
     }
 
+    public function getNewsImage()
+    {
+        $data = Images::orderBy('created_at', 'asc')->get();
+        return response()->json($data);
+    }
+
     public function getAchieve()
     {
         $data = NewsAchieveStory::with('images')
@@ -45,10 +51,22 @@ class NewsAchieveStoryController extends Controller
     {
         $news = new NewsAchieveStory;
 
-        $news->nas_name = $news->newsName;
-        $news->nas_info = $news->newsInfo;
+        $news->nas_name = $request->newsName;
+        $news->nas_info = $request->newsInfo;
         $news->date = date("Y-m-d", strtotime($news->newsDate));
         $news->type = NewsAchieveStory::NEWS;
+
+        $news->save();
+        return response()->json([
+            "news_id" => $news->nas_id
+        ]);
+    }
+
+    public function postNewsImage(Request $request)
+    {
+        $this->validate($request, [
+            'filenames.*' => 'mimes:jpeg'
+        ]);
 
         $newsFile = $request->file;
         foreach ($newsFile as $file){
@@ -64,10 +82,6 @@ class NewsAchieveStoryController extends Controller
                 ]);
             }
         }
-        $news->save();
-        return response()->json([
-            "news_id" => $news->nas_id
-        ]);
     }
 
     public function updateNews(Request $request, $id)

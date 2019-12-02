@@ -12,6 +12,8 @@ class NewsAchieveStory extends Model
     public const ACHIEVE = 'achieve';
     public const STORY = 'story';
 
+    protected $guarded = ['nas_id'];
+
     public function images()
     {
         return $this->hasMany('App\Models\Images', 'nas_id');
