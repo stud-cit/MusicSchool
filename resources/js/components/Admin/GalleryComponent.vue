@@ -18,7 +18,7 @@
 							<span class="custom-file-control">{{ `Кількість обраних файлів: ${uploadPhotos.length}` }}</span>
 						</label>
 						<div v-for="(item, index) in uploadPhotos" :key="index">
-							<div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{ item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
+							<div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{ item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="deleteUploadFile(index)"></i></div>
 						</div>
 						<!-- Временное решение -->
 						<transition name="load">
@@ -33,9 +33,13 @@
                 <div class="col-5">
                     <div>
                     <label for="video" class="brtop">Посилання на відео (YouTube)</label>
-                        <input type="text" ref="video" name="video" class="form-control" v-model="uploadVideo" id="video">
+                        <input type="text" ref="video" name="video" class="form-control" id="video" 
+							v-model="uploadVideo" 
+							v-validate="{regex: /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/}"
+						>
+						<span class="text-danger" v-if="errors.has('video')">Некоректне посилання</span>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary mt-4 px-5" @click="postVideo">Додати</button>
+                    <button :disabled="errors.has('video') || uploadVideo == ''" type="button" class="btn btn-outline-secondary mt-4 px-5" @click="postVideo">Додати</button>
                 </div>
             </div>
 

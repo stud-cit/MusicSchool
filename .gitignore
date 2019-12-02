@@ -16,3 +16,4 @@ package-lock.json
 public/js/app.js
 .vs
 public/js/admin.js
+public/gallery
