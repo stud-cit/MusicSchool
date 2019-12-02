@@ -1,43 +1,40 @@
 <template>
-  <div>
-    <div id="block_space_2">
-      <div class="add_block"></div>
+    <div>
+        <div id="block_space_2">
 
-      <b-container>
-        <b-row>
-          <b-col cols="4" fluid>
-            <div>
-              <p class="text_style_big">
-                <small>Актуальні</small>
-                <br />новини
-              </p>
-            </div>
-          </b-col>
-        </b-row>
+            <div class="add_block"></div>
 
-        <b-row class="news_block">
-          <b-col xl="8" lg="7" md="12" sm="12" order-lg="2" class="figure">
-            <img src="/img/photo_news_1.png" alt />
-          </b-col>
-          <b-col xl="4" lg="5" md="12" sm="12" order-lg="1" class="news_block_all">
-            <div class="news_block_inf" id="text-style">
-              <div>
-                <p class="text_style_mid">Проведення музичного конкурсу</p>
-              </div>
-              <div>
-                <p class="text_common">
-                  Конкурс на заміщення вакантної посади керівника музичної частини, який проходив у Львівському національному академічному театрі опери та балету
-                  імені Соломії Крушельницької завершено. Рішенням конкурсної комісії від 6 листопада 2019 року переможцем конкурсу на заміщення вакантної посади
-                  керівника музичної частини визнано – Чередніченка Іванна Владимировна...
-                </p>
-              </div>
-              <div>
-                <ButtonInformation />
-              </div>
-            </div>
-          </b-col>
-        </b-row>
-      </b-container>
+            <b-container>
+                <b-row>
+                    <b-col cols="4" fluid>
+                        <div>
+                            <p class="text_style_big"><small>Актуальні</small><br>новини</p>
+                        </div>
+                    </b-col>
+                </b-row>
+
+                <b-row class="news_block">
+                    <b-col xl="8" lg="7" md="12" sm ="12" order-lg="2" class="figure">
+                        <img src="/img/photo_news_1.png" alt="">
+                    </b-col>
+                    <b-col xl="4" lg="5" md="12" sm ="12" order-lg="1" class="news_block_all">
+                        <div class="news_block_inf"  id = "text-style">
+                            <div>
+                                <i class="text_style_mid">Проведення музичного конкурсу</i>
+                            </div>
+                            <div>
+                                <p class="text_common">Конкурс на заміщення вакантної посади керівника музичної частини, який проходив у Львівському національному академічному театрі опери та балету
+                                    імені Соломії Крушельницької завершено. Рішенням конкурсної комісії від 6 листопада 2019 року переможцем конкурсу на заміщення вакантної посади
+                                    керівника музичної частини визнано –  Чередніченка Іванна Владимировна...</p>
+                            </div>
+                            <div>
+                                <ButtonInformation/>
+                            </div>
+                        </div>
+                    </b-col>
+                </b-row>
+            </b-container>
+        </div>
     </div>
   </div>
 </template>
@@ -59,106 +56,128 @@ export default {
 </script>
 
 <style scoped>
-.figure {
-  width: 100%;
-}
 
-.figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    .figure {
+        width: 100%;
+    }
 
-.add_block {
-  background-image: url("/img/bl1.png");
-  background-size: cover;
-  width: 50%;
-  height: 80%;
-  position: absolute;
-  margin-top: 150px;
-}
+    .figure img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-.news_block {
-  margin-top: 20px;
-}
+    .add_block {
+        background-image: url("/img/bl1.png");
+        background-size: cover;
+        width: 50%;
+        height: 70%;
+        min-height: 700px;
+        position: absolute;
+        margin-top: 150px;
+    }
 
-.news_block_inf {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 95%;
-  margin: 30px 5px 5px 5px;
-}
+    .news_block{
+        margin-top: 20px;
+    }
 
-.text_style_big {
-  color: black;
-  font-size: 70px;
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 60px;
-  margin-bottom: 35px;
-}
+    .news_block_inf {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 95%;
+        margin: 30px 5px 5px 5px;
+    }
 
-.text_style_big small {
-  font-size: 54px;
-  letter-spacing: 6px;
-  font-weight: 300;
-  line-height: 20px;
-}
+    .text_style_big {
+        color: black;
+        font-size: 70px;
+        font-weight: 800;
+        text-transform: uppercase;
+        line-height: 60px;
+        margin-bottom: 35px;
+    }
 
-.text_style_mid {
-  font-size: 32px;
-  line-height: 30px;
-  font-weight: 500;
-}
+    .text_style_big small {
+        font-size: 54px;
+        letter-spacing: 6px;
+        font-weight: 300;
+        line-height: 20px;
+    }
 
-@media (max-width: 995px) {
-  .figure {
-    height: 500px;
-  }
+    .text_style_mid {
+        font-size: 32px;
+        line-height: 30px;
+        font-weight: 500;
+    }
+    @media (max-width: 1200px) {
+        .add_block {
+            height: 60%;
+            min-height: 650px;
+        }
+    }
+    @media (max-width: 995px) {
+        .figure {
+            height: 500px;
+        }
 
-  .add_block {
-    width: 100%;
-    height: 800px;
-    margin-top: 300px;
-  }
-}
+        .add_block {
+            width: 100%;
+            height: 150%;
+            height: 800px;
+            margin-top: 300px;
+        }
 
-@media (max-width: 650px) {
-  .figure {
-    height: 300px;
-  }
+    }
 
-  .add_block {
-    height: 700px;
-    margin-top: 300px;
-  }
-}
+    @media (max-width: 768px){
+        .add_block {
+            min-height: 850px;
+            margin-top: 300px;
+        }
+    }
+    @media (max-width: 650px) {
+        .figure {
+            height: 300px;
+        }
 
-@media (max-width: 425px) {
-  .figure {
-    height: 300px;
-  }
+        .add_block {
+            height: 700px;
+            margin-top: 300px;
+        }
+        #block_space_2 {
+            margin-bottom: 100px;
+        }
 
-  .text_style_big {
-    font-size: 50px;
-    line-height: 45px;
-  }
+    }
 
-  .text_style_big small {
-    font-size: 32px;
-    margin-left: 4px;
-  }
+    @media (max-width: 425px) {
 
-  .text_common {
-    font-size: 14px;
-  }
-}
+        .figure {
+            height: 300px;
+        }
 
-@media (max-width: 350px) {
-  .add_block {
-    height: 800px;
-    margin-top: 300px;
-  }
-}
+        .text_style_big {
+            font-size: 50px;
+            line-height: 45px;
+        }
+
+        .text_style_big small {
+            font-size: 32px;
+            margin-left: 4px;
+        }
+
+        .text_common{
+            font-size: 14px;
+        }
+
+    }
+
+    @media (max-width: 350px) {
+        .add_block {
+            height: 800px;
+            margin-top: 300px;
+        }
+    }
+
 </style>
