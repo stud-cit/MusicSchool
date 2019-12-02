@@ -4,7 +4,7 @@
         <section class="history-section mt-50">
             <b-container class="news-list">
 
-                <div class="news" v-for="i in news">
+                <div class="news" v-for="i in paginateArray" :key="i.id">
                     <div class="news-description">
                         <h3 class="news-date">{{i.date}}</h3>
                         <p class="news-text">{{i.title}}</p>
@@ -16,12 +16,14 @@
                 </div>
             </b-container>
 
-
+            <paginate :items="news" @paginateArray="paginateArray = $event" perPage="6"></paginate>
         </section>
     </div>
 </template>
 
 <script>
+    import paginate from '../PaginationComponent';
+
     export default {
         name: "NewsComponent",
         data() {
@@ -36,11 +38,15 @@
                     { id: 7, date: '01.01.18', title: 'omg', img: "/img/man_scream.png" },
                     { id: 8, date: '01.01.19', title: 'kek lol arbidol', img: "/img/man_scream.png" },
                     { id: 9, date: '01.01.18', title: `peremogen'ka`, img: "/img/man_scream.png" },
-                ]
+                ],
+                paginateArray: [],
             }
         },
         computed: {
 
+        },
+        components: {
+            paginate
         }
     }
 </script>
