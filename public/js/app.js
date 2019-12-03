@@ -1894,7 +1894,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "MainComponent",
+  methods: {
+    showModal: function showModal() {
+      this.$refs["my-modal"].show();
+    },
+    hideModal: function hideModal() {
+      this.$refs["my-modal"].hide();
+    },
+    toggleModal: function toggleModal() {
+      // We pass the ID of the button that we want to return focus to
+      // when the modal has hidden
+      this.$refs["my-modal"].toggle("#toggle-btn");
+    }
+  }
+});
 
 /***/ }),
 
@@ -31904,7 +31948,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.departments {\r\n  margin-top: 50px;\n}\n.card__block {\r\n  width: 100%;\r\n  justify-content: space-between;\r\n  margin: 0;\n}\n.card__big {\r\n  /* display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center; */\r\n  width: 60%;\r\n  background-color: #a32048;\n}\n.card__big__img {\r\n  padding: 40px;\r\n  width: 30%;\n}\n.card__big__body {\r\n  padding: 40px;\r\n  width: 70%;\n}\n.card__small {\r\n  display: flex;\r\n  flex-flow: column;\r\n  align-items: center;\r\n  width: 35%;\r\n  background: #ff7daa;\n}\r\n", ""]);
+exports.push([module.i, "\n.departments {\r\n  margin-top: 50px;\n}\n.card__block {\r\n  margin-top: 35px;\r\n  width: 100%;\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: space-between;\r\n  margin: 0;\n}\n.card__block:nth-child(2n) {\r\n  margin-top: 35px;\r\n  flex-flow: row-reverse;\n}\n.card__big {\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\r\n  width: 60%;\r\n  background-color: #a32048;\n}\n.card__big__img {\r\n  padding: 40px;\r\n  width: 30%;\n}\n.card__big__body {\r\n  padding: 40px;\r\n  width: 70%;\n}\n.card__small {\r\n  display: flex;\r\n  flex-flow: column;\r\n  align-items: center;\r\n  width: 37%;\r\n  background: #ff7daa;\n}\r\n", ""]);
 
 // exports
 
@@ -54232,42 +54276,135 @@ var render = function() {
         [
           _c("b-row", [
             _c("div", { staticClass: "card__block" }, [
-              _c("div", { staticClass: "card__big" }, [
-                _c("div", { staticClass: "card__big__img" }, [
-                  _c("img", {
-                    attrs: { src: "/img/departments/piano.png", alt: "piano" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card__big__body" }, [
-                  _c("div", { staticClass: "card__big__title" }, [
-                    _vm._v("Викладачі")
+              _c(
+                "div",
+                { staticClass: "card__big", on: { click: _vm.showModal } },
+                [
+                  _c("div", { staticClass: "card__big__img" }, [
+                    _c("img", {
+                      attrs: { src: "/img/departments/piano.png", alt: "piano" }
+                    })
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card__big__text" }, [
-                    _vm._v(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
-                    )
+                  _c("div", { staticClass: "card__big__body" }, [
+                    _c("div", { staticClass: "card__big__title" }, [
+                      _vm._v("Викладачі")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card__big__text" }, [
+                      _vm._v(
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
+                      )
+                    ])
                   ])
-                ])
-              ]),
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "card__small" }, [
-                _c("div", { staticClass: "card__small__title" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "card__small__img" }, [
-                  _c("img", {
-                    attrs: {
-                      src: "/img/departments/skripka.png",
-                      alt: "skripka"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card__small__text" })
-              ])
+              _c(
+                "div",
+                { staticClass: "card__small", on: { click: _vm.showModal } },
+                [
+                  _c("div", { staticClass: "card__small__title" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card__small__img" }, [
+                    _c("img", {
+                      attrs: {
+                        src: "/img/departments/skripka.png",
+                        alt: "skripka"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card__small__text" })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card__block" }, [
+              _c(
+                "div",
+                { staticClass: "card__big", on: { click: _vm.showModal } },
+                [
+                  _c("div", { staticClass: "card__big__img" }, [
+                    _c("img", {
+                      attrs: { src: "/img/departments/piano.png", alt: "piano" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card__big__body" }, [
+                    _c("div", { staticClass: "card__big__title" }, [
+                      _vm._v("Викладачі")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card__big__text" }, [
+                      _vm._v(
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
+                      )
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card__small", on: { click: _vm.showModal } },
+                [
+                  _c("div", { staticClass: "card__small__title" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card__small__img" }, [
+                    _c("img", {
+                      attrs: {
+                        src: "/img/departments/skripka.png",
+                        alt: "skripka"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card__small__text" })
+                ]
+              )
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "b-row",
+            [
+              _c(
+                "b-modal",
+                {
+                  ref: "my-modal",
+                  attrs: { "hide-footer": "", title: "Using Component Methods" }
+                },
+                [
+                  _c("div", { staticClass: "d-block text-center" }, [
+                    _c("h3", [_vm._v("Hello From My Modal!")])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "b-button",
+                    {
+                      staticClass: "mt-3",
+                      attrs: { variant: "outline-danger", block: "" },
+                      on: { click: _vm.hideModal }
+                    },
+                    [_vm._v("Close Me")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-button",
+                    {
+                      staticClass: "mt-2",
+                      attrs: { variant: "outline-warning", block: "" },
+                      on: { click: _vm.toggleModal }
+                    },
+                    [_vm._v("Toggle Me")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       )
