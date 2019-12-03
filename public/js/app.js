@@ -1923,6 +1923,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MainComponent",
   methods: {
@@ -1931,11 +1987,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     hideModal: function hideModal() {
       this.$refs["my-modal"].hide();
-    },
-    toggleModal: function toggleModal() {
-      // We pass the ID of the button that we want to return focus to
-      // when the modal has hidden
-      this.$refs["my-modal"].toggle("#toggle-btn");
     }
   }
 });
@@ -31948,7 +31999,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.departments {\r\n  margin-top: 50px;\n}\n.card__block {\r\n  margin-top: 35px;\r\n  width: 100%;\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: space-between;\r\n  margin: 0;\n}\n.card__block:nth-child(2n) {\r\n  margin-top: 35px;\r\n  flex-flow: row-reverse;\n}\n.card__big {\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\r\n  width: 60%;\r\n  background-color: #a32048;\n}\n.card__big__img {\r\n  padding: 40px;\r\n  width: 30%;\n}\n.card__big__body {\r\n  padding: 40px;\r\n  width: 70%;\n}\n.card__small {\r\n  display: flex;\r\n  flex-flow: column;\r\n  align-items: center;\r\n  width: 37%;\r\n  background: #ff7daa;\n}\r\n", ""]);
+exports.push([module.i, "\n.departments {\r\n  margin-top: 50px;\n}\n.card__block {\r\n  width: 100%;\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: space-between;\r\n  margin-bottom: 35px;\n}\n.card__block:nth-child(2n) {\r\n  flex-flow: row-reverse;\n}\n.card__big {\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\r\n  align-items: center;\r\n  width: 60%;\r\n  background-color: #a32048;\n}\n.card__big__img {\r\n  padding: 40px 0 40px 0;\r\n  width: 50%;\r\n  text-align: right;\n}\n.card__big__img img {\r\n  width: 80%;\n}\n.card__big__body {\r\n  padding: 40px 95px 40px 40px;\r\n  width: 50%;\n}\n.card__big__text {\r\n  color: #ffffff;\r\n  line-height: 27px;\r\n  font-family: \"Montserrat Regular\";\n}\n.card__big__title {\r\n  text-transform: uppercase;\r\n  color: #ffffff;\r\n  margin-bottom: 40px;\r\n  font-size: 26px;\r\n  font-family: \"Montserrat Bold\";\n}\n.card__small {\r\n  display: flex;\r\n  flex-flow: column;\r\n  align-items: center;\r\n  width: 37%;\r\n  background: #ff7daa;\n}\n.card__small__title {\r\n  text-transform: uppercase;\r\n  color: #ffffff;\r\n  margin: 20px 0 20px 0;\r\n  line-height: 80px;\r\n  font-size: 26px;\r\n  font-family: \"Montserrat Bold\";\n}\n.card__small__img {\r\n  width: 100%;\r\n  text-align: center;\n}\n.card__small__text {\r\n  margin: 25px 0 40px 0;\r\n  color: #ffffff;\r\n  line-height: 27px;\r\n  font-family: \"Montserrat Regular\";\r\n  width: 70%;\n}\n.modal__dialog {\r\n  width: 80% !important;\n}\n.modal__body,\r\n.modal__content {\r\n  padding: 0 !important;\r\n  border: 0 !important;\r\n  display: flex;\r\n  flex-flow: row wrap;\n}\n.modal__item {\r\n  width: 50%;\n}\n.teachers {\r\n  color: #2b2b2b;\r\n  padding: 40px;\r\n  background-color: #ffffff;\n}\n.teachers__title {\r\n  text-transform: uppercase;\r\n  text-align: center;\r\n  font-size: 26px;\r\n  font-family: \"Montserrat Bold\", serif;\n}\n.teachers__img {\r\n  margin: 40px 0;\r\n  text-align: center;\n}\n.teachers__img img {\r\n  width: 80%;\n}\n.teachers__text {\r\n  text-align: center;\r\n  font-family: \"Montserrat Regular\", serif;\n}\n.instruments {\r\n  color: #ffffff;\r\n  padding: 40px;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\n}\n.instruments__title {\r\n  text-transform: uppercase;\r\n  text-align: center;\r\n  font-size: 26px;\r\n  font-family: \"Montserrat Bold\", serif;\n}\n.instruments__img {\r\n  margin: 40px 0;\r\n  text-align: center;\n}\n.instruments__img img {\r\n  width: 80%;\n}\n.instruments__text {\r\n  text-align: center;\r\n  font-family: \"Montserrat Regular\", serif;\n}\n@media screen and (min-width: 320px) {\n}\n@media screen and (max-width: 768px) {\n.modal__body,\r\n  .modal__content {\r\n    flex-flow: column;\n}\n.modal__dialog {\r\n    min-width: 300px !important;\n}\n.modal__item {\r\n    width: 100%;\n}\n}\n@media screen and (min-width: 992px) {\n.modal__dialog {\r\n    min-width: 700px !important;\n}\n}\n@media screen and (min-width: 1200px) {\n.modal__dialog {\r\n    min-width: 900px !important;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -54275,130 +54326,278 @@ var render = function() {
         "b-container",
         [
           _c("b-row", [
-            _c("div", { staticClass: "card__block" }, [
-              _c(
-                "div",
-                { staticClass: "card__big", on: { click: _vm.showModal } },
-                [
-                  _c("div", { staticClass: "card__big__img" }, [
-                    _c("img", {
-                      attrs: { src: "/img/departments/piano.png", alt: "piano" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card__big__body" }, [
-                    _c("div", { staticClass: "card__big__title" }, [
+            _c(
+              "div",
+              { staticClass: "card__block" },
+              [
+                _c(
+                  "b-col",
+                  {
+                    staticClass: "card__big",
+                    attrs: { xl: "8", lg: "8", md: "8", sm: "12" },
+                    on: { click: _vm.showModal }
+                  },
+                  [
+                    _c("div", { staticClass: "card__big__img" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "/img/departments/piano.png",
+                          alt: "piano"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card__big__body" }, [
+                      _c("div", { staticClass: "card__big__title" }, [
+                        _vm._v("Викладачі")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card__big__text" }, [
+                        _vm._v(
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-col",
+                  {
+                    staticClass: "card__small",
+                    attrs: { xl: "4", lg: "4", md: "4", sm: "12" },
+                    on: { click: _vm.showModal }
+                  },
+                  [
+                    _c("div", { staticClass: "card__small__title" }, [
                       _vm._v("Викладачі")
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "card__big__text" }, [
+                    _c("div", { staticClass: "card__small__img" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "/img/departments/skripka.png",
+                          alt: "skripka"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card__small__text" }, [
                       _vm._v(
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting"
                       )
                     ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "card__small", on: { click: _vm.showModal } },
-                [
-                  _c("div", { staticClass: "card__small__title" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card__small__img" }, [
-                    _c("img", {
-                      attrs: {
-                        src: "/img/departments/skripka.png",
-                        alt: "skripka"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card__small__text" })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card__block" }, [
-              _c(
-                "div",
-                { staticClass: "card__big", on: { click: _vm.showModal } },
-                [
-                  _c("div", { staticClass: "card__big__img" }, [
-                    _c("img", {
-                      attrs: { src: "/img/departments/piano.png", alt: "piano" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card__big__body" }, [
-                    _c("div", { staticClass: "card__big__title" }, [
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("b-row", [
+            _c(
+              "div",
+              { staticClass: "card__block" },
+              [
+                _c(
+                  "b-col",
+                  {
+                    staticClass: "card__big",
+                    attrs: { xl: "8", lg: "8", md: "8", sm: "12" },
+                    on: { click: _vm.showModal }
+                  },
+                  [
+                    _c("div", { staticClass: "card__big__img" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "/img/departments/piano.png",
+                          alt: "piano"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card__big__body" }, [
+                      _c("div", { staticClass: "card__big__title" }, [
+                        _vm._v("Викладачі")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card__big__text" }, [
+                        _vm._v(
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-col",
+                  {
+                    staticClass: "card__small",
+                    attrs: { xl: "4", lg: "4", md: "4", sm: "12" },
+                    on: { click: _vm.showModal }
+                  },
+                  [
+                    _c("div", { staticClass: "card__small__title" }, [
                       _vm._v("Викладачі")
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "card__big__text" }, [
+                    _c("div", { staticClass: "card__small__img" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "/img/departments/skripka.png",
+                          alt: "skripka"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card__small__text" }, [
                       _vm._v(
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting"
                       )
                     ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "card__small", on: { click: _vm.showModal } },
-                [
-                  _c("div", { staticClass: "card__small__title" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card__small__img" }, [
-                    _c("img", {
-                      attrs: {
-                        src: "/img/departments/skripka.png",
-                        alt: "skripka"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card__small__text" })
-                ]
-              )
-            ])
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("b-row", [
+            _c(
+              "div",
+              { staticClass: "card__block" },
+              [
+                _c(
+                  "b-col",
+                  {
+                    staticClass: "card__big",
+                    attrs: { xl: "8", lg: "8", md: "8", sm: "12" },
+                    on: { click: _vm.showModal }
+                  },
+                  [
+                    _c("div", { staticClass: "card__big__img" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "/img/departments/piano.png",
+                          alt: "piano"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card__big__body" }, [
+                      _c("div", { staticClass: "card__big__title" }, [
+                        _vm._v("Викладачі")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card__big__text" }, [
+                        _vm._v(
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-col",
+                  {
+                    staticClass: "card__small",
+                    attrs: { xl: "4", lg: "4", md: "4", sm: "12" },
+                    on: { click: _vm.showModal }
+                  },
+                  [
+                    _c("div", { staticClass: "card__small__title" }, [
+                      _vm._v("Викладачі")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card__small__img" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "/img/departments/skripka.png",
+                          alt: "skripka"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card__small__text" }, [
+                      _vm._v(
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting"
+                      )
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
           ]),
           _vm._v(" "),
           _c(
-            "b-row",
+            "b-modal",
+            {
+              ref: "my-modal",
+              staticClass: "modal",
+              attrs: {
+                "modal-class": "modal__box",
+                "dialog-class": "modal__dialog",
+                "content-class": "modal__content",
+                "body-class": "modal__body",
+                "hide-footer": "",
+                "hide-header": "",
+                centered: ""
+              }
+            },
             [
               _c(
-                "b-modal",
-                {
-                  ref: "my-modal",
-                  attrs: { "hide-footer": "", title: "Using Component Methods" }
-                },
+                "b-container",
                 [
-                  _c("div", { staticClass: "d-block text-center" }, [
-                    _c("h3", [_vm._v("Hello From My Modal!")])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "b-button",
-                    {
-                      staticClass: "mt-3",
-                      attrs: { variant: "outline-danger", block: "" },
-                      on: { click: _vm.hideModal }
-                    },
-                    [_vm._v("Close Me")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-button",
-                    {
-                      staticClass: "mt-2",
-                      attrs: { variant: "outline-warning", block: "" },
-                      on: { click: _vm.toggleModal }
-                    },
-                    [_vm._v("Toggle Me")]
-                  )
+                  _c("b-row", [
+                    _c("div", { staticClass: "modal__item" }, [
+                      _c("div", { staticClass: "teachers" }, [
+                        _c("div", { staticClass: "teachers__title" }, [
+                          _vm._v("Викладачі")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "teachers__img" }, [
+                          _c("img", {
+                            attrs: {
+                              src: "/img/departments/professor.png",
+                              alt: "professor"
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "teachers__text" }, [
+                          _vm._v(
+                            "Lorem Ipsum is simply dummy text of the printing and"
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal__item" }, [
+                      _c("div", { staticClass: "instruments" }, [
+                        _c("div", { staticClass: "instruments__title" }, [
+                          _vm._v("Інструменти")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "instruments__img" }, [
+                          _c("img", {
+                            attrs: {
+                              src: "/img/departments/Guitar Player.png",
+                              alt: "guitar_player"
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "instruments__text" }, [
+                          _vm._v(
+                            "typesetting industry Lorem Ipsum is simply dummy text"
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
                 ],
                 1
               )
