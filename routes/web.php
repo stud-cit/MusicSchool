@@ -42,7 +42,7 @@ Route::get('get-achieve', 'NewsAchieveStoryController@getAchieve');
 Route::get('get-story', 'NewsAchieveStoryController@getStory');
 
 //Фото новостей
-Route::get('get-news-image/{id}/', 'NewsAchieveStoryController@getNewsImage');
+Route::get('get-news-image', 'NewsAchieveStoryController@getNewsImage');
 Route::post('post-news-image', 'NewsAchieveStoryController@postNewsImage');
 
 Route::post('post-news', 'NewsAchieveStoryController@postNews');

@@ -15,6 +15,7 @@ import InfoComponent from './components/Admin/InfoComponent'
 import InstrumentComponent from './components/Admin/InstrumentComponent'
 import IntroComponent from './components/Admin/IntroComponent'
 import NewsComponent from './components/Admin/NewsComponent'
+import EditNewsComponent from "./components/Edit NAS/EditNewsComponent";
 import StoryComponent from './components/Admin/StoryComponent'
 import TeacherComponent from './components/Admin/TeacherComponent'
 import ProfileComponent from './components/Admin/ProfileComponent'
@@ -79,6 +80,11 @@ const router = new VueRouter({
             path: '/admin/news', 
             name: 'news', 
             component: NewsComponent
+        },
+        {
+            path: '/admin/edit-news',
+            name: 'edit-news',
+            component: EditNewsComponent
         },
         {
             path: '/admin/story', 

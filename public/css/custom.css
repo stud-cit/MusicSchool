@@ -44,6 +44,67 @@
     content: "Вибрати";
 }
 
+.newsImage {
+    overflow: hidden;
+    text-align: center;
+    height: 100px !important;
+    margin-bottom: 20px;
+}
+.foto img, .newsImage .foto {
+    height: 100%;
+}
+.brtop {
+    margin-bottom:-5px;
+    font-weight: bold;
+    font-size: 12px;
+    display:inline-block;
+}
+.newsImage .fa-download {
+    position: absolute;
+    opacity: 0.3;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    right: 10px;
+    bottom: 10px;
+}
+.newsImage .edit {
+    position: absolute;
+    left: 30px;
+    bottom: -5px;
+}
+.newsImage .fa-play-circle-o {
+    position: absolute;
+    padding: 15px;
+    font-size: 65px;
+    left: 40%;
+    top: 30%;
+    color: #fff;
+    opacity: 0.3;
+}
+.newsImage .fa-search:hover {
+    opacity: 0.9;
+}
+.newsImage .fa-search {
+    background: #fff;
+    position: absolute;
+    padding: 12px;
+    border: 1px solid silver;
+    border-radius: 50px;
+    left: 42%;
+    top: 25%;
+    color: #000;
+    opacity: 0.3;
+    transition: 0.5s;
+}
+.newsImage .fa-play-circle-o:hover, .newsImage .fa-download:hover {
+    color: #2A7DEA;
+    opacity: 1;
+}
+.custom-file-control:before {
+    content: "Вибрати";
+}
+
 .chekbox-two .checkbox{cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;user-select:none}
 .chekbox-two .checkbox > input[type="checkbox"]{position:absolute;opacity:0;z-index:-1}
 .checkbox__icon{display:inline-block;color:#999}
