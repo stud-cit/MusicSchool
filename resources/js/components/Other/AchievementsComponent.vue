@@ -1,13 +1,8 @@
-<template>
-
-</template>
+<template></template>
 
 <script>
-    export default {
-        name: "AchievementsComponent"
-    }
+export default {};
 </script>
 
-<style scoped>
-
+<style>
 </style>
