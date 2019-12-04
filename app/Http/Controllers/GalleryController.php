@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Gallery;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class GalleryController extends Controller
 {
@@ -24,6 +25,8 @@ class GalleryController extends Controller
                 $foto->file = $name;
                 $foto->type = $request->type;
                 $foto->save();
+                $img = Image::make(public_path().$this->publicStorage.$name);
+                $img->save(public_path().$this->publicStorage.$name, 50);
                 array_push($response, $foto);
             }
             return response()->json($response);

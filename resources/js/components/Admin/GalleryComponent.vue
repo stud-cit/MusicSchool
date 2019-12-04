@@ -46,22 +46,24 @@
         <br>
         <div class="row">
             <silentbox-group v-for="(item, index) in file" :key="index" class="col-4 fotoGallery">
-                <silentbox-item :src="'/gallery/'+item.file" class="foto" v-if="item.type == 'img'">
-                    <img :src="'/gallery/'+item.file">
-                    <a :href="'/img/uploads/'+item.file" download><i class="fa fa-download"></i></a>
-                </silentbox-item>
-                <silentbox-item :src="'//img.youtube.com/vi/'+item.file" class="foto" v-if="item.type == 'video'">
-					<i class="fa fa-play-circle-o"></i>
-                    <img :src="'//img.youtube.com/vi/'+item.file.slice(item.file.length - 11, item.file.length)+'/mqdefault.jpg'">
-                </silentbox-item>
-                <div class="edit">
-                    <div class="chekbox-two">
-                        <label class="checkbox">
-                            <input type="checkbox" class="checkPhoto" :checked="selectFiles.indexOf(item) != -1 ? true : false" @click="itemFile(item)">
-                            <span class="checkbox__icon"></span>
-                        </label>
-                    </div>
-                </div>
+				<div class="silentbox-item">
+					<silentbox-item :src="'/gallery/'+item.file" class="foto" v-if="item.type == 'img'">
+						<img :src="'/gallery/'+item.file">
+						<a :href="'/img/uploads/'+item.file" download><i class="fa fa-download"></i></a>
+					</silentbox-item>
+					<silentbox-item :src="'//img.youtube.com/vi/'+item.file" class="foto" v-if="item.type == 'video'">
+						<i class="fa fa-play-circle-o"></i>
+						<img :src="'//img.youtube.com/vi/'+item.file.slice(item.file.length - 11, item.file.length)+'/mqdefault.jpg'">
+					</silentbox-item>
+					<div class="edit">
+						<div class="chekbox-two">
+							<label class="checkbox">
+								<input type="checkbox" class="checkPhoto" :checked="selectFiles.indexOf(item) != -1 ? true : false" @click="itemFile(item)">
+								<span class="checkbox__icon"></span>
+							</label>
+						</div>
+					</div>
+				</div>
             </silentbox-group>
         </div>
         <ul v-if="file.length > 0" class="pagination mt-4 justify-content-center">

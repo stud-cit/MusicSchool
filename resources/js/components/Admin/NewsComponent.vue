@@ -62,7 +62,7 @@
                             </div>
                     </div>
 
-                    <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="">Зберегти</button>
+                    <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="postNews">Зберегти</button>
             </div>
         </form>
         <hr>
@@ -79,7 +79,7 @@
                     <router-link :to="{ name: 'edit-news', params: {id: item.nas_id} }">
                         <button type="button" class="btn btn-primary float-right ml-2">Редагувати</button>
                     </router-link>
-                    <button type="button" class="btn btn-primary float-right" @click="deleteAdminOrgCommittee(item.user_id, index)">Видалити</button>
+                    <button type="button" class="btn btn-primary float-right" @click="deleteNews(index, item.nas_id)">Видалити</button>
                     </div>
                 </th>
             </tr>
@@ -103,7 +103,6 @@
                 nas_name: '',
 				nas_info: '',
                 date: '',
-				photo: [],
 				file: [],
 				object_news: {
 					news: [],
@@ -114,7 +113,6 @@
 		},
 		created() {
 			this.getNewsList();
-			this.getNewsImage();
 		},
 		methods: {
 			fieldChange(){
@@ -130,7 +128,7 @@
 				console.log(this.file)
 			},
 
-			postNews(el, index) {
+			postNews() {
 				this.$validator.validateAll().then((result) => {
 					if (!result) {
 						return;
@@ -142,25 +140,21 @@
 								form.append('file[]', this.file[i]);
 							}
 						}
-						axios.post('/post-news-image', form)
+						form.append('nas_name', this.nas_name);
+						form.append('nas_info', this.nas_info);
+						form.append('date', this.date);
+						axios.post('/post-news', form)
 							.then((res) => {
 								this.file = [];
+								swal("Інформація спішно додана", {
+									icon: "success",
+									timer: 1000,
+									button: false
+								});
+								this.object_news.news = [];
+								this.getNewsList();
 							})
-						axios.post('/post-news', {
-							nas_id: this.object_news.news[index].nas_id,
-							nas_name: this.object_news.news[index].nas_name,
-							nas_info: this.object_news.news[index].nas_info,
-							date: this.object_news.news[index].date,
-							//file: this.object_news.news[index].file,
-						}).then((res) => {
-							//this.object_news.news[index].nas_id = res.data.nas_id;
-							//this.object_news.news[index].images_id = res.data.images_id;
-							swal("Інформація додана", {
-								icon: "success",
-								timer: 1000,
-								button: false
-							});
-						}).catch((error) => {
+                            .catch((error) => {
 							swal({
 								icon: "error",
 								title: 'Помилка',
@@ -175,17 +169,10 @@
 						this.object_news.news.push(...response.data)
 					})
 			},
-			getNewsImage() {
-				axios.get('/get-news-image')
-					.then((response) => {
-						this.photo = response.data;
-					})
-			},
-			del(index, id, arr) {
+			deleteNews(index, id) {
 				if(id) {
 					axios.post('/delete-news/'+id);
 				}
-				this.object_news[arr].splice(index, 1);
 			},
 		}
 	};
