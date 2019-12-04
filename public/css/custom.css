@@ -4,8 +4,10 @@
     height: 250px !important;
     margin-bottom: 20px;
 }
-.foto img, .fotoGallery .foto {
+.foto img, .fotoGallery .foto, .fotoGallery .silentbox-item {
     height: 100%;
+    max-width: 100%;
+    background:#dedede;
 }
 .brtop {
     margin-bottom:-5px;
@@ -15,11 +17,10 @@
 }
 .fotoGallery .fa-download {
     position: absolute;
-    opacity: 0.3;
-    color: #fff;
+    color: #999;
     font-size: 34px;
     padding: 10px;
-    right: 10px;
+    right: 20px;
     bottom: 0px;
 }
 .fotoGallery .edit {
@@ -34,7 +35,6 @@
     left: 40%;
     top: 30%;
     color: #fff;
-    opacity: 0.3;
 }
 .fotoGallery .fa-play-circle-o:hover, .fotoGallery .fa-download:hover {
     color: #2A7DEA;
