@@ -30,8 +30,8 @@ class DepartmentController extends Controller
     {
         $departments = Departments::find($id);
 
-        $departments->name_department = $request->nameDepartment;
-        $departments->departments_info = $request->departmentsInfo;
+        $departments->name_department = $request->name_department;
+        $departments->departments_info = $request->departments_info;
         $departments->save();
     }
     public function deleteDepartments($id)

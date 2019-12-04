@@ -22,8 +22,9 @@ class CreateTeachersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('teachers_id');
             $table->integer('departments_id')->unsigned();
-            $table->string('teacher_name', 30);
-            $table->string('teacher_info', 50);
+            $table->string('teacher_surname');
+            $table->string('teacher_name');
+            $table->string('teacher_info');
             $table->string('photo', 50);
             $table->timestamps();
         });

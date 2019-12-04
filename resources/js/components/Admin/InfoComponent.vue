@@ -133,7 +133,13 @@ export default {
                 axios.post('/api/update-info', {
                     column,
                     value: this.info[column]
-                })
+                }).then((response) => {
+		            swal("Інформація оновлена", {
+			            icon: "success",
+			            timer: 1000,
+			            button: false
+		            });
+	            })
                 this.showButton = true;
             }
         },

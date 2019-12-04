@@ -23,9 +23,9 @@ class CreateIntroTable extends Migration
             $table->text('block1');
             $table->text('block2');
             $table->text('block3');
-            $table->string('bg', 50);
+            $table->string('bg');
             $table->text('info');
-            $table->string('photo', 50);
+            $table->string('photo');
             $table->timestamps();
         });
     }
