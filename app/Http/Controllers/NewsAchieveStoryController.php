@@ -51,19 +51,13 @@ class NewsAchieveStoryController extends Controller
     {
         $news = new NewsAchieveStory;
 
-        $news->nas_name = $request->newsName;
-        $news->nas_info = $request->newsInfo;
-        $news->date = date("Y-m-d", strtotime($news->newsDate));
+        $news->nas_name = $request->nas_name;
+        $news->nas_info = $request->nas_info;
+        $news->date = date("Y-m-d", strtotime($news->date));
         $news->type = NewsAchieveStory::NEWS;
 
         $news->save();
-        return response()->json([
-            "news_id" => $news->nas_id
-        ]);
-    }
 
-    public function postNewsImage(Request $request)
-    {
         $this->validate($request, [
             'filenames.*' => 'mimes:jpeg'
         ]);
@@ -82,6 +76,9 @@ class NewsAchieveStoryController extends Controller
                 ]);
             }
         }
+        return response()->json([
+            "news_id" => $news->nas_id
+        ]);
     }
 
     public function updateNews(Request $request, $id)
@@ -219,7 +216,7 @@ class NewsAchieveStoryController extends Controller
 
     public function deleteNews($id)
     {
-        $news = NewsAchieveStory::find($id);
+        $news = NewsAchieveStory::where('type', 'news')->find($id);
         foreach ($news as $key => $value) {
             $images = Images::where('images_id', $value);
             if ($images->file != '') {
