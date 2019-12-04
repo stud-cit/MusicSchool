@@ -63,9 +63,7 @@ export default {
 }
 
 .header__inner img {
-  height: 200px;
-  object-fit: cover;
-  object-position: -10 -10;
+  width: 100%;
 }
 
 .header_gradient {
@@ -113,10 +111,12 @@ export default {
 }
 @media screen and (max-width: 475px) {
   .header__inner img {
-    width: 100%;
+    object-fit: cover;
+    object-position: -10 -10;
+    height: 250px;
   }
   .card__block {
-    margin-top: -40px;
+    margin: -40px auto 0 auto;
   }
   .card__img img {
     height: 90px;
