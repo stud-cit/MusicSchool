@@ -122,9 +122,10 @@ export default {
     height: 90px;
   }
   .card__text {
+    text-align: center;
     height: 50%;
     width: 100%;
-    padding: 20px 25px 25px 10px;
+    padding: 20px 25px 10px 25px;
     font-family: "Montserrat Regular", sans-serif;
     font-size: 18px;
   }

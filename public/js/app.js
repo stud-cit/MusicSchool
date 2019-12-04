@@ -2323,6 +2323,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BtnDownloadComponent",
   data: function data() {
@@ -2479,6 +2481,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BtnDownloadComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BtnDownloadComponent.vue */ "./resources/js/components/Introduction/BtnDownloadComponent.vue");
+//
+//
 //
 //
 //
@@ -32151,7 +32155,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.btn_align[data-v-66e9f173] {\r\n  text-align: center;\r\n  margin-top: 50px;\r\n  margin-bottom: 25px;\n}\n.btn-outline-dark[data-v-66e9f173] {\r\n  color: #af0126;\r\n  border: 3px solid #af0126;\r\n  width: 255px;\r\n  height: 65px;\r\n  font-size: 22px;\r\n  text-transform: uppercase;\n}\n.btn-outline-dark[data-v-66e9f173]:hover {\r\n  color: white;\r\n  background-color: black;\r\n  border-color: black;\n}\n.just__text[data-v-66e9f173] {\r\n  color: #af0126;\r\n  margin: 25px 0 50px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.btn_align[data-v-66e9f173] {\r\n  text-align: center;\r\n  margin: 50px auto 25px auto;\n}\n.btn-outline-dark[data-v-66e9f173] {\r\n  color: #af0126;\r\n  border: 3px solid #af0126;\r\n  width: 255px;\r\n  height: 65px;\r\n  font-size: 22px;\r\n  text-transform: uppercase;\n}\n.btn-outline-dark[data-v-66e9f173]:hover {\r\n  color: white;\r\n  background-color: black;\r\n  border-color: black;\n}\n.just__text[data-v-66e9f173] {\r\n  color: #af0126;\r\n  margin: 25px 0 10px 0;\n}\r\n", ""]);
 
 // exports
 
@@ -32189,7 +32193,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.header__inner[data-v-4f1fc946] {\r\n  width: 100%;\r\n  margin: 0;\r\n  padding: 0;\n}\n.header__inner img[data-v-4f1fc946] {\r\n  width: 100%;\n}\n.header_gradient[data-v-4f1fc946] {\r\n  width: 100%;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  background-size: cover;\n}\n.card__block[data-v-4f1fc946] {\r\n  padding-bottom: 50px;\r\n  margin-top: -100px;\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card[data-v-4f1fc946] {\r\n  top: 0;\r\n  text-align: center;\r\n  margin-bottom: 20px;\n}\n.card__img[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding-top: 30px;\n}\n.card__img img[data-v-4f1fc946] {\r\n  height: 100px;\n}\n.card__text[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding: 25px 30px 30px 15px;\r\n  font-family: \"Montserrat Regular\", sans-serif;\r\n  font-size: 18px;\n}\n@media screen and (max-width: 800px) {\n.card__img img[data-v-4f1fc946] {\r\n    height: 150px;\n}\n}\n@media screen and (max-width: 475px) {\n.header__inner img[data-v-4f1fc946] {\r\n    object-fit: cover;\r\n    object-position: -10 -10;\r\n    height: 250px;\n}\n.card__block[data-v-4f1fc946] {\r\n    margin: -40px auto 0 auto;\n}\n.card__img img[data-v-4f1fc946] {\r\n    height: 90px;\n}\n.card__text[data-v-4f1fc946] {\r\n    height: 50%;\r\n    width: 100%;\r\n    padding: 20px 25px 25px 10px;\r\n    font-family: \"Montserrat Regular\", sans-serif;\r\n    font-size: 18px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.header__inner[data-v-4f1fc946] {\r\n  width: 100%;\r\n  margin: 0;\r\n  padding: 0;\n}\n.header__inner img[data-v-4f1fc946] {\r\n  width: 100%;\n}\n.header_gradient[data-v-4f1fc946] {\r\n  width: 100%;\r\n  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\r\n  background-size: cover;\n}\n.card__block[data-v-4f1fc946] {\r\n  padding-bottom: 50px;\r\n  margin-top: -100px;\r\n  display: flex;\r\n  flex-flow: row wrap;\r\n  justify-content: center;\n}\n.card[data-v-4f1fc946] {\r\n  top: 0;\r\n  text-align: center;\r\n  margin-bottom: 20px;\n}\n.card__img[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding-top: 30px;\n}\n.card__img img[data-v-4f1fc946] {\r\n  height: 100px;\n}\n.card__text[data-v-4f1fc946] {\r\n  height: 50%;\r\n  width: 100%;\r\n  padding: 25px 30px 30px 15px;\r\n  font-family: \"Montserrat Regular\", sans-serif;\r\n  font-size: 18px;\n}\n@media screen and (max-width: 800px) {\n.card__img img[data-v-4f1fc946] {\r\n    height: 150px;\n}\n}\n@media screen and (max-width: 475px) {\n.header__inner img[data-v-4f1fc946] {\r\n    object-fit: cover;\r\n    object-position: -10 -10;\r\n    height: 250px;\n}\n.card__block[data-v-4f1fc946] {\r\n    margin: -40px auto 0 auto;\n}\n.card__img img[data-v-4f1fc946] {\r\n    height: 90px;\n}\n.card__text[data-v-4f1fc946] {\r\n    text-align: center;\r\n    height: 50%;\r\n    width: 100%;\r\n    padding: 20px 25px 10px 25px;\r\n    font-family: \"Montserrat Regular\", sans-serif;\r\n    font-size: 18px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -55168,13 +55172,20 @@ var render = function() {
     "div",
     { staticClass: "btn_align" },
     [
-      _c("b-button", { attrs: { squared: "", variant: "outline-dark" } }, [
-        _vm._v(_vm._s(_vm.btn))
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "just__text" }, [
-        _vm._v("Більше яскравих моментів")
-      ])
+      _c(
+        "b-col",
+        { attrs: { cols: "12" } },
+        [
+          _c("b-button", { attrs: { squared: "", variant: "outline-dark" } }, [
+            _vm._v(_vm._s(_vm.btn))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "just__text" }, [
+            _vm._v("Більше яскравих моментів")
+          ])
+        ],
+        1
+      )
     ],
     1
   )
@@ -55448,12 +55459,12 @@ var render = function() {
               }),
               1
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _c("b-row", [_c("btn-download-component")], 1)
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("btn-download-component")
+      )
     ],
     1
   )

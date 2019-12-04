@@ -27,8 +27,10 @@
           </b-col>
         </div>
       </b-row>
+      <b-row>
+        <btn-download-component />
+      </b-row>
     </b-container>
-    <btn-download-component />
   </div>
 </template>
 
