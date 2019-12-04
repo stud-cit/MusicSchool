@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\DB;
 
 class NewsAchieveStoryController extends Controller
 {
-    protected $publicStorage = "site-files/";
+    protected $publicStorageNews = "/news/";
 
     public function getNewsAchieveStory()
     {
         $data = DB::select('select * from news_achieve_story');
         return response()->json(['newsAchieveStory' => $data]);
     }
+
+    // Новини
 
     public function getNews()
     {
@@ -24,12 +26,15 @@ class NewsAchieveStoryController extends Controller
             ->get();
         return response()->json($data);
     }
-
-    public function getNewsImage()
+    public function getNewsId($id)
     {
-        $data = Images::orderBy('created_at', 'asc')->get();
+        $data = NewsAchieveStory::with('images')
+            ->where('nas_id', $id)
+            ->first();
         return response()->json($data);
     }
+
+    // Архів
 
     public function getAchieve()
     {
@@ -38,7 +43,6 @@ class NewsAchieveStoryController extends Controller
             ->get();
         return response()->json($data);
     }
-
     public function getStory()
     {
         $data = NewsAchieveStory::with('images')
@@ -50,10 +54,9 @@ class NewsAchieveStoryController extends Controller
     public function postNews(Request $request)
     {
         $news = new NewsAchieveStory;
-
         $news->nas_name = $request->nas_name;
         $news->nas_info = $request->nas_info;
-        $news->date = date("Y-m-d", strtotime($news->date));
+        $news->date = $request->date;
         $news->type = NewsAchieveStory::NEWS;
 
         $news->save();
@@ -61,45 +64,39 @@ class NewsAchieveStoryController extends Controller
         $this->validate($request, [
             'filenames.*' => 'mimes:jpeg'
         ]);
-
         $newsFile = $request->file;
         foreach ($newsFile as $file){
-            if($file <=3) {
-                $images = new Images;
-                $name = time() . '-' . $file->getClientOriginalName();
-                $file->move(public_path() . $this->publicStorage, $name);
-                $images->file = $this->publicStorage . $name;
-                $images->save();
-                return response()->json([
-                    "file" => $images->file,
-                    "image_id" => $images->images_id
-                ]);
-            }
+            $images = new Images;
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path().$this->publicStorageNews.$news->nas_id, $name);
+            $images->nas_id = $news->nas_id;
+            $images->file = $name;
+            $images->save();
         }
-        return response()->json([
-            "news_id" => $news->nas_id
-        ]);
+        return response()->json($news);
     }
 
     public function updateNews(Request $request, $id)
     {
         $update_news = NewsAchieveStory::find($id);
-
-        $update_news->nas_name = $update_news->newsName;
-        $update_news->nas_info = $update_news->newsInfo;
-        $update_news->date = date("Y-m-d", strtotime($update_news->newsDate));
-        $update_news->type = NewsAchieveStory::NEWS;
-
+        $update_news->nas_name = $request->nas_name;
+        $update_news->nas_info = $request->nas_info;
+        $update_news->date = $request->date;
+        $arrImg = [];
         $newsFile = $request->file;
-        foreach ($newsFile as $file){
-            $images = Images::find($id);
-            $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path() . $this->publicStorage, $name);
-            $images->file = $this->publicStorage.$name;
-            $images->images_id = $update_news->nas_id;
-            $images->save();
+        if(isset($request->file)) {
+            foreach ($newsFile as $file){
+                $images = new Images;
+                $name = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path().$this->publicStorageNews.$update_news->nas_id, $name);
+                $images->nas_id = $update_news->nas_id;
+                $images->file = $name;
+                $images->save();
+                array_push($arrImg, $images);
+            }
         }
         $update_news->save();
+        return response()->json($arrImg);
     }
 
     public function postAchieve(Request $request)

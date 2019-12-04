@@ -82,7 +82,7 @@ const router = new VueRouter({
             component: NewsComponent
         },
         {
-            path: '/admin/edit-news',
+            path: '/admin/news/:id/',
             name: 'edit-news',
             component: EditNewsComponent
         },

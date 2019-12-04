@@ -87,28 +87,20 @@
         </table>
     </div>
 </template>
-                        <!--
-                        <div class="col-5 mt-4">
-                            <button type="button" class="btn btn-outline-secondary float-left mr-2" @click="del(index, news.nas_id, 'news')"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button v-if="news !== editing && news.disabled != false" type="button" class="btn btn-outline-secondary float-left" @click='editNews(news, "news", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <button v-else type="button" class="btn btn-outline-secondary float-left" @click='saveNews("news", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-                        </div>
-                        -->
 <script>
 	export default {
 		name: "news",
 		data() {
 			return {
 				showFormFoto: false,
-                nas_name: '',
-				nas_info: '',
-                date: '',
+                nas_name: 'test',
+				nas_info: 'test',
+                date: '2019-10-10',
 				file: [],
 				object_news: {
 					news: [],
 					type: 'news'
-				},
-				form: new FormData
+				}
 			};
 		},
 		created() {
@@ -125,7 +117,6 @@
 					}
 					this.file.push(changeFile[i]);
 				}
-				console.log(this.file)
 			},
 
 			postNews() {
@@ -139,7 +130,7 @@
 							if(this.file[i].valid) {
 								form.append('file[]', this.file[i]);
 							}
-						}
+                        }
 						form.append('nas_name', this.nas_name);
 						form.append('nas_info', this.nas_info);
 						form.append('date', this.date);
@@ -151,14 +142,13 @@
 									timer: 1000,
 									button: false
 								});
-								this.object_news.news = [];
-								this.getNewsList();
+								this.object_news.news.push(res.data);
 							})
                             .catch((error) => {
-							swal({
-								icon: "error",
-								title: 'Помилка',
-							});
+                                swal({
+                                    icon: "error",
+                                    title: 'Помилка',
+                                });
 						});
 					}
 				});

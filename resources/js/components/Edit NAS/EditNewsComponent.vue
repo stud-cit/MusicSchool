@@ -5,7 +5,7 @@
                 <div class="form-group row">
                     <label for="newsName" class="col-sm-2 col-form-label">Назва новини</label>
                     <div class="col-sm-5">
-                        <input type="text" name="newsName" class="form-control" v-model="nas_name" id="newsName"
+                        <input type="text" name="newsName" class="form-control" v-model="object_news.news.nas_name" id="newsName"
                                v-validate="{ required: true }"
                                data-vv-as="Назва новини">
                         <span class="errors text-danger" v-if="errors.has('newsName')">
@@ -17,7 +17,7 @@
                 <div class="form-group row">
                     <label for="newsInfo" class="col-sm-2 col-form-label">Опис новини</label>
                     <div class="col-sm-6">
-                        <textarea name="newsInfo" class="form-control" cols="15" rows="6" v-model="nas_info" id="newsInfo"
+                        <textarea name="newsInfo" class="form-control" cols="15" rows="6" v-model="object_news.news.nas_info" id="newsInfo"
                                   v-validate="{ required: true}"
                                   data-vv-as="Опис новини">
                         </textarea>
@@ -45,13 +45,13 @@
                 </div>
 
                 <div class="form-group row">
-                    <silentbox-group class="col-3" v-for="(item, index) in photo" :key="item.images_id">
+                    <silentbox-group class="col-3" v-for="item in object_news.news.images" :key="item.images_id">
                         <div class="border newsImage">
-                            <div class="news-img" :style="{ backgroundImage: 'url(' + item.file + ')'  }"></div>
-                            <silentbox-single :src="item.file">
+                            <div class="news-img" :style="{ backgroundImage: 'url(' + '/news/'+$route.params.id+'/'+item.file + ')'  }"></div>
+                            <silentbox-single :src="'/news/'+$route.params.id+'/'+item.file">
                                 <i class="fa fa-search"></i>
                             </silentbox-single>
-                            <a :href="item.file" download><i class="fa fa-download"></i></a>
+                            <a :href="'/news/'+$route.params.id+'/'+item.file" download><i class="fa fa-download"></i></a>
                         </div>
                     </silentbox-group>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="form-group row">
                     <label for="newsDate" class="col-sm-2 col-form-label">Дата оприлюднення</label>
                     <div class="col-sm-4">
-                        <input type="text" name="newsDate" class="form-control col-6" v-model="date" id="newsDate"
+                        <input type="text" name="newsDate" class="form-control col-6" v-model="object_news.news.date" id="newsDate"
                                v-validate="{ required: true}"
                                data-vv-as="Дата оприлюднення">
                         <span class="errors text-danger" v-if="errors.has('newsImage')">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="">Зберегти</button>
+                <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="save">Зберегти</button>
             </div>
         </form>
     </div>
@@ -79,21 +79,15 @@
 		name: "edit-news",
 		data() {
 			return {
-				nas_name: '',
-				nas_info: '',
-				date: '',
-				photo: [],
 				file: [],
 				object_news: {
 					news: [],
 					type: 'news'
-				},
-				form: new FormData
+				}
 			};
 		},
 		created() {
 			this.getNewsList();
-			this.getNewsImage();
 		},
 
 		methods: {
@@ -110,18 +104,26 @@
 			},
 
 			getNewsList() {
-				axios.get('/get-news')
+				axios.get('/get-news/'+this.$route.params.id)
 					.then((response) => {
-						this.object_news.news.push(...response.data)
-                        console.log(this.object_news.news)
-					})
-			},
-			getNewsImage() {
-				axios.get('/get-news-image')
-					.then((response) => {
-						this.photo = response.data;
-					})
-                console.log(this.photo)
+                        this.object_news.news = response.data;
+                    })
+            },
+			save() {
+                var form = new FormData;
+                for(let i = 0; i < this.file.length; i++){
+                    if(this.file[i].valid) {
+                        form.append('file[]', this.file[i]);
+                    }
+                }
+                form.append('nas_name', this.object_news.news.nas_name);
+                form.append('nas_info', this.object_news.news.nas_info);
+                form.append('date', this.object_news.news.date);
+				axios.post('/update-news/'+this.$route.params.id, form)
+                .then((response) => {
+                    this.file = [];
+                    this.object_news.news.images = this.object_news.news.images.concat(response.data);
+                })
 			},
 			delFile(index) {
 				this.file.splice(index, 1);

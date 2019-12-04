@@ -7,8 +7,11 @@ Route::get('get-all-department', 'DepartmentController@getDepartments');
 Route::post('post-department', 'DepartmentController@postDepartments');
 Route::post('update-department/{id}/', 'DepartmentController@updateDepartments');
 
-Route::get('/teacher/{id}', 'DepartmentController@getTeachers');
-Route::get('/instrument/{id}', 'DepartmentController@getInstruments');
+Route::get('/teachers', 'DepartmentController@getTeachers');
+Route::get('/teacher/{id}', 'DepartmentController@getTeacherId');
+
+Route::get('/instruments', 'DepartmentController@getInstruments');
+Route::get('/instrument/{id}', 'DepartmentController@getInstrumentId');
 
 Route::post('post-teacher', 'DepartmentController@postTeachers');
 Route::post('post-instrument', 'DepartmentController@postInstruments');
@@ -38,12 +41,9 @@ Route::post('delete-intro/{id}/', 'IntroController@deleteIntro');
 //Новости Достижения История
 Route::get('get-nas', 'NewsAchieveStoryController@getNewsAchieveStory');
 Route::get('get-news', 'NewsAchieveStoryController@getNews');
+Route::get('get-news/{id}', 'NewsAchieveStoryController@getNewsId')->where(['id' => '^[0-9]+']);
 Route::get('get-achieve', 'NewsAchieveStoryController@getAchieve');
 Route::get('get-story', 'NewsAchieveStoryController@getStory');
-
-//Фото новостей
-Route::get('get-news-image', 'NewsAchieveStoryController@getNewsImage');
-//Route::post('post-news-image', 'NewsAchieveStoryController@postNewsImage');
 
 Route::post('post-news', 'NewsAchieveStoryController@postNews');
 Route::post('post-achieve', 'NewsAchieveStoryController@postAchieve');

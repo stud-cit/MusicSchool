@@ -9,7 +9,7 @@ class Instruments extends Model
     protected $table = 'instruments';
     protected $primaryKey = 'instruments_id';
 
-    public function dep()
+    public function department()
     {
         return $this->belongsTo('App\Models\Departments', 'departments_id');
     }
