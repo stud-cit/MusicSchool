@@ -22,9 +22,10 @@ class DepartmentController extends Controller
     public function postDepartments(Request $request)
     {
         $departments = new Departments;
-        $departments->name_department = $request->nameDepartment;
-        $departments->departments_info = $request->departmentsInfo;
+        $departments->name_department = $request->name_department;
+        $departments->departments_info = $request->departments_info;
         $departments->save();
+        return response()->json($departments);
     }
     public function updateDepartments(Request $request, $id)
     {
