@@ -15,7 +15,7 @@ import InfoComponent from './components/Admin/InfoComponent'
 import InstrumentComponent from './components/Admin/InstrumentComponent'
 import IntroComponent from './components/Admin/IntroComponent'
 import NewsComponent from './components/Admin/NewsComponent'
-import EditNewsComponent from "./components/Edit NAS/EditNewsComponent";
+import EditNewsComponent from "./components/Admin/EditNAS/EditNewsComponent";
 import StoryComponent from './components/Admin/StoryComponent'
 import TeacherComponent from './components/Admin/TeacherComponent'
 import ProfileComponent from './components/Admin/ProfileComponent'

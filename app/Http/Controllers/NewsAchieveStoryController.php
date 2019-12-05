@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\NewsAchieveStory;
 use App\Models\Images;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class NewsAchieveStoryController extends Controller
 {
@@ -214,13 +215,18 @@ class NewsAchieveStoryController extends Controller
     public function deleteNews($id)
     {
         $news = NewsAchieveStory::where('type', 'news')->find($id);
-        foreach ($news as $key => $value) {
-            $images = Images::where('images_id', $value);
-            if ($images->file != '') {
-                unlink(public_path($images->file));
-            }
-            $images->delete();
-        }
+        $newsFolder = public_path('news/');
+        File::deleteDirectory($newsFolder.$news->nas_id);
+        Images::where("images_id", $id)->delete();
+
         $news->delete();
+        return response('ok', 200);
+    }
+    public function deleteNewsImage($id)
+    {
+        $newsImage = Images::find($id);
+        $news = NewsAchieveStory::where('type', 'news')->find($id);
+        $newsFolder = public_path('news/');
+        File::delete($newsFolder.$news->nas_id.'/'.$newsImage->file);
     }
 }

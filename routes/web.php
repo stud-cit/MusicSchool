@@ -47,5 +47,7 @@ Route::post('delete-news/{id}/', 'NewsAchieveStoryController@deleteNews');
 Route::post('delete-achieve/{id}/', 'NewsAchieveStoryController@deleteAchieve');
 Route::post('delete-story/{id}/', 'NewsAchieveStoryController@deleteStory');
 
+Route::post('delete-news-images/{id}/', 'NewsAchieveStoryController@deleteNewsImage');
+
 Route::get('/admin{any}', 'SpaController@admin')->where('any', '.*');
 Route::get('/{any}', 'SpaController@index')->where('any', '.*');

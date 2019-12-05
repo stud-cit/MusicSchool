@@ -97,6 +97,19 @@
     opacity: 0.3;
     transition: 0.5s;
 }
+.newsImage .circle {
+    display: inline-block;
+    color:#000;
+    position:absolute;
+    top:-5px;
+    margin-left: 70px;
+    font-size: 22px;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+.newsImage .circle:hover {
+    opacity: 1;
+}
 .newsImage .fa-play-circle-o:hover, .newsImage .fa-download:hover {
     color: #2A7DEA;
     opacity: 1;

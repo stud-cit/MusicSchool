@@ -28,7 +28,7 @@ class CreateImagesTable extends Migration
 
         Schema::table('images', function (Blueprint $table) {
             $table->index('nas_id');
-            $table->foreign('nas_id')->references('nas_id')->on('news_achieve_story');
+            $table->foreign('nas_id')->references('nas_id')->on('news_achieve_story')->onDelete('cascade');
         });
     }
 
