@@ -20,7 +20,7 @@
                     <b-col xl="4" lg="5" md="12" sm ="12" order-lg="1" class="news_block_all">
                         <div class="news_block_inf"  id = "text-style">
                             <div>
-                                <p class="text_style_mid">Проведення музичного конкурсу</p>
+                                <i class="text_style_mid">Проведення музичного конкурсу</i>
                             </div>
                             <div>
                                 <p class="text_common">Конкурс на заміщення вакантної посади керівника музичної частини, який проходив у Львівському національному академічному театрі опери та балету
@@ -36,23 +36,23 @@
             </b-container>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
+import ButtonInformation from "./ButtonInformation.vue";
 
-    import ButtonInformation from './ButtonInformation.vue'
-
-    export default {
-        name: 'NewsMainBlock',
-        components: {
-            ButtonInformation
-        },
-        data(){
-            return{
-                btn: "Новость"
-            }
-        }
-    }
+export default {
+  name: "NewsMainBlock",
+  components: {
+    ButtonInformation
+  },
+  data() {
+    return {
+      btn: "Новость"
+    };
+  }
+};
 </script>
 
 <style scoped>
@@ -71,7 +71,8 @@
         background-image: url("/img/bl1.png");
         background-size: cover;
         width: 50%;
-        height: 80%;
+        height: 70%;
+        min-height: 700px;
         position: absolute;
         margin-top: 150px;
     }
@@ -109,7 +110,12 @@
         line-height: 30px;
         font-weight: 500;
     }
-
+    @media (max-width: 1200px) {
+        .add_block {
+            height: 60%;
+            min-height: 650px;
+        }
+    }
     @media (max-width: 995px) {
         .figure {
             height: 500px;
@@ -117,12 +123,19 @@
 
         .add_block {
             width: 100%;
+            height: 150%;
             height: 800px;
             margin-top: 300px;
         }
 
     }
 
+    @media (max-width: 768px){
+        .add_block {
+            min-height: 850px;
+            margin-top: 300px;
+        }
+    }
     @media (max-width: 650px) {
         .figure {
             height: 300px;
@@ -131,6 +144,9 @@
         .add_block {
             height: 700px;
             margin-top: 300px;
+        }
+        #block_space_2 {
+            margin-bottom: 100px;
         }
 
     }

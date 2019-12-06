@@ -8,7 +8,7 @@
         ></b-embed>
         <b-container>
             <b-row align-h="center">
-                <b-col cols="12" sm="6" md="8" lg="6" xl="6">
+                <b-col cols="12" sm="8" md="8" lg="6" xl="6">
                     <div class="btn_space">
                         <div class="btn">
                             <ButtonInformation/>
@@ -38,7 +38,7 @@
 
 <style scoped>
     .btn_space {
-        background-image: url("/img/image8.png");
+        background: transparent linear-gradient(180deg, #E91B47 0%, #6A0017 100%) 0% 0% no-repeat padding-box;
         width: 100%;
         height: 100%;
         text-align: center;
