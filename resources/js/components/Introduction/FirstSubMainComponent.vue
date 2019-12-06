@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
 .article__block {
-  padding: 100px 0 100px 0;
+  padding: 60px 0 100px 0;
 }
 .article__title {
   padding: 0;
@@ -45,6 +45,7 @@ export default {
   font-family: "Montserrat Bold", sans-serif;
   margin-bottom: 20px;
   font-size: 80px;
+  font-weight: bold;
 }
 
 .article__title__small {

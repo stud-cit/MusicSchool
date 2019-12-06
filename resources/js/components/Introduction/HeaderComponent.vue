@@ -64,7 +64,6 @@ export default {
 
 .header__inner img {
   width: 100%;
-  height: auto;
 }
 
 .header_gradient {
@@ -112,18 +111,21 @@ export default {
 }
 @media screen and (max-width: 475px) {
   .header__inner img {
-    width: 100%;
+    object-fit: cover;
+    object-position: -10 -10;
+    height: 250px;
   }
   .card__block {
-    margin-top: -40px;
+    margin: -40px auto 0 auto;
   }
   .card__img img {
     height: 90px;
   }
   .card__text {
+    text-align: center;
     height: 50%;
     width: 100%;
-    padding: 20px 25px 25px 10px;
+    padding: 20px 25px 10px 25px;
     font-family: "Montserrat Regular", sans-serif;
     font-size: 18px;
   }

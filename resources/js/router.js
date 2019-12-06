@@ -6,6 +6,7 @@ import NewsComponent from "./components/Other/NewsComponent";
 import MusicInstruments from "./components/Other/MusicInstruments";
 import TeachersComponent from "./components/Other/TeachersComponent";
 import IntroductionComponent from "./components/Introduction/IntroductionComponent";
+import DepartmentsComponent from "./components/Departments/DepartmentsComponent";
 import AchievementsComponent from "./components/Other/AchievementsComponent";
 
 import GalleryComponent from "./components/Other/GalleryComponent";
@@ -17,9 +18,9 @@ Vue.use(Router);
 export default new Router({
     mode: "history",
     routes: [
-        {   path: '/', name: 'home', component: HomeComponent   },
-        {   path: '/history', name: 'history', component: HistoryComponent },
-        {   path: '/news', name: 'news', component: NewsComponent },
+        { path: '/', name: 'home', component: HomeComponent },
+        { path: '/history', name: 'history', component: HistoryComponent },
+        { path: '/news', name: 'news', component: NewsComponent },
 
         { path: "/teachers", name: "teachers", component: TeachersComponent },
 
@@ -28,7 +29,6 @@ export default new Router({
             name: "instruments",
             component: MusicInstruments
         },
-
         {
             path: "/introduction",
             name: "introduction",
@@ -38,6 +38,11 @@ export default new Router({
             path: "/achievements",
             name: "achievements",
             component: AchievementsComponent
+        },
+        {
+            path: "/departments",
+            name: "departments",
+            component: DepartmentsComponent
         },
         { path: "/gallery", name: "gallery", component: GalleryComponent },
         { path: "/contacts", name: "contacts", component: ContactsComponent },
