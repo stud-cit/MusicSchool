@@ -63,7 +63,7 @@
                         <input type="text" name="newsDate" class="form-control col-6" v-model="object_news.news.date" id="newsDate"
                                v-validate="{ required: true}"
                                data-vv-as="Дата оприлюднення">
-                        <span class="errors text-danger" v-if="errors.has('newsImage')">
+                        <span class="errors text-danger" v-if="errors.has('newsDate')">
                             {{ errors.first('newsDate') }}
                         </span>
                     </div>
@@ -137,6 +137,8 @@
 							swal("Зображення успішно видалено", {
 								icon: "success",
 							});
+							this.file = [];
+							this.getNewsList();
 						});
 				}
 			}
