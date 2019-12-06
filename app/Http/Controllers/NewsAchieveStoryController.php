@@ -105,8 +105,8 @@ class NewsAchieveStoryController extends Controller
     public function postAchieve(Request $request)
     {
         $achieve = new NewsAchieveStory;
-        $achieve->nas_name = $request->achieveName;
-        $achieve->nas_info = $request->achieveInfo;
+        $achieve->nas_name = $request->achieve_name;
+        $achieve->nas_info = $request->achieve_info;
         $achieve->date = $request->date;
         $achieve->type = NewsAchieveStory::ACHIEVE;
 
@@ -116,13 +116,13 @@ class NewsAchieveStoryController extends Controller
             'filenames.*' => 'mimes:jpeg'
         ]);
         $achieveFile = $request->file;
-        foreach ($achieveFile as $file){
-                $images = new Images;
-                $name = time() . '-' . $file->getClientOriginalName();
-                $file->move(public_path().$this->publicStorageAchieve.$achieve->nas_id, $name);
-                $images->nas_id = $achieve->nas_id;
-                $images->file = $name;
-                $images->save();
+        foreach ($achieveFile as $file) {
+            $images = new Images;
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . $this->publicStorageAchieve . $achieve->nas_id, $name);
+            $images->nas_id = $achieve->nas_id;
+            $images->file = $name;
+            $images->save();
         }
         return response()->json($achieve);
     }
@@ -153,57 +153,68 @@ class NewsAchieveStoryController extends Controller
     public function postStory(Request $request)
     {
         $story = new NewsAchieveStory;
-
-        $story->nas_name = $story->storyName;
-        $story->nas_info = $story->storyInfo;
-        $story->date = date("Y-m-d", strtotime($story->storyDate));
+        $story->nas_name = $request->story_name;
+        $story->nas_info = $request->story_info;
+        $story->date = $request->date;
         $story->type = NewsAchieveStory::STORY;
 
-        $storyFile = $request->file;
-        foreach ($storyFile as $file){
-            if($file <=3) {
-                $images = new Images;
-                $name = time() . '-' . $file->getClientOriginalName();
-                $file->move(public_path() . $this->publicStorage, $name);
-                $images->file = $this->publicStorage . $name;
-                $images->save();
-            }
-        }
         $story->save();
+
+        $this->validate($request, [
+            'filenames.*' => 'mimes:jpeg'
+        ]);
+        $storyFile = $request->file;
+        foreach ($storyFile as $file) {
+            $images = new Images;
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . $this->publicStorageStory . $story->nas_id, $name);
+            $images->nas_id = $story->nas_id;
+            $images->file = $name;
+            $images->save();
+        }
+        return response()->json($story);
     }
 
     public function updateStory(Request $request, $id)
     {
         $update_story = NewsAchieveStory::find($id);
-
-        $update_story->nas_name = $update_story->storyName;
-        $update_story->nas_info = $update_story->storyInfo;
-        $update_story->date = date("Y-m-d", strtotime($update_story->storyDate));
-        $update_story->type = NewsAchieveStory::STORY;
-
+        $update_story->nas_name = $request->story_name;
+        $update_story->nas_info = $request->story_info;
+        $update_story->date = $request->date;
+        $arrImg = [];
         $storyFile = $request->file;
-        foreach ($storyFile as $file){
-            $images = Images::find($id);
-            $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path() . $this->publicStorage, $name);
-            $images->file = $this->publicStorage.$name;
-            $images->images_id = $update_story->nas_id;
-            $images->save();
+        if(isset($request->file)) {
+            foreach ($storyFile as $file) {
+                $images = new Images;
+                $name = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path().$this->publicStorageStory.$update_story->nas_id, $name);
+                $images->nas_id = $update_story->nas_id;
+                $images->file = $name;
+                $images->save();
+                array_push($arrImg, $images);
+            }
         }
         $update_story->save();
+        return response()->json($arrImg);
     }
 
     public function deleteStory($id)
     {
-        $story = NewsAchieveStory::find($id);
-        foreach ($story as $key => $value) {
-            $images = Images::where('images_id', $value);
-            if ($images->file != '') {
-                unlink(public_path($images->file));
-            }
-            $images->delete();
-        }
+        $story = NewsAchieveStory::where('type', 'story')->find($id);
+        $storyFolder = public_path('story/');
+        File::deleteDirectory($storyFolder.$story->nas_id);
+        Images::where("images_id", $id)->delete();
+
         $story->delete();
+        return response('ok', 200);
+    }
+    public function deleteStoryImage($id)
+    {
+        $storyImage = Images::find($id);
+        if($storyImage->delete()) {
+            $storyFolder = public_path('story/');
+            File::delete($storyFolder . $storyImage->nas_id . '/' . $storyImage->file);
+        }
     }
 
     public function deleteAchieve($id)

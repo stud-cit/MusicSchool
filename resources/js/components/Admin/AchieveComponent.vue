@@ -56,7 +56,7 @@
                         <input type="text" name="achieveDate" class="form-control col-6" v-model="date" id="achieveDate"
                                v-validate="{ required: true}"
                                data-vv-as="Дата оприлюднення">
-                        <span class="errors text-danger" v-if="errors.has('achieveImage')">
+                        <span class="errors text-danger" v-if="errors.has('achieveDate')">
                             {{ errors.first('achieveDate') }}
                         </span>
                     </div>
