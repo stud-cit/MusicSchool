@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Intro;
 
 class IntroController extends Controller
@@ -12,32 +13,28 @@ class IntroController extends Controller
     public function getIntro()
     {
         $data = Intro::get();
-        return response()->json($data);
+        return response()->json(['intro' => $data]);
     }
 
     public function postIntro(Request $request)
     {
-        $intro = new Intro;
-
-        $intro->block1 = $intro->introBlock1;
-        $intro->block2 = $intro->introBlock2;
-        $intro->block3 = $intro->introBlock3;
-
+        $res = DB::update('update '.$request->table.' set '.$request->row.' = "'.htmlspecialchars($request->value).'" where intro_id = 1');
+    }
+    public function postIntroFile(Request $request)
+    {
         if($request->hasFile('bg')) {
-            $file = $request->bg;
-            $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path() . $this->publicStorage, $name);
-            $intro->bg = $this->publicStorage.$name;
+            $file = $request->bg->getClientOriginalName();
+            $directory = '/' . $request->type;
+            $request->bg->move(public_path() . $directory, $file);
+            $res = DB::update('update ' . $request->table . ' set ' . $request->row . ' = "' . $directory . '/' . $file . '" where intro_id = 1');
         }
-        $intro->info = $intro->introInfo;
 
         if($request->hasFile('photo')) {
-            $file = $request->photo;
-            $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path() . $this->publicStorage, $name);
-            $intro->photo = $this->publicStorage.$name;
+            $file = $request->photo->getClientOriginalName();
+            $directory = '/' . $request->type;
+            $request->photo->move(public_path() . $directory, $file);
+            $res = DB::update('update ' . $request->table . ' set ' . $request->row . ' = "' . $directory . '/' . $file . '" where intro_id = 1');
         }
-        $intro->save();
     }
 
     public function updateIntro(Request $request, $id)

@@ -20,6 +20,7 @@ class CreateIntroTable extends Migration
         Schema::dropIfExists('intro');
         Schema::create('intro', function (Blueprint $table) {
             $table->engine = 'InnoDB';
+            $table->increments('intro_id');
             $table->text('block1');
             $table->text('block2');
             $table->text('block3');

@@ -25,6 +25,7 @@ Route::post('post-document', 'DocumentController@postDocument');
 //Вступ
 Route::get('get-intro', 'IntroController@getIntro');
 Route::post('post-intro', 'IntroController@postIntro');
+Route::post('post-intro-file', 'IntroController@postIntroFile');
 Route::post('update-intro/{id}/', 'IntroController@updateIntro');
 Route::post('delete-intro/{id}/', 'IntroController@deleteIntro');
 
