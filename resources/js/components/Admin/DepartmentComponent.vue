@@ -68,13 +68,11 @@
                 showDepartments: false,
 				departments: [],
 				name_department: '',
-				departments_info: '',
-				form: new FormData,
-				table_form: new FormData
+				departments_info: ''
 			};
 		},
 		created () {
-            this.getDepartments();
+            this.getAllDepartments();
 		},
 		methods: {
 			edit(id, event){
@@ -100,30 +98,28 @@
 			},
 
 			save(id, event) {
-				this.editBtn = 0;
 				event.preventDefault();
-				var name_department_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
-				var departments_info_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
+				var name_department_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
+				var departments_info_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
 
-				var parse_name_department = name_department_td;
-				var parse_departments_info = departments_info_td;
-
-				this.table_form.append('name_department', parse_name_department);
-                this.table_form.append('departments_info', parse_departments_info);
-                console.log(parse_name_department, parse_departments_info);
-				axios.post('/update-department/' + id, this.table_form)
+				var parse_name_department = name_department_td.querySelector('input').value;
+				var parse_departments_info = departments_info_td.querySelector('input').value;
+				
+				axios.post('/api/department/' + id, {
+					name_department: parse_name_department,
+					departments_info: parse_departments_info
+				})
 					.then((response) => {
-						this.departments = [];
-						this.getDepartments();
+						name_department_td.innerHTML = parse_name_department;
+						departments_info_td.innerHTML = parse_departments_info;
 						swal("Інформація оновлена", {
 							icon: "success",
 							timer: 1000,
 							button: false
 						});
+						this.editBtn = 0;
 					})
 					.catch((error) => {
-                        this.departments = [];
-						this.getDepartments();
 						swal({
 							icon: "error",
 							title: 'Помилка',
@@ -131,8 +127,9 @@
 						});
 					});
 			},
-			getDepartments() {
-				axios.get('/get-all-department')
+
+			getAllDepartments() {
+				axios.get('/api/department')
 					.then((response) => {
                         this.departments = response.data
 					})
@@ -142,12 +139,12 @@
 					if (!result) {
 						return;
 					} else {
-						this.form.append('name_department', this.name_department);
-						this.form.append('departments_info', this.departments_info);
-						axios.post('/post-department', this.form)
+						axios.post('/api/department', {
+							name_department: this.name_department,
+							departments_info: this.departments_info
+						})
 							.then((response) => {
-								this.departments = [];
-                                this.getDepartments();
+								this.departments.push(response.data);
                                 swal("Інформація оновлена", {
                                     icon: "success",
                                     timer: 1000,
@@ -174,7 +171,7 @@
 				})
 					.then((willDelete) => {
 						if (willDelete) {
-							axios.post('/delete-department/' + id)
+							axios.delete('/api/department/' + id)
 								.then((response) => {
 									if (response.status == 200) {
 										this.departments.splice(index, 1);
@@ -196,3 +193,8 @@
 		}
 	}
 </script>
+<style scope>
+	td input {
+		width: 100%;
+	}
+</style>

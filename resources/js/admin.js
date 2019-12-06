@@ -15,7 +15,9 @@ import InfoComponent from './components/Admin/InfoComponent'
 import InstrumentComponent from './components/Admin/InstrumentComponent'
 import IntroComponent from './components/Admin/IntroComponent'
 import NewsComponent from './components/Admin/NewsComponent'
-import EditNewsComponent from "./components/Edit NAS/EditNewsComponent";
+import EditNewsComponent from "./components/Admin/EditNAS/EditNewsComponent";
+import EditAchieveComponent from "./components/Admin/EditNAS/EditAchieveComponent";
+import EditStoryComponent from "./components/Admin/EditNAS/EditStoryComponent";
 import StoryComponent from './components/Admin/StoryComponent'
 import TeacherComponent from './components/Admin/TeacherComponent'
 import ProfileComponent from './components/Admin/ProfileComponent'
@@ -40,11 +42,6 @@ const router = new VueRouter({
             path: '/admin', 
             name: 'admin', 
             component: HomeComponent
-        },
-        {
-            path: '/admin/achieve', 
-            name: 'achieve', 
-            component: AchieveComponent
         },
         {
             path: '/admin/contact', 
@@ -87,9 +84,24 @@ const router = new VueRouter({
             component: EditNewsComponent
         },
         {
+            path: '/admin/achieve',
+            name: 'achieve',
+            component: AchieveComponent
+        },
+        {
+            path: '/admin/achieve/:id/',
+            name: 'edit-achieve',
+            component: EditAchieveComponent
+        },
+        {
             path: '/admin/story', 
             name: 'story', 
             component: StoryComponent
+        },
+        {
+            path: '/admin/story/:id/',
+            name: 'edit-story',
+            component: EditStoryComponent
         },
         {
             path: '/admin/teacher', 

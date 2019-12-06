@@ -93,9 +93,9 @@
 		data() {
 			return {
 				showFormFoto: false,
-                nas_name: 'test',
-				nas_info: 'test',
-                date: '2019-10-10',
+                nas_name: '',
+				nas_info: '',
+                date: '',
 				file: [],
 				object_news: {
 					news: [],

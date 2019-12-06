@@ -41,11 +41,6 @@
                 Галерея
             </a>
 
-            <a href="/admin/contact" class="col-8 col-sm-5 col-md-3 category-items" >
-                <div class="category-icon"><i class="fa fa-fw fa-phone-square fa-3x"></i></div>
-                Контакти
-            </a>
-
             <a href="/admin/info" class="col-8 col-sm-5 col-md-3 category-items" >
                 <div class="category-icon"><i class="fa fa-fw fa-info-circle fa-3x"></i></div>
                 Загальна інформація

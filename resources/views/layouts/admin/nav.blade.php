@@ -57,12 +57,6 @@
 						<span class="nav-link-text">Галерея</span>
 					</a>
 				</li>
-				<li class="nav-item" title="Контакти">
-					<a class="nav-link" href="/admin/contact">
-						<i class="fa fa-fw fa-phone-square"></i>
-						<span class="nav-link-text">Контакти</span>
-					</a>
-				</li>
 				<li class="nav-item" title="Загальна інформація">
 					<a class="nav-link" href="/admin/info">
 						<i class="fa fa-fw fa-info-circle"></i>

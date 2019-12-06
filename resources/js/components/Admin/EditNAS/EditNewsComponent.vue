@@ -45,8 +45,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <silentbox-group class="col-3" v-for="item in object_news.news.images" :key="item.images_id">
+                    <silentbox-group class="col-3" v-for="(item, index) in object_news.news.images" :key="item.images_id">
                         <div class="border newsImage">
+                            <div class="circle"><i class="fa fa-times-circle btn btn-default p-0" @click="delNewsImage(item.images_id, index)"></i></div>
                             <div class="news-img" :style="{ backgroundImage: 'url(' + '/news/'+$route.params.id+'/'+item.file + ')'  }"></div>
                             <silentbox-single :src="'/news/'+$route.params.id+'/'+item.file">
                                 <i class="fa fa-search"></i>
@@ -62,7 +63,7 @@
                         <input type="text" name="newsDate" class="form-control col-6" v-model="object_news.news.date" id="newsDate"
                                v-validate="{ required: true}"
                                data-vv-as="Дата оприлюднення">
-                        <span class="errors text-danger" v-if="errors.has('newsImage')">
+                        <span class="errors text-danger" v-if="errors.has('newsDate')">
                             {{ errors.first('newsDate') }}
                         </span>
                     </div>
@@ -128,6 +129,19 @@
 			delFile(index) {
 				this.file.splice(index, 1);
 			},
+			delNewsImage(id, index) {
+				if(id) {
+					axios.post('/delete-news-images/' + id)
+						.then(() => {
+							this.file.splice(index, 1);
+							swal("Зображення успішно видалено", {
+								icon: "success",
+							});
+							this.file = [];
+							this.getNewsList();
+						});
+				}
+			}
 		}
 	}
 </script>
