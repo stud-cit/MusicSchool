@@ -2,76 +2,23 @@
   <div class="departments">
     <b-container>
       <b-row>
-        <div class="card__block">
-          <b-col xl="8" lg="8" md="8" sm="12" class="card__big" @click="showModal">
+        <div v-for="(block,index) in cardsBlock" v-bind:key="index" class="card__block">
+          <div class="card__big" @click="showModal">
             <div class="card__big__img">
-              <img src="/img/departments/piano.png" alt="piano" />
+              <img v-bind:src="block.imgBig" alt="piano" />
             </div>
             <div class="card__big__body">
-              <div class="card__big__title">Викладачі</div>
-              <div
-                class="card__big__text"
-              >Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing</div>
+              <div class="card__big__title">{{block.titleBig}}</div>
+              <div class="card__big__text">{{block.textBig}}</div>
             </div>
-          </b-col>
-          <b-col xl="4" lg="4" md="4" sm="12" class="card__small" @click="showModal">
-            <div class="card__small__title">Викладачі</div>
+          </div>
+          <div class="card__small" @click="showModal">
+            <div class="card__small__title">{{block.titleSmall}}</div>
             <div class="card__small__img">
-              <img src="/img/departments/skripka.png" alt="skripka" />
+              <img v-bind:src="block.imgSmall" alt="skripka" />
             </div>
-            <div
-              class="card__small__text"
-            >Lorem Ipsum is simply dummy text of the printing and typesetting</div>
-          </b-col>
-        </div>
-      </b-row>
-
-      <b-row>
-        <div class="card__block">
-          <b-col xl="8" lg="8" md="8" sm="12" class="card__big" @click="showModal">
-            <div class="card__big__img">
-              <img src="/img/departments/piano.png" alt="piano" />
-            </div>
-            <div class="card__big__body">
-              <div class="card__big__title">Викладачі</div>
-              <div
-                class="card__big__text"
-              >Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing</div>
-            </div>
-          </b-col>
-          <b-col xl="4" lg="4" md="4" sm="12" class="card__small" @click="showModal">
-            <div class="card__small__title">Викладачі</div>
-            <div class="card__small__img">
-              <img src="/img/departments/skripka.png" alt="skripka" />
-            </div>
-            <div
-              class="card__small__text"
-            >Lorem Ipsum is simply dummy text of the printing and typesetting</div>
-          </b-col>
-        </div>
-      </b-row>
-      <b-row>
-        <div class="card__block">
-          <b-col xl="8" lg="8" md="8" sm="12" class="card__big" @click="showModal">
-            <div class="card__big__img">
-              <img src="/img/departments/piano.png" alt="piano" />
-            </div>
-            <div class="card__big__body">
-              <div class="card__big__title">Викладачі</div>
-              <div
-                class="card__big__text"
-              >Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing</div>
-            </div>
-          </b-col>
-          <b-col xl="4" lg="4" md="4" sm="12" class="card__small" @click="showModal">
-            <div class="card__small__title">Викладачі</div>
-            <div class="card__small__img">
-              <img src="/img/departments/skripka.png" alt="skripka" />
-            </div>
-            <div
-              class="card__small__text"
-            >Lorem Ipsum is simply dummy text of the printing and typesetting</div>
-          </b-col>
+            <div class="card__small__text">{{block.textSmall}}</div>
+          </div>
         </div>
       </b-row>
       <b-modal
@@ -85,28 +32,24 @@
         hide-header
         centered
       >
-        <b-container>
-          <b-row>
-            <div class="modal__item">
-              <div class="teachers">
-                <div class="teachers__title">Викладачі</div>
-                <div class="teachers__img">
-                  <img src="/img/departments/professor.png" alt="professor" />
-                </div>
-                <div class="teachers__text">Lorem Ipsum is simply dummy text of the printing and</div>
-              </div>
+        <div class="modal__item">
+          <div class="teachers">
+            <div class="teachers__title">Викладачі</div>
+            <div class="teachers__img">
+              <img src="/img/departments/professor.png" alt="professor" />
             </div>
-            <div class="modal__item">
-              <div class="instruments">
-                <div class="instruments__title">Інструменти</div>
-                <div class="instruments__img">
-                  <img src="/img/departments/Guitar Player.png" alt="guitar_player" />
-                </div>
-                <div class="instruments__text">typesetting industry Lorem Ipsum is simply dummy text</div>
-              </div>
+            <div class="teachers__text">Lorem Ipsum is simply dummy text of the printing and</div>
+          </div>
+        </div>
+        <div class="modal__item">
+          <div class="instruments">
+            <div class="instruments__title">Інструменти</div>
+            <div class="instruments__img">
+              <img src="/img/departments/Guitar Player.png" alt="guitar_player" />
             </div>
-          </b-row>
-        </b-container>
+            <div class="instruments__text">typesetting industry Lorem Ipsum is simply dummy text</div>
+          </div>
+        </div>
       </b-modal>
     </b-container>
   </div>
@@ -115,6 +58,42 @@
 <script>
 export default {
   name: "MainComponent",
+  data() {
+    return {
+      cardsBlock: [
+        {
+          titleBig: "Викладачі",
+          imgBig: "/img/departments/piano.png",
+          textBig:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing",
+          titleSmall: "Викладачі",
+          imgSmall: "/img/departments/skripka.png",
+          textSmall:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
+        },
+        {
+          titleBig: "Викладачі",
+          imgBig: "/img/departments/piano.png",
+          textBig:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing",
+          titleSmall: "Викладачі",
+          imgSmall: "/img/departments/skripka.png",
+          textSmall:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
+        },
+        {
+          titleBig: "Викладачі",
+          imgBig: "/img/departments/piano.png",
+          textBig:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing",
+          titleSmall: "Викладачі",
+          imgSmall: "/img/departments/skripka.png",
+          textSmall:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
+        }
+      ]
+    };
+  },
   methods: {
     showModal() {
       this.$refs["my-modal"].show();
@@ -130,7 +109,6 @@ export default {
 .departments {
   margin-top: 50px;
 }
-
 .card__block {
   width: 100%;
   display: flex;
@@ -139,7 +117,8 @@ export default {
   margin-bottom: 35px;
 }
 .card__block:nth-child(2n) {
-  flex-flow: row-reverse;
+  display: flex;
+  flex-flow: row-reverse wrap;
 }
 .card__big {
   display: flex;
@@ -147,6 +126,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 60%;
+  height: 100%;
   background-color: #a32048;
 }
 
@@ -183,6 +163,7 @@ export default {
   display: flex;
   flex-flow: column;
   align-items: center;
+  margin: 0;
   width: 37%;
   background: #ff7daa;
 }
@@ -206,34 +187,14 @@ export default {
   line-height: 27px;
   font-family: "Montserrat Regular";
   width: 70%;
-}
-
-.modal__dialog {
-  width: 80% !important;
-}
-
-.modal__body,
-.modal__content {
-  padding: 0 !important;
-  border: 0 !important;
-  display: flex;
-  flex-flow: row wrap;
-}
-.modal__item {
-  width: 50%;
+  text-align: center;
 }
 .teachers {
   color: #2b2b2b;
-  padding: 40px;
+  height: 100%;
   background-color: #ffffff;
 }
 
-.teachers__title {
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 26px;
-  font-family: "Montserrat Bold", serif;
-}
 .teachers__img {
   margin: 40px 0;
   text-align: center;
@@ -248,14 +209,8 @@ export default {
 
 .instruments {
   color: #ffffff;
-  padding: 40px;
+  height: 100%;
   background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);
-}
-.instruments__title {
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 26px;
-  font-family: "Montserrat Bold", serif;
 }
 .instruments__img {
   margin: 40px 0;
@@ -270,30 +225,143 @@ export default {
 }
 
 @media screen and (min-width: 320px) {
-}
+  .card__block,
+  .card__block:nth-child(2n) {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+  .card__big,
+  .card__small {
+    width: 80%;
+    text-align: center;
+  }
+  .card__big__body {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 0 15px 0;
+  }
+  .card__big__img {
+    text-align: center;
+  }
 
-@media screen and (max-width: 768px) {
+  .card__big__title {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  .card__small {
+    margin-top: 35px;
+    justify-content: center;
+  }
   .modal__body,
   .modal__content {
     flex-flow: column;
   }
+  .modal__body {
+    border: 0 !important;
+    padding: 0 !important;
+  }
   .modal__dialog {
-    min-width: 300px !important;
+    margin: 0 auto !important;
+    max-width: 80% !important;
   }
   .modal__item {
     width: 100%;
   }
-}
-
-@media screen and (min-width: 992px) {
-  .modal__dialog {
-    min-width: 700px !important;
+  .teachers__img img,
+  .instruments__img img {
+    height: 80%;
+  }
+  .teachers__title,
+  .instruments__title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 20px;
+    font-family: "Montserrat Bold", serif;
+  }
+  .teachers,
+  .instruments {
+    padding: 20px;
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .modal__dialog {
-    min-width: 900px !important;
+@media screen and (min-width: 768px) {
+  .modal__body,
+  .modal__content {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .modal__item {
+    width: 50%;
+  }
+  .teachers,
+  .instruments {
+    padding: 40px;
+  }
+  .teachers__title,
+  .instruments__title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 26px;
+    font-family: "Montserrat Bold", serif;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .card__block {
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-bottom: 35px;
+  }
+  .card__block:nth-child(2n) {
+    display: flex;
+    flex-flow: row-reverse wrap;
+  }
+  .card__big {
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+  }
+
+  .card__big__img {
+    text-align: right;
+  }
+
+  .card__big__body {
+    padding: 40px 95px 40px 40px;
+    width: 50%;
+  }
+
+  .card__big__title {
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    font-size: 26px;
+  }
+
+  .card__big__text {
+    text-align: left;
+  }
+
+  .card__small {
+    flex-flow: column;
+    align-items: center;
+    margin: 0;
+    width: 37%;
+  }
+
+  .card__small__title {
+    margin: 20px 0 20px 0;
+  }
+  .card__small__img {
+    width: 100%;
+  }
+
+  .card__small__text {
+    margin: 25px 0 40px 0;
+    width: 70%;
   }
 }
 </style>
