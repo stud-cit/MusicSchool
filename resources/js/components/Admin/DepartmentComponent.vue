@@ -74,7 +74,7 @@
 			};
 		},
 		created () {
-            this.getAllDepartments();
+            this.getDepartments();
 		},
 		methods: {
 			edit(id, event){
@@ -114,7 +114,7 @@
 				axios.post('/update-department/' + id, this.table_form)
 					.then((response) => {
 						this.departments = [];
-						this.getAllDepartments();
+						this.getDepartments();
 						swal("Інформація оновлена", {
 							icon: "success",
 							timer: 1000,
@@ -123,7 +123,7 @@
 					})
 					.catch((error) => {
                         this.departments = [];
-						this.getAllDepartments();
+						this.getDepartments();
 						swal({
 							icon: "error",
 							title: 'Помилка',
@@ -131,10 +131,10 @@
 						});
 					});
 			},
-			getAllDepartments() {
+			getDepartments() {
 				axios.get('/get-all-department')
 					.then((response) => {
-                        this.departments = response.data.departments
+                        this.departments = response.data
 					})
 			},
 			postDepartments() {
@@ -147,7 +147,7 @@
 						axios.post('/post-department', this.form)
 							.then((response) => {
 								this.departments = [];
-                                this.getAllDepartments();
+                                this.getDepartments();
                                 swal("Інформація оновлена", {
                                     icon: "success",
                                     timer: 1000,

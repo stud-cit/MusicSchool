@@ -1,6 +1,6 @@
 <template>
-    <div>
-        TeacherComponent
+      <div>
+        teacher
     </div>
 </template>
 
@@ -11,3 +11,4 @@ export default {
 </script>
 
 <style scoped></style>
+

@@ -1,5 +1,5 @@
 <template>
-    <div>
+     <div>
         <div class="row">
             <div class="col-12 mt-1 mb-2">
                 <button type="button" class="btn btn-primary float-left" @click="showInstruments = !showInstruments">
@@ -13,7 +13,7 @@
                 <div class="col-5">
                     <div>
                         <label for="name_instruments" class="brtop">Назва інструменту</label>
-                        <input type="text" name="name_instruments" v-model="name_department" class="form-control" id="name_instruments"
+                        <input type="text" name="name_instruments" v-model="name_instruments" class="form-control" id="name_instruments"
                             v-validate="{ required: true }"
                                 data-vv-as="Назва інструменту">
                         <span class="errors text-danger" v-if="errors.has('name_instruments')">
@@ -32,14 +32,14 @@
 
                 </div>
                 <div class="col-5 ml-5">
-                    <!-- <div>
+                    <div>
                         <label for="name_department" class="brtop">Відділ</label>
-                        <select class="form-control" style="width: 80%">
-                            <option v-for="(department, index) in departments" :key="department.departments_id">
-                                {{ option.value }}
+                        <select class="form-control" style="width: 80%" v-model="department.name_department" id="name_department">
+                            <option v-for="option in department" :key="option.departments_id">
+                                {{ option.name_department }}
                             </option>
                         </select>
-					</div> -->
+					</div>
                     <div>
 						<label for="photo" class="brtop">Фото інструменту</label>
 						<input type="file" name="photo" accept="image/*" ref="file" class="form-control-file" id="photo"
@@ -51,7 +51,7 @@
 					</div>
 
                 </div>
-                 <!-- <button type="button" class="btn btn-outline-secondary mt-4 ml-4 w-25" @click="postInstruments">Зберегти</button> -->
+                 <button type="button" class="btn btn-outline-secondary mt-4 ml-4 w-25" @click="postInstruments">Зберегти</button>
 				
             </div>
         </form>
@@ -68,16 +68,21 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody v-for="(item, index) in departments" :key="index">
+            <tbody v-for="(item, index) in instruments" :key="index">
             <tr>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.name_department }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.departments_info }}</td>
+                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.name_instruments }}</td>
+				<td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.department.name_department }}</td>
+				<td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
+					<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
+					<img v-else id="item-image" :src="'../img/user.png'" class="preview_img figure-img img-fluid">
+				</td>
+                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.instruments_info }}</td>
                 <td id="edit-save-td">
-                    <i v-if="editBtn" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit($event)"></i>
-                    <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.departments_id, $event)"></i>
+                    <i v-if="editBtn!== item.instruments_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.instruments_id, $event)"></i>
+                    <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.instruments_id, $event)"></i>
                 </td>
-                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="postInstruments(item.departments_id, index)"></i></td>
+                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="postInstruments(item.instruments_id, index)"></i></td>
             </tr>
             </tbody>
         </table>
@@ -86,13 +91,12 @@
 
 <script>
 export default {
-    name: "instrument",
-    data() {
+    	data() {
 			return {
                 editBtn: 0,
                 showInstruments: false,
                 instruments: [],
-				departments: [],
+				department: [],
 				name_instruments: '',
 				instruments_info: '',
 				form: new FormData,
@@ -101,9 +105,24 @@ export default {
         },
         created () {
             this.getInstruments();
-            this.getAllDepartments();
+            this.getDepartments();
 		},
 		methods: {
+			getFileName(evt, index) {
+				var tr = document.querySelectorAll('tr')[index + 1]
+				var file = evt.target.files;
+				var reader = new FileReader();
+				reader.onload = (function(theFile) {
+					return function(e) {
+						tr.querySelector('#photo').setAttribute('src', e.target.result);
+					};
+				})(file[0]);
+				reader.readAsDataURL(file[0]);
+
+				evt.target.parentNode.querySelector('#span_id').innerHTML = `<br>`;
+				evt.target.parentNode.querySelector('#up_icon').innerHTML = `<br>`;
+
+			},
 			edit(id, event){
 				this.editBtn = id;
 				event.preventDefault();
@@ -153,21 +172,20 @@ export default {
 							text: 'Поля: "Назва відділу, Інформація про відділ" повинні бути заповнені'
 						});
 					});
-            },
-            getAllDepartments(){
-                axios.get('/get-all-department')
+			},
+			getDepartments () {
+				axios.get('/get-all-department/')
 					.then((response) => {
-                       // this.departments = response.data.departments
-                        
+					   this.department = response.data
 					})
-            },
-			// getInstruments(id) {
-			// 	axios.get('/instrument/'+id)
-			// 		.then((response) => {
-            //             this.instruments = response.data
-            //             console.log(this.instruments);
-			// 		})
-			// },
+			},
+			getInstruments(){
+				axios.get('/instruments/')
+					.then((response) => {
+					   	this.instruments = response.data	
+					})
+			},
+			
 			postInstruments() {
 				this.$validator.validateAll().then((result) => {
 					if (!result) {
@@ -175,10 +193,12 @@ export default {
 					} else {
 						this.form.append('name_instrument', this.name_instrument);
 						this.form.append('instruments_info', this.instrument_info);
+						this.form.append('name_department', this.department.departments_id);
+						this.form.append('photo', this.$refs.file.files[0]);
 						axios.post('/post-instrument', this.form)
 							.then((response) => {
-								this.departments = [];
-                                this.getAllDepartments();
+								this.instruments = [];
+                                this.getInstruments();
                                 swal("Інформація оновлена", {
                                     icon: "success",
                                     timer: 1000,
@@ -223,8 +243,9 @@ export default {
 								});
 						}
 					})
-            }
-        }
+			}
+		}
+	   
 };
 </script>
 
