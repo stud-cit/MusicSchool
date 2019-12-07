@@ -7,11 +7,11 @@
             <b-container class="history-list">
 
                 <b-row class="list-item d-flex" v-for="item in paginateArray" :key="item.id" >
-                    <b-col xl=4 class="history-title-block">
+                    <b-col cols="12" xl=4 class="item-title-block">
                         <p class="year">2005</p>
                         <p class="title">Новий відділ {{item.id}}</p>
                     </b-col>
-                    <b-col xl="8" class="content-block">
+                    <b-col cols="12" xl="8" class="content-block">
                         <b-carousel
                                 id="carousel-fade"
                                 fade
@@ -35,7 +35,7 @@
                     </b-col>
                 </b-row>
 
-                <paginate :items="items" @paginateArray="paginateArray = $event" perPage="3"></paginate>
+                <paginate :items="items" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
 
             </b-container>
         </section>
@@ -76,8 +76,11 @@
 </script>
 
 <style lang="sass" scoped>
+
+    // page
+
     .history-section
-        .history-title-block
+        .item-title-block
             display: flex
             flex-direction: column
             justify-content: center
@@ -122,5 +125,60 @@
             padding: 25px 0 25px 30px
         .list-item:last-of-type .content-block
                 padding-bottom: 0
+        .list-item:first-of-type .content-block
+            padding-top: 0
+
+
+
+    //adaptive
+
+    @media (max-width: 1199px)
+        .history-section
+            .item-title-block
+                flex-direction: row
+                justify-content: space-between
+                align-items: flex-end
+                padding: 0 15px
+                border-right: none
+                .year
+                    font-size: 91px
+                    margin-bottom: 0
+                    margin-right: 10px
+                .title
+                    font-size: 36px
+                    text-align: right
+                &::before
+                    display: none
+                &::after
+                    display: none
+
+            .content-block
+                padding: 30px 15px 50px 15px
+            .list-item:last-of-type .content-block
+                padding-bottom: 30px
+            .list-item:first-of-type .content-block
+                padding-top: 30px
+
+    @media (max-width: 575px)
+        .history-section
+            .item-title-block
+                flex-direction: column
+                justify-content: flex-start
+                align-items: flex-start
+                .year
+                    font-size: 50px
+                    margin-bottom: 10px
+                    margin-right: 0
+                .title
+                    font-size: 28px
+                    text-align: left
+
+
+            .content-block
+                padding: 10px 15px 40px 15px
+            .list-item:last-of-type .content-block
+                padding-bottom: 0
+            .list-item:first-of-type .content-block
+                padding-top: 10px
 
 </style>
