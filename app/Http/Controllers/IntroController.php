@@ -12,8 +12,8 @@ class IntroController extends Controller
 
     public function getIntro()
     {
-        $data = Intro::get();
-        return response()->json(['intro' => $data]);
+        $data = Intro::first();
+        return response()->json($data);
     }
 
     public function postIntro(Request $request)

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <page-title title="про вступ" uptitle="інформіція"></page-title>
+    <page-title title="про вступ" uptitle="інформація"></page-title>
     <header-component></header-component>
-    <main-component />
+    <main-component :intro="intro" />
   </div>
 </template>
 
@@ -12,9 +12,25 @@ import MainComponent from "./MainComponent.vue";
 
 export default {
   name: "IntroductionComponent",
+  data() {
+    return {
+      intro: []
+    }
+  },
   components: {
     HeaderComponent,
     MainComponent
+  },
+  created() {
+    this.getIntro();
+  },
+  methods: {
+    getIntro() {
+      axios.get('/api/intro')
+        .then((response) => {
+          this.intro = response.data;
+        })
+      },
   }
 };
 </script>

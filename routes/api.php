@@ -20,6 +20,11 @@ Route::post('department', 'DepartmentController@postDepartments');
 Route::post('department/{id}', 'DepartmentController@updateDepartments');
 Route::delete('department/{id}', 'DepartmentController@deleteDepartments');
 
+// Вступ
+
+Route::get('intro', 'IntroController@getIntro');
+Route::post('intro', 'IntroController@postIntro');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
