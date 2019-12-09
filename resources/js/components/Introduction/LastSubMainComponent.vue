@@ -27,8 +27,10 @@
           </b-col>
         </div>
       </b-row>
+      <b-row>
+        <btn-download-component />
+      </b-row>
     </b-container>
-    <btn-download-component />
   </div>
 </template>
 
@@ -81,7 +83,7 @@ export default {
   text-transform: uppercase;
   font-size: 32px;
   line-height: 40px;
-  font-weight: 600;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 40px;
 }
