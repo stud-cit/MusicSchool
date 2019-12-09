@@ -6,20 +6,30 @@
     <div class="header_gradient">
       <b-container>
         <b-row class="card__block">
-          <b-col
-            xl="4"
-            lg="4"
-            md="6"
-            sm="10"
-            cols="10"
-            v-for="(card, index) in cards"
-            v-bind:key="index"
-          >
+          <b-col xl="4" lg="4" md="6" sm="10" cols="10">
             <div class="card">
               <div class="card__img">
-                <img v-bind:src="card.img" alt="image" />
+                <img v-bind:src="images.img1" alt="image" />
               </div>
-              <div class="card__text">{{card.text}}</div>
+              <div class="card__text">{{ block1 }}</div>
+            </div>
+          </b-col>
+
+          <b-col xl="4" lg="4" md="6" sm="10" cols="10">
+            <div class="card">
+              <div class="card__img">
+                <img v-bind:src="images.img2" alt="image" />
+              </div>
+              <div class="card__text">{{ block2 }}</div>
+            </div>
+          </b-col>
+
+          <b-col xl="4" lg="4" md="6" sm="10" cols="10">
+            <div class="card">
+              <div class="card__img">
+                <img v-bind:src="images.img3" alt="image" />
+              </div>
+              <div class="card__text">{{ block3 }}</div>
             </div>
           </b-col>
         </b-row>
@@ -31,27 +41,16 @@
 <script>
 export default {
   name: "HeaderComponent",
+  props: ['block1', 'block2', 'block3'],
   data() {
     return {
-      cards: [
-        {
-          img: "/img/introduction/contract.png",
-          text:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
-        },
-        {
-          img: "/img/introduction/file.png",
-          text:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
-        },
-        {
-          img: "/img/introduction/education.png",
-          text:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas optio atque deserunt, provident expedita quam."
-        }
-      ]
+      images: {
+        img1: "/img/introduction/contract.png",
+        img2: "/img/introduction/file.png",
+        img3: "/img/introduction/education.png",
+      }
     };
-  }
+  },
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <first-sub-main-component :info="$props.intro.info" :photo="$props.intro.photo"></first-sub-main-component>
-    <last-sub-main-component ></last-sub-main-component>
+    <last-sub-main-component :info="$props.intro.info" :photo="$props.intro.photo"></last-sub-main-component>
   </div>
 </template>
 
