@@ -13,7 +13,7 @@
                             <p class="news-text">{{i.title}}</p>
                             <hr class="news-line">
                         </div>
-                        <div class="news-img">
+                        <div class="news-img-block">
                             <img :src="i.img" alt="" class="news-img">
                         </div>
                     </router-link>
@@ -34,8 +34,8 @@
             return {
                 news: [
                     { id: 1, date: '01.01.19', title: 'kek lol kek lol kek lol kek lol', img: "/img/man_scream.png", text: 'lorem ipsum'},
-                    { id: 2, date: '01.01.01', title: 'heute ist goot', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 3, date: '01.01.18', title: 'abra kadabra', img: "/img/man_scream.png", text: 'lorem ipsum' },
+                    { id: 2, date: '01.01.01', title: 'heute ist goot', img: "/img/test.jpg", text: 'lorem ipsum' },
+                    { id: 3, date: '01.01.18', title: 'abra kadabra', img: "/img/test1.jpg", text: 'lorem ipsum' },
                     { id: 4, date: '01.01.15', title: 'peremoga', img: "/img/man_scream.png", text: 'lorem ipsum' },
                     { id: 5, date: '01.01.16', title: 'ne mogu bez', img: "/img/man_scream.png", text: 'lorem ipsum' },
                     { id: 6, date: '01.01.18', title: 'start rofl', img: "/img/man_scream.png", text: 'lorem ipsum' },
@@ -60,9 +60,7 @@
         display: flex;
         flex-wrap: wrap;
     }
-    .news-router {
-        text-decoration: none;
-    }
+
     .news {
         position: relative;
         width: 30%;
@@ -71,10 +69,17 @@
         flex-direction: column;
         justify-content: space-between;
         text-align: center;
-        text-decoration: none;
         overflow: hidden;
         box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.16);
         transition: background .2s linear;
+    }
+
+    .news-router {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        justify-content: space-between;
+        text-decoration: none;
     }
 
     .news-description {
@@ -83,8 +88,20 @@
         margin: 0 auto;
     }
 
-    .news-img {
+    .news-img-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
         width: 100%;
+        max-width: 100%;
+        height: 220px;
+    }
+
+    .news-img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: inherit;
     }
 
     .news-date {
@@ -109,7 +126,7 @@
         color: #000;
         background: #000;
         transition: color .2s linear,
-                    background .2s linear;
+        background .2s linear;
     }
 
     .news:hover {
