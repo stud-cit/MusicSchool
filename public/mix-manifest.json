@@ -1,10 +1,6 @@
 {
-<<<<<<< HEAD
     "/js/admin.js": "/js/admin.js",
     "/js/app.js": "/js/app.js",
     "/css/admin.css": "/css/admin.css",
-=======
-    "/js/app.js": "/js/app.js",
->>>>>>> master
     "/css/site.css": "/css/site.css"
 }

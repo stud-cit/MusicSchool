@@ -10,16 +10,13 @@
                 <div class="article__title__big">вас!</div>
               </div>
               <div class="article__body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                Lorem Ipsum is simply dummy text of the printing orem
-                Ipsum is simply dummy text of the printing and typesetting industry
-                Lorem Ipsum is simply dummy text of the printing
+                {{ intro.info }}
               </div>
             </div>
           </b-col>
           <b-col xl="8" lg="8" md="12" sm="12" cols="12" class="article__img">
             <div class="article__img">
-              <img src="/img/introduction/article_img.png" alt="Image with kids" />
+              <img :src="intro.photo" alt="Image with kids" />
             </div>
           </b-col>
         </b-row>
@@ -29,8 +26,25 @@
 </template>
 
 <script>
+
 export default {
-  name: "FirstSubMainComponent"
+  name: "FirstSubMainComponent",
+  data(){
+    return {
+      intro: {
+        info: '',
+        photo: '',
+      },
+    };
+  },
+  methods: {
+    onLoadComponent() {
+      this.$emit('CustomEventInputChanged', this.intro);
+    }
+  },
+  mounted() {
+    this.onLoadComponent();
+  }
 };
 </script>
 
