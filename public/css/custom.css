@@ -1,8 +1,10 @@
 .fotoGallery {
     overflow: hidden;
-    text-align: center;
     height: 250px !important;
     margin-bottom: 20px;
+}
+.silentbox-item {
+    text-align: center;
 }
 .foto img, .fotoGallery .foto, .fotoGallery .silentbox-item {
     height: 100%;
@@ -21,7 +23,15 @@
     font-size: 34px;
     padding: 10px;
     right: 20px;
-    bottom: 0px;
+    bottom: 20px;
+}
+.fotoGallery .fa-times-circle {
+    cursor: pointer;
+    position: absolute;
+    margin: 5px;
+    color: #999;
+    font-size: 34px;
+    padding: 10px;
 }
 .fotoGallery .edit {
     position: absolute;
@@ -36,22 +46,12 @@
     top: 30%;
     color: #fff;
 }
-.fotoGallery .fa-play-circle-o:hover, .fotoGallery .fa-download:hover {
+.fotoGallery .fa-play-circle-o:hover, .fotoGallery .fa-download:hover, .fotoGallery .fa-times-circle:hover {
     color: #2A7DEA;
     opacity: 1;
 }
 .custom-file-control:before {
     content: "Вибрати";
-}
-
-.newsImage {
-    overflow: hidden;
-    text-align: center;
-    height: 100px !important;
-    margin-bottom: 20px;
-}
-.foto img, .newsImage .foto {
-    height: 100%;
 }
 .brtop {
     margin-bottom:-5px;
@@ -59,63 +59,20 @@
     font-size: 12px;
     display:inline-block;
 }
-.newsImage .fa-download {
-    position: absolute;
-    opacity: 0.3;
-    color: #fff;
-    font-size: 20px;
-    padding: 10px;
-    right: 10px;
-    bottom: 10px;
-}
-.newsImage .edit {
-    position: absolute;
-    left: 30px;
-    bottom: -5px;
-}
-.newsImage .fa-play-circle-o {
-    position: absolute;
-    padding: 15px;
-    font-size: 65px;
-    left: 40%;
-    top: 30%;
-    color: #fff;
-    opacity: 0.3;
-}
-.newsImage .fa-search:hover {
-    opacity: 0.9;
-}
-.newsImage .fa-search {
-    background: #fff;
-    position: absolute;
-    padding: 12px;
-    border: 1px solid silver;
-    border-radius: 50px;
-    left: 42%;
-    top: 25%;
-    color: #000;
-    opacity: 0.3;
-    transition: 0.5s;
-}
-.newsImage .circle {
-    display: inline-block;
-    color:#000;
-    position:absolute;
-    top:-5px;
-    margin-left: 70px;
-    font-size: 22px;
-    opacity: 0.5;
-    transition: 0.5s;
-}
-.newsImage .circle:hover {
-    opacity: 1;
-}
-.newsImage .fa-play-circle-o:hover, .newsImage .fa-download:hover {
-    color: #2A7DEA;
-    opacity: 1;
-}
 .custom-file-control:before {
     content: "Вибрати";
+}
+.uploadFiles {
+    border: 1px solid silver;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+.uploadFiles i {
+    position: absolute;
+    right: 10px;
 }
 
 .chekbox-two .checkbox{cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;user-select:none}

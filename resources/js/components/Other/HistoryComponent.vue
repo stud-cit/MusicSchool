@@ -6,36 +6,23 @@
         <section class="history-section mt-50">
             <b-container class="history-list">
 
-                <b-row class="list-item d-flex" v-for="item in paginateArray" :key="item.id" >
-                    <b-col cols="12" xl=4 class="item-title-block">
-                        <p class="year">2005</p>
-                        <p class="title">Новий відділ {{item.id}}</p>
+                <b-row class="list-item d-flex" v-for="item in paginateArray" :key="item.nas_id">
+                    <b-col cols="12" xl="4" class="item-title-block">
+                        <p class="year">{{item.date}}</p>
+                        <p class="title">{{item.nas_name}}</p>
                     </b-col>
                     <b-col cols="12" xl="8" class="content-block">
-                        <b-carousel
-                                id="carousel-fade"
-                                fade
-                                indicators >
+                        <b-carousel id="carousel-fade" fade indicators v-for="photo in item.images" :key="photo.id">
                             <b-carousel-slide
                                     caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry
                                 Lorem Ipsum is simply dummy text of the printing orem Ipsum is simply dummy"
-                                    img-src="https://picsum.photos/1024/480/?image=10"
-                            ></b-carousel-slide>
-                            <b-carousel-slide
-                                    caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                                Lorem Ipsum is simply dummy text of the printing orem Ipsum is simply dummy"
-                                    img-src="https://picsum.photos/1024/480/?image=12"
-                            ></b-carousel-slide>
-                            <b-carousel-slide
-                                    caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                                Lorem Ipsum is simply dummy text of the printing orem Ipsum is simply dummy"
-                                    img-src="https://picsum.photos/1024/480/?image=22"
+                                    :img-src="photo.file"
                             ></b-carousel-slide>
                         </b-carousel>
                     </b-col>
                 </b-row>
 
-                <paginate :items="items" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
+                <paginate :items="data" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
 
             </b-container>
         </section>
@@ -50,28 +37,35 @@
     export default {
         data() {
             return {
-
-                items: [
-                    { id: 1 },
-                    { id: 2 },
-                    { id: 3 },
-                    { id: 4 },
-                    { id: 5 },
-                    { id: 6 },
-                    { id: 7 },
-                    { id: 8 },
-                    { id: 9 },
-                ],
+                data: [],
+                // items: [
+                //     { id: 1 },
+                //     { id: 2 },
+                //     { id: 3 },
+                //     { id: 4 },
+                //     { id: 5 },
+                //     { id: 6 },
+                //     { id: 7 },
+                //     { id: 8 },
+                //     { id: 9 },
+                // ],
                 paginateArray: [],
             }
         },
-        computed: {
-
-        },
         components: {
             paginate
+        },
+        created() {
+            this.getData();
+        },
+        methods: {
+            getData() {
+                axios.get('/api/story')
+                    .then((response) => {
+                        this.data = response.data;
+                    })
+            },
         }
-
     }
 </script>
 

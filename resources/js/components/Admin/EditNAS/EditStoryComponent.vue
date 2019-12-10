@@ -2,7 +2,7 @@
     <div class="ml-5">
         <form enctype="multipart/form-data">
             <div class="row">
-                <div class="form-group row">
+                <div class="form-group row mt-1">
                     <label for="storyName" class="col-sm-2 col-form-label">Назва історії</label>
                     <div class="col-sm-5">
                         <input type="text" name="storyName" class="form-control" v-model="object_story.story.nas_name" id="storyName"
@@ -45,13 +45,12 @@
                 </div>
 
                 <div class="form-group row">
-                    <silentbox-group class="col-3" v-for="(item, index) in object_story.story.images" :key="item.images_id">
-                        <div class="border newsImage">
-                            <div class="circle"><i class="fa fa-times-circle btn btn-default p-0" @click="delStoryImage(item.images_id, index)"></i></div>
-                            <div class="news-img" :style="{ backgroundImage: 'url(' + '/story/'+$route.params.id+'/'+item.file + ')'  }"></div>
-                            <silentbox-single :src="'/story/'+$route.params.id+'/'+item.file">
-                                <i class="fa fa-search"></i>
-                            </silentbox-single>
+                    <silentbox-group class="col-3 foto" v-for="(item, index) in object_story.story.images" :key="item.images_id">
+                        <div class="border fotoGallery">
+                            <i class="fa fa-times-circle btn btn-default p-0" @click="delStoryImage(item.images_id, index)"></i>
+                            <silentbox-item :src="'/story/'+$route.params.id+'/'+item.file" class="foto">
+                                <img :src="'/story/'+$route.params.id+'/'+item.file">
+                            </silentbox-item>
                             <a :href="'/story/'+$route.params.id+'/'+item.file" download><i class="fa fa-download"></i></a>
                         </div>
                     </silentbox-group>
@@ -69,7 +68,7 @@
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="save">Зберегти</button>
+                <button type="button" class="btn btn-outline-secondary my-2 ml-4 w-25" @click="save">Зберегти</button>
             </div>
         </form>
     </div>
@@ -105,7 +104,7 @@
 			},
 
 			getStoryList() {
-				axios.get('/get-story/'+this.$route.params.id)
+				axios.get('/api/story/'+this.$route.params.id)
 					.then((response) => {
 						this.object_story.story = response.data;
 					})
@@ -120,10 +119,13 @@
 				form.append('nas_name', this.object_story.story.nas_name);
 				form.append('nas_info', this.object_story.story.nas_info);
 				form.append('date', this.object_story.story.date);
-				axios.post('/update-story/'+this.$route.params.id, form)
+				axios.post('/api/update-story/'+this.$route.params.id, form)
 					.then((response) => {
 						this.file = [];
-						this.object_story.story.images = this.object_story.story.images.concat(response.data);
+                        this.object_story.story.images = this.object_story.story.images.concat(response.data);
+                        swal("Інформацію успішно збережено", {
+                            icon: "success",
+                        });
 					})
 			},
 			delFile(index) {
@@ -147,29 +149,5 @@
 </script>
 
 <style scoped>
-    .uploadFiles {
-        border: 1px solid silver;
-        width: 100%;
-        margin-top: 10px;
-        padding: 10px 15px;
-        border-radius: 5px;
-    }
-    .uploadFiles i {
-        position: absolute;
-        right: 10px;
-    }
-    .newsImage{
-        height: auto
-    }
-    .newsImage .fa-calendar{
-        position: static
-    }
-    .newsImage .width-100{
-        width: calc(100% - 30px);
-    }
-    .news-img{
-        background-size: cover;
-        margin-bottom: 10px;
-        height: 100px;
-    }
+
 </style>

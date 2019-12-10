@@ -158,7 +158,7 @@ export default {
 				    else {
 					    textElement.setAttribute('disabled', 'disabled');
 					    event.target.innerHTML = 'Редагувати';
-					    axios.post('/post-intro', {
+					    axios.post('/api/intro', {
 						    table,
 						    row: el,
 						    value: textElement.value
@@ -169,11 +169,9 @@ export default {
 		    });
 	    },
         getIntro() {
-	        axios.get('/get-intro')
+	        axios.get('/api/intro')
 		        .then((response) => {
-			        response.data.intro.map(item => {
-			        	Object.assign(this.intro, item);
-                    })
+			        Object.assign(this.intro, response.data);
 		        })
         }
     }

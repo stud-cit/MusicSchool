@@ -3,24 +3,22 @@
         <page-title title="актуальні" uptitle="новини"></page-title>
         <section class="history-section mt-50">
             <b-container class="news-list">
-
-                <div class="news" v-for="i in paginateArray" :key="i.id">
+                <div class="news" v-for="i in paginateArray" :key="i.nas_id">
                     <router-link class="news-router" :to="{ name: 'news-item',
-                             params: {id: i.id, date: i.date, title: i.title, img: i.img, text: i.text}}"
+                        params: {id: i.nas_id, date: i.date, title: i.nas_name, img: i.images[0].file, text: i.nas_info}}"
                     >
                         <div class="news-description">
                             <h3 class="news-date">{{i.date}}</h3>
-                            <p class="news-text">{{i.title}}</p>
+                            <p class="news-text">{{i.nas_name}}</p>
                             <hr class="news-line">
                         </div>
                         <div class="news-img-block">
-                            <img :src="i.img" alt="" class="news-img">
+                            <img :src="'.'+i.images[0].file" alt="" class="news-img">
                         </div>
                     </router-link>
                 </div>
             </b-container>
-
-            <paginate :items="news" @paginateArray="paginateArray = $event" perPage="6"></paginate>
+            <paginate :items="data" @paginateArray="paginateArray = $event" :perPage="6"></paginate>
         </section>
     </div>
 </template>
@@ -32,25 +30,23 @@
         name: "NewsComponent",
         data() {
             return {
-                news: [
-                    { id: 1, date: '01.01.19', title: 'kek lol kek lol kek lol kek lol', img: "/img/man_scream.png", text: 'lorem ipsum'},
-                    { id: 2, date: '01.01.01', title: 'heute ist goot', img: "/img/test.jpg", text: 'lorem ipsum' },
-                    { id: 3, date: '01.01.18', title: 'abra kadabra', img: "/img/test1.jpg", text: 'lorem ipsum' },
-                    { id: 4, date: '01.01.15', title: 'peremoga', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 5, date: '01.01.16', title: 'ne mogu bez', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 6, date: '01.01.18', title: 'start rofl', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 7, date: '01.01.18', title: 'omg', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 8, date: '01.01.19', title: 'kek lol arbidol', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 9, date: '01.01.18', title: `peremogen'ka`, img: "/img/man_scream.png", text: 'lorem ipsum' },
-                ],
+                data: [],
                 paginateArray: [],
             }
         },
-        computed: {
-
-        },
         components: {
             paginate
+        },
+        created() {
+            this.getData();
+        },
+        methods: {
+            getData() {
+                axios.get('/api/news')
+                    .then((response) => {
+                        this.data = response.data;
+                    })
+            },
         }
     }
 </script>

@@ -17,13 +17,33 @@ Route::post('update-info', 'InfoController@updateInfo');
 
 Route::get('department', 'DepartmentController@getDepartments');
 Route::post('department', 'DepartmentController@postDepartments');
-Route::post('department/{id}', 'DepartmentController@updateDepartments');
-Route::delete('department/{id}', 'DepartmentController@deleteDepartments');
+Route::post('department/{id}', 'DepartmentController@updateDepartments')->where(['id' => '^[0-9]+']);
+Route::delete('department/{id}', 'DepartmentController@deleteDepartments')->where(['id' => '^[0-9]+']);
 
 // Вступ
 
 Route::get('intro', 'IntroController@getIntro');
 Route::post('intro', 'IntroController@postIntro');
+
+// Новини
+
+Route::get('news', 'NewsAchieveStoryController@getNews');
+Route::get('news/{id}', 'NewsAchieveStoryController@getNewsId')->where(['id' => '^[0-9]+']);
+Route::delete('news/{id}', 'NewsAchieveStoryController@deleteNews')->where(['id' => '^[0-9]+']);
+Route::post('update-news/{id}/', 'NewsAchieveStoryController@updateNews')->where(['id' => '^[0-9]+']);
+Route::post('news', 'NewsAchieveStoryController@postNews');
+
+// Досягнення
+
+Route::get('achieve', 'NewsAchieveStoryController@getAchieve');
+
+// Історії
+
+Route::get('story', 'NewsAchieveStoryController@getStory');
+Route::get('story/{id}', 'NewsAchieveStoryController@getStoryId')->where(['id' => '^[0-9]+']);
+Route::post('update-story/{id}', 'NewsAchieveStoryController@updateStory')->where(['id' => '^[0-9]+']);
+Route::delete('story/{id}', 'NewsAchieveStoryController@deleteStory');
+Route::post('story', 'NewsAchieveStoryController@postStory');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

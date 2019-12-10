@@ -79,7 +79,7 @@
                         <router-link :to="{ name: 'edit-story', params: {id: item.nas_id} }">
                             <button type="button" class="btn btn-primary float-right ml-2">Редагувати</button>
                         </router-link>
-                        <button type="button" class="btn btn-primary float-right" @click="deleteStory(index, item.nas_id)">Видалити</button>
+                        <button type="button" class="btn btn-primary float-right" @click="deleteStory(item.nas_id, index)">Видалити</button>
                     </div>
                 </th>
             </tr>
@@ -134,9 +134,9 @@ export default {
 					form.append('nas_name', this.nas_name);
 					form.append('nas_info', this.nas_info);
 					form.append('date', this.date);
-					axios.post('/post-story', form)
+					axios.post('/api/story', form)
 						.then((res) => {
-							this.file = [];
+                            this.file = [];
 							swal("Інформація спішно додана", {
 								icon: "success",
 								timer: 1000,
@@ -154,16 +154,38 @@ export default {
 			});
 		},
 		getStoryList() {
-			axios.get('/get-story')
+			axios.get('/api/story')
 				.then((response) => {
-					this.object_story.story.push(...response.data)
+					this.object_story.story = response.data;
 				})
-		},
-		deleteStory(index, id) {
-			if(id) {
-				axios.post('/delete-story/'+id);
-			}
-		},
+        },
+		deleteStory(id, index) {
+            swal({
+                title: "Бажаєте видалити?",
+                text: "Після видалення ви не зможете відновити даний запис",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios.delete('/api/story/'+id)
+                        .then((response) => {
+                            this.object_story.story.splice(index, 1);
+                            swal("Історія була успішно видалена", {
+                                icon: "success",
+                            });
+                        })
+                        .catch((error) => {
+                            swal({
+                                icon: "error",
+                                title: 'Помилка',
+                                text: 'Не вдалося'
+                            });
+                        });
+                }
+            })
+		}
 	}
 };
 </script>

@@ -36,7 +36,7 @@
           <div class="teachers">
             <div class="teachers__title">Викладачі</div>
             <div class="teachers__img">
-              <img src="/img/departments/professor.png" alt="professor" />
+              <a href="/teachers"><img src="/img/departments/professor.png" alt="professor" /></a>
             </div>
             <div class="teachers__text">Lorem Ipsum is simply dummy text of the printing and</div>
           </div>
@@ -45,7 +45,7 @@
           <div class="instruments">
             <div class="instruments__title">Інструменти</div>
             <div class="instruments__img">
-              <img src="/img/departments/Guitar Player.png" alt="guitar_player" />
+              <a href="/instruments"><img src="/img/departments/Guitar Player.png" alt="guitar_player" /></a>
             </div>
             <div class="instruments__text">typesetting industry Lorem Ipsum is simply dummy text</div>
           </div>

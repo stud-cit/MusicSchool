@@ -134,7 +134,7 @@
 						form.append('nas_name', this.nas_name);
 						form.append('nas_info', this.nas_info);
 						form.append('date', this.date);
-						axios.post('/post-news', form)
+						axios.post('/api/news', form)
 							.then((res) => {
 								this.file = [];
 								swal("Інформація спішно додана", {
@@ -154,15 +154,37 @@
 				});
 			},
 			getNewsList() {
-				axios.get('/get-news')
+				axios.get('/api/news')
 					.then((response) => {
-						this.object_news.news.push(...response.data)
+						this.object_news.news = response.data;
 					})
 			},
 			deleteNews(index, id) {
-				if(id) {
-					axios.post('/delete-news/'+id);
-				}
+                swal({
+                    title: "Бажаєте видалити?",
+                    text: "Після видалення ви не зможете відновити даний запис",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        axios.delete('/api/news/'+id)
+                            .then((response) => {
+                                this.object_news.news.splice(index, 1);
+                                swal("Новина була успішно видалена", {
+                                    icon: "success",
+                                });
+                            })
+                            .catch((error) => {
+                                swal({
+                                    icon: "error",
+                                    title: 'Помилка',
+                                    text: 'Не вдалося'
+                                });
+                            });
+                    }
+                })
 			},
 		}
 	};
