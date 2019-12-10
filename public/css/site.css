@@ -1,58 +1,19 @@
 body {
   line-height: 1;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 16px;
 }
 
 .mt-50 {
   margin-top: 50px;
 }
 
-.title-block {
-  background: -webkit-gradient(linear, left top, left bottom, from(#e91b47), to(#6a0017));
-  background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);
-}
-
-.title-block .notes {
-  background: url(/images/title-bg-notes.png?4ad2d7502f67d527f90a89db7cbd9970) no-repeat left 68%;
-  padding: 36px 0 32px 0;
-}
-
-.title-block .container .row {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: end;
-          align-items: flex-end;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
-}
-
-.title-block .title {
-  color: #ffffff;
-  font-family: Montserrat;
-  font-size: 70px;
-  font-weight: 700;
-  line-height: 1.1;
-  text-transform: uppercase;
-  margin-bottom: 0;
-}
-
-.title-block .title .uptitle {
-  font-size: 54px;
-  font-weight: 600;
-}
-
-.title-block .text {
-  color: #ffffff;
-  font-family: Montserrat;
-  font-size: 16px;
-  font-weight: 400;
-}
-
 .content-block .carousel-caption {
-  rigth: 0;
   left: 0;
   bottom: 0;
   width: 100%;
-  padding: 25px 35px;
+  padding: 25px 30px;
   background-color: #2b2b2b;
   max-height: 100px;
 }
@@ -99,5 +60,31 @@ body {
 .pagination .page-item.disabled .page-link {
   border: 1px solid #707070;
   color: #b3c2d0;
+}
+
+@media (max-width: 991px) {
+  .content-block .carousel-caption h3 {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 575px) {
+  .content-block .carousel img {
+    min-height: 320px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center 0;
+       object-position: center 0;
+  }
+
+  .content-block .carousel-caption {
+    max-height: 120px;
+    padding: 15px 20px;
+  }
+
+  .content-block .carousel-indicators {
+    bottom: 120px;
+    margin-bottom: 0;
+  }
 }
 

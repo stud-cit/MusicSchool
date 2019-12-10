@@ -6,11 +6,11 @@
                 <div class="btn-group">
                     <button :class="[{active: this.category == 'all'}, 'mr-4']" @click="setFilter('all')">Всі файли</button>
                     <button :class="[{active: this.category == 'image'}, 'mr-4']" @click="setFilter('image')">Фотографії</button>
-                    <button :class="[{active: this.category == 'video'}, 'mr-4']" @click="setFilter('video')">Відеоролики</button>
+                    <button :class="{active: this.category == 'video'}" @click="setFilter('video')">Відеоролики</button>
                 </div>
                 <transition-group name="list" tag="div" class="row gallery-list">
 
-                    <b-col xl="4" v-for="item of paginateArray" class="list-item" :key="item.id">
+                    <b-col cols="12" md="6" xl="4" v-for="item of paginateArray" class="list-item" :key="item.id">
                         <!--{{item.type}}-->
                         <img src="img/gallery-1.png" alt="">
                     </b-col>
@@ -116,11 +116,13 @@
                 color: #707070
                 font-family: Montserrat
                 font-size: 20px
+                line-height: 1.2
                 font-weight: 400
 
             .active
                 background-color: #6a0017
                 color: #ffffff
+
         .list-item
             margin-top: 30px
             img
@@ -128,4 +130,27 @@
                 height: 316px
                 object-fit: cover
                 object-position: center 0
+
+    // adaptive
+
+    @media (max-width: 1199px)
+        .gallery-section
+            .btn-group
+                button
+                    flex-grow: 1
+                    flex-wrap: wrap
+    @media (max-width: 767px)
+        .gallery-section
+            .btn-group
+                button
+                    font-size: 14px
+    @media (max-width: 575px)
+        .mr-4
+            margin-right: 0 !important
+        .gallery-section
+            .btn-group
+                flex-wrap: wrap
+                button
+                    padding: 10px 5px
+                    font-size: 14px
 </style>

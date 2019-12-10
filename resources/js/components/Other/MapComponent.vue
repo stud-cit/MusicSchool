@@ -5,7 +5,7 @@
             <div class="contacts-absolute">
                 <b-container >
                     <b-row class="contacts-info">
-                        <b-col xl="6" class="contacts-block">
+                        <b-col md="9" lg="7" xl="6" class="contacts-block">
                             <h2 class="contacts-title">КОНТАКТИ</h2>
                             <ul class="contacts-list">
                                 <li class="list-item">
@@ -116,5 +116,10 @@
                             font-family: Montserrat
                             font-size: 20px
                             font-weight: 600
-
+    @media (max-width: 575px)
+        .title-block
+            .title
+                font-size: 34px
+                .uptitle
+                    font-size: 26px
 </style>
