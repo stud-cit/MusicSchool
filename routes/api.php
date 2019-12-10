@@ -25,6 +25,10 @@ Route::delete('department/{id}', 'DepartmentController@deleteDepartments');
 Route::get('intro', 'IntroController@getIntro');
 Route::post('intro', 'IntroController@postIntro');
 
+//Документы
+Route::get('get-document', 'DocumentController@getDocument');
+Route::post('post-document', 'DocumentController@postDocument');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
