@@ -4,29 +4,30 @@
         <div class="teachers">
             <b-container>
                 <b-row>
-                    <b-col cols="6">
+                    <b-col cols="12" sm="12" md="6" lg="6" xl="6">
                         <TeacherCard/>
                     </b-col>
-                    <b-col cols="6">
-                        <TeacherCard/>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col cols="6">
-                        <TeacherCard/>
-                    </b-col>
-                    <b-col cols="6">
+                    <b-col cols="12" sm="12" md="6" lg="6" xl="6">
                         <TeacherCard/>
                     </b-col>
                 </b-row>
                 <b-row>
-                    <b-col cols="6">
+                    <b-col cols="12" sm="12" md="6" lg="6" xl="6">
                         <TeacherCard/>
                     </b-col>
-                    <b-col cols="6">
+                    <b-col cols="12" sm="12" md="6" lg="6" xl="6">
                         <TeacherCard/>
                     </b-col>
                 </b-row>
+                <b-row>
+                    <b-col cols="12" sm="12" md="6" lg="6" xl="6">
+                        <TeacherCard/>
+                    </b-col>
+                    <b-col cols="12" sm="12" md="" lg="6" xl="6">
+                        <TeacherCard/>
+                    </b-col>
+                </b-row>
+                <paginate :items="items" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
             </b-container>
         </div>
                
@@ -34,13 +35,36 @@
 </template>
 
 <script>
-    import TeacherCard from '../Other/TeacherCard.vue'
+    import TeacherCard from '../Other/TeacherCard.vue';
+    import paginate from '../PaginationComponent';
 
     export default {
         name: "TeachersComponent",
+        data() {
+            return {
+
+                items: [
+                    { id: 1 },
+                    { id: 2 },
+                    { id: 3 },
+                    { id: 4 },
+                    { id: 5 },
+                    { id: 6 },
+                    { id: 7 },
+                    { id: 8 },
+                    { id: 9 },
+                ],
+                paginateArray: [],
+            }
+        },
+        computed: {
+
+        },
         components: {
+            paginate,
             TeacherCard,
         }
+
     }
 </script>
 
