@@ -11,6 +11,7 @@ import AchievementsComponent from "./components/Other/AchievementsComponent";
 import GalleryComponent from "./components/Other/GalleryComponent";
 import ContactsComponent from "./components/Other/ContactsComponent";
 import NewsItemComponent from "./components/Other/NewsItemComponent";
+import AchievementItemComponent from "./components/Other/AchievementItemComponent";
 
 Vue.use(Router);
 
@@ -42,5 +43,6 @@ export default new Router({
         { path: "/gallery", name: "gallery", component: GalleryComponent },
         { path: "/contacts", name: "contacts", component: ContactsComponent },
         { path: "/news-item", name: "news-item", component: NewsItemComponent},
+        { path: "/achievements-item", name: "achievements-item", component: AchievementItemComponent}
     ]
 });
