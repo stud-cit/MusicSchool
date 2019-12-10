@@ -1,7 +1,7 @@
 <template>
   <div>
     <page-title title="про вступ" uptitle="інформація"></page-title>
-    <header-component :block1="$props.intro.block1" :block2="$props.intro.block2" :block3="$props.intro.block3"></header-component>
+    <header-component :blockOne="intro.block1" :blockTwo="intro.block2" :blockThree="intro.block3"></header-component>
     <main-component :intro="intro" :document="document" />
   </div>
 </template>
@@ -11,7 +11,12 @@
   import MainComponent from "./MainComponent.vue";
   export default {
     name: "IntroductionComponent",
-    props: ['intro', 'document'],
+    data() {
+      return {
+        intro: {},
+        document: {}
+      }
+    },
     components: {
       HeaderComponent,
       MainComponent
@@ -23,15 +28,15 @@
     methods: {
       getIntro() {
         axios.get('/api/intro')
-                .then((response) => {
-                  this.intro = response.data;
-                })
+          .then((response) => {
+            this.intro = response.data;
+          })
       },
       getDocuments() {
         axios.get('/api/get-document')
-                .then((response) => {
-                  this.document = response.data;
-                })
+          .then((response) => {
+            this.document = response.data;
+          })
       }
     }
   };

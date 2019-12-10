@@ -36,6 +36,10 @@ Route::post('news', 'NewsAchieveStoryController@postNews');
 // Досягнення
 
 Route::get('achieve', 'NewsAchieveStoryController@getAchieve');
+Route::get('achieve/{id}', 'NewsAchieveStoryController@getAchieveId')->where(['id' => '^[0-9]+']);
+Route::post('achieve', 'NewsAchieveStoryController@postAchieve');
+Route::post('update-achieve/{id}/', 'NewsAchieveStoryController@updateAchieve');
+Route::delete('achieve/{id}/', 'NewsAchieveStoryController@deleteAchieve');
 
 // Історії
 

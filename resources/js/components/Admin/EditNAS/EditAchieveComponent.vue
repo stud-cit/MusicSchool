@@ -45,13 +45,12 @@
                 </div>
 
                 <div class="form-group row">
-                    <silentbox-group class="col-3" v-for="(item, index) in object_achieve.achieve.images" :key="item.images_id">
-                        <div class="border newsImage">
-                            <div class="circle"><i class="fa fa-times-circle btn btn-default p-0" @click="delAchieveImage(item.images_id, index)"></i></div>
-                            <div class="news-img" :style="{ backgroundImage: 'url(' + '/achieve/'+$route.params.id+'/'+item.file + ')'  }"></div>
-                            <silentbox-single :src="'/achieve/'+$route.params.id+'/'+item.file">
-                                <i class="fa fa-search"></i>
-                            </silentbox-single>
+                    <silentbox-group class="col-3 foto" v-for="(item, index) in object_achieve.achieve.images" :key="item.images_id">
+                        <div class="border fotoGallery">
+                            <i class="fa fa-times-circle btn btn-default p-0" @click="delAchieveImage(item.images_id, index)"></i>
+                            <silentbox-item :src="'/achieve/'+$route.params.id+'/'+item.file" class="foto">
+                                <img :src="'/achieve/'+$route.params.id+'/'+item.file">
+                            </silentbox-item>
                             <a :href="'/achieve/'+$route.params.id+'/'+item.file" download><i class="fa fa-download"></i></a>
                         </div>
                     </silentbox-group>
@@ -105,7 +104,7 @@
 			},
 
 			getAchieveList() {
-				axios.get('/get-achieve/'+this.$route.params.id)
+				axios.get('/api/achieve/'+this.$route.params.id)
 					.then((response) => {
 						this.object_achieve.achieve = response.data;
 					})
@@ -120,10 +119,13 @@
 				form.append('nas_name', this.object_achieve.achieve.nas_name);
 				form.append('nas_info', this.object_achieve.achieve.nas_info);
 				form.append('date', this.object_achieve.achieve.date);
-				axios.post('/update-achieve/'+this.$route.params.id, form)
+				axios.post('/api/update-achieve/'+this.$route.params.id, form)
 					.then((response) => {
 						this.file = [];
-						this.object_achieve.achieve.images = this.object_achieve.achieve.images.concat(response.data);
+                        this.object_achieve.achieve.images = this.object_achieve.achieve.images.concat(response.data);
+                        swal("Інформацію успішно збережено", {
+                            icon: "success",
+                        });
 					})
 			},
 			delFile(index) {
@@ -147,29 +149,5 @@
 </script>
 
 <style scoped>
-    .uploadFiles {
-        border: 1px solid silver;
-        width: 100%;
-        margin-top: 10px;
-        padding: 10px 15px;
-        border-radius: 5px;
-    }
-    .uploadFiles i {
-        position: absolute;
-        right: 10px;
-    }
-    .newsImage{
-        height: auto
-    }
-    .newsImage .fa-calendar{
-        position: static
-    }
-    .newsImage .width-100{
-        width: calc(100% - 30px);
-    }
-    .news-img{
-        background-size: cover;
-        margin-bottom: 10px;
-        height: 100px;
-    }
+
 </style>

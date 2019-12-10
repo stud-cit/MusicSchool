@@ -18,11 +18,6 @@ Route::post('post-intro-file', 'IntroController@postIntroFile');
 Route::post('update-intro/{id}/', 'IntroController@updateIntro');
 Route::post('delete-intro/{id}/', 'IntroController@deleteIntro');
 
-//Новости Достижения История
-Route::post('post-achieve', 'NewsAchieveStoryController@postAchieve');
-Route::post('update-achieve/{id}/', 'NewsAchieveStoryController@updateAchieve');
-Route::post('delete-achieve/{id}/', 'NewsAchieveStoryController@deleteAchieve');
-
 Route::post('delete-news-images/{id}/', 'NewsAchieveStoryController@deleteNewsImage');
 Route::post('delete-achieve-images/{id}/', 'NewsAchieveStoryController@deleteAchieveImage');
 Route::post('delete-story-images/{id}/', 'NewsAchieveStoryController@deleteStoryImage');

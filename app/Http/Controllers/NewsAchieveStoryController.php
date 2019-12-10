@@ -143,10 +143,15 @@ class NewsAchieveStoryController extends Controller
         return response()->json($data);
     }
 
+    function getAchieveId($id) {
+        $data = NewsAchieveStory::with('images')->where('nas_id', $id)->first();
+        return response()->json($data);
+    }
+
     function postAchieve(Request $request) {
         $achieve = new NewsAchieveStory;
-        $achieve->nas_name = $request->achieve_name;
-        $achieve->nas_info = $request->achieve_info;
+        $achieve->nas_name = $request->nas_name;
+        $achieve->nas_info = $request->nas_info;
         $achieve->date = $request->date;
         $achieve->type = NewsAchieveStory::ACHIEVE;
 
@@ -169,8 +174,8 @@ class NewsAchieveStoryController extends Controller
 
     function updateAchieve(Request $request, $id) {
         $update_achieve = NewsAchieveStory::find($id);
-        $update_achieve->nas_name = $request->achieve_name;
-        $update_achieve->nas_info = $request->achieve_info;
+        $update_achieve->nas_name = $request->nas_name;
+        $update_achieve->nas_info = $request->nas_info;
         $update_achieve->date = $request->date;
         $arrImg = [];
         $achieveFile = $request->file;

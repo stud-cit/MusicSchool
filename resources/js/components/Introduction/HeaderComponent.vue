@@ -11,7 +11,7 @@
               <div class="card__img">
                 <img v-bind:src="images.img1" alt="image" />
               </div>
-              <div class="card__text">{{ block1 }}</div>
+              <div class="card__text">{{ blockOne }}</div>
             </div>
           </b-col>
 
@@ -20,7 +20,7 @@
               <div class="card__img">
                 <img v-bind:src="images.img2" alt="image" />
               </div>
-              <div class="card__text">{{ block2 }}</div>
+              <div class="card__text">{{ blockTwo }}</div>
             </div>
           </b-col>
 
@@ -29,7 +29,7 @@
               <div class="card__img">
                 <img v-bind:src="images.img3" alt="image" />
               </div>
-              <div class="card__text">{{ block3 }}</div>
+              <div class="card__text">{{ blockThree }}</div>
             </div>
           </b-col>
         </b-row>
@@ -41,7 +41,7 @@
 <script>
 export default {
   name: "HeaderComponent",
-  props: ['block1', 'block2', 'block3'],
+  props: ['blockOne', 'blockTwo', 'blockThree'],
   data() {
     return {
       images: {

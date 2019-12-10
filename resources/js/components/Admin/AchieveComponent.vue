@@ -42,7 +42,7 @@
                             <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
                         </label>
                         <div v-for="(item, index) in file" :key="index">
-                            <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name }}</div>
+                            <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
                             <span class="text-danger"
                                   v-if="errors.has('achieveImage')">Файл повинен бути зображенням
                             </span>
@@ -134,7 +134,7 @@ export default {
 					form.append('nas_name', this.nas_name);
 					form.append('nas_info', this.nas_info);
 					form.append('date', this.date);
-					axios.post('/post-achieve', form)
+					axios.post('/api/achieve', form)
 						.then((res) => {
 							this.file = [];
 							swal("Інформація спішно додана", {
@@ -154,16 +154,41 @@ export default {
 			});
 		},
 		getAchieveList() {
-			axios.get('/get-achieve')
+			axios.get('/api/achieve')
 				.then((response) => {
-					this.object_achieve.achieve.push(...response.data)
+					this.object_achieve.achieve = response.data;
 				})
-		},
-		deleteAchieve(index, id) {
-			if(id) {
-				axios.post('/delete-achieve/'+id);
-			}
-		},
+        },
+        deleteAchieve(index, id) {
+            swal({
+                title: "Бажаєте видалити?",
+                text: "Після видалення ви не зможете відновити даний запис",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios.delete('/api/achieve/'+id)
+                        .then((response) => {
+                            this.object_achieve.achieve.splice(index, 1);
+                            swal("Новина була успішно видалена", {
+                                icon: "success",
+                            });
+                        })
+                        .catch((error) => {
+                            swal({
+                                icon: "error",
+                                title: 'Помилка',
+                                text: 'Не вдалося'
+                            });
+                        });
+                }
+            })
+        },
+        delFile(index) {
+            this.file.splice(index, 1);
+        }
 	}
 };
 </script>

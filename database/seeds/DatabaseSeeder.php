@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             InfoTableSeeder::class,
             DocumentTableSeeder::class,
             NewsAchieveStoryTableSeeder::class,
-            ImagesTableSeeder::class,
+            // ImagesTableSeeder::class,
             DepartmentsTableSeeder::class,
             TeachersTableSeeder::class,
             InstrumentsTableSeeder::class,

@@ -197,15 +197,7 @@
 </script>
 
 <style scoped>
-    .uploadFiles {
-        border: 1px solid silver;
-        width: 100%;
-        margin-top: 10px;
-        padding: 10px 15px;
-        border-radius: 5px;
-    }
-    .uploadFiles i {
-        position: absolute;
-        right: 10px;
-    }
+.fa-download {
+	bottom: 0px;
+}
 </style>

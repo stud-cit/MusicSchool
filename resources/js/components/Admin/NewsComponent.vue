@@ -42,7 +42,7 @@
                                 <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
                             </label>
                             <div v-for="(item, index) in file" :key="index">
-                                <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name }}</div>
+                                <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
                                 <span class="text-danger"
                                     v-if="errors.has('newsImage')">Файл повинен бути зображенням
                                 </span>
@@ -185,7 +185,10 @@
                             });
                     }
                 })
-			},
+            },
+            delFile(index) {
+                this.file.splice(index, 1);
+            }
 		}
 	};
 </script>
