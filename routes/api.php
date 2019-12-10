@@ -45,6 +45,10 @@ Route::post('update-story/{id}', 'NewsAchieveStoryController@updateStory')->wher
 Route::delete('story/{id}', 'NewsAchieveStoryController@deleteStory');
 Route::post('story', 'NewsAchieveStoryController@postStory');
 
+//Документы
+Route::get('get-document', 'DocumentController@getDocument');
+Route::post('post-document', 'DocumentController@postDocument');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

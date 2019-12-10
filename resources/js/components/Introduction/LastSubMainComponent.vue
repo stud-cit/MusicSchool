@@ -8,21 +8,19 @@
       </b-row>
       <b-row>
         <div class="card__block__inner">
-          <b-col
-            class="cards"
-            xl="2"
+          <b-col class="cards" xl="2"
             lg="3"
             md="4"
             sm="6"
             cols="8"
-            v-for="(card, index) in cards"
+            v-for="(doc, index) in document"
             v-bind:key="index"
           >
             <div class="card">
               <div class="card__img">
-                <img v-bind:src="card.img" alt="file with properties" />
+                <img v-bind:src="images.img" alt="file with properties" />
               </div>
-              <div class="card__body">{{ card.text }}</div>
+              <div class="card__body">{{ doc.text }}</div>
             </div>
           </b-col>
         </div>
@@ -39,30 +37,13 @@ import BtnDownloadComponent from "./BtnDownloadComponent.vue";
 
 export default {
   name: "LastSubMainComponent",
+  props: ['document'],
   data() {
     return {
-      cards: [
+      images:
         {
           img: "/img/introduction/file_for_cart.png",
-          text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
-        },
-        {
-          img: "/img/introduction/file_for_cart.png",
-          text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
-        },
-        {
-          img: "/img/introduction/file_for_cart.png",
-          text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
-        },
-        {
-          img: "/img/introduction/file_for_cart.png",
-          text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
-        },
-        {
-          img: "/img/introduction/file_for_cart.png",
-          text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
         }
-      ]
     };
   },
   computed: {},

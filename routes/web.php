@@ -11,10 +11,6 @@ Route::post('update-instrument/{id}/', 'DepartmentController@updateInstruments')
 Route::post('delete-teacher/{id}/', 'DepartmentController@deleteTeachers');
 Route::post('delete-instrument/{id}/', 'DepartmentController@deleteInstruments');
 
-//Документы
-Route::get('get-document', 'DocumentController@getDocument');
-Route::post('post-document', 'DocumentController@postDocument');
-
 //Вступ
 Route::get('get-intro', 'IntroController@getIntro');
 Route::post('post-intro', 'IntroController@postIntro');

@@ -26,5 +26,15 @@ class DocumentTableSeeder extends Seeder
             'text' => 'Заголовок третього документу',
             'file' => '/documents/document3'
         ]);
+        DB::table('documents')->insert([
+            'documents_id' => 4,
+            'text' => 'Заголовок четвертого документу',
+            'file' => '/documents/document4'
+        ]);
+        DB::table('documents')->insert([
+            'documents_id' => 5,
+            'text' => 'Заголовок п’ятого документу',
+            'file' => '/documents/document5'
+        ]);
     }
 }
