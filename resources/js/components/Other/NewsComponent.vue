@@ -5,7 +5,7 @@
             <b-container class="news-list">
                 <div class="news" v-for="i in paginateArray" :key="i.nas_id">
                     <router-link class="news-router" :to="{ name: 'news-item',
-                        params: {id: i.nas_id, date: i.date, title: i.nas_name, img: i.images, text: i.nas_info}}"
+                        params: {id: i.nas_id}}"
                     >
                         <div class="news-description">
                             <h3 class="news-date">{{i.date}}</h3>

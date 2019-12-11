@@ -47,7 +47,7 @@ export default new Router({
         },
         { path: "/gallery", name: "gallery", component: GalleryComponent },
         { path: "/contacts", name: "contacts", component: ContactsComponent },
-        { path: "/news-item", name: "news-item", component: NewsItemComponent},
+        { path: "/news-item/:id/", name: "news-item", component: NewsItemComponent},
         { path: "/achievements-item", name: "achievements-item", component: AchievementItemComponent}
     ]
 });
