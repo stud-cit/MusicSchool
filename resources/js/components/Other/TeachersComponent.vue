@@ -4,7 +4,7 @@
         <div class="teachers">
             <b-container>
                 <b-row>
-                    <b-col cols="12" sm="12" md="6" lg="6" xl="6" v-for="(t, index) in teacher" v-bind:key="index">
+                    <b-col cols="12" sm="12" md="12" lg="6" xl="6" v-for="(t, index) in teacher" v-bind:key="index">
                         <TeacherCard :teacher="teacher[index]"/>
                     </b-col>
                 </b-row>
@@ -72,7 +72,8 @@
         content: '';
         position: absolute;
         width: 60%;
-        height: 85%;
+        height: 80%;
         background: transparent linear-gradient(180deg, #E91B47 0%, #6A0017 100%);
+        margin-top: -100px;
     }
 </style>
