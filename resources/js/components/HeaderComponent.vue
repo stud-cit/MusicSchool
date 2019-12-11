@@ -16,7 +16,7 @@
                             </b-nav-item-dropdown>
                             
                             <b-navbar-nav>
-                                <b-nav-item href="/achievements">Відділи</b-nav-item>
+                                <b-nav-item href="/departments">Відділи</b-nav-item>
                                 <b-nav-item href="/achievements">Досягнення</b-nav-item>
                                 <b-nav-item href="/introduction">Вступ</b-nav-item>
                                 <b-nav-item href="/gallery">Галерея</b-nav-item>

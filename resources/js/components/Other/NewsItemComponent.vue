@@ -20,8 +20,7 @@
                             >
                             <b-carousel-slide
                                 class="news-item-img"
-                                v-for="i in this.$route.params.img"
-                                :img-src="i"
+                                :img-src="'/news/'+this.$route.params.id+'/'+this.$route.params.img[0].file"
                             ></b-carousel-slide>
 
                         </b-carousel>
@@ -48,6 +47,7 @@
 <script>
     export default {
         name: "NewsItemComponent",
+        /*v-for="i in this.$route.params.img"*/
     }
 </script>
 

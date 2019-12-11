@@ -1,7 +1,9 @@
 <template>
   <div class="btn_align">
-    <b-button squared variant="outline-dark">{{btn}}</b-button>
-    <div class="just__text">Більше яскравих моментів</div>
+    <b-col cols="12">
+      <b-button squared variant="outline-dark">{{btn}}</b-button>
+      <div class="just__text">Більше яскравих моментів</div>
+    </b-col>
   </div>
 </template>
 
@@ -19,13 +21,12 @@ export default {
 <style scoped>
 .btn_align {
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 25px;
+  margin: 50px auto 25px auto;
 }
 
 .btn-outline-dark {
   color: #af0126;
-  border-color: #af0126;
+  border: 3px solid #af0126;
   width: 255px;
   height: 65px;
   font-size: 22px;
@@ -40,6 +41,6 @@ export default {
 
 .just__text {
   color: #af0126;
-  margin: 25px 0 50px 0;
+  margin: 25px 0 10px 0;
 }
 </style>
