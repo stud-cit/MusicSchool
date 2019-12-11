@@ -14,7 +14,11 @@
                             <hr class="news-line">
                         </div>
                         <div class="news-img-block">
+
+                            <img :src="i.img[0]" alt="" class="news-img">
+
                             <img :src="i.images[0].file" alt="" class="news-img">
+
                         </div>
                     </router-link>
                 </div>
@@ -32,7 +36,9 @@
         name: "NewsComponent",
         data() {
             return {
+
                 data: [],
+
                 paginateArray: [],
             }
         },

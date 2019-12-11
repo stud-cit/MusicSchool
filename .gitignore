@@ -1,6 +1,7 @@
 .idea/
-public/img
-public/js
+/public/css
+/public/img
+/public/js
 /node_modules
 /public/hot
 /public/storage

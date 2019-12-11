@@ -5,7 +5,7 @@
             <b-container class="news-list">
                 <div class="news" v-for="i in paginateArray" :key="i.nas_id">
                     <router-link class="news-router" :to="{ name: 'news-item',
-                        params: {id: i.nas_id, date: i.date, title: i.nas_name, img: i.images[0].file, text: i.nas_info}}"
+                        params: {id: i.nas_id}}"
                     >
                         <div class="news-description">
                             <h3 class="news-date">{{i.date}}</h3>
@@ -13,7 +13,7 @@
                             <hr class="news-line">
                         </div>
                         <div class="news-img-block">
-                            <img :src="'.'+i.images[0].file" alt="" class="news-img">
+                            <img :src="'/news/'+i.nas_id+'/'+i.images[0].file" alt="" class="news-img">
                         </div>
                     </router-link>
                 </div>
@@ -44,6 +44,7 @@
             getData() {
                 axios.get('/api/news')
                     .then((response) => {
+                        console.log(response.data);
                         this.data = response.data;
                     })
             },

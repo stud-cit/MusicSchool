@@ -10,16 +10,30 @@
 
                 <div class="news-item">
                     <div class="news-item-container">
-                        <img :src="this.$route.params.img" alt="" class="news-item-img">
+                        <b-carousel
+                            id="carousel-fade"
+                            :interval="4000"
+                            indicators
+                            fade
+                            img-width="1024"
+                            img-height="450"
+                            >
+                            <b-carousel-slide
+                                class="news-item-img"
+                                v-for="i in data.images"
+                                :img-src="'/news/'+data.nas_id+'/'+i.file"
+                            ></b-carousel-slide>
+
+                        </b-carousel>
                         <div class="news-item-description">
                             <div class="news-item-heading">
-                                <h3 class="news-item-title"> {{ this.$route.params.title }}</h3>
-                                <h3 class="news-item-date"> {{ this.$route.params.date }}</h3>
+                                <h3 class="news-item-title"> {{ data.nas_name }}</h3>
+                                <h3 class="news-item-date"> {{ data.date }}</h3>
                             </div>
 
                             <hr class="news-item-line">
                             <div class="news-item-text">
-                                <p>{{ this.$route.params.text }}</p>
+                                <p>{{ data.nas_info }}</p>
                             </div>
                         </div>
 
@@ -34,6 +48,23 @@
 <script>
     export default {
         name: "NewsItemComponent",
+        data() {
+            return {
+                data: []
+            }
+        },
+        created() {
+            this.getData();
+        },
+        methods: {
+            getData() {
+                axios.get('/api/news/'+this.$route.params.id)
+                    .then((response) => {
+                        this.data = response.data;
+                    })
+            },
+        }
+        /*v-for="i in this.$route.params.img"*/
     }
 </script>
 
@@ -83,6 +114,7 @@
     }
 
     .news-item-img {
+        position: relative;
         width: 100%;
         margin-bottom: 44px;
         height: 450px;
@@ -96,6 +128,7 @@
     }
 
     .news-item-heading {
+        margin-top: 40px;
         display: flex;
         justify-content: space-between;
 
