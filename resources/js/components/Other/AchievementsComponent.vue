@@ -14,7 +14,7 @@
                             <hr class="news-line">
                         </div>
                         <div class="news-img-block">
-                            <img :src="i.img" alt="" class="news-img">
+                            <img :src="i.img[0]" alt="" class="news-img">
                         </div>
                     </router-link>
                 </div>
@@ -33,15 +33,15 @@
         data() {
             return {
                 news: [
-                    { id: 1, date: '01.01.19', title: 'kek lol kek lol kek lol kek lol', img: "/img/man_scream.png", text: 'lorem ipsum'},
-                    { id: 2, date: '01.01.01', title: 'heute ist goot', img: "/img/test.jpg", text: 'lorem ipsum' },
-                    { id: 3, date: '01.01.18', title: 'abra kadabra', img: "/img/test1.jpg", text: 'lorem ipsum' },
-                    { id: 4, date: '01.01.15', title: 'peremoga', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 5, date: '01.01.16', title: 'ne mogu bez', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 6, date: '01.01.18', title: 'start rofl', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 7, date: '01.01.18', title: 'omg', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 8, date: '01.01.19', title: 'kek lol arbidol', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 9, date: '01.01.18', title: `peremogen'ka`, img: "/img/man_scream.png", text: 'lorem ipsum' },
+                    { id: 1, date: '01.01.19', title: 'kek lol kek lol kek lol kek lol', img: ["/img/man_scream.png", "/img/test.jpg", "/img/test1.jpg", "/img/test2.jpg"], text: 'lorem ipsum'},
+                    { id: 2, date: '01.01.01', title: 'heute ist goot', img: ["/img/man_scream.png", "/img/test.jpg", "/img/test1.jpg", "/img/test2.jpg"], text: 'lorem ipsum' },
+                    { id: 3, date: '01.01.18', title: 'abra kadabra', img: ["/img/man_scream.png", "/img/test.jpg", "/img/test1.jpg", "/img/test2.jpg"], text: 'lorem ipsum' },
+                    { id: 4, date: '01.01.15', title: 'peremoga', img: ["/img/man_scream.png", "/img/test.jpg", "/img/test1.jpg", "/img/test2.jpg"], text: 'lorem ipsum' },
+                    { id: 5, date: '01.01.16', title: 'ne mogu bez', img: ["/img/man_scream.png", "/img/test.jpg", "/img/test1.jpg", "/img/test2.jpg"], text: 'lorem ipsum' },
+                    { id: 6, date: '01.01.18', title: 'start rofl', img: ["/img/man_scream.png", "/img/test.jpg", "/img/test1.jpg", "/img/test2.jpg"], text: 'lorem ipsum' },
+                    { id: 7, date: '01.01.18', title: 'omg', img: ["/img/man_scream.png", "/img/test.jpg", "/img/test1.jpg", "/img/test2.jpg"], text: 'lorem ipsum' },
+                    { id: 8, date: '01.01.19', title: 'kek lol arbidol', img: ["/img/man_scream.png", "/img/test.jpg", "/img/test1.jpg", "/img/test2.jpg"], text: 'lorem ipsum' },
+                    { id: 9, date: '01.01.18', title: `peremogen'ka`, img: ["/img/man_scream.png", "/img/test.jpg", "/img/test1.jpg", "/img/test2.jpg"], text: 'lorem ipsum' },
                 ],
                 paginateArray: [],
             }
