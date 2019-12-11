@@ -26,7 +26,7 @@
         </div>
       </b-row>
       <b-row>
-        <btn-download-component :file="file"/>
+        <btn-download-component :file="document"/>
       </b-row>
     </b-container>
   </div>
@@ -43,18 +43,8 @@ export default {
       images:
         {
           img: "/img/introduction/file_for_cart.png",
-        },
-      file: {}
+        }
     };
-  },
-  created() {
-    console.log(this.document.file)
-    this.getDocFile();
-  },
-  methods: {
-    getDocFile() {
-      this.file = this.document.file;
-    }
   },
   components: {
     BtnDownloadComponent

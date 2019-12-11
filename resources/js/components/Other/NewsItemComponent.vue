@@ -20,7 +20,8 @@
                             >
                             <b-carousel-slide
                                 class="news-item-img"
-                                v-for="i in data.images"
+                                v-for="(i, index) in data.images"
+                                :key="index"
                                 :img-src="'/news/'+data.nas_id+'/'+i.file"
                             ></b-carousel-slide>
 

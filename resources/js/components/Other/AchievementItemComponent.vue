@@ -20,8 +20,9 @@
                         >
                             <b-carousel-slide
                                 class="news-item-img"
-                                v-for="i in this.$route.params.img"
+                                v-for="(i, index) in this.$route.params.img"
                                 :img-src="i"
+                                :key="index"
                             ></b-carousel-slide>
 
                         </b-carousel>

@@ -17,32 +17,15 @@ export default {
     };
   },
   methods: {
-    forceFileDownload(response) {
-      const url = window.URL.createObjectURL(new Blob([response.data]))
-      const link = document.createElement('a')
-      link.href = url
-      link.setAttribute('download', this.file)
-      document.body.appendChild(link)
-      link.click()
-    },
     downloadDoc() {
-      console.log(this.file)
-      axios({
-        method: 'get',
-        url: '/documents/'+this.file,
-        responseType: 'arraybuffer'
+      const link = document.createElement('a')
+      this.file.map(item => {
+        link.href = item.file
+        link.setAttribute('download', item.text)
+        document.body.appendChild(link)
+        link.click()
       })
-              .then(response => {
-                this.forceFileDownload(response)
-              })
-              .catch((error) => {
-                swal({
-                  icon: "error",
-                  title: 'Помилка',
-                  text: 'Не вдалося завантажити документ'
-                });
-              });
-    },
+    }
   }
 };
 </script>
