@@ -57,8 +57,19 @@
                 paginateArray: [],
             }
         },
+        created() {
+        	getTeachers();
+        },
         computed: {
 
+        },
+        methods: {
+        	getTeachers() {
+		        axios.get('/api/get-teacher')
+			        .then((response) => {
+				        this.teacher = response.data;
+			        })
+            }
         },
         components: {
             paginate,

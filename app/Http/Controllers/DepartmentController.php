@@ -42,6 +42,11 @@ class DepartmentController extends Controller
     }
 
     // Учителя
+    public function getTeachers()
+    {
+        $data = Teachers::get();
+        return response()->json($data);
+    }
 
     public function getTeacherId($id)
     {

@@ -1,7 +1,7 @@
 <template>
   <div class="btn_align">
     <b-col cols="12">
-      <b-button squared variant="outline-dark">{{btn}}</b-button>
+      <b-button squared variant="outline-dark" @click="downloadDoc">{{btn}}</b-button>
       <div class="just__text">Більше яскравих моментів</div>
     </b-col>
   </div>
@@ -9,11 +9,40 @@
 
 <script>
 export default {
+  props: ['file'],
   name: "BtnDownloadComponent",
   data() {
     return {
       btn: "завантажити"
     };
+  },
+  methods: {
+    forceFileDownload(response) {
+      const url = window.URL.createObjectURL(new Blob([response.data]))
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', this.file)
+      document.body.appendChild(link)
+      link.click()
+    },
+    downloadDoc() {
+      console.log(this.file)
+      axios({
+        method: 'get',
+        url: '/documents/'+this.file,
+        responseType: 'arraybuffer'
+      })
+              .then(response => {
+                this.forceFileDownload(response)
+              })
+              .catch((error) => {
+                swal({
+                  icon: "error",
+                  title: 'Помилка',
+                  text: 'Не вдалося завантажити документ'
+                });
+              });
+    },
   }
 };
 </script>

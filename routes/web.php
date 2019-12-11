@@ -3,6 +3,7 @@
 Auth::routes();
 
 //Отделы
+
 Route::post('post-teacher', 'DepartmentController@postTeachers');
 Route::post('post-instrument', 'DepartmentController@postInstruments');
 Route::post('update-teacher/{id}/', 'DepartmentController@uupdateTeachers');
