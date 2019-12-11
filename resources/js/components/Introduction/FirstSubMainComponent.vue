@@ -10,16 +10,13 @@
                 <div class="article__title__big">вас!</div>
               </div>
               <div class="article__body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                Lorem Ipsum is simply dummy text of the printing orem
-                Ipsum is simply dummy text of the printing and typesetting industry
-                Lorem Ipsum is simply dummy text of the printing
+                {{ info }}
               </div>
             </div>
           </b-col>
           <b-col xl="8" lg="8" md="12" sm="12" cols="12" class="article__img">
             <div class="article__img">
-              <img src="/img/introduction/article_img.png" alt="Image with kids" />
+              <img :src="photo" />
             </div>
           </b-col>
         </b-row>
@@ -29,44 +26,42 @@
 </template>
 
 <script>
-export default {
-  name: "FirstSubMainComponent"
-};
+  export default {
+    name: "FirstSubMainComponent",
+    props: ['info', 'photo']
+  };
 </script>
 
 <style scoped>
-.article__block {
-  padding: 100px 0 100px 0;
-}
-.article__title {
-  padding: 0;
-  line-height: 80px;
-  text-transform: uppercase;
-  font-family: "Montserrat Bold", sans-serif;
-  margin-bottom: 20px;
-  font-size: 80px;
-}
-
-.article__title__small {
-  font-size: 32px;
-  line-height: 40px;
-}
-
-.article__body {
-  font-family: "Montserrat Regular", sans-serif;
-  font-size: 18px;
-  margin-bottom: 40px;
-  text-align: justify;
-}
-
-.article__img img {
-  width: 100%;
-  height: auto;
-}
-
-@media screen and (max-width: 475px) {
   .article__block {
-    padding-top: 50px;
+    padding: 60px 0 100px 0;
   }
-}
+  .article__title {
+    padding: 0;
+    line-height: 80px;
+    text-transform: uppercase;
+    font-family: "Montserrat Bold", sans-serif;
+    margin-bottom: 20px;
+    font-size: 80px;
+    font-weight: bold;
+  }
+  .article__title__small {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .article__body {
+    font-family: "Montserrat Regular", sans-serif;
+    font-size: 18px;
+    margin-bottom: 40px;
+    text-align: justify;
+  }
+  .article__img img {
+    width: 100%;
+    height: auto;
+  }
+  @media screen and (max-width: 475px) {
+    .article__block {
+      padding-top: 50px;
+    }
+  }
 </style>

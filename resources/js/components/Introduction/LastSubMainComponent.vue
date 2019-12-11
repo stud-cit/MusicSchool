@@ -8,27 +8,27 @@
       </b-row>
       <b-row>
         <div class="card__block__inner">
-          <b-col
-            class="cards"
-            xl="2"
+          <b-col class="cards" xl="2"
             lg="3"
             md="4"
             sm="6"
             cols="8"
-            v-for="(card, index) in cards"
+            v-for="(doc, index) in document"
             v-bind:key="index"
           >
             <div class="card">
               <div class="card__img">
-                <img v-bind:src="card.img" alt="file with properties" />
+                <img v-bind:src="images.img" alt="file with properties" />
               </div>
-              <div class="card__body">{{ card.text }}</div>
+              <div class="card__body">{{ doc.text }}</div>
             </div>
           </b-col>
         </div>
       </b-row>
+      <b-row>
+        <btn-download-component :file="file"/>
+      </b-row>
     </b-container>
-    <btn-download-component />
   </div>
 </template>
 
@@ -37,33 +37,25 @@ import BtnDownloadComponent from "./BtnDownloadComponent.vue";
 
 export default {
   name: "LastSubMainComponent",
+  props: ['document'],
   data() {
     return {
-      cards: [
+      images:
         {
           img: "/img/introduction/file_for_cart.png",
-          text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
         },
-        {
-          img: "/img/introduction/file_for_cart.png",
-          text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
-        },
-        {
-          img: "/img/introduction/file_for_cart.png",
-          text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
-        },
-        {
-          img: "/img/introduction/file_for_cart.png",
-          text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
-        },
-        {
-          img: "/img/introduction/file_for_cart.png",
-          text: "Lorem ipsum dolor sit amet ipsum dolor sit amet."
-        }
-      ]
+      file: {}
     };
   },
-  computed: {},
+  created() {
+    console.log(this.document.file)
+    this.getDocFile();
+  },
+  methods: {
+    getDocFile() {
+      this.file = this.document.file;
+    }
+  },
   components: {
     BtnDownloadComponent
   }
@@ -81,7 +73,7 @@ export default {
   text-transform: uppercase;
   font-size: 32px;
   line-height: 40px;
-  font-weight: 600;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 40px;
 }

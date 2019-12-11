@@ -1,4 +1,6 @@
 .idea/
+public/img
+public/js
 /node_modules
 /public/hot
 /public/storage
@@ -15,3 +17,9 @@ yarn-error.log
 package-lock.json
 public/js/app.js
 .vs
+public/js/admin.js
+public/gallery
+public/news
+public/story
+public/css/site.css
+public/css/admin.css
