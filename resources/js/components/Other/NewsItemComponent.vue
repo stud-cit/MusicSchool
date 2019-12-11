@@ -10,7 +10,21 @@
 
                 <div class="news-item">
                     <div class="news-item-container">
-                        <img :src="this.$route.params.img" alt="" class="news-item-img">
+                        <b-carousel
+                            id="carousel-fade"
+                            :interval="4000"
+                            indicators
+                            fade
+                            img-width="1024"
+                            img-height="450"
+                            >
+                            <b-carousel-slide
+                                class="news-item-img"
+                                v-for="i in this.$route.params.img"
+                                :img-src="i"
+                            ></b-carousel-slide>
+
+                        </b-carousel>
                         <div class="news-item-description">
                             <div class="news-item-heading">
                                 <h3 class="news-item-title"> {{ this.$route.params.title }}</h3>
@@ -83,6 +97,7 @@
     }
 
     .news-item-img {
+        position: relative;
         width: 100%;
         margin-bottom: 44px;
         height: 450px;
@@ -96,6 +111,7 @@
     }
 
     .news-item-heading {
+        margin-top: 40px;
         display: flex;
         justify-content: space-between;
 
