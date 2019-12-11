@@ -14,15 +14,13 @@
                                 <b-dropdown-item href="/history">Історія</b-dropdown-item>
                                 <b-dropdown-item href="/news">Новини</b-dropdown-item>
                             </b-nav-item-dropdown>
-                            
                             <b-navbar-nav>
-                                <b-nav-item href="/departments">Відділи</b-nav-item>
+                                <b-nav-item href="/achievements">Відділи</b-nav-item>
                                 <b-nav-item href="/achievements">Досягнення</b-nav-item>
                                 <b-nav-item href="/introduction">Вступ</b-nav-item>
                                 <b-nav-item href="/gallery">Галерея</b-nav-item>
                                 <b-nav-item href="/contacts">Контакти</b-nav-item>
                             </b-navbar-nav>
-
                             <b-nav-item-dropdown toggle-class="text-dark" text="Мова" right id="dropdown_style">
                                 <b-dropdown-item href="/teachers" id="loool">EN</b-dropdown-item>
                                 <b-dropdown-item href="/instruments">UA</b-dropdown-item>
@@ -52,6 +50,7 @@
 
     .navbar-light .navbar-nav .nav-link {
         color: black;
+        margin-right: 15px;
     }
 
     .navbar-light .navbar-nav .nav-link:hover {
@@ -64,10 +63,6 @@
 
     .dropdown-item.active, .dropdown-item:active {
         background-color: #ad0025 !important;
-    }
-
-    ul li {
-         margin-right: 15px;
     }
 
 </style>
