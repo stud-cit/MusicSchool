@@ -36,7 +36,7 @@
 }
 .teacher_card .teacher_info h2{
     font-weight: bold;
-    font-size: 32px;
+    font-size: 28px;
     color: #2B2B2B;
     text-transform: uppercase;
     margin-bottom: 15px;
