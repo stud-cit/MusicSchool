@@ -1,18 +1,19 @@
 <template>
     <div class="teacher_card">
         <div class="teacher_img">
-            <img src="img/teacher.jpg">
+            <img :src="teacher.photo">
         </div>
         <div class="teacher_info">
-            <h2>Валерія Порохова</h2>
-            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing orem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing</span>
+            <h2>{{ teacher.teacher_name }} {{ teacher.teacher_surname }}</h2>
+            <span>{{ teacher.teacher_info }}</span>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "TeacherCard"
+        name: "TeacherCard",
+	    props: ['teacher'],
     }
 </script>
 

@@ -8,7 +8,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class GalleryController extends Controller
 {
-    protected $publicStorage = '/gallery/';
+    protected $publicStorage = '/user-file/gallery/';
 
     function getFile() {
         $data = Gallery::get();

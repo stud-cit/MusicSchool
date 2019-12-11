@@ -4,27 +4,8 @@
         <div class="teachers">
             <b-container>
                 <b-row>
-                    <b-col cols="12" sm="12" md="6" lg="6" xl="6">
-                        <TeacherCard/>
-                    </b-col>
-                    <b-col cols="12" sm="12" md="6" lg="6" xl="6">
-                        <TeacherCard/>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col cols="12" sm="12" md="6" lg="6" xl="6">
-                        <TeacherCard/>
-                    </b-col>
-                    <b-col cols="12" sm="12" md="6" lg="6" xl="6">
-                        <TeacherCard/>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col cols="12" sm="12" md="6" lg="6" xl="6">
-                        <TeacherCard/>
-                    </b-col>
-                    <b-col cols="12" sm="12" md="" lg="6" xl="6">
-                        <TeacherCard/>
+                    <b-col cols="12" sm="12" md="6" lg="6" xl="6" v-for="(t, index) in teacher" v-bind:key="index">
+                        <TeacherCard :teacher="teacher[index]"/>
                     </b-col>
                 </b-row>
                 <paginate :items="items" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
@@ -42,7 +23,7 @@
         name: "TeachersComponent",
         data() {
             return {
-
+            	teacher: {},
                 items: [
                     { id: 1 },
                     { id: 2 },
@@ -58,7 +39,7 @@
             }
         },
         created() {
-        	getTeachers();
+        	this.getTeachers();
         },
         computed: {
 

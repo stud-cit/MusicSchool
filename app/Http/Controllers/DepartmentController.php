@@ -44,7 +44,7 @@ class DepartmentController extends Controller
     // Учителя
     public function getTeachers()
     {
-        $data = Teachers::get();
+        $data = Teachers::with('department')->get();
         return response()->json($data);
     }
 
@@ -53,11 +53,7 @@ class DepartmentController extends Controller
         $data = Teachers::with('department')->find($id);
         return response()->json($data);
     }
-    public function getTeachers()
-    {
-        $data = Teachers::with('department')->get();
-        return response()->json($data);
-    }
+
     public function postTeachers(Request $request)
     {
         $teachers = new Teachers;

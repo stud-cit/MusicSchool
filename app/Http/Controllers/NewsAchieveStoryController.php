@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\File;
 
 class NewsAchieveStoryController extends Controller
 {
-    protected $publicStorageNews = "/news/";
-    protected $publicStorageAchieve = "/achieve/";
-    protected $publicStorageStory = "/story/";
+    protected $publicStorageNews = "/user-file/news/";
+    protected $publicStorageAchieve = "/user-file/achieve/";
+    protected $publicStorageStory = "/user-file/story/";
 
     public function getNewsAchieveStory()
     {
