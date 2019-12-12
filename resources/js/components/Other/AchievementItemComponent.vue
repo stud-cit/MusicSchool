@@ -20,7 +20,7 @@
                         >
                             <b-carousel-slide
                                 class="news-item-img"
-                                v-for="(i, index) in this.$route.params.img"
+                                v-for="(i, index) in data.images"
                                 :img-src="i"
                                 :key="index"
                             ></b-carousel-slide>
@@ -28,13 +28,13 @@
                         </b-carousel>
                         <div class="news-item-description">
                             <div class="news-item-heading">
-                                <h3 class="news-item-title"> {{ this.$route.params.title }}</h3>
-                                <h3 class="news-item-date"> {{ this.$route.params.date }}</h3>
+                                <h3 class="news-item-title"> {{ data.nas_name }}</h3>
+                                <h3 class="news-item-date"> {{ data.date }}</h3>
                             </div>
 
                             <hr class="news-item-line">
                             <div class="news-item-text">
-                                <p>{{ this.$route.params.text }}</p>
+                                <p>{{ data.nas_info }}</p>
                             </div>
                         </div>
 
@@ -53,17 +53,7 @@
         name: "AchievementItemComponent",
         data() {
             return {
-                news: [
-                    { id: 1, date: '01.01.19', title: 'kek lol kek lol kek lol kek lol', img: "/img/man_scream.png", text: 'lorem ipsum'},
-                    { id: 2, date: '01.01.01', title: 'heute ist goot', img: "/img/test.jpg", text: 'lorem ipsum' },
-                    { id: 3, date: '01.01.18', title: 'abra kadabra', img: "/img/test1.jpg", text: 'lorem ipsum' },
-                    { id: 4, date: '01.01.15', title: 'peremoga', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 5, date: '01.01.16', title: 'ne mogu bez', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 6, date: '01.01.18', title: 'start rofl', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 7, date: '01.01.18', title: 'omg', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 8, date: '01.01.19', title: 'kek lol arbidol', img: "/img/man_scream.png", text: 'lorem ipsum' },
-                    { id: 9, date: '01.01.18', title: `peremogen'ka`, img: "/img/man_scream.png", text: 'lorem ipsum' },
-                ],
+                data: [],
                 paginateArray: [],
             }
         },
@@ -72,6 +62,17 @@
         },
         components: {
             paginate
+        },
+        created() {
+            this.getData();
+        },
+        methods: {
+            getData() {
+                axios.get('/api/achieve/'+this.$route.params.id)
+                    .then((response) => {
+                        this.data = response.data;
+                    })
+            },
         }
     }
 

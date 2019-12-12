@@ -47,9 +47,9 @@
         <div class="row">
             <silentbox-group v-for="(item, index) in file" :key="index" class="col-4 fotoGallery">
 				<div class="silentbox-item">
-					<silentbox-item :src="'/gallery/'+item.file" class="foto" v-if="item.type == 'img'">
-						<img :src="'/gallery/'+item.file">
-						<a :href="'/img/uploads/'+item.file" download><i class="fa fa-download"></i></a>
+					<silentbox-item :src="'/user-file/gallery/'+item.file" class="foto" v-if="item.type == 'img'">
+						<img :src="'/user-file/gallery/'+item.file">
+						<a :href="'/user-file/gallery/'+item.file" download><i class="fa fa-download"></i></a>
 					</silentbox-item>
 					<silentbox-item :src="'//img.youtube.com/vi/'+item.file" class="foto" v-if="item.type == 'video'">
 						<i class="fa fa-play-circle-o"></i>

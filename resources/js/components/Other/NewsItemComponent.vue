@@ -22,7 +22,7 @@
                                 class="news-item-img"
                                 v-for="(i, index) in data.images"
                                 :key="index"
-                                :img-src="'/news/'+data.nas_id+'/'+i.file"
+                                :img-src="'/user-file/news/'+data.nas_id+'/'+i.file"
                             ></b-carousel-slide>
 
                         </b-carousel>

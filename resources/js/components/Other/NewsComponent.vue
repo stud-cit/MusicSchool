@@ -13,7 +13,8 @@
                             <hr class="news-line">
                         </div>
                         <div class="news-img-block">
-                            <img :src="'/news/'+i.nas_id+'/'+i.images[0].file" alt="" class="news-img">
+                            <img v-if="i.images.length" :src="'/user-file/news/'+i.nas_id+'/'+i.images[0].file" alt="" class="news-img">
+                            <img v-else src='/img/empty.png' alt="" class="news-img">
                         </div>
                     </router-link>
                 </div>

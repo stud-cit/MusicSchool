@@ -12,22 +12,21 @@
                                     <img src="img/contacts-1.png" alt="">
                                     <div class="text">
                                         <p class="title">Телефон:</p>
-                                        <p class="content">+38 (050) 844 10 26</p>
+                                        <p class="content">{{ data.phone }}</p>
                                     </div>
                                 </li>
                                 <li class="list-item">
                                     <img src="img/contacts-2.png" alt="">
                                     <div class="text">
                                         <p class="title">E-Mail:</p>
-                                        <p class="content">example@email.com</p>
+                                        <p class="content">{{ data.email }}</p>
                                     </div>
                                 </li>
                                 <li class="list-item">
                                     <img src="img/contacts-3.png" alt="">
                                     <div class="text">
                                         <p class="title">Адрес:</p>
-                                        <p class="content">г.Сумы ул. Засумская,
-                                            10-А, офис 5</p>
+                                        <p class="content">{{ data.address }}</p>
                                     </div>
                                 </li>
                             </ul>
@@ -44,23 +43,23 @@
 
     export default {
         name: 'MapComponent',
+        props: ['contacts'],
         data() {
             return {
-
+                data: [],
             };
         },
-
         created () {
-
-        },
-        computed: {
-
+            this.getData();
         },
         methods: {
-
+            getData() {
+                axios.get('/api/info')
+                    .then((response) => {
+                        this.data = response.data;
+                    })
+            },
         },
-
-
     }
 </script>
 

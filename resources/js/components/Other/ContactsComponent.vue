@@ -11,24 +11,11 @@
 
     export default {
         data() {
-            return {
-
-            };
+            return {};
         },
          components: {
             MapComponent
-        },
-        created () {
-
-        },
-        computed: {
-
-        },
-        methods: {
-
-        },
-
-
+        }
     }
 </script>
 

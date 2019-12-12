@@ -5,14 +5,14 @@
             <b-container >
                 <div class="btn-group">
                     <button :class="[{active: this.category == 'all'}, 'mr-4']" @click="setFilter('all')">Всі файли</button>
-                    <button :class="[{active: this.category == 'image'}, 'mr-4']" @click="setFilter('image')">Фотографії</button>
+                    <button :class="[{active: this.category == 'img'}, 'mr-4']" @click="setFilter('img')">Фотографії</button>
                     <button :class="{active: this.category == 'video'}" @click="setFilter('video')">Відеоролики</button>
                 </div>
                 <transition-group name="list" tag="div" class="row gallery-list">
 
-                    <b-col cols="12" md="6" xl="4" v-for="item of paginateArray" class="list-item" :key="item.id">
-                        <!--{{item.type}}-->
-                        <img src="img/gallery-1.png" alt="">
+                    <b-col cols="12" md="6" xl="4" v-for="item of filteredItems" class="list-item" :key="item.id">
+                        <img v-if="item.type == 'img'" :src="'/user-file/gallery/'+item.file" alt="">
+                        <img v-else :src="'//img.youtube.com/vi/'+item.file.slice(item.file.length - 11, item.file.length)+'/mqdefault.jpg'">
                     </b-col>
 
                 </transition-group>
@@ -30,33 +30,14 @@
         data() {
             return {
                 category: 'all',
-                items: [
-                    { id: 1, type: 'video' },
-                    { id: 2, type: 'image' },
-                    { id: 3, type: 'image' },
-                    { id: 4, type: 'image' },
-                    { id: 5, type: 'image' },
-                    { id: 6, type: 'video' },
-                    { id: 7, type: 'video' },
-                    { id: 8, type: 'image' },
-                    { id: 9, type: 'video' },
-                    { id: 10, type: 'video' },
-                    { id: 11, type: 'image' },
-                    { id: 12, type: 'video' },
-                    { id: 13, type: 'video' },
-                    { id: 14, type: 'image' },
-                    { id: 15, type: 'image' },
-                ],
+                data: [],
                 filteredItems: [],
                 paginateArray: []
             }
         },
         created() {
-          this.filterList();
-        },
-        computed: {
-
-
+            this.getData();
+            this.filterList();
         },
         methods: {
             setFilter(category){
@@ -64,20 +45,22 @@
                 this.filterList();
             },
             filterList() {
-                this.filteredItems = this.items;
-
                 if(this.category != 'all') {
-                    this.filteredItems = this.filteredItems.filter((item) => {
+                    this.filteredItems = this.data.filter((item) => {
                         return item.type == this.category;
                     })
                 }
-                else{
-                    this.filteredItems = this.filteredItems
+                else {
+                    this.filteredItems = this.data;
                 }
-
             },
-
-
+            getData() {
+                axios.get('/api/gallery')
+                    .then((response) => {
+                        this.data = response.data;
+                        this.filteredItems = response.data;
+                    })
+            },
         },
         components: {
             paginate,
