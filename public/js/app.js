@@ -1926,29 +1926,15 @@ __webpack_require__.r(__webpack_exports__);
   name: "MainComponent",
   data: function data() {
     return {
-      cardsBlock: [{
-        titleBig: "Викладачі",
+      department: [],
+      cardsBlock: {
         imgBig: "/img/departments/piano.png",
-        textBig: "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing",
-        titleSmall: "Викладачі",
-        imgSmall: "/img/departments/skripka.png",
-        textSmall: "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
-      }, {
-        titleBig: "Викладачі",
-        imgBig: "/img/departments/piano.png",
-        textBig: "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing",
-        titleSmall: "Викладачі",
-        imgSmall: "/img/departments/skripka.png",
-        textSmall: "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
-      }, {
-        titleBig: "Викладачі",
-        imgBig: "/img/departments/piano.png",
-        textBig: "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing",
-        titleSmall: "Викладачі",
-        imgSmall: "/img/departments/skripka.png",
-        textSmall: "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
-      }]
+        imgSmall: "/img/departments/skripka.png"
+      }
     };
+  },
+  created: function created() {
+    this.getDepartments();
   },
   methods: {
     showModal: function showModal() {
@@ -1956,6 +1942,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     hideModal: function hideModal() {
       this.$refs["my-modal"].hide();
+    },
+    getDepartments: function getDepartments() {
+      var _this = this;
+
+      axios.get('/api/department').then(function (response) {
+        _this.department = response.data;
+      });
     }
   }
 });
@@ -69932,23 +69925,25 @@ var render = function() {
         [
           _c(
             "b-row",
-            _vm._l(_vm.cardsBlock, function(block, index) {
+            _vm._l(_vm.department, function(block, index) {
               return _c("div", { key: index, staticClass: "card__block" }, [
                 _c(
                   "div",
                   { staticClass: "card__big", on: { click: _vm.showModal } },
                   [
                     _c("div", { staticClass: "card__big__img" }, [
-                      _c("img", { attrs: { src: block.imgBig, alt: "piano" } })
+                      _c("img", {
+                        attrs: { src: _vm.cardsBlock.imgBig, alt: "piano" }
+                      })
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "card__big__body" }, [
                       _c("div", { staticClass: "card__big__title" }, [
-                        _vm._v(_vm._s(block.titleBig))
+                        _vm._v(_vm._s(block.name_department))
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "card__big__text" }, [
-                        _vm._v(_vm._s(block.textBig))
+                        _vm._v(_vm._s(block.departments_info))
                       ])
                     ])
                   ]
@@ -69959,17 +69954,17 @@ var render = function() {
                   { staticClass: "card__small", on: { click: _vm.showModal } },
                   [
                     _c("div", { staticClass: "card__small__title" }, [
-                      _vm._v(_vm._s(block.titleSmall))
+                      _vm._v(_vm._s(block.name_department))
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "card__small__img" }, [
                       _c("img", {
-                        attrs: { src: block.imgSmall, alt: "skripka" }
+                        attrs: { src: _vm.cardsBlock.imgSmall, alt: "skripka" }
                       })
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "card__small__text" }, [
-                      _vm._v(_vm._s(block.textSmall))
+                      _vm._v(_vm._s(block.departments_info))
                     ])
                   ]
                 )
@@ -70013,7 +70008,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "teachers__text" }, [
                     _vm._v(
-                      "Lorem Ipsum is simply dummy text of the printing and"
+                      "typesetting industry Lorem Ipsum is simply dummy text"
                     )
                   ])
                 ])

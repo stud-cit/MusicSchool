@@ -2,22 +2,22 @@
   <div class="departments">
     <b-container>
       <b-row>
-        <div v-for="(block,index) in cardsBlock" v-bind:key="index" class="card__block">
+        <div v-for="(block,index) in department" v-bind:key="index" class="card__block">
           <div class="card__big" @click="showModal">
             <div class="card__big__img">
-              <img v-bind:src="block.imgBig" alt="piano" />
+              <img v-bind:src="cardsBlock.imgBig" alt="piano" />
             </div>
             <div class="card__big__body">
-              <div class="card__big__title">{{block.titleBig}}</div>
-              <div class="card__big__text">{{block.textBig}}</div>
+              <div class="card__big__title">{{block.name_department}}</div>
+              <div class="card__big__text">{{block.departments_info}}</div>
             </div>
           </div>
           <div class="card__small" @click="showModal">
-            <div class="card__small__title">{{block.titleSmall}}</div>
+            <div class="card__small__title">{{block.name_department}}</div>
             <div class="card__small__img">
-              <img v-bind:src="block.imgSmall" alt="skripka" />
+              <img v-bind:src="cardsBlock.imgSmall" alt="skripka" />
             </div>
-            <div class="card__small__text">{{block.textSmall}}</div>
+            <div class="card__small__text">{{block.departments_info}}</div>
           </div>
         </div>
       </b-row>
@@ -38,7 +38,7 @@
             <div class="teachers__img">
               <a href="/teachers"><img src="/img/departments/professor.png" alt="professor" /></a>
             </div>
-            <div class="teachers__text">Lorem Ipsum is simply dummy text of the printing and</div>
+            <div class="teachers__text">typesetting industry Lorem Ipsum is simply dummy text</div>
           </div>
         </div>
         <div class="modal__item">
@@ -60,39 +60,15 @@ export default {
   name: "MainComponent",
   data() {
     return {
-      cardsBlock: [
-        {
-          titleBig: "Викладачі",
-          imgBig: "/img/departments/piano.png",
-          textBig:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing",
-          titleSmall: "Викладачі",
-          imgSmall: "/img/departments/skripka.png",
-          textSmall:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
-        },
-        {
-          titleBig: "Викладачі",
-          imgBig: "/img/departments/piano.png",
-          textBig:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing",
-          titleSmall: "Викладачі",
-          imgSmall: "/img/departments/skripka.png",
-          textSmall:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
-        },
-        {
-          titleBig: "Викладачі",
-          imgBig: "/img/departments/piano.png",
-          textBig:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing",
-          titleSmall: "Викладачі",
-          imgSmall: "/img/departments/skripka.png",
-          textSmall:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing"
-        }
-      ]
+      department: [],
+      cardsBlock: {
+        imgBig: "/img/departments/piano.png",
+        imgSmall: "/img/departments/skripka.png",
+      },
     };
+  },
+  created() {
+    this.getDepartments();
   },
   methods: {
     showModal() {
@@ -100,7 +76,13 @@ export default {
     },
     hideModal() {
       this.$refs["my-modal"].hide();
-    }
+    },
+    getDepartments () {
+      axios.get('/api/department')
+              .then((response) => {
+                this.department = response.data
+              })
+    },
   }
 };
 </script>
