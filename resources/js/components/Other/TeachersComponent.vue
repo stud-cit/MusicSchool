@@ -4,11 +4,11 @@
         <div class="teachers">
             <b-container>
                 <b-row>
-                    <b-col cols="12" sm="12" md="12" lg="6" xl="6" v-for="(t, index) in teacher" v-bind:key="index">
-                        <TeacherCard :teacher="teacher[index]"/>
+                    <b-col cols="12" sm="12" md="12" lg="6" xl="6" v-for="(item, index) in paginateArray" :key="item.teachers_id">
+                        <TeacherCard :teacher="paginateArray[index]"/>
                     </b-col>
                 </b-row>
-                <paginate :items="items" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
+                <paginate :items="teacher" @paginateArray="paginateArray = $event" :perPage="4"></paginate>
             </b-container>
         </div>
                
@@ -23,18 +23,8 @@
         name: "TeachersComponent",
         data() {
             return {
-            	teacher: {},
-                items: [
-                    { id: 1 },
-                    { id: 2 },
-                    { id: 3 },
-                    { id: 4 },
-                    { id: 5 },
-                    { id: 6 },
-                    { id: 7 },
-                    { id: 8 },
-                    { id: 9 },
-                ],
+            	teacher: [],
+
                 paginateArray: [],
             }
         },

@@ -2031,8 +2031,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Header',
   data: function data() {
@@ -3345,26 +3343,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "TeachersComponent",
   data: function data() {
     return {
-      teacher: {},
-      items: [{
-        id: 1
-      }, {
-        id: 2
-      }, {
-        id: 3
-      }, {
-        id: 4
-      }, {
-        id: 5
-      }, {
-        id: 6
-      }, {
-        id: 7
-      }, {
-        id: 8
-      }, {
-        id: 9
-      }],
+      teacher: [],
       paginateArray: []
     };
   },
@@ -36908,7 +36887,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navbar-light .navbar-nav .nav-link {\n    color: black;\n}\n.navbar-light .navbar-nav .nav-link:hover {\n    color: black ;\n}\n.navbar-light .navbar-nav .nav-link:active {\n    color: #ad0025 ;\n}\n.dropdown-item.active, .dropdown-item:active {\n    background-color: #ad0025 !important;\n}\nul li {\n     margin-right: 15px;\n}\n\n", ""]);
+exports.push([module.i, "\n.navbar-light .navbar-nav .nav-link {\n    color: black;\n    margin-right: 15px;\n}\n.navbar-light .navbar-nav .nav-link:hover {\n    color: black ;\n}\n.navbar-light .navbar-nav .nav-link:active {\n    color: #ad0025 ;\n}\n.dropdown-item.active, .dropdown-item:active {\n    background-color: #ad0025 !important;\n}\n\n", ""]);
 
 // exports
 
@@ -37174,7 +37153,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.teacher_card[data-v-ce217dd0]{\r\n    background: #fff;\r\n    box-shadow: 5px 5px 25px #00000029;\r\n    margin-bottom: 30px;\n}\n.teacher_card .teacher_img[data-v-ce217dd0]{\r\n    height: 540px;\n}\n.teacher_card .teacher_img img[data-v-ce217dd0]{\r\n    object-fit: cover;\r\n    width: 100%;\r\n    height: 100%;\n}\n.teacher_card .teacher_info[data-v-ce217dd0]{\r\n    padding: 40px 45px;\n}\n.teacher_card .teacher_info h2[data-v-ce217dd0]{\r\n    font-weight: bold;\r\n    font-size: 32px;\r\n    color: #2B2B2B;\r\n    text-transform: uppercase;\r\n    margin-bottom: 15px;\n}\n.teacher_card .teacher_info span[data-v-ce217dd0]{\r\n    font-size: 16px;\r\n    color: #000000BF;\n}\r\n", ""]);
+exports.push([module.i, "\n.teacher_card[data-v-ce217dd0]{\r\n    background: #fff;\r\n    box-shadow: 5px 5px 25px #00000029;\r\n    margin-bottom: 30px;\n}\n.teacher_card .teacher_img[data-v-ce217dd0]{\r\n    height: 540px;\n}\n.teacher_card .teacher_img img[data-v-ce217dd0]{\r\n    object-fit: cover;\r\n    width: 100%;\r\n    height: 100%;\n}\n.teacher_card .teacher_info[data-v-ce217dd0]{\r\n    padding: 40px 45px;\n}\n.teacher_card .teacher_info h2[data-v-ce217dd0]{\r\n    font-weight: bold;\r\n    font-size: 28px;\r\n    color: #2B2B2B;\r\n    text-transform: uppercase;\r\n    margin-bottom: 15px;\n}\n.teacher_card .teacher_info span[data-v-ce217dd0]{\r\n    font-size: 16px;\r\n    color: #000000BF;\n}\r\n", ""]);
 
 // exports
 
@@ -37193,7 +37172,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.teachers[data-v-90d2729c]{\n    position: relative;\n    display: flex;\n    align-items: center;\n    margin-top: 100px;\n}\n.teachers[data-v-90d2729c]::before{\n    content: '';\n    position: absolute;\n    width: 60%;\n    height: 85%;\n    background: transparent linear-gradient(180deg, #E91B47 0%, #6A0017 100%);\n}\n", ""]);
+exports.push([module.i, "\n.teachers[data-v-90d2729c]{\n    position: relative;\n    display: flex;\n    align-items: center;\n    margin-top: 100px;\n}\n.teachers[data-v-90d2729c]::before{\n    content: '';\n    position: absolute;\n    width: 60%;\n    height: 80%;\n    background: transparent linear-gradient(180deg, #E91B47 0%, #6A0017 100%);\n    margin-top: -100px;\n}\n", ""]);
 
 // exports
 
@@ -70285,7 +70264,7 @@ var render = function() {
                             [
                               _c(
                                 "b-nav-item",
-                                { attrs: { href: "/departments" } },
+                                { attrs: { href: "/achievements" } },
                                 [_vm._v("Відділи")]
                               ),
                               _vm._v(" "),
@@ -72084,16 +72063,22 @@ var render = function() {
             [
               _c(
                 "b-row",
-                _vm._l(_vm.teacher, function(t, index) {
+                _vm._l(_vm.paginateArray, function(item, index) {
                   return _c(
                     "b-col",
                     {
-                      key: index,
-                      attrs: { cols: "12", sm: "12", md: "6", lg: "6", xl: "6" }
+                      key: item.teachers_id,
+                      attrs: {
+                        cols: "12",
+                        sm: "12",
+                        md: "12",
+                        lg: "6",
+                        xl: "6"
+                      }
                     },
                     [
                       _c("TeacherCard", {
-                        attrs: { teacher: _vm.teacher[index] }
+                        attrs: { teacher: _vm.paginateArray[index] }
                       })
                     ],
                     1
@@ -72103,7 +72088,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("paginate", {
-                attrs: { items: _vm.items, perPage: 3 },
+                attrs: { items: _vm.teacher, perPage: 4 },
                 on: {
                   paginateArray: function($event) {
                     _vm.paginateArray = $event
