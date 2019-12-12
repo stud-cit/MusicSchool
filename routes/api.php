@@ -21,7 +21,8 @@ Route::post('department/{id}', 'DepartmentController@updateDepartments')->where(
 Route::delete('department/{id}', 'DepartmentController@deleteDepartments')->where(['id' => '^[0-9]+']);
 
 Route::get('get-teacher', 'DepartmentController@getTeachers');
-
+Route::get('instruments', 'DepartmentController@getInstruments');
+Route::get('get-department', 'DepartmentController@getDepartments');
 // Вступ
 
 Route::get('intro', 'IntroController@getIntro');

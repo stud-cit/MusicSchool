@@ -174,7 +174,7 @@ export default {
 					});
 			},
 			getDepartments () {
-				axios.get('/get-all-department/')
+				axios.get('/get-department/')
 					.then((response) => {
 					   this.department = response.data
 					})

@@ -3013,35 +3013,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      items: [{
-        id: 1
-      }, {
-        id: 2
-      }, {
-        id: 3
-      }, {
-        id: 4
-      }, {
-        id: 5
-      }, {
-        id: 6
-      }, {
-        id: 7
-      }, {
-        id: 8
-      }, {
-        id: 9
-      }],
+      instrument: [],
       paginateArray: []
     };
   },
+  created: function created() {
+    this.getInstruments();
+  },
   computed: {},
+  methods: {
+    getInstruments: function getInstruments() {
+      var _this = this;
+
+      axios.get('/api/instruments').then(function (response) {
+        _this.instrument = response.data;
+      });
+    }
+  },
   components: {
     paginate: _PaginationComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -71685,19 +71677,17 @@ var render = function() {
                     return _c("li", { staticClass: "list-item" }, [
                       _c("div", { staticClass: "description" }, [
                         _c("h3", { staticClass: "item-title" }, [
-                          _vm._v("Рояль " + _vm._s(item.id))
+                          _c("b", [_vm._v(_vm._s(item.name_instruments))])
                         ]),
                         _vm._v(" "),
                         _c("p", { staticClass: "text" }, [
-                          _vm._v(
-                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem\n                                Ipsum is simply dummy text of the printing orem Ipsum is simply\n                                dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing "
-                          )
+                          _vm._v(_vm._s(item.instruments_info) + " ")
                         ])
                       ]),
                       _vm._v(" "),
                       _c("img", {
                         staticClass: "w-100 item-img",
-                        attrs: { src: "/img/instruments-1.png", alt: "" }
+                        attrs: { src: item.photo, alt: "" }
                       })
                     ])
                   }),
@@ -71709,7 +71699,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("paginate", {
-            attrs: { items: _vm.items, perPage: "3" },
+            attrs: { items: _vm.instrument, perPage: "3", perPage: 3 },
             on: {
               paginateArray: function($event) {
                 _vm.paginateArray = $event
