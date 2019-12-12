@@ -11,7 +11,7 @@
                         <p class="year">{{item.date}}</p>
                         <p class="title">{{item.nas_name}}</p>
                     </b-col>
-                    <b-col cols="12" xl="8" class="content-block">
+                    <b-col cols="12" xl="8" class="content-block" v-if="item.images.length">
                         <b-carousel id="carousel-fade" fade indicators v-for="photo in item.images" :key="photo.id">
                             <b-carousel-slide
                                     caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry
@@ -19,6 +19,9 @@
                                     :img-src="photo.file"
                             ></b-carousel-slide>
                         </b-carousel>
+                    </b-col>
+                    <b-col cols="12" xl="8" class="content-block" v-else>
+                        <img src='/img/empty.png' alt="" class="news-img">
                     </b-col>
                 </b-row>
 
@@ -38,17 +41,6 @@
         data() {
             return {
                 data: [],
-                // items: [
-                //     { id: 1 },
-                //     { id: 2 },
-                //     { id: 3 },
-                //     { id: 4 },
-                //     { id: 5 },
-                //     { id: 6 },
-                //     { id: 7 },
-                //     { id: 8 },
-                //     { id: 9 },
-                // ],
                 paginateArray: [],
             }
         },

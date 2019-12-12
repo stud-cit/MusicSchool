@@ -5,20 +5,15 @@
             <b-container class="news-list">
 
                 <div class="news" v-for="i in paginateArray" :key="i.nas_id">
-                    <router-link class="news-router" :to="{ name: 'achievements-item',
-                             params: {id: i.nas_id, date: i.date, title: i.nas_name, img: i.images[0].file, text: i.nas_info}}"
-                    >
+                    <router-link class="news-router" :to="{ name: 'achievements-item', params: {id: i.nas_id}}">
                         <div class="news-description">
                             <h3 class="news-date">{{i.date}}</h3>
                             <p class="news-text">{{i.nas_name}}</p>
                             <hr class="news-line">
                         </div>
                         <div class="news-img-block">
-
-                            <img :src="i.img[0]" alt="" class="news-img">
-
-                            <img :src="i.images[0].file" alt="" class="news-img">
-
+                            <img v-if="i.images.length" :src="'/user-file/achieve/'+i.nas_id+'/'+i.images[0].file" alt="" class="news-img">
+                            <img v-else src='/img/empty.png' alt="" class="news-img">
                         </div>
                     </router-link>
                 </div>
@@ -36,9 +31,7 @@
         name: "NewsComponent",
         data() {
             return {
-
                 data: [],
-
                 paginateArray: [],
             }
         },

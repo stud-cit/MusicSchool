@@ -19,8 +19,6 @@ package-lock.json
 public/js/app.js
 .vs
 public/js/admin.js
-public/gallery
-public/news
-public/story
+public/user-file
 public/css/site.css
 public/css/admin.css

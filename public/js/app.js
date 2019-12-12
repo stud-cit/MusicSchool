@@ -2631,67 +2631,25 @@ __webpack_require__.r(__webpack_exports__);
   name: "AchievementItemComponent",
   data: function data() {
     return {
-      news: [{
-        id: 1,
-        date: '01.01.19',
-        title: 'kek lol kek lol kek lol kek lol',
-        img: "/img/man_scream.png",
-        text: 'lorem ipsum'
-      }, {
-        id: 2,
-        date: '01.01.01',
-        title: 'heute ist goot',
-        img: "/img/test.jpg",
-        text: 'lorem ipsum'
-      }, {
-        id: 3,
-        date: '01.01.18',
-        title: 'abra kadabra',
-        img: "/img/test1.jpg",
-        text: 'lorem ipsum'
-      }, {
-        id: 4,
-        date: '01.01.15',
-        title: 'peremoga',
-        img: "/img/man_scream.png",
-        text: 'lorem ipsum'
-      }, {
-        id: 5,
-        date: '01.01.16',
-        title: 'ne mogu bez',
-        img: "/img/man_scream.png",
-        text: 'lorem ipsum'
-      }, {
-        id: 6,
-        date: '01.01.18',
-        title: 'start rofl',
-        img: "/img/man_scream.png",
-        text: 'lorem ipsum'
-      }, {
-        id: 7,
-        date: '01.01.18',
-        title: 'omg',
-        img: "/img/man_scream.png",
-        text: 'lorem ipsum'
-      }, {
-        id: 8,
-        date: '01.01.19',
-        title: 'kek lol arbidol',
-        img: "/img/man_scream.png",
-        text: 'lorem ipsum'
-      }, {
-        id: 9,
-        date: '01.01.18',
-        title: "peremogen'ka",
-        img: "/img/man_scream.png",
-        text: 'lorem ipsum'
-      }],
+      data: [],
       paginateArray: []
     };
   },
   computed: {},
   components: {
     paginate: _PaginationComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  created: function created() {
+    this.getData();
+  },
+  methods: {
+    getData: function getData() {
+      var _this = this;
+
+      axios.get('/api/achieve/' + this.$route.params.id).then(function (response) {
+        _this.data = response.data;
+      });
+    }
   }
 });
 
@@ -2707,11 +2665,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PaginationComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../PaginationComponent */ "./resources/js/components/PaginationComponent.vue");
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2790,10 +2743,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     MapComponent: _MapComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  created: function created() {},
-  computed: {},
-  methods: {}
+  }
 });
 
 /***/ }),
@@ -2839,60 +2789,15 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       category: 'all',
-      items: [{
-        id: 1,
-        type: 'video'
-      }, {
-        id: 2,
-        type: 'image'
-      }, {
-        id: 3,
-        type: 'image'
-      }, {
-        id: 4,
-        type: 'image'
-      }, {
-        id: 5,
-        type: 'image'
-      }, {
-        id: 6,
-        type: 'video'
-      }, {
-        id: 7,
-        type: 'video'
-      }, {
-        id: 8,
-        type: 'image'
-      }, {
-        id: 9,
-        type: 'video'
-      }, {
-        id: 10,
-        type: 'video'
-      }, {
-        id: 11,
-        type: 'image'
-      }, {
-        id: 12,
-        type: 'video'
-      }, {
-        id: 13,
-        type: 'video'
-      }, {
-        id: 14,
-        type: 'image'
-      }, {
-        id: 15,
-        type: 'image'
-      }],
+      data: [],
       filteredItems: [],
       paginateArray: []
     };
   },
   created: function created() {
+    this.getData();
     this.filterList();
   },
-  computed: {},
   methods: {
     setFilter: function setFilter(category) {
       this.category = category;
@@ -2901,15 +2806,21 @@ __webpack_require__.r(__webpack_exports__);
     filterList: function filterList() {
       var _this = this;
 
-      this.filteredItems = this.items;
-
       if (this.category != 'all') {
-        this.filteredItems = this.filteredItems.filter(function (item) {
+        this.filteredItems = this.data.filter(function (item) {
           return item.type == _this.category;
         });
       } else {
-        this.filteredItems = this.filteredItems;
+        this.filteredItems = this.data;
       }
+    },
+    getData: function getData() {
+      var _this2 = this;
+
+      axios.get('/api/gallery').then(function (response) {
+        _this2.data = response.data;
+        _this2.filteredItems = response.data;
+      });
     }
   },
   components: {
@@ -2962,22 +2873,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       data: [],
-      // items: [
-      //     { id: 1 },
-      //     { id: 2 },
-      //     { id: 3 },
-      //     { id: 4 },
-      //     { id: 5 },
-      //     { id: 6 },
-      //     { id: 7 },
-      //     { id: 8 },
-      //     { id: 9 },
-      // ],
       paginateArray: []
     };
   },
@@ -3049,15 +2952,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'MapComponent',
+  props: ['contacts'],
   data: function data() {
-    return {};
+    return {
+      data: []
+    };
   },
-  created: function created() {},
-  computed: {},
-  methods: {}
+  created: function created() {
+    this.getData();
+  },
+  methods: {
+    getData: function getData() {
+      var _this = this;
+
+      axios.get('/api/info').then(function (response) {
+        _this.data = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3145,6 +3059,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PaginationComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../PaginationComponent */ "./resources/js/components/PaginationComponent.vue");
+//
 //
 //
 //
@@ -70264,7 +70179,7 @@ var render = function() {
                             [
                               _c(
                                 "b-nav-item",
-                                { attrs: { href: "/achievements" } },
+                                { attrs: { href: "/departments" } },
                                 [_vm._v("Відділи")]
                               ),
                               _vm._v(" "),
@@ -71162,7 +71077,7 @@ var render = function() {
                           "img-height": "450"
                         }
                       },
-                      _vm._l(this.$route.params.img, function(i, index) {
+                      _vm._l(_vm.data.images, function(i, index) {
                         return _c("b-carousel-slide", {
                           key: index,
                           staticClass: "news-item-img",
@@ -71175,18 +71090,18 @@ var render = function() {
                     _c("div", { staticClass: "news-item-description" }, [
                       _c("div", { staticClass: "news-item-heading" }, [
                         _c("h3", { staticClass: "news-item-title" }, [
-                          _vm._v(" " + _vm._s(this.$route.params.title))
+                          _vm._v(" " + _vm._s(_vm.data.nas_name))
                         ]),
                         _vm._v(" "),
                         _c("h3", { staticClass: "news-item-date" }, [
-                          _vm._v(" " + _vm._s(this.$route.params.date))
+                          _vm._v(" " + _vm._s(_vm.data.date))
                         ])
                       ]),
                       _vm._v(" "),
                       _c("hr", { staticClass: "news-item-line" }),
                       _vm._v(" "),
                       _c("div", { staticClass: "news-item-text" }, [
-                        _c("p", [_vm._v(_vm._s(this.$route.params.text))])
+                        _c("p", [_vm._v(_vm._s(_vm.data.nas_info))])
                       ])
                     ]),
                     _vm._v(" "),
@@ -71251,13 +71166,7 @@ var render = function() {
                       attrs: {
                         to: {
                           name: "achievements-item",
-                          params: {
-                            id: i.nas_id,
-                            date: i.date,
-                            title: i.nas_name,
-                            img: i.images[0].file,
-                            text: i.nas_info
-                          }
+                          params: { id: i.nas_id }
                         }
                       }
                     },
@@ -71275,15 +71184,22 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "news-img-block" }, [
-                        _c("img", {
-                          staticClass: "news-img",
-                          attrs: { src: i.img[0], alt: "" }
-                        }),
-                        _vm._v(" "),
-                        _c("img", {
-                          staticClass: "news-img",
-                          attrs: { src: i.images[0].file, alt: "" }
-                        })
+                        i.images.length
+                          ? _c("img", {
+                              staticClass: "news-img",
+                              attrs: {
+                                src:
+                                  "/user-file/achieve/" +
+                                  i.nas_id +
+                                  "/" +
+                                  i.images[0].file,
+                                alt: ""
+                              }
+                            })
+                          : _c("img", {
+                              staticClass: "news-img",
+                              attrs: { src: "/img/empty.png", alt: "" }
+                            })
                       ])
                     ]
                   )
@@ -71394,10 +71310,10 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    class: [{ active: this.category == "image" }, "mr-4"],
+                    class: [{ active: this.category == "img" }, "mr-4"],
                     on: {
                       click: function($event) {
-                        return _vm.setFilter("image")
+                        return _vm.setFilter("img")
                       }
                     }
                   },
@@ -71424,7 +71340,7 @@ var render = function() {
                   staticClass: "row gallery-list",
                   attrs: { name: "list", tag: "div" }
                 },
-                _vm._l(_vm.paginateArray, function(item) {
+                _vm._l(_vm.filteredItems, function(item) {
                   return _c(
                     "b-col",
                     {
@@ -71433,9 +71349,24 @@ var render = function() {
                       attrs: { cols: "12", md: "6", xl: "4" }
                     },
                     [
-                      _c("img", {
-                        attrs: { src: "img/gallery-1.png", alt: "" }
-                      })
+                      item.type == "img"
+                        ? _c("img", {
+                            attrs: {
+                              src: "/user-file/gallery/" + item.file,
+                              alt: ""
+                            }
+                          })
+                        : _c("img", {
+                            attrs: {
+                              src:
+                                "//img.youtube.com/vi/" +
+                                item.file.slice(
+                                  item.file.length - 11,
+                                  item.file.length
+                                ) +
+                                "/mqdefault.jpg"
+                            }
+                          })
                     ]
                   )
                 }),
@@ -71519,37 +71450,51 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _c(
-                      "b-col",
-                      {
-                        staticClass: "content-block",
-                        attrs: { cols: "12", xl: "8" }
-                      },
-                      _vm._l(item.images, function(photo) {
-                        return _c(
-                          "b-carousel",
+                    item.images.length
+                      ? _c(
+                          "b-col",
                           {
-                            key: photo.id,
-                            attrs: {
-                              id: "carousel-fade",
-                              fade: "",
-                              indicators: ""
-                            }
+                            staticClass: "content-block",
+                            attrs: { cols: "12", xl: "8" }
                           },
-                          [
-                            _c("b-carousel-slide", {
-                              attrs: {
-                                caption:
-                                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry\n                            Lorem Ipsum is simply dummy text of the printing orem Ipsum is simply dummy",
-                                "img-src": photo.file
-                              }
-                            })
-                          ],
+                          _vm._l(item.images, function(photo) {
+                            return _c(
+                              "b-carousel",
+                              {
+                                key: photo.id,
+                                attrs: {
+                                  id: "carousel-fade",
+                                  fade: "",
+                                  indicators: ""
+                                }
+                              },
+                              [
+                                _c("b-carousel-slide", {
+                                  attrs: {
+                                    caption:
+                                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry\n                            Lorem Ipsum is simply dummy text of the printing orem Ipsum is simply dummy",
+                                    "img-src": photo.file
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          }),
                           1
                         )
-                      }),
-                      1
-                    )
+                      : _c(
+                          "b-col",
+                          {
+                            staticClass: "content-block",
+                            attrs: { cols: "12", xl: "8" }
+                          },
+                          [
+                            _c("img", {
+                              staticClass: "news-img",
+                              attrs: { src: "/img/empty.png", alt: "" }
+                            })
+                          ]
+                        )
                   ],
                   1
                 )
@@ -71642,7 +71587,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("p", { staticClass: "content" }, [
-                              _vm._v("+38 (050) 844 10 26")
+                              _vm._v(_vm._s(_vm.data.phone))
                             ])
                           ])
                         ]),
@@ -71658,7 +71603,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("p", { staticClass: "content" }, [
-                              _vm._v("example@email.com")
+                              _vm._v(_vm._s(_vm.data.email))
                             ])
                           ])
                         ]),
@@ -71674,9 +71619,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("p", { staticClass: "content" }, [
-                              _vm._v(
-                                "г.Сумы ул. Засумская,\n                                        10-А, офис 5"
-                              )
+                              _vm._v(_vm._s(_vm.data.address))
                             ])
                           ])
                         ])
@@ -71841,13 +71784,22 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "news-img-block" }, [
-                        _c("img", {
-                          staticClass: "news-img",
-                          attrs: {
-                            src: "/news/" + i.nas_id + "/" + i.images[0].file,
-                            alt: ""
-                          }
-                        })
+                        i.images.length
+                          ? _c("img", {
+                              staticClass: "news-img",
+                              attrs: {
+                                src:
+                                  "/user-file/news/" +
+                                  i.nas_id +
+                                  "/" +
+                                  i.images[0].file,
+                                alt: ""
+                              }
+                            })
+                          : _c("img", {
+                              staticClass: "news-img",
+                              attrs: { src: "/img/empty.png", alt: "" }
+                            })
                       ])
                     ]
                   )
@@ -71947,7 +71899,11 @@ var render = function() {
                           key: index,
                           staticClass: "news-item-img",
                           attrs: {
-                            "img-src": "/news/" + _vm.data.nas_id + "/" + i.file
+                            "img-src":
+                              "/user-file/news/" +
+                              _vm.data.nas_id +
+                              "/" +
+                              i.file
                           }
                         })
                       }),
@@ -89750,7 +89706,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'history',
     component: _components_Other_HistoryComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
-    path: '/news1',
+    path: '/news',
     name: 'news',
     component: _components_Other_NewsComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
