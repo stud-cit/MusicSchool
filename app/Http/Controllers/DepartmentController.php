@@ -56,8 +56,10 @@ class DepartmentController extends Controller
     public function postTeachers(Request $request)
     {
         $teachers = new Teachers;
-        $teachers->teacher_name = $request->teachersName;
-        $teachers->teacher_info = $request->teachersInfo;
+        $teachers->departments_id = $request->departments_id; 
+        $teachers->teacher_surname = $request->teacher_surname;
+        $teachers->teacher_name = $request->teacher_name;
+        $teachers->teacher_info = $request->teacher_info;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
@@ -69,9 +71,9 @@ class DepartmentController extends Controller
     public function updateTeachers(Request $request, $id)
     {
         $teachers = Teachers::find($id);
-
-        $teachers->teacher_name = $request->teachersName;
-        $teachers->teacher_info = $request->teachersInfo;
+        $teachers->teacher_surname = $request->teacher_surname;
+        $teachers->teacher_name = $request->teacher_name;
+        $teachers->teacher_info = $request->teacher_info;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
@@ -83,9 +85,9 @@ class DepartmentController extends Controller
     public function deleteTeachers($id)
     {
         $teachers = Teachers::find($id);
-        if ($teachers->photo != '') {
-            unlink(public_path($teachers->photo));
-        }
+        // if ($teachers->photo != '') {
+        //     unlink(public_path($teachers->photo));
+        // }
         $teachers->delete();
     }
 
@@ -104,9 +106,9 @@ class DepartmentController extends Controller
     public function postInstruments(Request $request)
     {
         $instruments = new Instruments;
-
-        $instruments->name_instruments = $request->instrumentsName;
-        $instruments->instruments_info = $request->instrumentsInfo;
+        $instruments->departments_id = $request->departments_id; 
+        $instruments->name_instruments = $request->name_instruments;
+        $instruments->instruments_info = $request->instruments_info;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
@@ -119,8 +121,8 @@ class DepartmentController extends Controller
     {
         $instruments = Instruments::find($id);
 
-        $instruments->name_instruments = $request->instrumentsName;
-        $instruments->instruments_info = $request->instrumentsInfo;
+        $instruments->name_instruments = $request->name_instruments;
+        $instruments->instruments_info = $request->instruments_info;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
@@ -132,9 +134,9 @@ class DepartmentController extends Controller
     public function deleteInstruments($id)
     {
         $instruments = Instruments::find($id);
-        if ($instruments->photo != '') {
-            unlink(public_path($instruments->photo));
-        }
+        // if ($instruments->photo != '') {
+        //     unlink(public_path($instruments->photo));
+        // }
         $instruments->delete();
     }
 }
