@@ -16,8 +16,13 @@ class DepartmentController extends Controller
 
     public function getDepartments()
     {
-        $departments = DB::select('select * from departments');
+        $departments = Departments::with('teachers', 'instruments')->get();
         return response()->json($departments);
+    }
+    public function getDepartmentsId($id)
+    {
+        $data = Departments::with('department')->find($id);
+        return response()->json($data);
     }
     public function postDepartments(Request $request)
     {
@@ -50,10 +55,9 @@ class DepartmentController extends Controller
 
     public function getTeacherId($id)
     {
-        $data = Teachers::with('department')->find($id);
+        $data = Teachers::with('department')->where('departments_id', $id)->get();
         return response()->json($data);
     }
-
     public function postTeachers(Request $request)
     {
         $teachers = new Teachers;
@@ -94,7 +98,7 @@ class DepartmentController extends Controller
 
     public function getInstrumentId($id)
     {
-        $data = Instruments::with('department')->find($id);
+        $data = Instruments::with('department')->where('departments_id', $id)->get();
         return response()->json($data);
     }
     public function getInstruments()

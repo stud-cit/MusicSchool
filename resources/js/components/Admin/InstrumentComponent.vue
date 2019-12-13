@@ -72,7 +72,7 @@
             <tr>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.name_instruments }}</td>
-				<td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.department.name_department }}</td>
+                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.department.name_department }}</td>
 				<td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
 					<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
 					<img v-else id="item-image" :src="'../img/user.png'" class="preview_img figure-img img-fluid">
@@ -174,13 +174,13 @@ export default {
 					});
 			},
 			getDepartments () {
-				axios.get('/get-all-department/')
+				axios.get('/api/department')
 					.then((response) => {
 					   this.department = response.data
 					})
 			},
 			getInstruments(){
-				axios.get('/instruments/')
+				axios.get('/api/instruments')
 					.then((response) => {
 					   	this.instruments = response.data	
 					})
@@ -193,7 +193,7 @@ export default {
 					} else {
 						this.form.append('name_instrument', this.name_instrument);
 						this.form.append('instruments_info', this.instrument_info);
-						this.form.append('name_department', this.department.departments_id);
+						this.form.append('name_department', this.department.name_id);
 						this.form.append('photo', this.$refs.file.files[0]);
 						axios.post('/post-instrument', this.form)
 							.then((response) => {
