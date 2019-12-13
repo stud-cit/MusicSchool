@@ -21,7 +21,7 @@
                             <b-carousel-slide
                                 class="news-item-img"
                                 v-for="(i, index) in data.images"
-                                :img-src="i"
+                                :img-src="'/user-file/achieve/'+$route.params.id+'/'+i.file"
                                 :key="index"
                             ></b-carousel-slide>
 

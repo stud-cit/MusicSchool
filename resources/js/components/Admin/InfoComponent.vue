@@ -28,7 +28,7 @@
                             <span class="text-danger" v-if="errors.has('video')">Некоректне посилання</span>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('video')" class="btn btn-outline-secondary edit" @click='edit($event, "video")'>Редагувати</button>
+                            <button type="button" :disabled="errors.has('video')" class="btn btn-outline-secondary edit w-100 px-0" @click='edit($event, "video")'>Редагувати</button>
                         </div>
                     </div>
                     <iframe class="mt-3" width="100%" height="300" :src="'https://www.youtube.com/embed/'+info.video.slice(info.video.length - 11, info.video.length)" frameborder="0" allowfullscreen></iframe>
@@ -51,7 +51,7 @@
                             </span>
                         </div>
                         <div class="col-3">
-                            <button :disabled="errors.has('phone')" type="button" class="btn btn-outline-secondary edit" @click='edit($event, "phone")'>Редагувати</button>
+                            <button :disabled="errors.has('phone')" type="button" class="btn btn-outline-secondary edit w-100 px-0" @click='edit($event, "phone")'>Редагувати</button>
                         </div>
                     </div>
                     <label for="email" class="brtop">Email</label>
@@ -68,7 +68,7 @@
                             </span>
                         </div>
                         <div class="col-3">
-                            <button :disabled="errors.has('email')" type="button" class="btn btn-outline-secondary edit" @click='edit($event, "email")'>Редагувати</button>
+                            <button :disabled="errors.has('email')" type="button" class="btn btn-outline-secondary edit w-100 px-0" @click='edit($event, "email")'>Редагувати</button>
                         </div>
                     </div>
                     <label for="address" class="brtop">Адреса</label>
@@ -85,7 +85,7 @@
                             </span>
                         </div>
                         <div class="col-3">
-                            <button :disabled="errors.has('address')" type="button" class="btn btn-outline-secondary edit" @click='edit($event, "address")'>Редагувати</button>
+                            <button :disabled="errors.has('address')" type="button" class="btn btn-outline-secondary edit w-100 px-0" @click='edit($event, "address")'>Редагувати</button>
                         </div>
                     </div>
                 </div>
@@ -135,9 +135,7 @@ export default {
                     value: this.info[column]
                 }).then((response) => {
 		            swal("Інформація оновлена", {
-			            icon: "success",
-			            timer: 1000,
-			            button: false
+			            icon: "success"
 		            });
 	            })
                 this.showButton = true;
@@ -147,4 +145,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+    button {
+        overflow:hidden;
+    }
+</style>

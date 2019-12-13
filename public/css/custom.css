@@ -71,8 +71,17 @@
     border-radius: 5px;
 }
 .uploadFiles i {
-    position: absolute;
-    right: 10px;
+    float: right;
+    display: block;
+    width: 10%;
+    text-align: right;
+}
+.uploadFiles span {
+	display: block;
+	width: 90%;
+	float: left;
+	overflow:hidden;
+	padding-top: 2px;
 }
 
 .chekbox-two .checkbox{cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;user-select:none}

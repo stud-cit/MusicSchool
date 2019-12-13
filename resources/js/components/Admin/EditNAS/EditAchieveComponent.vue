@@ -1,11 +1,14 @@
 <template>
     <div class="ml-5">
+        <div class="col-12 pb-3 pl-0 comeBack">
+            <router-link :to="{ name: 'achieve' }"><b><i class="fa fa-angle-left" aria-hidden="true"></i> Повернутися до списку</b></router-link>
+        </div>
         <form enctype="multipart/form-data">
             <div class="row">
                 <div class="form-group row">
                     <label for="achieveName" class="col-sm-2 col-form-label">Назва досягнення</label>
                     <div class="col-sm-5">
-                        <input type="text" name="achieveName" class="form-control" v-model="object_achieve.achieve.nas_name" id="achieveName"
+                        <input type="text" name="achieveName" class="form-control" v-model="achieve.title" id="achieveName"
                                v-validate="{ required: true }"
                                data-vv-as="Назва досягнення">
                         <span class="errors text-danger" v-if="errors.has('achieveName')">
@@ -13,11 +16,10 @@
                         </span>
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <label for="achieveInfo" class="col-sm-2 col-form-label">Опис досягнення</label>
                     <div class="col-sm-6">
-                        <textarea name="achieveInfo" class="form-control" cols="15" rows="6" v-model="object_achieve.achieve.nas_info" id="achieveInfo"
+                        <textarea name="achieveInfo" class="form-control" cols="15" rows="6" v-model="achieve.text" id="achieveInfo"
                                   v-validate="{ required: true}"
                                   data-vv-as="Опис досягнення">
                         </textarea>
@@ -26,48 +28,30 @@
                         </span>
                     </div>
                 </div>
-
                 <div class="form-group row">
-                    <label for="achieveImage" class="col-sm-2 col-form-label">Зображення для досягнення</label>
-                    <div class="col-sm-5">
+                    <label for="achieveImage" class="col-sm-2 col-form-label">Зображення</label>
+                    <div class="col-sm-6">
                         <label class="custom-file w-100">
-                            <input type="file" name="achieveImage" v-validate="'image'" class="custom-file-input col-6"
-                                   id="achieveImage" ref="achieveImage" @change="fieldChange" accept="image/*" multiple>
-                            <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
+                            <input type="file" class="custom-file-input col-6" id="achieveImage" name="achieveImage" ref="achieveImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'">
+                            <span class="custom-file-control">Файл не обрано</span>
                         </label>
-                        <div v-for="(item, index) in file" :key="index">
-                            <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name}} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
-                            <span class="text-danger"
-                                  v-if="errors.has('achieveImage')">Файл повинен бути зображенням
-                            </span>
-                        </div>
+                        <img v-if="!errors.has('achieveImage')" class="mt-3 w-50" :src="achieve.photo">
                     </div>
                 </div>
-
-                <div class="form-group row">
-                    <silentbox-group class="col-3 foto" v-for="(item, index) in object_achieve.achieve.images" :key="item.images_id">
-                        <div class="border fotoGallery">
-                            <i class="fa fa-times-circle btn btn-default p-0" @click="delAchieveImage(item.images_id, index)"></i>
-                            <silentbox-item :src="'/achieve/'+$route.params.id+'/'+item.file" class="foto">
-                                <img :src="'/achieve/'+$route.params.id+'/'+item.file">
-                            </silentbox-item>
-                            <a :href="'/achieve/'+$route.params.id+'/'+item.file" download><i class="fa fa-download"></i></a>
-                        </div>
-                    </silentbox-group>
-                </div>
-
                 <div class="form-group row">
                     <label for="achieveDate" class="col-sm-2 col-form-label">Дата оприлюднення</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="achieveDate" class="form-control col-6" v-model="object_achieve.achieve.date" id="achieveDate"
-                               v-validate="{ required: true}"
-                               data-vv-as="Дата оприлюднення">
-                        <span class="errors text-danger" v-if="errors.has('achieveDate')">
-                            {{ errors.first('achieveDate') }}
-                        </span>
+                    <div class="input-row">
+                        <div class="input-container">
+                            <date-picker 
+                                v-model="achieve.date" 
+                                value-type="YYYY-MM-DD"
+                                :lang="datepicker.lang"
+                                :editable="false"
+                            ></date-picker>
+                            <input style="display:none" type="text" name="date" v-model="achieve.date" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
+                        </div>
                     </div>
                 </div>
-
                 <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="save">Зберегти</button>
             </div>
         </form>
@@ -75,74 +59,63 @@
 </template>
 
 <script>
+    import DatePicker from 'vue2-datepicker';
+    import 'vue2-datepicker/index.css';
+
 	export default {
-		name: "edit-achieve",
+        name: "edit-achieve",
+        components: {
+            DatePicker
+        },
 		data() {
 			return {
-				file: [],
-				object_achieve: {
-					achieve: [],
-					type: 'achieve'
-				}
-			};
+                achieve: [],
+                datepicker: {
+                    lang: {
+                        formatLocale: {
+                            months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+                            monthsShort: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+                            weekdays: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
+                            weekdaysShort: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД'],
+                            weekdaysMin: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД']
+                        }
+                    }
+                },
+			}
 		},
 		created() {
 			this.getAchieveList();
 		},
-
 		methods: {
-			fieldChange(){
-				let changeFile = this.$refs.achieveImage.files;
-				for(let i = 0; i < changeFile.length; i++) {
-					if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
-						changeFile[i].valid = true;
-					} else {
-						changeFile[i].valid = false;
-					}
-					this.file.push(changeFile[i]);
-				}
-			},
-
+            previewFiles(event) {
+                var input = event.target;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.achieve.photo = e.target.result;
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                    input.parentNode.querySelector('span').innerHTML = input.files[0].name;
+                }
+            },
 			getAchieveList() {
 				axios.get('/api/achieve/'+this.$route.params.id)
 					.then((response) => {
-						this.object_achieve.achieve = response.data;
+                        this.achieve = response.data;
 					})
 			},
 			save() {
 				var form = new FormData;
-				for(let i = 0; i < this.file.length; i++){
-					if(this.file[i].valid) {
-						form.append('file[]', this.file[i]);
-					}
-				}
-				form.append('nas_name', this.object_achieve.achieve.nas_name);
-				form.append('nas_info', this.object_achieve.achieve.nas_info);
-				form.append('date', this.object_achieve.achieve.date);
+				form.append('title', this.achieve.title);
+				form.append('text', this.achieve.text);
+                form.append('date', this.achieve.date);
+                form.append('photo', this.$refs.achieveImage.files[0]);
 				axios.post('/api/update-achieve/'+this.$route.params.id, form)
 					.then((response) => {
-						this.file = [];
-                        this.object_achieve.achieve.images = this.object_achieve.achieve.images.concat(response.data);
                         swal("Інформацію успішно збережено", {
                             icon: "success",
                         });
 					})
-			},
-			delFile(index) {
-				this.file.splice(index, 1);
-			},
-			delAchieveImage(id, index) {
-				if(id) {
-					axios.post('/delete-achieve-images/' + id)
-						.then(() => {
-							this.file.splice(index, 1);
-							swal("Зображення успішно видалено", {
-								icon: "success",
-							});
-							this.file = [];
-							this.getAchieveList();
-						});
-				}
 			}
 		}
 	}

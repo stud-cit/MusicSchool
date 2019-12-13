@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\File;
 class NewsAchieveStoryController extends Controller
 {
     protected $publicStorageNews = "/user-file/news/";
-    protected $publicStorageAchieve = "/user-file/achieve/";
     protected $publicStorageStory = "/user-file/story/";
 
     public function getNewsAchieveStory()
@@ -103,13 +102,15 @@ class NewsAchieveStoryController extends Controller
             'filenames.*' => 'mimes:jpeg'
         ]);
         $storyFile = $request->file;
-        foreach ($storyFile as $file) {
-            $images = new Images;
-            $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path() . $this->publicStorageStory . $story->nas_id, $name);
-            $images->nas_id = $story->nas_id;
-            $images->file = $name;
-            $images->save();
+        if(isset($request->file)) {
+            foreach ($storyFile as $file) {
+                $images = new Images;
+                $name = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path() . $this->publicStorageStory . $story->nas_id, $name);
+                $images->nas_id = $story->nas_id;
+                $images->file = $name;
+                $images->save();
+            }
         }
         return response()->json($story);
     }
@@ -136,66 +137,6 @@ class NewsAchieveStoryController extends Controller
         return response()->json($arrImg);
     }
 
-    // Досягнення
-
-    function getAchieve() {
-        $data = NewsAchieveStory::with('images')->achieve()->get();
-        return response()->json($data);
-    }
-
-    function getAchieveId($id) {
-        $data = NewsAchieveStory::with('images')->where('nas_id', $id)->first();
-        return response()->json($data);
-    }
-
-    function postAchieve(Request $request) {
-        $achieve = new NewsAchieveStory;
-        $achieve->nas_name = $request->nas_name;
-        $achieve->nas_info = $request->nas_info;
-        $achieve->date = $request->date;
-        $achieve->type = NewsAchieveStory::ACHIEVE;
-
-        $achieve->save();
-
-        $this->validate($request, [
-            'filenames.*' => 'mimes:jpeg'
-        ]);
-        $achieveFile = $request->file;
-        foreach ($achieveFile as $file) {
-            $images = new Images;
-            $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path() . $this->publicStorageAchieve . $achieve->nas_id, $name);
-            $images->nas_id = $achieve->nas_id;
-            $images->file = $name;
-            $images->save();
-        }
-        return response()->json($achieve);
-    }
-
-    function updateAchieve(Request $request, $id) {
-        $update_achieve = NewsAchieveStory::find($id);
-        $update_achieve->nas_name = $request->nas_name;
-        $update_achieve->nas_info = $request->nas_info;
-        $update_achieve->date = $request->date;
-        $arrImg = [];
-        $achieveFile = $request->file;
-        if(isset($request->file)) {
-            foreach ($achieveFile as $file) {
-                $images = new Images;
-                $name = time() . '-' . $file->getClientOriginalName();
-                $file->move(public_path().$this->publicStorageAchieve.$update_achieve->nas_id, $name);
-                $images->nas_id = $update_achieve->nas_id;
-                $images->file = $name;
-                $images->save();
-                array_push($arrImg, $images);
-            }
-        }
-        $update_achieve->save();
-        return response()->json($arrImg);
-    }
-
-
-
     public function deleteStory($id)
     {
         $story = NewsAchieveStory::where('type', 'story')->find($id);
@@ -212,25 +153,6 @@ class NewsAchieveStoryController extends Controller
         if($storyImage->delete()) {
             $storyFolder = public_path('story/');
             File::delete($storyFolder . $storyImage->nas_id . '/' . $storyImage->file);
-        }
-    }
-
-    public function deleteAchieve($id)
-    {
-        $achieve = NewsAchieveStory::where('type', 'achieve')->find($id);
-        $achieveFolder = public_path('achieve/');
-        File::deleteDirectory($achieveFolder.$achieve->nas_id);
-        Images::where("images_id", $id)->delete();
-
-        $achieve->delete();
-        return response('ok', 200);
-    }
-    public function deleteAchieveImage($id)
-    {
-        $achieveImage = Images::find($id);
-        if($achieveImage->delete()) {
-            $achieveFolder = public_path('achieve/');
-            File::delete($achieveFolder . $achieveImage->nas_id . '/' . $achieveImage->file);
         }
     }
     public function deleteNews($id)

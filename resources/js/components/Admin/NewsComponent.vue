@@ -2,11 +2,11 @@
     <div class="ml-5">
         <div class="row">
             <div class="col-12 mt-1 mb-2">
-                <button type="button" class="btn btn-primary float-left" @click="showFormFoto = !showFormFoto">Додати новину</button>
+                <button type="button" class="btn btn-primary float-left" @click="showForm = !showForm">Додати новину</button>
             </div>
         </div>
         <br>
-        <form enctype="multipart/form-data" v-if="showFormFoto">
+        <form enctype="multipart/form-data" v-if="showForm">
             <div class="row">
                     <div class="form-group row">
                         <label for="newsName" class="col-sm-2 col-form-label">Назва новини</label>
@@ -51,56 +51,74 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="newsDate" class="col-sm-2 col-form-label">Дата оприлюднення</label>
-                            <div class="col-sm-4">
-                                <input type="text" name="newsDate" class="form-control col-6" v-model="date" id="newsDate"
-                                        v-validate="{ required: true}"
-                                        data-vv-as="Дата оприлюднення">
-                                <span class="errors text-danger" v-if="errors.has('newsImage')">
-                                        {{ errors.first('newsDate') }}
-                                </span>
+                        <label for="achieveDate" class="col-sm-2 col-form-label">Дата оприлюднення</label>
+                        <div class="input-row">
+                            <div class="input-container">
+                                <date-picker 
+                                    v-model="date" 
+                                    value-type="YYYY-MM-DD"
+                                    :lang="datepicker.lang"
+                                    :editable="false"
+                                ></date-picker>
+                                <input style="display:none" type="text" name="date" v-model="date" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                             </div>
+                        </div>
                     </div>
 
                     <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="postNews">Зберегти</button>
             </div>
         </form>
         <hr>
-        <table class="table table-bordered accordion" id="accordion">
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody class="card" v-for="(item, index) in object_news.news" :key="item.nas_id">
-            <tr>
-                <th>
-                    {{ item.nas_name }}
-                    <div class="m-option float-right">
-                    <router-link :to="{ name: 'edit-news', params: {id: item.nas_id} }">
-                        <button type="button" class="btn btn-primary float-right ml-2">Редагувати</button>
-                    </router-link>
-                    <button type="button" class="btn btn-primary float-right" @click="deleteNews(index, item.nas_id)">Видалити</button>
-                    </div>
-                </th>
-            </tr>
-            </tbody>
-        </table>
+        <table class="table table-bordered">
+			<thead>
+				<tr>
+					<th width="10px" scope="col">№</th>
+					<th scope="col">Заголовок</th>
+					<th scope="col">Дата</th>
+					<th width="10px" scope="col"></th>
+					<th width="10px" scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(item, index) in news" :key="item.nas_id">
+					<th scope="row">{{ index + 1 }}</th>
+					<td>{{ item.nas_name }}</td>
+					<td>{{ item.date }}</td>
+					<td><a style="color:#000" :href="'/admin/news/'+item.nas_id"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></a></td>
+					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteNews(index, item.nas_id)"></i></td>
+				</tr>
+			</tbody>
+		</table>
     </div>
 </template>
 <script>
+    import DatePicker from 'vue2-datepicker';
+    import 'vue2-datepicker/index.css';
+
 	export default {
-		name: "news",
+        name: "news",
+        components: {
+            DatePicker
+        },
 		data() {
 			return {
-				showFormFoto: false,
+				showForm: false,
                 nas_name: '',
 				nas_info: '',
                 date: '',
 				file: [],
-				object_news: {
-					news: [],
-					type: 'news'
-				}
+                news: [],
+                datepicker: {
+                    lang: {
+                        formatLocale: {
+                            months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+                            monthsShort: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+                            weekdays: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
+                            weekdaysShort: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД'],
+                            weekdaysMin: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД']
+                        }
+                    }
+                },
 			};
 		},
 		created() {
@@ -142,7 +160,7 @@
 									timer: 1000,
 									button: false
 								});
-								this.object_news.news.push(res.data);
+								this.news.push(res.data);
 							})
                             .catch((error) => {
                                 swal({
@@ -156,7 +174,7 @@
 			getNewsList() {
 				axios.get('/api/news')
 					.then((response) => {
-						this.object_news.news = response.data;
+						this.news = response.data;
 					})
 			},
 			deleteNews(index, id) {
@@ -171,7 +189,7 @@
                     if (willDelete) {
                         axios.delete('/api/news/'+id)
                             .then((response) => {
-                                this.object_news.news.splice(index, 1);
+                                this.news.splice(index, 1);
                                 swal("Новина була успішно видалена", {
                                     icon: "success",
                                 });
