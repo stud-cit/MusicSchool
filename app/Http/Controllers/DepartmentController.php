@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
-    protected $publicStorage = "site-files/";
+    protected $publicStorageTeachers = "/user-file/teachers/";
+    protected $publicStorageInstruments = "/user-file/instruments/";
+    protected $defaultPhoto = "/img/empty.png";
 
     // Відділи
 
@@ -61,34 +63,37 @@ class DepartmentController extends Controller
     public function postTeachers(Request $request)
     {
         $teachers = new Teachers;
-        $teachers->teacher_name = $request->teachersName;
-        $teachers->teacher_info = $request->teachersInfo;
+        $teachers->departments_id = $request->departments_id; 
+        $teachers->teacher_surname = $request->teacher_surname;
+        $teachers->teacher_name = $request->teacher_name;
+        $teachers->teacher_info = $request->teacher_info;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path() . $this->publicStorage, $name);
-            $teachers->photo = $this->publicStorage.$name;
+            $file->move(public_path() . $this->publicStorageTeachers, $name);
+            $teachers->photo = $this->publicStorageTeachers.$name;
+        } else {
+            $teachers->photo = $this->defaultPhoto;
         }
         $teachers->save();
     }
     public function updateTeachers(Request $request, $id)
     {
         $teachers = Teachers::find($id);
-
-        $teachers->teacher_name = $request->teachersName;
-        $teachers->teacher_info = $request->teachersInfo;
-        if($request->hasFile('photo')) {
-            $file = $request->photo;
-            $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path() . $this->publicStorage, $name);
-            $teachers->photo = $this->publicStorage.$name;
+        $teachers->teacher_surname = $request->teacher_surname;
+        $teachers->teacher_name = $request->teacher_name;
+        $teachers->teacher_info = $request->teacher_info;
+        if($request->file('photo') || $teachers->photo == $this->defaultPhoto) {
+            $name = time() . '-' . $request->file('photo')->getClientOriginalName();
+            $request->file('photo')->move(public_path() . $this->publicStorageTeachers, $name);
+            $teachers->photo = $this->publicStorageTeachers . $name;
         }
         $teachers->save();
     }
     public function deleteTeachers($id)
     {
         $teachers = Teachers::find($id);
-        if ($teachers->photo != '') {
+        if($teachers->photo != $this->defaultPhoto) {
             unlink(public_path($teachers->photo));
         }
         $teachers->delete();
@@ -109,14 +114,16 @@ class DepartmentController extends Controller
     public function postInstruments(Request $request)
     {
         $instruments = new Instruments;
-
-        $instruments->name_instruments = $request->instrumentsName;
-        $instruments->instruments_info = $request->instrumentsInfo;
+        $instruments->departments_id = $request->departments_id; 
+        $instruments->name_instruments = $request->name_instruments;
+        $instruments->instruments_info = $request->instruments_info;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path() . $this->publicStorage, $name);
-            $instruments->photo = $this->publicStorage.$name;
+            $file->move(public_path() . $this->publicStorageInstruments, $name);
+            $instruments->photo = $this->publicStorageInstruments.$name;
+        } else {
+            $instruments->photo = $this->defaultPhoto;
         }
         $instruments->save();
     }
@@ -124,22 +131,23 @@ class DepartmentController extends Controller
     {
         $instruments = Instruments::find($id);
 
-        $instruments->name_instruments = $request->instrumentsName;
-        $instruments->instruments_info = $request->instrumentsInfo;
-        if($request->hasFile('photo')) {
-            $file = $request->photo;
-            $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path() . $this->publicStorage, $name);
-            $instruments->photo = $this->publicStorage.$name;
+        $instruments->name_instruments = $request->name_instruments;
+        $instruments->instruments_info = $request->instruments_info;
+
+        if($request->file('photo') || $instruments->photo == $this->defaultPhoto) {
+            $name = time() . '-' . $request->file('photo')->getClientOriginalName();
+            $request->file('photo')->move(public_path() . $this->publicStorageAchieve, $name);
+            $instruments->photo = $this->publicStorageAchieve . $name;
         }
+
         $instruments->save();
     }
     public function deleteInstruments($id)
     {
         $instruments = Instruments::find($id);
-        if ($instruments->photo != '') {
-            unlink(public_path($instruments->photo));
-        }
+        // if ($instruments->photo != '') {
+        //     unlink(public_path($instruments->photo));
+        // }
         $instruments->delete();
     }
 }

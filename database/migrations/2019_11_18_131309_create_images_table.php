@@ -21,14 +21,14 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('images_id');
-            $table->integer('nas_id')->unsigned();
+            $table->integer('id')->unsigned();
             $table->string('file');
             $table->timestamps();
         });
 
         Schema::table('images', function (Blueprint $table) {
-            $table->index('nas_id');
-            $table->foreign('nas_id')->references('nas_id')->on('news_achieve_story')->onDelete('cascade');
+            $table->index('id');
+            $table->foreign('id')->references('id')->on('news_story')->onDelete('cascade');
         });
     }
 

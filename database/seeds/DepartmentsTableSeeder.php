@@ -12,18 +12,15 @@ class DepartmentsTableSeeder extends Seeder
     public function run()
     {
         DB::table('departments')->insert([
-            'departments_id' => 1,
-            'name_department' => 'Відділ боротьби з лінню',
+            'name_department' => 'Відділ боротьби з лінню 1',
             'departments_info' => 'Інформація про відділ',
         ]);
         DB::table('departments')->insert([
-            'departments_id' => 2,
-            'name_department' => 'Відділ боротьби з лінню',
+            'name_department' => 'Відділ боротьби з лінню 2',
             'departments_info' => 'Інформація про відділ',
         ]);
         DB::table('departments')->insert([
-            'departments_id' => 3,
-            'name_department' => 'Відділ боротьби з лінню',
+            'name_department' => 'Відділ боротьби з лінню 3',
             'departments_info' => 'Інформація про відділ',
         ]);
     }
