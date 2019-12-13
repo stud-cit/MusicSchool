@@ -8,19 +8,17 @@
                     <ul class="instrument-list">
                         <li class="list-item" v-for="item of paginateArray">
                             <div class="description">
-                                <h3 class="item-title">Рояль {{item.id}}</h3>
-                                <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem
-                                    Ipsum is simply dummy text of the printing orem Ipsum is simply
-                                    dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing </p>
+                                <h3 class="item-title"><b>{{item.name_instruments}}</b> </h3>
+                                <p class="text">{{item.instruments_info}} </p>
                             </div>
-                            <img src="/img/instruments-1.png" alt="" class="w-100 item-img">
+                            <img :src="item.photo" alt="" class="w-100 item-img">
                         </li>
                     </ul>
 
 
                 </b-container>
             </div>
-            <paginate :items="items" perPage="3" @paginateArray="paginateArray = $event"></paginate>
+            <paginate :items="instrument" perPage="3" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
         </section>
 
     </div>
@@ -32,24 +30,25 @@
     export default {
         data() {
             return {
-                items: [
-                    { id: 1 },
-                    { id: 2 },
-                    { id: 3 },
-                    { id: 4 },
-                    { id: 5 },
-                    { id: 6 },
-                    { id: 7 },
-                    { id: 8 },
-                    { id: 9 },
-                ],
+                instrument: [],
                 paginateArray: []
             }
         },
+	    created() {
+		    this.getInstruments();
+	    },
         computed: {
 
 
         },
+	    methods: {
+		    getInstruments() {
+			    axios.get('/api/instruments')
+				    .then((response) => {
+					    this.instrument = response.data;
+				    })
+		    }
+	    },
         components: {
             paginate
         }

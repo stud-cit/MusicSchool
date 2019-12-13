@@ -23,7 +23,7 @@ class CreateInstrumentsTable extends Migration
             $table->increments('instruments_id');
             $table->integer('departments_id')->unsigned();
             $table->string('name_instruments', 30);
-            $table->string('instruments_info', 50);
+            $table->text('instruments_info');
             $table->string('photo', 50);
             $table->timestamps();
         });

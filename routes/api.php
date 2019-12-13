@@ -16,12 +16,13 @@ Route::post('update-info', 'InfoController@updateInfo');
 // Відділи
 
 Route::get('department', 'DepartmentController@getDepartments');
+Route::get('department/{id}', 'DepartmentController@getDepartmentsId');
 Route::post('department', 'DepartmentController@postDepartments');
 Route::post('department/{id}', 'DepartmentController@updateDepartments')->where(['id' => '^[0-9]+']);
 Route::delete('department/{id}', 'DepartmentController@deleteDepartments')->where(['id' => '^[0-9]+']);
 
 Route::get('get-teacher', 'DepartmentController@getTeachers');
-
+Route::get('instruments', 'DepartmentController@getInstruments');
 // Вступ
 
 Route::get('intro', 'IntroController@getIntro');

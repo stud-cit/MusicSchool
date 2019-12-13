@@ -19,6 +19,11 @@ class DepartmentController extends Controller
         $departments = DB::select('select * from departments');
         return response()->json($departments);
     }
+    public function getDepartmentsId($id)
+    {
+        $data = Departments::with('department')->find($id);
+        return response()->json($data);
+    }
     public function postDepartments(Request $request)
     {
         $departments = new Departments;
