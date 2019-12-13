@@ -22,7 +22,9 @@ Route::post('department/{id}', 'DepartmentController@updateDepartments')->where(
 Route::delete('department/{id}', 'DepartmentController@deleteDepartments')->where(['id' => '^[0-9]+']);
 
 Route::get('get-teacher', 'DepartmentController@getTeachers');
+Route::get('get-teacher/{id}', 'DepartmentController@getTeacherId')->where(['id' => '^[0-9]+']);
 Route::get('instruments', 'DepartmentController@getInstruments');
+Route::get('instruments/{id}', 'DepartmentController@getInstrumentId')->where(['id' => '^[0-9]+']);
 // Вступ
 
 Route::get('intro', 'IntroController@getIntro');

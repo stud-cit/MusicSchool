@@ -28,16 +28,17 @@
             }
         },
         created() {
-        	this.getTeachers();
+        	this.getTeachersId();
         },
         computed: {
 
         },
         methods: {
-        	getTeachers() {
-		        axios.get('/api/get-teacher')
+        	getTeachersId() {
+		        axios.get('/api/get-teacher/'+this.$route.params.id)
 			        .then((response) => {
 				        this.teacher = response.data;
+				        console.log(this.teacher)
 			        })
             }
         },

@@ -1922,11 +1922,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MainComponent",
   data: function data() {
     return {
       department: [],
+      instruments: [],
+      teachers: [],
       cardsBlock: {
         imgBig: "/img/departments/piano.png",
         imgSmall: "/img/departments/skripka.png"
@@ -1934,7 +1940,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.getDepartments();
+    this.getDepartment();
+    this.getInstrumentId();
+    this.getTeachersId();
   },
   methods: {
     showModal: function showModal() {
@@ -1943,11 +1951,25 @@ __webpack_require__.r(__webpack_exports__);
     hideModal: function hideModal() {
       this.$refs["my-modal"].hide();
     },
-    getDepartments: function getDepartments() {
+    getDepartment: function getDepartment() {
       var _this = this;
 
       axios.get('/api/department').then(function (response) {
         _this.department = response.data;
+      });
+    },
+    getInstrumentId: function getInstrumentId() {
+      var _this2 = this;
+
+      axios.get('/api/instruments').then(function (response) {
+        _this2.instruments = response.data;
+      });
+    },
+    getTeachersId: function getTeachersId() {
+      var _this3 = this;
+
+      axios.get('/api/get-teacher').then(function (response) {
+        _this3.teachers = response.data;
       });
     }
   }
@@ -3015,15 +3037,16 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.getInstruments();
+    this.getInstrumentId();
   },
   computed: {},
   methods: {
-    getInstruments: function getInstruments() {
+    getInstrumentId: function getInstrumentId() {
       var _this = this;
 
-      axios.get('/api/instruments').then(function (response) {
+      axios.get('/api/instruments/' + this.$route.params.id).then(function (response) {
         _this.instrument = response.data;
+        console.log(_this.instrument);
       });
     }
   },
@@ -3248,15 +3271,16 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.getTeachers();
+    this.getTeachersId();
   },
   computed: {},
   methods: {
-    getTeachers: function getTeachers() {
+    getTeachersId: function getTeachersId() {
       var _this = this;
 
-      axios.get('/api/get-teacher').then(function (response) {
+      axios.get('/api/get-teacher/' + this.$route.params.id).then(function (response) {
         _this.teacher = response.data;
+        console.log(_this.teacher);
       });
     }
   },
@@ -69995,16 +70019,27 @@ var render = function() {
                     _vm._v("Викладачі")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "teachers__img" }, [
-                    _c("a", { attrs: { href: "/teachers" } }, [
-                      _c("img", {
-                        attrs: {
-                          src: "/img/departments/professor.png",
-                          alt: "professor"
-                        }
-                      })
-                    ])
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "teachers__img" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: { to: { name: "teachers", params: { id: 3 } } }
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src: "/img/departments/professor.png",
+                              alt: "professor"
+                            }
+                          })
+                        ]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "teachers__text" }, [
                     _vm._v(
@@ -70020,16 +70055,29 @@ var render = function() {
                     _vm._v("Інструменти")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "instruments__img" }, [
-                    _c("a", { attrs: { href: "/instruments" } }, [
-                      _c("img", {
-                        attrs: {
-                          src: "/img/departments/Guitar Player.png",
-                          alt: "guitar_player"
-                        }
-                      })
-                    ])
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "instruments__img" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: { name: "instruments", params: { id: 3 } }
+                          }
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src: "/img/departments/Guitar Player.png",
+                              alt: "guitar_player"
+                            }
+                          })
+                        ]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "instruments__text" }, [
                     _vm._v(
@@ -89695,11 +89743,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'news',
     component: _components_Other_NewsComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
-    path: "/teachers",
+    path: "/teachers/:id/",
     name: "teachers",
     component: _components_Other_TeachersComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
-    path: "/instruments",
+    path: "/instruments/:id/",
     name: "instruments",
     component: _components_Other_MusicInstruments__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {

@@ -36,7 +36,9 @@
           <div class="teachers">
             <div class="teachers__title">Викладачі</div>
             <div class="teachers__img">
-              <a href="/teachers"><img src="/img/departments/professor.png" alt="professor" /></a>
+              <router-link :to="{ name: 'teachers', params: {id: 3} }">
+                <img src="/img/departments/professor.png" alt="professor" />
+              </router-link>
             </div>
             <div class="teachers__text">typesetting industry Lorem Ipsum is simply dummy text</div>
           </div>
@@ -45,7 +47,9 @@
           <div class="instruments">
             <div class="instruments__title">Інструменти</div>
             <div class="instruments__img">
-              <a href="/instruments"><img src="/img/departments/Guitar Player.png" alt="guitar_player" /></a>
+              <router-link :to="{ name: 'instruments', params: {id: 3} }">
+                <img src="/img/departments/Guitar Player.png" alt="guitar_player" />
+              </router-link>
             </div>
             <div class="instruments__text">typesetting industry Lorem Ipsum is simply dummy text</div>
           </div>
@@ -61,6 +65,9 @@ export default {
   data() {
     return {
       department: [],
+      instruments: [],
+      teachers: [],
+
       cardsBlock: {
         imgBig: "/img/departments/piano.png",
         imgSmall: "/img/departments/skripka.png",
@@ -68,7 +75,9 @@ export default {
     };
   },
   created() {
-    this.getDepartments();
+    this.getDepartment();
+    this.getInstrumentId();
+    this.getTeachersId();
   },
   methods: {
     showModal() {
@@ -77,12 +86,24 @@ export default {
     hideModal() {
       this.$refs["my-modal"].hide();
     },
-    getDepartments () {
+    getDepartment() {
       axios.get('/api/department')
               .then((response) => {
                 this.department = response.data
               })
     },
+    getInstrumentId() {
+      axios.get('/api/instruments')
+              .then((response) => {
+                this.instruments = response.data
+              })
+    },
+    getTeachersId() {
+      axios.get('/api/get-teacher')
+              .then((response) => {
+                this.teachers = response.data
+              })
+    }
   }
 };
 </script>
