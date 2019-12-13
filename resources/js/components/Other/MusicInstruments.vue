@@ -35,19 +35,20 @@
             }
         },
 	    created() {
-		    this.getInstruments();
+		    this.getInstrumentId();
 	    },
         computed: {
 
 
         },
 	    methods: {
-		    getInstruments() {
-			    axios.get('/api/instruments')
+		    getInstrumentId() {
+			    axios.get('/api/instruments/'+this.$route.params.id)
 				    .then((response) => {
-					    this.instrument = response.data;
+					    this.instrument = response.data
+					    console.log(this.instrument)
 				    })
-		    }
+		    },
 	    },
         components: {
             paginate

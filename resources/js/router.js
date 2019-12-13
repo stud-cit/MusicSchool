@@ -23,10 +23,10 @@ export default new Router({
         { path: '/history', name: 'history', component: HistoryComponent },
         { path: '/news', name: 'news', component: NewsComponent },
 
-        { path: "/teachers", name: "teachers", component: TeachersComponent },
+        { path: "/teachers/:id/", name: "teachers", component: TeachersComponent },
 
         {
-            path: "/instruments",
+            path: "/instruments/:id/",
             name: "instruments",
             component: MusicInstruments
         },
