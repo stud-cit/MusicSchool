@@ -43,7 +43,7 @@
         },
 	    methods: {
 		    getInstrumentId() {
-			    axios.get('/api/instruments/'+this.$route.params.id)
+			    axios.get('/api/front-instruments/'+this.$route.params.id)
 				    .then((response) => {
 					    this.instrument = response.data
 					    console.log(this.instrument)

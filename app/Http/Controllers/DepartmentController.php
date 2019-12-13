@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
-    protected $publicStorage = "site-files/";
+    protected $publicStorage = "/site-files/";
 
     // Відділи
 
@@ -95,8 +95,13 @@ class DepartmentController extends Controller
     }
 
     // Інструменти
-
-    public function getInstrumentId($id)
+    //вот оно where('departments_id', $id)->first(); или ->find($id)
+    public function getBackendInstrumentId($id)
+    {
+        $data = Instruments::with('department')->find($id);
+        return response()->json($data);
+    }
+    public function getFrontInstrumentId($id)
     {
         $data = Instruments::with('department')->where('departments_id', $id)->get();
         return response()->json($data);
@@ -110,8 +115,9 @@ class DepartmentController extends Controller
     {
         $instruments = new Instruments;
 
-        $instruments->name_instruments = $request->instrumentsName;
-        $instruments->instruments_info = $request->instrumentsInfo;
+        $instruments->name_instruments = $request->name_instruments;
+        $instruments->instruments_info = $request->instruments_info;
+        $instruments->departments_id = $request->departments_id;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
@@ -124,8 +130,9 @@ class DepartmentController extends Controller
     {
         $instruments = Instruments::find($id);
 
-        $instruments->name_instruments = $request->instrumentsName;
-        $instruments->instruments_info = $request->instrumentsInfo;
+        $instruments->name_instruments = $request->name_instruments;
+        $instruments->instruments_info = $request->instruments_info;
+        $instruments->departments_id = $request->departments_id;
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();

@@ -3044,7 +3044,7 @@ __webpack_require__.r(__webpack_exports__);
     getInstrumentId: function getInstrumentId() {
       var _this = this;
 
-      axios.get('/api/instruments/' + this.$route.params.id).then(function (response) {
+      axios.get('/api/front-instruments/' + this.$route.params.id).then(function (response) {
         _this.instrument = response.data;
         console.log(_this.instrument);
       });

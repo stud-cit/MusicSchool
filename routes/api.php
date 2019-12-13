@@ -24,7 +24,19 @@ Route::delete('department/{id}', 'DepartmentController@deleteDepartments')->wher
 Route::get('get-teacher', 'DepartmentController@getTeachers');
 Route::get('get-teacher/{id}', 'DepartmentController@getTeacherId')->where(['id' => '^[0-9]+']);
 Route::get('instruments', 'DepartmentController@getInstruments');
-Route::get('instruments/{id}', 'DepartmentController@getInstrumentId')->where(['id' => '^[0-9]+']);
+Route::get('front-instruments/{id}', 'DepartmentController@getFrontInstrumentId')->where(['id' => '^[0-9]+']);
+Route::get('back-instruments/{id}', 'DepartmentController@getBackendInstrumentId')->where(['id' => '^[0-9]+']);
+
+//Отделы Админка
+
+Route::post('post-teacher', 'DepartmentController@postTeachers');
+Route::post('post-instrument', 'DepartmentController@postInstruments');
+Route::post('update-teacher/{id}/', 'DepartmentController@uupdateTeachers');
+Route::post('update-instrument/{id}/', 'DepartmentController@updateInstruments');
+
+Route::post('delete-teacher/{id}/', 'DepartmentController@deleteTeachers');
+Route::post('delete-instrument/{id}/', 'DepartmentController@deleteInstruments');
+
 // Вступ
 
 Route::get('intro', 'IntroController@getIntro');

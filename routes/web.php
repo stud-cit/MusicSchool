@@ -2,15 +2,6 @@
 
 Auth::routes();
 
-//Отделы
-
-Route::post('post-teacher', 'DepartmentController@postTeachers');
-Route::post('post-instrument', 'DepartmentController@postInstruments');
-Route::post('update-teacher/{id}/', 'DepartmentController@uupdateTeachers');
-Route::post('update-instrument/{id}/', 'DepartmentController@updateInstruments');
-
-Route::post('delete-teacher/{id}/', 'DepartmentController@deleteTeachers');
-Route::post('delete-instrument/{id}/', 'DepartmentController@deleteInstruments');
 
 //Вступ
 Route::get('get-intro', 'IntroController@getIntro');
