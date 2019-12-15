@@ -100,8 +100,13 @@ class DepartmentController extends Controller
     }
 
     // Інструменти
-
-    public function getInstrumentId($id)
+    //вот оно where('departments_id', $id)->first(); или ->find($id)
+    public function getBackendInstrumentId($id)
+    {
+        $data = Instruments::with('department')->find($id);
+        return response()->json($data);
+    }
+    public function getFrontInstrumentId($id)
     {
         $data = Instruments::with('department')->where('departments_id', $id)->get();
         return response()->json($data);
@@ -133,11 +138,12 @@ class DepartmentController extends Controller
 
         $instruments->name_instruments = $request->name_instruments;
         $instruments->instruments_info = $request->instruments_info;
-
-        if($request->file('photo') || $instruments->photo == $this->defaultPhoto) {
-            $name = time() . '-' . $request->file('photo')->getClientOriginalName();
-            $request->file('photo')->move(public_path() . $this->publicStorageAchieve, $name);
-            $instruments->photo = $this->publicStorageAchieve . $name;
+        $instruments->departments_id = $request->departments_id;
+        if($request->hasFile('photo')) {
+            $file = $request->photo;
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . $this->publicStorage, $name);
+            $instruments->photo = $this->publicStorage.$name;
         }
 
         $instruments->save();
