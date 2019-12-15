@@ -4,16 +4,15 @@
         <section class="history-section mt-50">
             <b-container class="news-list">
 
-                <div class="news" v-for="i in paginateArray" :key="i.nas_id">
-                    <router-link class="news-router" :to="{ name: 'achievements-item', params: {id: i.nas_id}}">
+                <div class="news" v-for="i in paginateArray" :key="i.id">
+                    <router-link class="news-router" :to="{ name: 'achievements-item', params: {id: i.id}}">
                         <div class="news-description">
                             <h3 class="news-date">{{i.date}}</h3>
-                            <p class="news-text">{{i.nas_name}}</p>
+                            <p class="news-text">{{i.title}}</p>
                             <hr class="news-line">
                         </div>
                         <div class="news-img-block">
-                            <img v-if="i.images.length" :src="'/user-file/achieve/'+i.nas_id+'/'+i.images[0].file" alt="" class="news-img">
-                            <img v-else src='/img/empty.png' alt="" class="news-img">
+                            <img :src="i.photo" alt="" class="news-img">
                         </div>
                     </router-link>
                 </div>

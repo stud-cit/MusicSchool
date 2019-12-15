@@ -1,27 +1,27 @@
 <template>
-     <div>
+    <div class="ml-5">
         <div class="row">
             <div class="col-12 mt-1 mb-2">
-                <button type="button" class="btn btn-primary float-left" @click="showInstruments = !showInstruments">
-                    <span v-if="showInstruments">Приховати</span>
-                    <span v-else>Додати інструмент</span>
-                </button>
+                <button type="button" class="btn btn-primary float-left" @click="showInstruments = !showInstruments">Додати інструмент</button>
             </div>
         </div>
         <form enctype="multipart/form-data" v-if="showInstruments">
             <div class="row">
-                <div class="col-5">
-                    <div>
-                        <label for="name_instruments" class="brtop">Назва інструменту</label>
+                <div class="form-group row">
+                    <label for="name_instruments" class="col-sm-2 col-form-label">Інструмент</label>
+                    <div class="col-sm-6">
                         <input type="text" name="name_instruments" v-model="name_instruments" class="form-control" id="name_instruments"
                             v-validate="{ required: true }"
-                                data-vv-as="Назва інструменту">
+                                data-vv-as="Інструмент">
                         <span class="errors text-danger" v-if="errors.has('name_instruments')">
                                 {{ errors.first('name_instruments') }}
                         </span>
-					</div>
-                    <div>
-                        <label for="instruments_info" class="brtop">Інформація про інструмент</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="instruments_info" class="col-sm-2 col-form-label">Інформація про інструмент</label>
+                    <div class="col-sm-6">
                         <textarea name="instruments_info" v-model="instruments_info" class="form-control" id="instruments_info" rows="5"
                             v-validate="{ required: true }"
                                 data-vv-as="Інформація про інструмент"></textarea>
@@ -29,12 +29,12 @@
                                 {{ errors.first('instruments_info') }}
                         </span>
                     </div>
-
                 </div>
-                <div class="col-5 ml-5">
-                    <div>
-                        <label for="departments_id" class="brtop">Назва відділу</label>
-                        <select class="form-control" style="width: 80%" v-model="department.departments_id" id="departments_id" name="departments_id"
+
+                <div class="form-group row">
+                    <label for="departments_id" class="col-sm-2 col-form-label">Відділ</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" v-model="department.departments_id" id="departments_id" name="departments_id"
                                 v-validate="{ required: true }">
                             <option v-for="option in department" :key="option.departments_id" :value="option.departments_id">
                                 {{ option.name_department }}
@@ -43,50 +43,51 @@
 						<span class="errors text-danger" v-if="errors.has('departments_id')">
                                 Оберіть один з відділів
                         </span>
-					</div>
-                    <div>
-						<label for="photo" class="brtop">Фото інструменту</label>
-						<input type="file" name="photo" accept="image/*" ref="file" class="form-control-file" id="photo" required
-							v-validate="'image'"
-								data-vv-as="Фото інструменту">
-						<span class="errors text-danger" v-if="errors.has('photo')">
-								Файл повинен бути зображенням
-						</span>
-					</div>
-
+                    </div>
                 </div>
-                 <button type="button" class="btn btn-outline-secondary mt-4 ml-4 w-25" @click="postInstruments">Зберегти</button>
-				
+
+                <div class="form-group row">
+                    <label for="instrumentImage" class="col-sm-2 col-form-label">Фото інструменту</label>
+                    <div class="col-sm-6">
+						<label class="custom-file w-100">
+							<input type="file" class="custom-file-input col-6" id="instrumentImage" name="instrumentImage" ref="instrumentImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'">
+							<span class="custom-file-control">Файл не обрано</span>
+						</label>
+						<img v-if="!errors.has('instrumentImage')" class="mt-3 w-50" :src="image">
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="postInstruments">Зберегти</button>
             </div>
         </form>
-        <br>
-        <table class="table table-bordered accordion">
-            <thead>
-            <tr>
-                <th width="7%">№</th>
-                <th width="15%">Назва інструменту</th>
-                <th width="20%">Назва відділу</th>
-                <th width="25%">Фото інструменту</th>
-                <th width="20%">Інформація про інструмент</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody v-for="(item, index) in instruments" :key="index">
-            <tr>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.name_instruments }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.department.name_department }}</td>
-				<td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">
-					<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
-					<img v-else id="item-image" :src="'../img/user.png'" class="preview_img figure-img img-fluid">
-				</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.instruments_info }}</td>
-                <td><router-link style="color:#000" :to="{ name: 'edit-instruments', params: {id: item.instruments_id} }"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></router-link></td>
-                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteInstruments(item.instruments_id, index)"></i></td>
-            </tr>
-            </tbody>
-        </table>
+        <hr>
+        <table class="table table-bordered">
+			<thead>
+				<tr>
+					<th width="10px" scope="col">№</th>
+					<th width="150px" scope="col">Фото</th>
+					<th scope="col">Інструмент</th>
+					<th scope="col">Відділ</th>
+					<th scope="col">Інформація про інструмент</th>
+					<th width="10px" scope="col"></th>
+					<th width="10px" scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(item, index) in instruments" :key="item.instruments_id">
+					<th scope="row">{{ index + 1 }}</th>
+					<td>
+						<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
+						<img v-else id="item-image" :src="'../img/empty.png'" class="preview_img figure-img img-fluid">
+					</td>
+					<td>{{ item.name_instruments }}</td>
+					<td>{{ item.department.name_department }}</td>
+					<td>{{ item.instruments_info }}</td>
+					<td><router-link style="color:#000" :to="{ name: 'edit-instruments', params: {id: item.instruments_id} }"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></router-link></td>
+					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteInstruments(item.instruments_id, index)"></i></td>
+				</tr>
+			</tbody>
+		</table>
     </div>
 </template>
 
@@ -94,21 +95,32 @@
 export default {
     	data() {
 			return {
-                editBtn: 0,
                 showInstruments: false,
                 instruments: [],
 				department: [],
+				image: '',
 				name_instruments: '',
 				instruments_info: '',
-				form: new FormData,
-				table_form: new FormData
+				form: new FormData
 			};
         },
         created () {
+			document.title = "Інструменти";
             this.getInstruments();
             this.getDepartments();
 		},
 		methods: {
+			previewFiles(event) {
+				var input = event.target;
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.onload = (e) => {
+						this.image = e.target.result;
+					}
+					reader.readAsDataURL(input.files[0]);
+					input.parentNode.querySelector('span').innerHTML = input.files[0].name;
+				}
+			},
 			getDepartments () {
 				axios.get('/api/department')
 					.then((response) => {
@@ -135,11 +147,10 @@ export default {
 						this.form.append('name_instruments', this.name_instruments);
 						this.form.append('instruments_info', this.instruments_info);
 						this.form.append('departments_id', valOptions);
-						this.form.append('photo', this.$refs.file.files[0]);
+						this.form.append('photo', this.$refs.instrumentImage.files[0]);
 						axios.post('/api/post-instrument', this.form)
 							.then((response) => {
-								this.instruments = [];
-                                this.getInstruments();
+								this.instruments.push(response.data);
                                 swal("Інформація оновлена", {
                                     icon: "success",
                                     timer: 1000,

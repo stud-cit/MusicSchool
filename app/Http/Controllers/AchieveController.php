@@ -45,7 +45,7 @@ class AchieveController extends Controller
 
         $this->validate($request, ['filenames.*' => 'mimes:jpeg']);
 
-        if($request->file('photo') || $achieve->photo == $this->defaultPhoto) {
+        if($request->file('photo')) {
             $name = time() . '-' . $request->file('photo')->getClientOriginalName();
             $request->file('photo')->move(public_path() . $this->publicStorageAchieve, $name);
             $achieve->photo = $this->publicStorageAchieve . $name;

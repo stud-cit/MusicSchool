@@ -8,7 +8,7 @@
                 <div class="form-group row mt-1">
                     <label for="newsName" class="col-sm-2 col-form-label">Назва новини</label>
                     <div class="col-sm-5">
-                        <input type="text" name="newsName" class="form-control" v-model="news.nas_name" id="newsName"
+                        <input type="text" name="newsName" class="form-control" v-model="news.title" id="newsName"
                                v-validate="{ required: true }"
                                data-vv-as="Назва новини">
                         <span class="errors text-danger" v-if="errors.has('newsName')">
@@ -20,7 +20,7 @@
                 <div class="form-group row">
                     <label for="newsInfo" class="col-sm-2 col-form-label">Опис новини</label>
                     <div class="col-sm-6">
-                        <textarea name="newsInfo" class="form-control" cols="15" rows="6" v-model="news.nas_info" id="newsInfo"
+                        <textarea name="newsInfo" class="form-control" cols="15" rows="6" v-model="news.text" id="newsInfo"
                                   v-validate="{ required: true}"
                                   data-vv-as="Опис новини">
                         </textarea>
@@ -51,10 +51,10 @@
                     <silentbox-group class="col-3 foto" v-for="(item, index) in news.images" :key="item.images_id">
                         <div class="border fotoGallery">
                             <i class="fa fa-times-circle btn btn-default p-0" @click="delNewsImage(item.images_id, index)"></i>
-                            <silentbox-item :src="'/user-file/news/'+$route.params.id+'/'+item.file" class="foto">
-                                <img :src="'/user-file/news/'+$route.params.id+'/'+item.file">
+                            <silentbox-item :src="item.file" class="foto">
+                                <img :src="item.file">
                             </silentbox-item>
-                            <a :href="'/user-file/news/'+$route.params.id+'/'+item.file" download><i class="fa fa-download"></i></a>
+                            <a :href="item.file" download><i class="fa fa-download"></i></a>
                         </div>
                     </silentbox-group>
                 </div>
@@ -107,6 +107,7 @@
 			};
 		},
 		created() {
+            document.title = "Новини";
 			this.getNewsList();
 		},
 
@@ -136,10 +137,10 @@
                         form.append('file[]', this.file[i]);
                     }
                 }
-                form.append('nas_name', this.news.nas_name);
-                form.append('nas_info', this.news.nas_info);
+                form.append('title', this.news.title);
+                form.append('text', this.news.text);
                 form.append('date', this.news.date);
-				axios.post('/api/update-news/'+this.$route.params.id, form)
+				axios.post('/api/news/'+this.$route.params.id, form)
                 .then((response) => {
                     this.file = [];
                     this.news.images = this.news.images.concat(response.data);
@@ -153,7 +154,7 @@
 			},
 			delNewsImage(id, index) {
 				if(id) {
-					axios.post('/delete-news-images/' + id)
+					axios.delete('/api/news-images/' + id)
 						.then(() => {
 							this.file.splice(index, 1);
 							swal("Зображення успішно видалено", {

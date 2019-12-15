@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             DepartmentsTableSeeder::class,
             TeachersTableSeeder::class,
             InstrumentsTableSeeder::class,
+            UsersTableSeeder::class,
         ]);
     }
 }

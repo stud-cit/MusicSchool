@@ -93,6 +93,7 @@
 			}
 		},
 		created() {
+			document.title = "Галерея";
 			this.getFiles();
 		},
 		computed: {

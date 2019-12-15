@@ -72,6 +72,7 @@
 			};
 		},
 		created () {
+			document.title = "Відділи";
             this.getAllDepartments();
 		},
 		methods: {

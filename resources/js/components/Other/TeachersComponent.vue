@@ -35,10 +35,10 @@
         },
         methods: {
         	getTeachersId() {
-		        axios.get('/api/get-teacher/'+this.$route.params.id)
+		        axios.get('/api/teacher/department/'+this.$route.params.id)
 			        .then((response) => {
-				        this.teacher = response.data;
-				        console.log(this.teacher)
+                        this.teacher = response.data;
+                        console.log(response.data)
 			        })
             }
         },

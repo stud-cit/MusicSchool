@@ -115,6 +115,7 @@ export default {
 		};
 	},
 	created() {
+        document.title = "Досягнення";
 		this.getAchieveList();
 	},
 	methods: {

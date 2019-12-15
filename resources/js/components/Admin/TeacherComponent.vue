@@ -1,38 +1,41 @@
 <template>
-     <div>
+     <div class="ml-5">
         <div class="row">
             <div class="col-12 mt-1 mb-2">
-                <button type="button" class="btn btn-primary float-left" @click="showTeacher = !showTeacher">
-                    <span v-if="showTeacher">Приховати</span>
-                    <span v-else>Додати викладача</span>
-                </button>
+                <button type="button" class="btn btn-primary float-left" @click="showTeacher = !showTeacher">Додати виклалача</button>
             </div>
         </div>
         <form enctype="multipart/form-data" v-if="showTeacher">
             <div class="row">
-                <div class="col-5">
-                    <div>
-                        <label for="teacher_surname" class="brtop">Прізвище</label>
+                <div class="form-group row">
+                    <label for="teacher_surname" class="col-sm-2 col-form-label">Прізвище</label>
+                    <div class="col-sm-6">
                         <input type="text" name="teacher_surname" v-model="teacher_surname" class="form-control" id="teacher_surname"
                             v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){2,}$/i }"
                                 data-vv-as="Прізвище">
                         <span class="errors text-danger" v-if="errors.has('teacher_surname')">
                                 {{ errors.first('teacher_surname') }}
                         </span>
-					</div>
-                    <div>
-                        <label for="teacher_name" class="brtop">Ім'я</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="teacher_name" class="col-sm-2 col-form-label">Ім'я</label>
+                    <div class="col-sm-6">
                         <input type="text" name="teacher_name" v-model="teacher_name" class="form-control" id="teacher_name"
                             v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){2,}$/i }"
                                 data-vv-as="Ім'я">
                         <span class="errors text-danger" v-if="errors.has('teacher_name')">
                                 {{ errors.first('teacher_name') }}
                         </span>
-					</div>
-                    <div>
-                        <label class="brtop">Відділ</label>
-                        <select class="form-control" style="width: 80%" v-model="department.departments_id" id="departments_id" name="departments_id" 
-						v-validate="{ required: true }">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="departments_id" class="col-sm-2 col-form-label">Відділ</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" v-model="departments_id" id="departments_id" name="departments_id"
+                                v-validate="{ required: true }">
                             <option v-for="option in department" :key="option.departments_id" :value="option.departments_id">
                                 {{ option.name_department }}
                             </option>
@@ -40,21 +43,12 @@
 						<span class="errors text-danger" v-if="errors.has('departments_id')">
                                 Оберіть один з відділів
                         </span>
-					</div>
+                    </div>
                 </div>
-                
-                <div class="col-5 ml-5">
-                     <div>
-						<label for="photo" class="brtop">Фото викладача</label>
-						<input type="file" name="photo" accept="image/*" ref="file" class="form-control-file" id="photo" required
-							v-validate="'image'"
-								data-vv-as="Фото викладача">
-						<span class="errors text-danger" v-if="errors.has('photo')">
-								Файл повинен бути зображенням
-						</span>
-					</div>
-                    <div>
-                        <label for="teacher_info" class="brtop">Інформація про викладача</label>
+
+                <div class="form-group row">
+                    <label for="teacher_info" class="col-sm-2 col-form-label">Інформація про викладача</label>
+                    <div class="col-sm-6">
                         <textarea name="teacher_info" v-model="teacher_info" class="form-control" id="teacher_info" rows="5"
                             v-validate="{ required: true }"
                                 data-vv-as="Інформація про викладача"></textarea>
@@ -62,44 +56,50 @@
                                 {{ errors.first('teacher_info') }}
                         </span>
                     </div>
-                   
-
                 </div>
-                 <button type="button" class="btn btn-outline-secondary mt-4 ml-4 w-25" @click="postTeachers">Зберегти</button>
-				
+
+                <div class="form-group row">
+                    <label for="teacherImage" class="col-sm-2 col-form-label">Фото викладача</label>
+                    <div class="col-sm-6">
+						<label class="custom-file w-100">
+							<input type="file" class="custom-file-input col-6" id="teacherImage" name="teacherImage" ref="teacherImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'">
+							<span class="custom-file-control">Файл не обрано</span>
+						</label>
+						<img v-if="!errors.has('teacherImage')" class="mt-3 w-50" :src="image">
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="postTeachers">Зберегти</button>
             </div>
         </form>
         <br>
-        <table class="table table-bordered accordion">
-            <thead>
-            <tr>
-                <th width="4%">№</th>
-                <th width="22%">Прізвище, ім'я викладача</th>
-                <th width="20%">Назва відділу</th>
-                <th width="25%">Фото викладача</th>
-                <th width="20%">Інформація про викладача</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody v-for="(item, index) in teachers" :key="index">
-            <tr>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.teacher_surname} ${item.teacher_name}` }}</td>
-				<td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.department.name_department }}</td>
-				<td>
-					<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
-					<img v-else id="item-image" :src="'../img/user.png'" class="preview_img figure-img img-fluid">
-				</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.teacher_info }}</td>
-                <td id="edit-save-td">
-                    <i v-if="editBtn!== item.instruments_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.teachers_id, $event)"></i>
-                    <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.teachers_id, $event)"></i>
-                </td>
-                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteTeachers(item.teachers_id, index)"></i></td>
-            </tr>
-            </tbody>
-        </table>
+        <table class="table table-bordered">
+			<thead>
+				<tr>
+					<th width="10px" scope="col">№</th>
+					<th width="150px" scope="col">Фото</th>
+					<th scope="col">Прізвище, Ім'я викладача</th>
+					<th scope="col">Відділ</th>
+					<th scope="col">Інформація про викладача</th>
+					<th width="10px" scope="col"></th>
+					<th width="10px" scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(item, index) in teachers" :key="item.teachers_id">
+					<th scope="row">{{ index + 1 }}</th>
+					<td>
+						<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
+						<img v-else id="item-image" :src="'../img/empty.png'" class="preview_img figure-img img-fluid">
+					</td>
+					<td>{{ `${item.teacher_surname} ${item.teacher_name}` }}</td>
+					<td>{{ item.department.name_department }}</td>
+					<td>{{ item.teacher_info }}</td>
+					<td><router-link style="color:#000" :to="{ name: 'edit-teacher', params: {id: item.teachers_id} }"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></router-link></td>
+					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteTeachers(item.teachers_id, index)"></i></td>
+				</tr>
+			</tbody>
+		</table>
     </div>
 </template>
 
@@ -107,83 +107,44 @@
 export default {
     	data() {
 			return {
-                editBtn: 0,
                 showTeacher: false,
                 teachers: [],
 				department: [],
+				image: '',
                 teacher_surname: '',
                 teacher_name: '',
 				teacher_info: '',
-				form: new FormData,
-				table_form: new FormData
+				departments_id: '',
+				form: new FormData
 			};
         },
         created () {
+			document.title = "Вчителі";
             this.getTeachers();
             this.getDepartments();
 		},
 		methods: {
-			
-			// edit(id, event){
-			// 	this.editBtn = id;
-			// 	event.preventDefault();
-			// 	var name_instruments_input = document.createElement('input');
-			// 	var instruments_info_input = document.createElement('input');
-
-			// 	var name_instruments_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
-			// 	var instruments_info_td = event.target.parentNode.parentNode.querySelectorAll('td')[4];
-
-			// 	name_instruments_input.setAttribute('value', name_instruments_td.innerHTML);
-			// 	name_instruments_input.setAttribute('type', 'text');
-			// 	name_instruments_td.innerHTML = '';
-			// 	name_instruments_td.append(name_department_input);
-
-			// 	instruments_info_input.setAttribute('value', instruments_info_td.innerHTML);
-			// 	instruments_info_input.setAttribute('type', 'text');
-			// 	instruments_info_td.innerHTML = '';
-			// 	instruments_info_td.append(instruments_info_input);
-			// },
-
-			// save(id, event) {
-			// 	this.editBtn = 0;
-			// 	event.preventDefault();
-			// 	var name_instruments_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
-			// 	var instruments_info_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
-
-			// 	var parse_name_instruments = name_instruments_td;
-			// 	var parse_instruments_info = instruments_info_td;
-
-			// 	this.table_form.append('name_instruments', parse_name_instruments);
-			// 	this.table_form.append('instruments_info', parse_instruments_info);
-
-			// 	axios.post('/update-instrument/' + id, this.table_form)
-			// 		.then((response) => {
-			// 			this.departments = [];
-			// 			this.getInstruments();
-			// 			swal("Інформація оновлена", {
-			// 				icon: "success",
-			// 				timer: 1000,
-			// 				button: false
-			// 			});
-			// 		})
-			// 		.catch((error) => {
-			// 			swal({
-			// 				icon: "error",
-			// 				title: 'Помилка',
-			// 				text: 'Поля: "Назва відділу, Інформація про відділ" повинні бути заповнені'
-			// 			});
-			// 		});
-			// },
+			previewFiles(event) {
+				var input = event.target;
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.onload = (e) => {
+						this.image = e.target.result;
+					}
+					reader.readAsDataURL(input.files[0]);
+					input.parentNode.querySelector('span').innerHTML = input.files[0].name;
+				}
+			},
 			getDepartments () {
-				axios.get('/api/department/')
+				axios.get('/api/department')
 					.then((response) => {
 					   this.department = response.data
 					})
 			},
 			getTeachers(){
-				axios.get('/teachers/')
+				axios.get('/api/teachers')
 					.then((response) => {
-					   	this.teachers = response.data	
+						this.teachers = response.data;
 					})
 			},
 			
@@ -192,12 +153,12 @@ export default {
 					if (!result) {
 						return;
 					} else {
-						this.form.append('departments_id', this.department.departments_id);
+						this.form.append('departments_id', this.departments_id);
                         this.form.append('teacher_surname', this.teacher_surname);
                         this.form.append('teacher_name', this.teacher_name);
 						this.form.append('teacher_info', this.teacher_info);
-						this.form.append('photo', this.$refs.file.files[0]);
-						axios.post('/post-teacher', this.form)
+						this.form.append('photo', this.$refs.teacherImage.files[0]);
+						axios.post('/api/teacher', this.form)
 							.then((response) => {
 								this.teachers = [];
                                 this.getTeachers();
@@ -227,7 +188,7 @@ export default {
 				})
 					.then((willDelete) => {
 						if (willDelete) {
-							axios.post('/delete-teacher/' + id)
+							axios.delete('/api/teacher/' + id)
 								.then((response) => {
 									if (response.status == 200) {
 										this.teachers.splice(index, 1);

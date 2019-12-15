@@ -1,30 +1,30 @@
 <template>
     <div class="ml-5">
         <div class="col-12 pb-3 pl-0 comeBack">
-            <router-link :to="{ name: 'instrument' }"><b><i class="fa fa-angle-left" aria-hidden="true"></i> Повернутися до списку</b></router-link>
+            <router-link :to="{ name: 'teacher' }"><b><i class="fa fa-angle-left" aria-hidden="true"></i> Повернутися до списку</b></router-link>
         </div>
         <form enctype="multipart/form-data">
             <div class="row">
                 <div class="form-group row">
-                    <label for="name_instruments" class="col-sm-2 col-form-label">Інструмент</label>
+                    <label for="teacher_surname" class="col-sm-2 col-form-label">Прізвище</label>
                     <div class="col-sm-6">
-                        <input type="text" name="name_instruments" v-model="instrument.name_instruments" class="form-control" id="name_instruments"
-                            v-validate="{ required: true }"
-                                data-vv-as="Інструмент">
-                        <span class="errors text-danger" v-if="errors.has('name_instruments')">
-                                {{ errors.first('name_instruments') }}
+                        <input type="text" name="teacher_surname" v-model="teacher.teacher_surname" class="form-control" id="teacher_surname"
+                            v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){2,}$/i }"
+                                data-vv-as="Прізвище">
+                        <span class="errors text-danger" v-if="errors.has('teacher_surname')">
+                                {{ errors.first('teacher_surname') }}
                         </span>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="instruments_info" class="col-sm-2 col-form-label">Інформація про інструмент</label>
+                    <label for="teacher_name" class="col-sm-2 col-form-label">Ім'я</label>
                     <div class="col-sm-6">
-                        <textarea name="instruments_info" v-model="instrument.instruments_info" class="form-control" id="instruments_info" rows="5"
-                            v-validate="{ required: true }"
-                                data-vv-as="Інформація про інструмент"></textarea>
-                        <span class="errors text-danger" v-if="errors.has('instruments_info')">
-                                {{ errors.first('instruments_info') }}
+                        <input type="text" name="teacher_name" v-model="teacher.teacher_name" class="form-control" id="teacher_name"
+                            v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){2,}$/i }"
+                                data-vv-as="Ім'я">
+                        <span class="errors text-danger" v-if="errors.has('teacher_name')">
+                                {{ errors.first('teacher_name') }}
                         </span>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="form-group row">
                     <label for="department" class="col-sm-2 col-form-label">Відділ</label>
                     <div class="col-sm-6">
-                        <select class="form-control" v-model="instrument.departments_id" id="department" name="department"
+                        <select class="form-control" v-model="teacher.departments_id" id="department" name="department"
                                 v-validate="{ required: true }">
                             <option v-for="option in department" :key="option.departments_id" :value="option.departments_id">
                                 {{ option.name_department }}
@@ -45,13 +45,13 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="instrumentImage" class="col-sm-2 col-form-label">Фото інструменту</label>
+                    <label for="teacherImage" class="col-sm-2 col-form-label">Фото викладача</label>
                     <div class="col-sm-6">
 						<label class="custom-file w-100">
-							<input type="file" class="custom-file-input col-6" id="instrumentImage" name="instrumentImage" ref="instrumentImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'">
+							<input type="file" class="custom-file-input col-6" id="teacherImage" name="teacherImage" ref="teacherImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'">
 							<span class="custom-file-control">Файл не обрано</span>
 						</label>
-						<img v-if="!errors.has('instrumentImage')" class="mt-3 w-50" :src="instrument.photo">
+						<img v-if="!errors.has('teacherImage')" class="mt-3 w-50" :src="teacher.photo">
                     </div>
                 </div>
 
@@ -63,17 +63,17 @@
 
 <script>
 	export default {
-		name: "EditInstruments",
+		name: "EditTeachers",
 		data() {
 			return {
-				instrument: [],
+				teacher: [],
 				department: []
 			};
 		},
 		created () {
-            document.title = "Інструменти";
-			this.getInstrumentsId();
-            this.getDepartments();
+            document.title = "Вчителі";
+			this.getTeachersId();
+			this.getDepartments();
 		},
 		methods: {
             previewFiles(event) {
@@ -81,7 +81,7 @@
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
                     reader.onload = (e) => {
-                        this.instrument.photo = e.target.result;
+                        this.teacher.photo = e.target.result;
                     }
                     reader.readAsDataURL(input.files[0]);
                     input.parentNode.querySelector('span').innerHTML = input.files[0].name;
@@ -93,19 +93,20 @@
 						this.department = response.data;
 					})
 			},
-			getInstrumentsId() {
-				axios.get('/api/instrument/'+this.$route.params.id)
+			getTeachersId() {
+				axios.get('/api/teacher/'+this.$route.params.id)
 					.then((response) => {
-                        this.instrument = response.data;
+                        this.teacher = response.data;
 					})
 			},
 			save() {
-				var form = new FormData;
-				form.append('name_instruments', this.instrument.name_instruments);
-				form.append('instruments_info', this.instrument.instruments_info);
-				form.append('departments_id', this.instrument.departments_id);
-				form.append('photo', this.$refs.instrumentImage.files[0]);
-				axios.post('/api/instrument/'+this.$route.params.id, form)
+                var form = new FormData;
+				form.append('teacher_surname', this.teacher.teacher_surname);
+                form.append('teacher_name', this.teacher.teacher_name);
+                form.append('teacher_info', this.teacher.teacher_info);
+                form.append('departments_id', this.teacher.departments_id);
+				form.append('photo', this.$refs.teacherImage.files[0]);
+				axios.post('/api/teacher/'+this.$route.params.id, form)
 					.then((response) => {
 						swal("Інформація оновлена", {
 							icon: "success",

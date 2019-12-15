@@ -4,29 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NewsAchieveStory extends Model
+class NewsStory extends Model
 {
-    protected $table = 'news_achieve_story';
-    protected $primaryKey = 'nas_id';
+    protected $table = 'news_story';
+    protected $primaryKey = 'id';
     public const NEWS = 'news';
-    public const ACHIEVE = 'achieve';
     public const STORY = 'story';
 
-    protected $guarded = ['nas_id'];
+    protected $guarded = ['id'];
 
     public function images()
     {
-        return $this->hasMany('App\Models\Images', 'nas_id');
+        return $this->hasMany('App\Models\Images', 'id');
     }
 
     public function scopeNews($query) {
         return $query->where('type', self::NEWS);
     }
-
-    public function scopeAchieve($query) {
-        return $query->where('type', self::ACHIEVE);
-    }
-
+    
     public function scopeStory($query) {
         return $query->where('type', self::STORY);
     }
