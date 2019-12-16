@@ -21,21 +21,23 @@ Route::post('department', 'DepartmentController@postDepartments');
 Route::post('department/{id}', 'DepartmentController@updateDepartments')->where(['id' => '^[0-9]+']);
 Route::delete('department/{id}', 'DepartmentController@deleteDepartments')->where(['id' => '^[0-9]+']);
 
-Route::get('get-teacher', 'DepartmentController@getTeachers');
-Route::get('get-teacher/{id}', 'DepartmentController@getTeacherId')->where(['id' => '^[0-9]+']);
+// Вчителі
+
+Route::get('teachers', 'DepartmentController@getTeachers');
+Route::get('teacher/{id}', 'DepartmentController@getTeacherId')->where(['id' => '^[0-9]+']);
+Route::get('teacher/department/{id}', 'DepartmentController@getTeacherDepartmentId')->where(['id' => '^[0-9]+']);
+Route::post('teacher', 'DepartmentController@postTeachers');
+Route::delete('teacher/{id}', 'DepartmentController@deleteTeachers');
+Route::post('teacher/{id}', 'DepartmentController@updateTeachers');
+
+// Інструменти
+
 Route::get('instruments', 'DepartmentController@getInstruments');
-Route::get('front-instruments/{id}', 'DepartmentController@getFrontInstrumentId')->where(['id' => '^[0-9]+']);
-Route::get('back-instruments/{id}', 'DepartmentController@getBackendInstrumentId')->where(['id' => '^[0-9]+']);
-
-//Отделы Админка
-
-Route::post('post-teacher', 'DepartmentController@postTeachers');
-Route::post('post-instrument', 'DepartmentController@postInstruments');
-Route::post('update-teacher/{id}/', 'DepartmentController@uupdateTeachers');
-Route::post('update-instrument/{id}/', 'DepartmentController@updateInstruments');
-
-Route::post('delete-teacher/{id}/', 'DepartmentController@deleteTeachers');
-Route::post('delete-instrument/{id}/', 'DepartmentController@deleteInstruments');
+Route::get('instrument/{id}', 'DepartmentController@getInstrumentId')->where(['id' => '^[0-9]+']);
+Route::get('instrument/department/{id}', 'DepartmentController@getInstrumentDepartmentId')->where(['id' => '^[0-9]+']);
+Route::post('instrument', 'DepartmentController@postInstruments');
+Route::post('instrument/{id}', 'DepartmentController@updateInstruments');
+Route::delete('instrument/{id}/', 'DepartmentController@deleteInstruments');
 
 // Вступ
 
@@ -44,27 +46,29 @@ Route::post('intro', 'IntroController@postIntro');
 
 // Новини
 
-Route::get('news', 'NewsAchieveStoryController@getNews');
-Route::get('news/{id}', 'NewsAchieveStoryController@getNewsId')->where(['id' => '^[0-9]+']);
-Route::delete('news/{id}', 'NewsAchieveStoryController@deleteNews')->where(['id' => '^[0-9]+']);
-Route::post('update-news/{id}/', 'NewsAchieveStoryController@updateNews')->where(['id' => '^[0-9]+']);
-Route::post('news', 'NewsAchieveStoryController@postNews');
+Route::get('news', 'NewsStoryController@getNews');
+Route::get('news/{id}', 'NewsStoryController@getNewsId')->where(['id' => '^[0-9]+']);
+Route::delete('news/{id}', 'NewsStoryController@deleteNews')->where(['id' => '^[0-9]+']);
+Route::post('news/{id}', 'NewsStoryController@updateNews')->where(['id' => '^[0-9]+']);
+Route::post('news', 'NewsStoryController@postNews');
+Route::delete('news-images/{id}', 'NewsStoryController@deleteNewsImage');
 
 // Досягнення
 
 Route::get('achieve', 'AchieveController@getAchieve');
 Route::get('achieve/{id}', 'AchieveController@getAchieveId')->where(['id' => '^[0-9]+']);
 Route::post('achieve', 'AchieveController@postAchieve');
-Route::post('update-achieve/{id}/', 'AchieveController@updateAchieve');
-Route::delete('achieve/{id}/', 'AchieveController@deleteAchieve');
+Route::post('achieve/{id}', 'AchieveController@updateAchieve');
+Route::delete('achieve/{id}', 'AchieveController@deleteAchieve');
 
 // Історії
 
-Route::get('story', 'NewsAchieveStoryController@getStory');
-Route::get('story/{id}', 'NewsAchieveStoryController@getStoryId')->where(['id' => '^[0-9]+']);
-Route::post('update-story/{id}', 'NewsAchieveStoryController@updateStory')->where(['id' => '^[0-9]+']);
-Route::delete('story/{id}', 'NewsAchieveStoryController@deleteStory');
-Route::post('story', 'NewsAchieveStoryController@postStory');
+Route::get('story', 'NewsStoryController@getStory');
+Route::get('story/{id}', 'NewsStoryController@getStoryId')->where(['id' => '^[0-9]+']);
+Route::post('story/{id}', 'NewsStoryController@updateStory')->where(['id' => '^[0-9]+']);
+Route::delete('story/{id}', 'NewsStoryController@deleteStory');
+Route::post('story', 'NewsStoryController@postStory');
+Route::delete('story-images/{id}', 'NewsStoryController@deleteStoryImage');
 
 //Документы
 Route::get('get-document', 'DocumentController@getDocument');

@@ -15,11 +15,12 @@ class DatabaseSeeder extends Seeder
             IntroTableSeeder::class,
             InfoTableSeeder::class,
             DocumentTableSeeder::class,
-            NewsAchieveStoryTableSeeder::class,
-            // ImagesTableSeeder::class,
+            NewsStoryTableSeeder::class,
+            AchieveTableSeeder::class,
             DepartmentsTableSeeder::class,
             TeachersTableSeeder::class,
             InstrumentsTableSeeder::class,
+            UsersTableSeeder::class,
         ]);
     }
 }

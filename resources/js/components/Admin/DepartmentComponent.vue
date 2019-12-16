@@ -72,6 +72,7 @@
 			};
 		},
 		created () {
+			document.title = "Відділи";
             this.getAllDepartments();
 		},
 		methods: {
@@ -131,6 +132,7 @@
 			getAllDepartments() {
 				axios.get('/api/department')
 					.then((response) => {
+						console.log(response.data)
                         this.departments = response.data
 					})
 			},

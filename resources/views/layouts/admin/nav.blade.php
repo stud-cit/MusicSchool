@@ -84,7 +84,7 @@
 			<div class="user-block">
 				<div class="user-content d-none d-lg-flex">
 					<img src="{{ url('/') }}/img/user.png">
-					<div class="welcome"><a style="color:#868e96" href="/admin/profile/1">User</a> (role)</div>
+					<div class="welcome"><a style="color:#868e96" href="/admin/profile/1">Admin</a></div>
 				</div>
 				<a class="logout" data-toggle="modal" data-target="#modalLogout">
 					<i class="fa fa-fw fa-sign-out"></i>Вихід

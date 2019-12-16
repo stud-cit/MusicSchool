@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsAchieveStoryTable extends Migration
+class CreateNewsStoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateNewsAchieveStoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_achieve_story');
+        Schema::dropIfExists('news_story');
     }
     public function up()
     {
-        Schema::dropIfExists('news_achieve_story');
-        Schema::create('news_achieve_story', function (Blueprint $table) {
+        Schema::dropIfExists('news_story');
+        Schema::create('news_story', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('nas_id');
-            $table->text('nas_name');
-            $table->text('nas_info');
+            $table->increments('id');
+            $table->text('title');
+            $table->text('text');
             $table->string('date');
             $table->string('type', 20);
             $table->timestamps();

@@ -12,7 +12,7 @@
 
                     <b-col cols="12" md="6" xl="4" v-for="item of filteredItems" class="list-item" :key="item.id">
                         <img v-if="item.type == 'img'" :src="'/user-file/gallery/'+item.file" alt="">
-                        <img v-else :src="'//img.youtube.com/vi/'+item.file.slice(item.file.length - 11, item.file.length)+'/mqdefault.jpg'">
+                        <iframe v-else height="300px" width="100%" :src="'https://www.youtube.com/embed/'+item.file.slice(item.file.length - 11, item.file.length)" frameborder="0" allowfullscreen></iframe>
                     </b-col>
 
                 </transition-group>

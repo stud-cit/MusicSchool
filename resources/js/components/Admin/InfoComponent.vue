@@ -110,6 +110,7 @@ export default {
         }
     },
 	created() {
+        document.title = "Загальна інформація";
         this.getInfo();
     },
     methods: {

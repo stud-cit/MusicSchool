@@ -14,6 +14,7 @@ import GalleryComponent from './components/Admin/GalleryComponent'
 import InfoComponent from './components/Admin/InfoComponent'
 import InstrumentComponent from './components/Admin/InstrumentComponent'
 import EditInstrumentsComponent from './components/Admin/EditInstrumentsComponent'
+import EditTeachersComponent from './components/Admin/EditTeachersComponent'
 import IntroComponent from './components/Admin/IntroComponent'
 import NewsComponent from './components/Admin/NewsComponent'
 import EditNewsComponent from "./components/Admin/EditNAS/EditNewsComponent";
@@ -113,6 +114,11 @@ const router = new VueRouter({
             path: '/admin/teacher', 
             name: 'teacher', 
             component: TeacherComponent
+        },
+        {
+            path: '/admin/teacher/:id/', 
+            name: 'edit-teacher', 
+            component: EditTeachersComponent
         },
         {
             path: '/admin/profile/:id', 

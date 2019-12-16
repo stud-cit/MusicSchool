@@ -10,8 +10,8 @@
             <div class="row">
                     <div class="form-group row">
                         <label for="newsName" class="col-sm-2 col-form-label">Назва новини</label>
-                        <div class="col-sm-5">
-                        <input type="text" name="newsName" class="form-control" v-model="nas_name" id="newsName"
+                        <div class="col-sm-6">
+                        <input type="text" name="newsName" class="form-control" v-model="title" id="newsName"
                                v-validate="{ required: true }"
                                data-vv-as="Назва новини">
                         <span class="errors text-danger" v-if="errors.has('newsName')">
@@ -23,7 +23,7 @@
                     <div class="form-group row">
                     <label for="newsInfo" class="col-sm-2 col-form-label">Опис новини</label>
                     <div class="col-sm-6">
-                        <textarea name="newsInfo" class="form-control" cols="15" rows="6" v-model="nas_info" id="newsInfo"
+                        <textarea name="newsInfo" class="form-control" cols="15" rows="6" v-model="text" id="newsInfo"
                                v-validate="{ required: true}"
                                data-vv-as="Опис новини">
                         </textarea>
@@ -35,7 +35,7 @@
 
                     <div class="form-group row">
                     <label for="newsImage" class="col-sm-2 col-form-label">Зображення для новини</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-6">
                             <label class="custom-file w-100">
                                 <input type="file" name="newsImage" v-validate="'image'" class="custom-file-input col-6"
                                     id="newsImage" ref="newsImage" @change="fieldChange" accept="image/*" multiple>
@@ -80,12 +80,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(item, index) in news" :key="item.nas_id">
+				<tr v-for="(item, index) in news" :key="item.id">
 					<th scope="row">{{ index + 1 }}</th>
-					<td>{{ item.nas_name }}</td>
+					<td>{{ item.title }}</td>
 					<td>{{ item.date }}</td>
-					<td><a style="color:#000" :href="'/admin/news/'+item.nas_id"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></a></td>
-					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteNews(index, item.nas_id)"></i></td>
+					<td><a style="color:#000" :href="'/admin/news/'+item.id"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></a></td>
+					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteNews(index, item.id)"></i></td>
 				</tr>
 			</tbody>
 		</table>
@@ -103,8 +103,8 @@
 		data() {
 			return {
 				showForm: false,
-                nas_name: '',
-				nas_info: '',
+                title: '',
+				text: '',
                 date: '',
 				file: [],
                 news: [],
@@ -122,6 +122,7 @@
 			};
 		},
 		created() {
+            document.title = "Новини";
 			this.getNewsList();
 		},
 		methods: {
@@ -149,8 +150,8 @@
 								form.append('file[]', this.file[i]);
 							}
                         }
-						form.append('nas_name', this.nas_name);
-						form.append('nas_info', this.nas_info);
+						form.append('title', this.title);
+						form.append('text', this.text);
 						form.append('date', this.date);
 						axios.post('/api/news', form)
 							.then((res) => {

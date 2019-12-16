@@ -6,7 +6,7 @@
                 <div class="content-layout"></div>
                 <b-container>
                     <ul class="instrument-list">
-                        <li class="list-item" v-for="item of paginateArray">
+                        <li class="list-item" v-for="item of paginateArray" :key="item.teachers_id">
                             <div class="description">
                                 <h3 class="item-title">{{item.name_instruments}} </h3>
                                 <p class="text">{{item.instruments_info}} </p>
@@ -18,7 +18,7 @@
 
                 </b-container>
             </div>
-            <paginate :items="instrument" perPage="3" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
+            <paginate :items="instrument" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
         </section>
 
     </div>
@@ -43,10 +43,9 @@
         },
 	    methods: {
 		    getInstrumentId() {
-			    axios.get('/api/front-instruments/'+this.$route.params.id)
+			    axios.get('/api/instrument/department/'+this.$route.params.id)
 				    .then((response) => {
-					    this.instrument = response.data
-					    console.log(this.instrument)
+					    this.instrument = response.data;
 				    })
 		    },
 	    },

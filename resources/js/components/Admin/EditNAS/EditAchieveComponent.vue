@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="form-group row">
                     <label for="achieveName" class="col-sm-2 col-form-label">Назва досягнення</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-6">
                         <input type="text" name="achieveName" class="form-control" v-model="achieve.title" id="achieveName"
                                v-validate="{ required: true }"
                                data-vv-as="Назва досягнення">
@@ -84,6 +84,7 @@
 			}
 		},
 		created() {
+            document.title = "Досягнення";
 			this.getAchieveList();
 		},
 		methods: {
@@ -110,7 +111,7 @@
 				form.append('text', this.achieve.text);
                 form.append('date', this.achieve.date);
                 form.append('photo', this.$refs.achieveImage.files[0]);
-				axios.post('/api/update-achieve/'+this.$route.params.id, form)
+				axios.post('/api/achieve/'+this.$route.params.id, form)
 					.then((response) => {
                         swal("Інформацію успішно збережено", {
                             icon: "success",

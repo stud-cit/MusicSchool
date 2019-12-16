@@ -8,7 +8,7 @@
                 <div class="form-group row mt-1">
                     <label for="storyName" class="col-sm-2 col-form-label">Назва історії</label>
                     <div class="col-sm-6">
-                        <input type="text" name="storyName" class="form-control" v-model="story.nas_name" id="storyName"
+                        <input type="text" name="storyName" class="form-control" v-model="story.title" id="storyName"
                                v-validate="{ required: true }"
                                data-vv-as="Назва історії">
                         <span class="errors text-danger" v-if="errors.has('storyName')">
@@ -20,7 +20,7 @@
                 <div class="form-group row">
                     <label for="storyInfo" class="col-sm-2 col-form-label">Опис історії</label>
                     <div class="col-sm-6">
-                        <textarea name="storyInfo" class="form-control" cols="15" rows="6" v-model="story.nas_info" id="storyInfo"
+                        <textarea name="storyInfo" class="form-control" cols="15" rows="6" v-model="story.text" id="storyInfo"
                                   v-validate="{ required: true}"
                                   data-vv-as="Опис історії">
                         </textarea>
@@ -51,10 +51,10 @@
                     <silentbox-group class="col-3 foto" v-for="(item, index) in story.images" :key="item.images_id">
                         <div class="border fotoGallery">
                             <i class="fa fa-times-circle btn btn-default p-0" @click="delStoryImage(item.images_id, index)"></i>
-                            <silentbox-item :src="'/user-file/story/'+$route.params.id+'/'+item.file" class="foto">
-                                <img :src="'/user-file/story/'+$route.params.id+'/'+item.file">
+                            <silentbox-item :src="item.file" class="foto">
+                                <img :src="item.file">
                             </silentbox-item>
-                            <a :href="'/user-file/story/'+$route.params.id+'/'+item.file" download><i class="fa fa-download"></i></a>
+                            <a :href="item.file" download><i class="fa fa-download"></i></a>
                         </div>
                     </silentbox-group>
                 </div>
@@ -88,6 +88,7 @@
 			};
 		},
 		created() {
+            document.title = "Історії";
 			this.getStoryList();
 		},
 
@@ -118,10 +119,10 @@
 						form.append('file[]', this.file[i]);
 					}
 				}
-				form.append('nas_name', this.story.nas_name);
-				form.append('nas_info', this.story.nas_info);
+				form.append('title', this.story.title);
+				form.append('text', this.story.text);
 				form.append('date', this.story.date.getFullYear());
-				axios.post('/api/update-story/'+this.$route.params.id, form)
+				axios.post('/api/story/'+this.$route.params.id, form)
 					.then((response) => {
 						this.file = [];
                         this.story.images = this.story.images.concat(response.data);
@@ -135,7 +136,7 @@
 			},
 			delStoryImage(id, index) {
 				if(id) {
-					axios.post('/delete-story-images/' + id)
+					axios.delete('/api/story-images/' + id)
 						.then(() => {
 							this.file.splice(index, 1);
 							swal("Зображення успішно видалено", {

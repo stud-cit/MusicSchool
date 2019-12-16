@@ -20,21 +20,19 @@
                         >
                             <b-carousel-slide
                                 class="news-item-img"
-                                v-for="(i, index) in data.images"
-                                :img-src="'/user-file/achieve/'+$route.params.id+'/'+i.file"
-                                :key="index"
+                                :img-src="data.photo"
                             ></b-carousel-slide>
 
                         </b-carousel>
                         <div class="news-item-description">
                             <div class="news-item-heading">
-                                <h3 class="news-item-title"> {{ data.nas_name }}</h3>
+                                <h3 class="news-item-title"> {{ data.title }}</h3>
                                 <h3 class="news-item-date"> {{ data.date }}</h3>
                             </div>
 
                             <hr class="news-item-line">
                             <div class="news-item-text">
-                                <p>{{ data.nas_info }}</p>
+                                <p>{{ data.text }}</p>
                             </div>
                         </div>
 

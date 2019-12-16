@@ -3,6 +3,7 @@
         <form enctype="multipart/form-data">
             <div class="row">
                 <div class="col-5">
+                    <h3>Інформація про вступ</h3>
                     <hr>
                     <label for="bg" class="brtop">Фон сторінки вступу</label>
                     <div class="row">
@@ -13,7 +14,7 @@
                             </label>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('bg')" class="btn btn-outline-secondary edit w-100" @click='editFile("intro", "bg", "site-files")'>Зберегти</button>
+                            <button type="button" :disabled="errors.has('bg')" class="btn btn-outline-secondary edit w-100 px-0" @click='editFile("intro", "bg", "site-files")'>Зберегти</button>
                         </div>
                         <p class="text-danger col-9" v-if="errors.has('bg')">Файл повинен бути зображенням</p>
                     </div>
@@ -28,7 +29,7 @@
                             </label>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('photo')" class="btn btn-outline-secondary edit w-100" @click='editFile("intro", "photo", "site-files")'>Зберегти</button>
+                            <button type="button" :disabled="errors.has('photo')" class="btn btn-outline-secondary edit w-100 px-0" @click='editFile("intro", "photo", "site-files")'>Зберегти</button>
                         </div>
                         <p class="text-danger col-9" v-if="errors.has('photo')">Файл повинен бути зображенням</p>
                     </div>
@@ -105,6 +106,7 @@ export default {
         };
     },
 	created () {
+        document.title = "Вступ";
 		this.getIntro();
 	},
     methods: {
@@ -178,4 +180,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+    button {
+        overflow:hidden;
+    }
+</style>

@@ -6,13 +6,13 @@
         <section class="history-section mt-50">
             <b-container class="history-list">
 
-                <b-row class="list-item d-flex" v-for="item in paginateArray" :key="item.nas_id">
+                <b-row class="list-item d-flex" v-for="item in paginateArray" :key="item.id">
                     <b-col cols="12" xl="4" class="item-title-block">
                         <p class="year">{{item.date}}</p>
-                        <p class="title">{{item.nas_name}}</p>
+                        <p class="title">{{item.title}}</p>
                     </b-col>
                     <b-col cols="12" xl="8" class="content-block" v-if="item.images.length">
-                        <b-carousel id="carousel-fade" fade indicators v-for="photo in item.images" :key="photo.id">
+                        <b-carousel id="carousel-fade" fade indicators v-for="photo in item.images" :key="photo.images_id">
                             <b-carousel-slide
                                     caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry
                                 Lorem Ipsum is simply dummy text of the printing orem Ipsum is simply dummy"
@@ -54,6 +54,7 @@
             getData() {
                 axios.get('/api/story')
                     .then((response) => {
+                        console.log(response.data)
                         this.data = response.data;
                     })
             },

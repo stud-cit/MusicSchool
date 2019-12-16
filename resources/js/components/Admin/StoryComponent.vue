@@ -11,7 +11,7 @@
                 <div class="form-group row">
                     <label for="storyName" class="col-sm-2 col-form-label">Назва історії</label>
                     <div class="col-sm-6">
-                        <input type="text" name="storyName" class="form-control" v-model="nas_name" id="storyName"
+                        <input type="text" name="storyName" class="form-control" v-model="title" id="storyName"
                                v-validate="{ required: true }"
                                data-vv-as="Назва історії">
                         <span class="errors text-danger" v-if="errors.has('storyName')">
@@ -23,7 +23,7 @@
                 <div class="form-group row">
                     <label for="storyInfo" class="col-sm-2 col-form-label">Опис історії</label>
                     <div class="col-sm-6">
-                        <textarea name="storyInfo" class="form-control" cols="15" rows="6" v-model="nas_info" id="storyInfo"
+                        <textarea name="storyInfo" class="form-control" cols="15" rows="6" v-model="text" id="storyInfo"
                                   v-validate="{ required: true}"
                                   data-vv-as="Опис історії">
                         </textarea>
@@ -72,12 +72,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(item, index) in story" :key="item.nas_id">
+				<tr v-for="(item, index) in story" :key="item.id">
 					<th scope="row">{{ index + 1 }}</th>
-					<td>{{ item.nas_name }}</td>
+					<td>{{ item.title }}</td>
 					<td>{{ item.date }}</td>
-					<td><a style="color:#000" :href="'/admin/story/'+item.nas_id"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></a></td>
-					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteStory(item.nas_id, index)"></i></td>
+					<td><a style="color:#000" :href="'/admin/story/'+item.id"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></a></td>
+					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteStory(item.id, index)"></i></td>
 				</tr>
 			</tbody>
 		</table>
@@ -95,14 +95,15 @@ export default {
 	data() {
 		return {
 			showForm: false,
-			nas_name: '',
-			nas_info: '',
+			title: '',
+			text: '',
 			date: '',
 			file: [],
             story: []
 		};
 	},
 	created() {
+        document.title = "Історії";
 		this.getStoryList();
 	},
 	methods: {
@@ -130,8 +131,8 @@ export default {
 							form.append('file[]', this.file[i]);
 						}
 					}
-					form.append('nas_name', this.nas_name);
-					form.append('nas_info', this.nas_info);
+					form.append('title', this.title);
+					form.append('text', this.text);
 					form.append('date', this.date.getFullYear());
 					axios.post('/api/story', form)
 						.then((res) => {
