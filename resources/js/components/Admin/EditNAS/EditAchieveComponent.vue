@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="form-group row">
                     <label for="achieveName" class="col-sm-2 col-form-label">Назва досягнення</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-6">
                         <input type="text" name="achieveName" class="form-control" v-model="achieve.title" id="achieveName"
                                v-validate="{ required: true }"
                                data-vv-as="Назва досягнення">

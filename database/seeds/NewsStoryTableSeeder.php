@@ -20,7 +20,7 @@ class NewsStoryTableSeeder extends Seeder
         DB::table('news_story')->insert([
             'title' => 'Новий відділ',
             'text' => 'Інформація про історію',
-            'date' => '1999-07-11',
+            'date' => '2019',
             'type' => 'story',
         ]);
     }

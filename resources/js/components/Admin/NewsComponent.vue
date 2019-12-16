@@ -10,7 +10,7 @@
             <div class="row">
                     <div class="form-group row">
                         <label for="newsName" class="col-sm-2 col-form-label">Назва новини</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-6">
                         <input type="text" name="newsName" class="form-control" v-model="title" id="newsName"
                                v-validate="{ required: true }"
                                data-vv-as="Назва новини">
@@ -35,7 +35,7 @@
 
                     <div class="form-group row">
                     <label for="newsImage" class="col-sm-2 col-form-label">Зображення для новини</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-6">
                             <label class="custom-file w-100">
                                 <input type="file" name="newsImage" v-validate="'image'" class="custom-file-input col-6"
                                     id="newsImage" ref="newsImage" @change="fieldChange" accept="image/*" multiple>
