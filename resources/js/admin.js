@@ -13,6 +13,7 @@ import DepartmentComponent from './components/Admin/DepartmentComponent'
 import GalleryComponent from './components/Admin/GalleryComponent'
 import InfoComponent from './components/Admin/InfoComponent'
 import InstrumentComponent from './components/Admin/InstrumentComponent'
+import EditInstrumentsComponent from './components/Admin/EditInstrumentsComponent'
 import IntroComponent from './components/Admin/IntroComponent'
 import NewsComponent from './components/Admin/NewsComponent'
 import EditNewsComponent from "./components/Admin/EditNAS/EditNewsComponent";
@@ -67,6 +68,11 @@ const router = new VueRouter({
             path: '/admin/instrument', 
             name: 'instrument', 
             component: InstrumentComponent
+        },
+        {
+            path: '/admin/instruments/:id/',
+            name: 'edit-instruments',
+            component: EditInstrumentsComponent
         },
         {
             path: '/admin/intro', 

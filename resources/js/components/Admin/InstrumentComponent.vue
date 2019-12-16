@@ -33,9 +33,10 @@
                 </div>
                 <div class="col-5 ml-5">
                     <div>
-                        <label for="name_department" class="brtop">Відділ</label>
-                        <select class="form-control" style="width: 80%" v-model="department.name_department" id="name_department">
-                            <option v-for="option in department" :key="option.departments_id">
+                        <label for="departments_id" class="brtop">Назва відділу</label>
+                        <select class="form-control" style="width: 80%" v-model="department.departments_id" id="departments_id" name="departments_id"
+                                v-validate="{ required: true }">
+                            <option v-for="option in department" :key="option.departments_id" :value="option.departments_id">
                                 {{ option.name_department }}
                             </option>
                         </select>
@@ -73,16 +74,13 @@
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.name_instruments }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.department.name_department }}</td>
-				<td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
+				<td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">
 					<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
 					<img v-else id="item-image" :src="'../img/user.png'" class="preview_img figure-img img-fluid">
 				</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.instruments_info }}</td>
-                <td id="edit-save-td">
-                    <i v-if="editBtn!== item.instruments_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.instruments_id, $event)"></i>
-                    <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.instruments_id, $event)"></i>
-                </td>
-                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="postInstruments(item.instruments_id, index)"></i></td>
+                <td><router-link style="color:#000" :to="{ name: 'edit-instruments', params: {id: item.instruments_id} }"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></router-link></td>
+                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteInstruments(item.instruments_id, index)"></i></td>
             </tr>
             </tbody>
         </table>
@@ -108,71 +106,6 @@ export default {
             this.getDepartments();
 		},
 		methods: {
-			getFileName(evt, index) {
-				var tr = document.querySelectorAll('tr')[index + 1]
-				var file = evt.target.files;
-				var reader = new FileReader();
-				reader.onload = (function(theFile) {
-					return function(e) {
-						tr.querySelector('#photo').setAttribute('src', e.target.result);
-					};
-				})(file[0]);
-				reader.readAsDataURL(file[0]);
-
-				evt.target.parentNode.querySelector('#span_id').innerHTML = `<br>`;
-				evt.target.parentNode.querySelector('#up_icon').innerHTML = `<br>`;
-
-			},
-			edit(id, event){
-				this.editBtn = id;
-				event.preventDefault();
-				var name_instruments_input = document.createElement('input');
-				var instruments_info_input = document.createElement('input');
-
-				var name_instruments_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
-				var instruments_info_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
-
-				name_instruments_input.setAttribute('value', name_instruments_td.innerHTML);
-				name_instruments_input.setAttribute('type', 'text');
-				name_instruments_td.innerHTML = '';
-				name_instruments_td.append(name_department_input);
-
-				instruments_info_input.setAttribute('value', instruments_info_td.innerHTML);
-				instruments_info_input.setAttribute('type', 'text');
-				instruments_info_td.innerHTML = '';
-				instruments_info_td.append(instruments_info_input);
-			},
-
-			save(id, event) {
-				this.editBtn = 0;
-				event.preventDefault();
-				var name_instruments_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
-				var instruments_info_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
-
-				var parse_name_instruments = name_instruments_td;
-				var parse_instruments_info = instruments_info_td;
-
-				this.table_form.append('name_instruments', parse_name_instruments);
-				this.table_form.append('instruments_info', parse_instruments_info);
-
-				axios.post('/update-instrument/' + id, this.table_form)
-					.then((response) => {
-						this.departments = [];
-						this.getInstruments();
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
-					})
-					.catch((error) => {
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "Назва відділу, Інформація про відділ" повинні бути заповнені'
-						});
-					});
-			},
 			getDepartments () {
 				axios.get('/api/department')
 					.then((response) => {
@@ -191,11 +124,16 @@ export default {
 					if (!result) {
 						return;
 					} else {
-						this.form.append('name_instrument', this.name_instrument);
-						this.form.append('instruments_info', this.instrument_info);
-						this.form.append('name_department', this.department.name_id);
+						const selects = document.querySelectorAll('select');
+						const valOptions = [];
+						for (let index = 0; index < selects.length; index++) {
+							valOptions.push(" "+selects[index].value);
+						}
+						this.form.append('name_instruments', this.name_instruments);
+						this.form.append('instruments_info', this.instruments_info);
+						this.form.append('departments_id', valOptions);
 						this.form.append('photo', this.$refs.file.files[0]);
-						axios.post('/post-instrument', this.form)
+						axios.post('/api/post-instrument', this.form)
 							.then((response) => {
 								this.instruments = [];
                                 this.getInstruments();
@@ -225,7 +163,7 @@ export default {
 				})
 					.then((willDelete) => {
 						if (willDelete) {
-							axios.post('/delete-instrument/' + id)
+							axios.post('/api/delete-instrument/' + id)
 								.then((response) => {
 									if (response.status == 200) {
 										this.instruments.splice(index, 1);

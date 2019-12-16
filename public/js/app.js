@@ -3044,7 +3044,7 @@ __webpack_require__.r(__webpack_exports__);
     getInstrumentId: function getInstrumentId() {
       var _this = this;
 
-      axios.get('/api/instruments/' + this.$route.params.id).then(function (response) {
+      axios.get('/api/front-instruments/' + this.$route.params.id).then(function (response) {
         _this.instrument = response.data;
         console.log(_this.instrument);
       });
@@ -36697,7 +36697,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".instruments-section .content-block[data-v-0e6ecf1e] {\n  position: relative;\n}\n.instruments-section .content-block .content-layout[data-v-0e6ecf1e] {\n  position: absolute;\n  width: 50%;\n  left: 0;\n  top: 200px;\n  height: calc(100% - 400px);\n  background-image: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\n  z-index: -1;\n}\n.instruments-section .content-block .instrument-list[data-v-0e6ecf1e] {\n  z-index: 5;\n  list-style: none;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.instruments-section .content-block .instrument-list .list-item[data-v-0e6ecf1e] {\n  padding-left: 280px;\n  position: relative;\n  display: block;\n  margin-bottom: 40px;\n}\n.instruments-section .content-block .instrument-list .list-item .description[data-v-0e6ecf1e] {\n  position: absolute;\n  right: 40%;\n  top: 50%;\n  transform: translateY(-50%);\n  box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.16);\n  background-color: #ffffff;\n  padding: 35px 50px;\n}\n.instruments-section .content-block .instrument-list .list-item[data-v-0e6ecf1e]:last-of-type {\n  margin-bottom: 0;\n}", ""]);
+exports.push([module.i, ".instruments-section .content-block[data-v-0e6ecf1e] {\n  position: relative;\n}\n.instruments-section .content-block .content-layout[data-v-0e6ecf1e] {\n  position: absolute;\n  width: 66%;\n  left: 0;\n  top: 200px;\n  height: calc(100% - 400px);\n  background-image: linear-gradient(180deg, #e91b47 0%, #6a0017 100%);\n  z-index: -1;\n}\n.instruments-section .content-block .instrument-list[data-v-0e6ecf1e] {\n  z-index: 5;\n  padding-left: 0;\n  list-style: none;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.instruments-section .content-block .instrument-list .list-item[data-v-0e6ecf1e] {\n  padding-left: 20%;\n  position: relative;\n  display: block;\n  margin-bottom: 40px;\n}\n.instruments-section .content-block .instrument-list .list-item .description[data-v-0e6ecf1e] {\n  position: absolute;\n  left: 0%;\n  top: 50%;\n  transform: translateY(-50%);\n  box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.16);\n  background-color: #ffffff;\n  padding: 35px 50px;\n  max-width: 580px;\n  min-width: 180px;\n}\n.instruments-section .content-block .instrument-list .list-item .description .item-title[data-v-0e6ecf1e] {\n  color: #2b2b2b;\n  font-family: Montserrat;\n  font-size: 32px;\n  font-weight: 700;\n  margin-bottom: 40px;\n  text-transform: uppercase;\n}\n.instruments-section .content-block .instrument-list .list-item .description p[data-v-0e6ecf1e] {\n  color: rgba(0, 0, 0, 0.75);\n  font-family: Montserrat;\n  font-size: 16px;\n  font-weight: 400;\n  line-height: 1.5;\n}\n.instruments-section .content-block .instrument-list .list-item[data-v-0e6ecf1e]:last-of-type {\n  margin-bottom: 0;\n}\n@media (max-width: 1199px) {\n.instruments-section .content-block .content-layout[data-v-0e6ecf1e] {\n    top: 50px;\n    height: calc(100% - 100px);\n}\n.instruments-section .content-block .instrument-list[data-v-0e6ecf1e] {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n.instruments-section .content-block .instrument-list .list-item[data-v-0e6ecf1e] {\n    padding-left: 0;\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    margin-bottom: 30px;\n}\n.instruments-section .content-block .instrument-list .list-item .description[data-v-0e6ecf1e] {\n    position: static;\n    right: 0;\n    top: 0;\n    transform: translateY(0);\n    max-width: 100%;\n}\n.instruments-section .content-block .instrument-list .list-item .description .item-title[data-v-0e6ecf1e] {\n    margin-bottom: 30px;\n}\n}\n@media (max-width: 575px) {\n.instruments-section .content-block .instrument-list .list-item .description[data-v-0e6ecf1e] {\n    padding: 20px 25px;\n}\n.instruments-section .content-block .instrument-list .list-item .description .item-title[data-v-0e6ecf1e] {\n    text-align: center;\n    margin-bottom: 25px;\n}\n}", ""]);
 
 // exports
 
@@ -71720,7 +71720,7 @@ var render = function() {
                     return _c("li", { staticClass: "list-item" }, [
                       _c("div", { staticClass: "description" }, [
                         _c("h3", { staticClass: "item-title" }, [
-                          _c("b", [_vm._v(_vm._s(item.name_instruments))])
+                          _vm._v(_vm._s(item.name_instruments) + " ")
                         ]),
                         _vm._v(" "),
                         _c("p", { staticClass: "text" }, [
