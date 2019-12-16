@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $table = 'users';
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'users_id';
 
     /**
      * The attributes that are mass assignable.
@@ -31,5 +31,5 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $guarded = ['user_id'];
+    protected $guarded = ['users_id'];
 }

@@ -4,7 +4,9 @@
 <div class="container">
     <form class="form-signin text-center" method="POST" action="{{ route('login') }}">
         @csrf
+        <router-link to="/">
         <img class="mb-4" src="img/logo.png">
+        </router-link>
         <h1 class="h3 mb-3 font-weight-normal">Будь ласка, увійдіть</h1>
 
         <label for="email" class="sr-only">{{ __('Email адреса') }}</label>

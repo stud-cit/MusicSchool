@@ -71,25 +71,30 @@ export default {
             axios.get(`/user/${this.$route.params.id}`)
             .then((response) => {
                 this.data = response.data;
-                console.log(response.data)
             })
         },
-        save() {
-            this.data.password = this.newPassword;
-            axios.post(`/user/${this.$route.params.id}`, this.data)
-            .then(() => {
-                swal("Дані збережено", {
-                    icon: "success",
-                });
-                this.editPassword = false;
-            }).catch(() => {
-                swal({
-                    icon: "error",
-                    title: 'Помилка',
-                    text: 'Не вдалося'
-                });
-            })
-        },
+	    save() {
+		    var form = new FormData;
+		    this.data.password = this.newPassword;
+		    form.append('data', JSON.stringify(this.data));
+		    axios.post(`/user/${this.$route.params.id}`, form, {
+			    headers: {
+				    'Content-Type': 'multipart/form-data'
+			    }
+		    })
+			    .then(() => {
+				    swal("Дані збережено", {
+					    icon: "success",
+				    });
+				    this.editPassword = false;
+			    }).catch(() => {
+			    swal({
+				    icon: "error",
+				    title: 'Помилка',
+				    text: 'Не вдалося'
+			    });
+		    })
+	    },
         editPass() {
             this.editPassword = !this.editPassword;
         }
