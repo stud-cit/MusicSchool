@@ -86,7 +86,7 @@ class DepartmentController extends Controller
         $teachers->teacher_name = $request->teacher_name;
         $teachers->teacher_info = $request->teacher_info;
         $teachers->departments_id = $request->departments_id;
-        if($request->file('photo') || $teachers->photo == $this->defaultPhoto) {
+        if($request->hasFile('photo')) {
             $name = time() . '-' . $request->file('photo')->getClientOriginalName();
             $request->file('photo')->move(public_path() . $this->publicStorageTeachers, $name);
             $teachers->photo = $this->publicStorageTeachers . $name;

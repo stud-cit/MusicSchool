@@ -25,7 +25,7 @@ class CreateTeachersTable extends Migration
             $table->string('teacher_surname');
             $table->string('teacher_name');
             $table->string('teacher_info');
-            $table->string('photo', 50);
+            $table->string('photo');
             $table->timestamps();
         });
 
