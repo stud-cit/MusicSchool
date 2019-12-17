@@ -152,7 +152,7 @@ export default {
 						this.form.append('instruments_info', this.instruments_info);
 						this.form.append('departments_id', valOptions);
 						this.form.append('photo', this.$refs.instrumentImage.files[0]);
-						axios.post('/api/post-instrument', this.form)
+						axios.post('/api/instrument', this.form)
 							.then((response) => {
 								this.instruments.push(response.data);
                                 swal("Інформація оновлена", {
