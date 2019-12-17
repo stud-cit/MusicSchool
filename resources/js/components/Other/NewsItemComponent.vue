@@ -18,7 +18,13 @@
                             img-width="1024"
                             img-height="450"
                             >
+                            <img
+                                v-if="data.images"
+                                class="news-item-img"
+                                src="/img/empty.png"
+                            />
                             <b-carousel-slide
+                                v-else
                                 class="news-item-img"
                                 v-for="(i, index) in data.images"
                                 :key="index"
@@ -51,7 +57,7 @@
         name: "NewsItemComponent",
         data() {
             return {
-                data: []
+                data: [],
             }
         },
         created() {
@@ -62,6 +68,7 @@
                 axios.get('/api/news/'+this.$route.params.id)
                     .then((response) => {
                         this.data = response.data;
+                        this.data.date = this.data.date.split('-').reverse().join('.')
                     })
             },
         }

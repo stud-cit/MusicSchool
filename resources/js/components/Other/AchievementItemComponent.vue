@@ -10,20 +10,7 @@
 
                 <div class="news-item">
                     <div class="news-item-container">
-                        <b-carousel
-                            id="carousel-fade"
-                            :interval="4000"
-                            indicators
-                            fade
-                            img-width="1024"
-                            img-height="450"
-                        >
-                            <b-carousel-slide
-                                class="news-item-img"
-                                :img-src="data.photo"
-                            ></b-carousel-slide>
-
-                        </b-carousel>
+                        <img :src="data.photo" alt="" class="news-item-img">
                         <div class="news-item-description">
                             <div class="news-item-heading">
                                 <h3 class="news-item-title"> {{ data.title }}</h3>
