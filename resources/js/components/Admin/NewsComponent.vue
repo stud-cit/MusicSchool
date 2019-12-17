@@ -52,14 +52,20 @@
 
                     <div class="form-group row">
                         <label for="achieveDate" class="col-sm-2 col-form-label">Дата оприлюднення</label>
-                        <div class="input-row">
+                        <div class="col-sm-6">
                             <div class="input-container">
                                 <date-picker 
                                     v-model="date" 
+                                    name="newsDate"
                                     value-type="YYYY-MM-DD"
                                     :lang="datepicker.lang"
                                     :editable="false"
-                                ></date-picker>
+                                     v-validate="{ required: true }"
+                                    data-vv-as="Дата оприлюднення"
+                                ></date-picker><br>
+                            <span class="text-danger errors" v-if="errors.has('newsDate')">
+                                    {{ errors.first('newsDate') }}
+                            </span>                               
                                 <input style="display:none" type="text" name="date" v-model="date" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                             </div>
                         </div>

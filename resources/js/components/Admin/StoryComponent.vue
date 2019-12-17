@@ -53,10 +53,15 @@
                 <div class="form-group row">
                     <label for="storyDate" class="col-sm-2 col-form-label">Рік</label>
                     <div class="col-sm-4">
-                        <date-picker v-model="date" :editable="false" type="year"></date-picker>
+                        <date-picker v-model="date" id="storyDate" name="storyDate" :editable="false" type="year" 
+                            v-validate="{ required: true }"
+                               data-vv-as="Рік"></date-picker><br>
+
+                        <span class="text-danger errors" v-if="errors.has('storyDate')">
+                                {{ errors.first('storyDate') }}
+                        </span>
                     </div>
                 </div>
-
                 <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="postStory">Зберегти</button>
             </div>
         </form>
