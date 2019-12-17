@@ -40,6 +40,9 @@
                             <span class="custom-file-control">Файл не обрано</span>
                         </label>
                         <img v-if="!errors.has('achieveImage')" class="mt-3 w-50" :src="image">
+                        <span class="text-danger"
+                                v-if="errors.has('achieveImage')">Файл повинен бути зображенням
+                        </span>
                     </div>
                 </div>
 

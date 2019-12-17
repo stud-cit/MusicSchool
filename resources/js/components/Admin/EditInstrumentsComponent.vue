@@ -52,6 +52,9 @@
 							<span class="custom-file-control">Файл не обрано</span>
 						</label>
 						<img v-if="!errors.has('instrumentImage')" class="mt-3 w-50" :src="instrument.photo">
+                        <span class="text-danger"
+                            v-if="errors.has('instrumentImage')">Файл повинен бути зображенням
+                        </span>
                     </div>
                 </div>
 
