@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header__inner">
-      <img src="/img/introduction/intro-header.png" alt="repetition" />
+      <img :src="bg" alt="repetition" />
     </div>
     <div class="header_gradient">
       <b-container>
@@ -41,7 +41,7 @@
 <script>
 export default {
   name: "HeaderComponent",
-  props: ['blockOne', 'blockTwo', 'blockThree'],
+  props: ['blockOne', 'blockTwo', 'blockThree', 'bg'],
   data() {
     return {
       images: {

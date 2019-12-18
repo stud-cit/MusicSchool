@@ -22,10 +22,9 @@
                                 <b-nav-item href="/contacts">Контакти</b-nav-item>
                             </b-navbar-nav>
                             <b-nav-item-dropdown toggle-class="text-dark" text="Мова" right id="dropdown_style">
-                                <b-dropdown-item href="/teachers" id="loool">EN</b-dropdown-item>
-                                <b-dropdown-item href="/instruments">UA</b-dropdown-item>
+                                <b-dropdown-item id="loool"><img src="site-files/lang/lang__uk.png" alt="uk" data-google-lang="uk" class="dropdown-item language__img"></b-dropdown-item>
+                                <b-dropdown-item><img src="site-files/lang/lang__en.png" alt="en" data-google-lang="en" class="dropdown-item language__img"></b-dropdown-item>
                             </b-nav-item-dropdown>
-
                         </b-navbar-nav>
                         
                     </b-collapse>
@@ -36,14 +35,27 @@
 </template>
 
 <script>
-
     export default {
         name: 'Header',
         data() {
-            return {}
+            return {
+	            translate: false,
+            }
+        },
+        created() {
+	        if(this.getCookie('googtrans') =='/uk/en'){
+		        this.translate = true;
+	        }
+        },
+        method: {
+	        getCookie(name) {
+		        var matches = document.cookie.match(new RegExp(
+			        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+		        ));
+		        return matches[1] ? decodeURIComponent(matches[1]) : undefined;
+	        }
         }
     }
-
 </script>
 
 <style>

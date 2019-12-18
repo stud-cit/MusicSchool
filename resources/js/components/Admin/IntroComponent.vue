@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" class="custom-file-input" id="bg" name="bg" ref="bg" @change="previewFiles($event, 'bg')" accept="image/*" v-validate="'image'" required>
+                                <input type="file" class="custom-file-input" id="bg" name="bg" ref="bg" @change="previewFiles($event, 'bg')" accept="image/*" v-validate="'image'">
                                 <span class="custom-file-control">Файл не обрано</span>
                             </label>
                         </div>
@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" class="custom-file-input" id="photo" name="photo" ref="photo" @change="previewFiles($event, 'photo')" accept="image/*" v-validate="'image'" required>
+                                <input type="file" class="custom-file-input" id="photo" name="photo" ref="photo" @change="previewFiles($event, 'photo')" accept="image/*" v-validate="'image'">
                                 <span class="custom-file-control">Файл не обрано</span>
                             </label>
                         </div>
@@ -165,6 +165,19 @@ export default {
 						    row: el,
 						    value: textElement.value
 					    })
+						    .then((response) => {
+							    swal("Інформація оновлена", {
+								    icon: "success",
+								    timer: 1000,
+								    button: false
+							    });
+						    })
+						    .catch((error) => {
+							    swal({
+								    icon: "error",
+								    title: 'Помилка',
+							    });
+						    });
 					    this.showButton = true;
 				    }
 			    }

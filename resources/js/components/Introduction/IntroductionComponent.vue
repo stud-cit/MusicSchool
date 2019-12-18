@@ -1,7 +1,7 @@
 <template>
   <div>
     <page-title title="про вступ" uptitle="інформація"></page-title>
-    <header-component :blockOne="intro.block1" :blockTwo="intro.block2" :blockThree="intro.block3"></header-component>
+    <header-component :bg="intro.bg" :blockOne="intro.block1" :blockTwo="intro.block2" :blockThree="intro.block3"></header-component>
     <main-component :intro="intro" :document="document" />
   </div>
 </template>
