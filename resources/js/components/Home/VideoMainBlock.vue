@@ -3,7 +3,7 @@
         <b-embed
                 type="iframe"
                 aspect="21by9"
-                src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+                :src="'https://www.youtube.com/embed/'+$props.video.slice($props.video.length - 11, $props.video.length)"
                 allowfullscreen
         ></b-embed>
         <b-container>
@@ -11,7 +11,9 @@
                 <b-col cols="12" sm="8" md="8" lg="6" xl="6">
                     <div class="btn_space">
                         <div class="btn">
-                            <ButtonInformation/>
+                            <router-link class="news-router" :to="{ name: 'gallery'}">
+                                <ButtonInformation/>
+                            </router-link>
                             <p id="text-style">Більше яскравих моментів</p>
                         </div>
                     </div>
@@ -27,6 +29,7 @@
 
     export default {
         name: "VideoMainBlock",
+        props: ['video'],
         components: {
             ButtonInformation
         },

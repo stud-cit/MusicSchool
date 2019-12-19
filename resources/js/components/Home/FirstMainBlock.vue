@@ -10,10 +10,7 @@
                         <div class="main_text">
                             <p class="text_style_mid">Вас запрошує до себе</p>
                             <p class="text_style_big"><small>Сумська</small><br> музича <br> школа №2</p>
-                            <p>Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                unknown printer</p>
+                            <p>{{ $props.info }}</p>
                         </div>
                     </b-col>
                     <b-col lg="6" md="auto" sm ="12">
@@ -31,7 +28,8 @@
 
 <script>
     export default {
-        name: "FirstMainBlock"
+        name: "FirstMainBlock",
+        props: ['info']
     }
 </script>
 

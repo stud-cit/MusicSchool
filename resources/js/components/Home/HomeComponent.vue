@@ -1,8 +1,8 @@
 <template>
     <div id="home">
-        <FirstMainBlock/>
-        <NewsMainBlock/>
-        <VideoMainBlock/>
+        <FirstMainBlock :info="info.info_school"/>
+        <NewsMainBlock :news="news"/>
+        <VideoMainBlock :video="info.video"/>
         <MapComponent/>
     </div>
 
@@ -27,7 +27,29 @@
           
         },
         data() {
-            return {}
+            return {
+                news: {
+                    title: '',
+                    text: '',
+                    images: []
+                },
+                info: {
+                    info_school: '',
+                    video: ''
+                }
+            }
+        },
+        created() {
+            this.getData();
+        },
+        methods: {
+            getData() {
+                axios.get('/api/main-info')
+                    .then((response) => {
+                        this.news = response.data.news;
+                        this.info = response.data.info;
+                    })
+            },
         }
     }
 
