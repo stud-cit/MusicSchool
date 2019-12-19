@@ -151,7 +151,12 @@
 					.then((res) => {
 						this.uploadPhotos = [];
                         this.load = false;
-                        this.file = this.file.concat(res.data);
+						this.file = this.file.concat(res.data);
+						swal("Інформація оновлена", {
+							icon: "success",
+							timer: 1000,
+							button: false
+						});
 					})
             },
             postVideo() {
@@ -160,7 +165,12 @@
                     type: 'video'
                 }).then((res) => {
 					this.uploadVideo = '';
-                    this.file.push(res.data);
+					this.file.push(res.data);
+					swal("Інформація оновлена", {
+						icon: "success",
+						timer: 1000,
+						button: false
+					});
                 }).catch(() => {
                     swal({
                         icon: "error",
