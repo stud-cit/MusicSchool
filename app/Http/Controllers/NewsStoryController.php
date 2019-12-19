@@ -36,12 +36,14 @@ class NewsStoryController extends Controller
         $this->validate($request, ['filenames.*' => 'mimes:jpeg']);
         if(isset($request->file)) {
             foreach ($request->file as $file) {
-                $images = new Images;
-                $name = time() . '-' . $file->getClientOriginalName();
-                $file->move(public_path().$this->publicStorageNews.$news->id, $name);
-                $images->id = $news->id;
-                $images->file = $this->publicStorageNews.$news->id.'/'.$name;
-                $images->save();
+                if(count($request->file) < 4) {
+                    $images = new Images;
+                    $name = time() . '-' . $file->getClientOriginalName();
+                    $file->move(public_path() . $this->publicStorageNews . $news->id, $name);
+                    $images->id = $news->id;
+                    $images->file = $this->publicStorageNews . $news->id . '/' . $name;
+                    $images->save();
+                }
             }
         }
         return response()->json($news);
@@ -53,15 +55,18 @@ class NewsStoryController extends Controller
         $news->text = $request->text;
         $news->date = $request->date;
         $arrImg = [];
+        $this->validate($request, ['filenames.*' => 'mimes:jpeg']);
         if(isset($request->file)) {
             foreach ($request->file as $file){
-                $images = new Images;
-                $name = time() . '-' . $file->getClientOriginalName();
-                $file->move(public_path().$this->publicStorageNews.$news->id, $name);
-                $images->id = $news->id;
-                $images->file = $this->publicStorageNews.$news->id.'/'.$name;
-                $images->save();
-                array_push($arrImg, $images);
+                if(count($request->file) < 4) {
+                    $images = new Images;
+                    $name = time() . '-' . $file->getClientOriginalName();
+                    $file->move(public_path() . $this->publicStorageNews . $news->id, $name);
+                    $images->id = $news->id;
+                    $images->file = $this->publicStorageNews . $news->id . '/' . $name;
+                    $images->save();
+                    array_push($arrImg, $images);
+                }
             }
         }
         $news->save();

@@ -43,10 +43,13 @@
                             </label>
                             <div v-for="(item, index) in file" :key="index">
                                 <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
-                                <span class="text-danger"
-                                    v-if="errors.has('newsImage')">Файл повинен бути зображенням
-                                </span>
                             </div>
+                            <span class="text-danger" v-if="errors.has('newsImage')">
+                                Файл повинен бути зображенням
+                            </span>
+                            <span class="text-danger" v-if="file.length > 3">
+                                Кількість фото може бути не більше трьох
+                            </span>
                         </div>
                     </div>
 
@@ -135,7 +138,7 @@
 			fieldChange(){
 				let changeFile = this.$refs.newsImage.files;
 				for(let i = 0; i < changeFile.length; i++) {
-					if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
+					if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png' && changeFile.length < 4) {
 						changeFile[i].valid = true;
 					} else {
 						changeFile[i].valid = false;

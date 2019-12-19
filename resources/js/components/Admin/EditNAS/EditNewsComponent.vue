@@ -40,10 +40,13 @@
                         </label>
                         <div v-for="(item, index) in file" :key="index">
                             <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name}} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
-                            <span class="text-danger"
-                                  v-if="errors.has('newsImage')">Файл повинен бути зображенням
-                            </span>
                         </div>
+                        <span class="text-danger" v-if="errors.has('newsImage')">
+                            Файл повинен бути зображенням
+                        </span>
+                        <span class="text-danger" v-if="file.length > 3">
+                                Кількість фото може бути не більше трьох
+                        </span>
                     </div>
                 </div>
 
@@ -74,7 +77,7 @@
                         </div>
                     </div>
 
-                <button type="button" class="btn btn-outline-secondary my-2 ml-4 w-25" @click="save">Зберегти</button>
+                <button type="button" id="overWritePhoto" class="btn btn-outline-secondary my-2 ml-4 w-25" @click="save">Зберегти</button>
             </div>
         </form>
     </div>
@@ -117,7 +120,8 @@
 				for(let i = 0; i < changeFile.length; i++) {
 					if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
 						changeFile[i].valid = true;
-					} else {
+					}
+					else {
 						changeFile[i].valid = false;
 					}
 					this.file.push(changeFile[i]);
@@ -131,23 +135,35 @@
                     })
             },
 			save() {
-                var form = new FormData;
-                for(let i = 0; i < this.file.length; i++){
-                    if(this.file[i].valid) {
-                        form.append('file[]', this.file[i]);
-                    }
-                }
-                form.append('title', this.news.title);
-                form.append('text', this.news.text);
-                form.append('date', this.news.date);
-				axios.post('/api/news/'+this.$route.params.id, form)
-                .then((response) => {
-                    this.file = [];
-                    this.news.images = this.news.images.concat(response.data);
-                    swal("Інформацію успішно збережено", {
-                        icon: "success",
-                    });
-                })
+				this.$validator.validateAll().then((result) => {
+					if (!result) {
+						return;
+					} else {
+						var form = new FormData;
+						for (let i = 0; i < this.file.length; i++) {
+							if (this.file[i].valid) {
+								form.append('file[]', this.file[i]);
+							}
+						}
+						form.append('title', this.news.title);
+						form.append('text', this.news.text);
+						form.append('date', this.news.date);
+							axios.post('/api/news/' + this.$route.params.id, form)
+								.then((response) => {
+									this.file = [];
+									this.news.images = this.news.images.concat(response.data);
+									swal("Інформацію успішно збережено", {
+										icon: "success",
+									});
+								})
+								.catch((error) => {
+									swal({
+										icon: "error",
+										title: 'Помилка',
+									});
+								});
+					}
+				});
 			},
 			delFile(index) {
 				this.file.splice(index, 1);
