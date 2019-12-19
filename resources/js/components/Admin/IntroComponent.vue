@@ -127,22 +127,23 @@ export default {
 		    this.form.append('type', type);
             this.form.append('bg', this.$refs[row].files[0]);
             this.form.append('photo', this.$refs[row].files[0]);
-
-		    axios.post('/post-intro-file', this.form)
-			    .then((response) => {
-				    swal("Інформація оновлена", {
-					    icon: "success",
-					    timer: 1000,
-					    button: false
-				    });
-			    })
-			    .catch((error) => {
-				    swal({
-					    icon: "error",
-					    title: 'Помилка',
-					    text: 'Файл не обрано'
-				    });
-			    });
+            if(this.$refs[row].files[0] !== undefined){
+                axios.post('/post-intro-file', this.form)
+                    .then((response) => {
+                        swal("Інформація оновлена", {
+                            icon: "success",
+                            timer: 1000,
+                            button: false
+                        });
+                    })
+            }
+            else {
+                swal({
+                    icon: "error",
+                    title: 'Помилка',
+                    text: 'Файл не обрано'
+                });
+            }
 	    },
 	    edit(event, table, el) {
 		    this.$validator.validateAll().then((result) => {
