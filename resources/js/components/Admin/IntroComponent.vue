@@ -40,9 +40,9 @@
                         <hr>
                         <div>
                             <label for="info" class="brtop">Загальна інформація</label>
-                            <textarea name="info" class="form-control" v-model="intro.info" id="info" rows="6" disabled
+                            <textarea name="info" class="form-control" v-model="intro.info" id="info" rows="6"
                                       v-validate="{ required: true}"
-                                      data-vv-as="Опис сайту"></textarea>
+                                      data-vv-as="Загальна інформація"></textarea>
                             <span class="errors text-danger" v-if="errors.has('info')">
                                 {{ errors.first('info') }}
                             </span>
@@ -51,7 +51,7 @@
                         <hr>
                         <div>
                             <label for="block1" class="brtop">Текст першого блоку</label>
-                            <textarea name="block1" class="form-control" v-model="intro.block1" id="block1" rows="4" disabled
+                            <textarea name="block1" class="form-control" v-model="intro.block1" id="block1" rows="4"
                                       v-validate="{ required: true}"
                                       data-vv-as="Текст першого блоку"></textarea>
                             <span class="errors text-danger" v-if="errors.has('block1')">
