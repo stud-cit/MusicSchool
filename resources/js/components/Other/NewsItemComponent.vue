@@ -11,20 +11,15 @@
                 <div class="news-item">
                     <div class="news-item-container">
                         <b-carousel
+                            v-if="data.images.length != 0"
                             id="carousel-fade"
                             :interval="4000"
                             indicators
                             fade
                             img-width="1024"
                             img-height="450"
-                            >
-                            <img
-                                v-if="data.images.length == 0"
-                                class="news-item-img"
-                                src="/img/empty.png"
-                            />
+                        >
                             <b-carousel-slide
-                                v-else
                                 class="news-item-img"
                                 v-for="(i, index) in data.images"
                                 :key="index"

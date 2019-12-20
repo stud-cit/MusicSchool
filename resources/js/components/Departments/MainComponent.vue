@@ -89,6 +89,7 @@ export default {
     getDepartment() {
       axios.get('/api/department')
               .then((response) => {
+                console.log(response.data)
                 this.department = response.data
               })
     },

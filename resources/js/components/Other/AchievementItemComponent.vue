@@ -10,7 +10,7 @@
 
                 <div class="news-item">
                     <div class="news-item-container">
-                        <img :src="data.photo" alt="" class="news-item-img">
+                        <img v-if="data.photo != '/img/empty.png'" :src="data.photo" alt="" class="news-item-img">
                         <div class="news-item-description">
                             <div class="news-item-heading">
                                 <h3 class="news-item-title"> {{ data.title }}</h3>
