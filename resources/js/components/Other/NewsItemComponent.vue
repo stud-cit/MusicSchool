@@ -19,7 +19,7 @@
                             img-height="450"
                             >
                             <img
-                                v-if="data.images"
+                                v-if="data.images.length == 0"
                                 class="news-item-img"
                                 src="/img/empty.png"
                             />
@@ -57,7 +57,12 @@
         name: "NewsItemComponent",
         data() {
             return {
-                data: [],
+                data: {
+                    title: '',
+                    text: '',
+                    date: '',
+                    images: []
+                },
             }
         },
         created() {
@@ -68,7 +73,8 @@
                 axios.get('/api/news/'+this.$route.params.id)
                     .then((response) => {
                         this.data = response.data;
-                        this.data.date = this.data.date.split('-').reverse().join('.')
+                        this.data.date = this.data.date.split('-').reverse().join('.');
+                        console.log(this.data)
                     })
             },
         }
