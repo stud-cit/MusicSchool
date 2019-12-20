@@ -44,9 +44,6 @@
                         <span class="text-danger" v-if="errors.has('newsImage')">
                             Файл повинен бути зображенням
                         </span>
-                        <span class="text-danger" v-if="file.length > 3">
-                                Кількість фото може бути не більше трьох
-                        </span>
                     </div>
                 </div>
 
@@ -141,6 +138,15 @@
 					} else {
 						var form = new FormData;
 						for (let i = 0; i < this.file.length; i++) {
+							if (this.file.length < 4){
+								this.file[i].valid = true;
+                            }
+							else {
+								swal({
+									icon: "error",
+									title: 'Кількість фото не може бути більше трьох',
+								});
+                            }
 							if (this.file[i].valid) {
 								form.append('file[]', this.file[i]);
 							}
@@ -150,11 +156,15 @@
 						form.append('date', this.news.date);
 							axios.post('/api/news/' + this.$route.params.id, form)
 								.then((response) => {
-									this.file = [];
 									this.news.images = this.news.images.concat(response.data);
-									swal("Інформацію успішно збережено", {
-										icon: "success",
-									});
+									if(this.file.length < 4) {
+										swal("Інформацію успішно збережено", {
+											icon: "success",
+											timer: 1000,
+											button: false
+										});
+										this.file = [];
+									}
 								})
 								.catch((error) => {
 									swal({

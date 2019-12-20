@@ -47,9 +47,6 @@
                             <span class="text-danger" v-if="errors.has('newsImage')">
                                 Файл повинен бути зображенням
                             </span>
-                            <span class="text-danger" v-if="file.length > 3">
-                                Кількість фото може бути не більше трьох
-                            </span>
                         </div>
                     </div>
 
@@ -138,7 +135,7 @@
 			fieldChange(){
 				let changeFile = this.$refs.newsImage.files;
 				for(let i = 0; i < changeFile.length; i++) {
-					if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png' && changeFile.length < 4) {
+					if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
 						changeFile[i].valid = true;
 					} else {
 						changeFile[i].valid = false;
@@ -153,8 +150,16 @@
 						return;
 					} else {
 						var form = new FormData;
-						this.load = true;
 						for(let i = 0; i < this.file.length; i++){
+							if (this.file.length < 4){
+								this.file[i].valid = true;
+							}
+							else {
+								swal({
+									icon: "error",
+									title: 'Кількість фото не може бути більше трьох',
+								});
+							}
 							if(this.file[i].valid) {
 								form.append('file[]', this.file[i]);
 							}
@@ -162,22 +167,24 @@
 						form.append('title', this.title);
 						form.append('text', this.text);
 						form.append('date', this.date);
-						axios.post('/api/news', form)
-							.then((res) => {
-								this.file = [];
-								swal("Інформація спішно додана", {
-									icon: "success",
-									timer: 1000,
-									button: false
+						if(this.file.length < 4) {
+							axios.post('/api/news', form)
+								.then((res) => {
+									swal("Інформація спішно додана", {
+										icon: "success",
+										timer: 1000,
+										button: false
+									});
+									this.news.push(res.data);
+									this.file = [];
+								})
+								.catch((error) => {
+									swal({
+										icon: "error",
+										title: 'Помилка',
+									});
 								});
-								this.news.push(res.data);
-							})
-                            .catch((error) => {
-                                swal({
-                                    icon: "error",
-                                    title: 'Помилка',
-                                });
-						});
+						}
 					}
 				});
 			},
