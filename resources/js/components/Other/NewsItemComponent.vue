@@ -68,7 +68,7 @@
                 axios.get('/api/news/'+this.$route.params.id)
                     .then((response) => {
                         this.data = response.data;
-                        this.data.date = this.data.date.split('-').reverse().join('.');
+                        this.data.date = this.data.date.slice(2).split('-').reverse().join('.');
                         console.log(this.data)
                     })
             },

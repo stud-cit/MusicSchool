@@ -8,7 +8,7 @@
                         params: {id: i.id}}"
                     >
                         <div class="news-description">
-                            <h3 class="news-date">{{i.date}}</h3>
+                            <h3 class="news-date">{{i.date.slice(2).split("-").reverse().join('.')}}</h3>
                             <p class="news-text">{{i.title}}</p>
                             <hr class="news-line">
                         </div>

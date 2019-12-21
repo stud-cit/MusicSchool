@@ -56,6 +56,7 @@
                 axios.get('/api/achieve/'+this.$route.params.id)
                     .then((response) => {
                         this.data = response.data;
+                        this.data.date = this.data.date.slice(2).split('-').reverse().join('.');
                     })
             },
         }
