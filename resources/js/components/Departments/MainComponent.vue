@@ -263,7 +263,7 @@ export default {
   }
   .modal__dialog {
     margin: 0 auto !important;
-    max-width: 80% !important;
+    max-width: 70% !important;
   }
   .modal__item {
     width: 100%;
