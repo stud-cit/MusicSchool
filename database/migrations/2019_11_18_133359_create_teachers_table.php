@@ -31,7 +31,7 @@ class CreateTeachersTable extends Migration
 
         Schema::table('teachers', function (Blueprint $table) {
             $table->index('departments_id');
-            $table->foreign('departments_id')->references('departments_id')->on('departments');
+            $table->foreign('departments_id')->references('departments_id')->on('departments')->onDelete('cascade');
         });
     }
 

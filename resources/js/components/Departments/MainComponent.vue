@@ -31,7 +31,7 @@
               </div>
               <div class="card__small__text">{{block[0].departments_info}}</div>
             </div> 
-            <div class="card__big" @click="showModal(block[1].departments_id)">
+            <div v-if="block[1]" class="card__big" @click="showModal(block[1].departments_id)">
               <div class="card__big__img">
                 <img v-bind:src="cardsBlock.imgBig" alt="piano" />
               </div>
