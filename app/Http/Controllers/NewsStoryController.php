@@ -36,14 +36,14 @@ class NewsStoryController extends Controller
         $this->validate($request, ['filenames.*' => 'mimes:jpeg']);
         if(isset($request->file)) {
             foreach ($request->file as $file) {
-                if(count($request->file) < 4) {
+                //if(count($request->file) < 4) {
                     $images = new Images;
                     $name = time() . '-' . $file->getClientOriginalName();
                     $file->move(public_path() . $this->publicStorageNews . $news->id, $name);
                     $images->id = $news->id;
                     $images->file = $this->publicStorageNews . $news->id . '/' . $name;
                     $images->save();
-                }
+                //}
             }
         }
         return response()->json($news);
@@ -58,7 +58,7 @@ class NewsStoryController extends Controller
         $this->validate($request, ['filenames.*' => 'mimes:jpeg']);
         if(isset($request->file)) {
             foreach ($request->file as $file){
-                if(count($request->file) < 4) {
+                //if(count($request->file) < 4) {
                     $images = new Images;
                     $name = time() . '-' . $file->getClientOriginalName();
                     $file->move(public_path() . $this->publicStorageNews . $news->id, $name);
@@ -66,7 +66,7 @@ class NewsStoryController extends Controller
                     $images->file = $this->publicStorageNews . $news->id . '/' . $name;
                     $images->save();
                     array_push($arrImg, $images);
-                }
+                //}
             }
         }
         $news->save();

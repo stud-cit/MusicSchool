@@ -2,8 +2,8 @@
   <div class="departments">
     <b-container>
       <b-row>
-        <div v-for="(block,index) in department" v-bind:key="index" class="card__block">
-          <div class="card__big" @click="showModal">
+        <div v-for="(block, index) in oddFilter" :key="block.index" class="card__block">
+          <div class="card__big" @click="showModal" :data-target="'#collapse'+(index+1)">
             <div class="card__big__img">
               <img v-bind:src="cardsBlock.imgBig" alt="piano" />
             </div>
@@ -12,7 +12,9 @@
               <div class="card__big__text">{{block.departments_info}}</div>
             </div>
           </div>
-          <div class="card__small" @click="showModal">
+        </div>
+        <div v-for="(block, index) in evenFilter" :key="block.index" class="card__block">
+          <div class="card__small" @click="showModal" :data-target="'#collapse'+(index+2)">
             <div class="card__small__title">{{block.name_department}}</div>
             <div class="card__small__img">
               <img v-bind:src="cardsBlock.imgSmall" alt="skripka" />
@@ -65,6 +67,9 @@ export default {
   data() {
     return {
       department: [],
+      finalFilter: [],
+      oddDepartment: [],
+      evenDepartment: [],
       instruments: [],
       teachers: [],
 
@@ -74,10 +79,23 @@ export default {
       },
     };
   },
+
   created() {
     this.getDepartment();
     this.getInstrumentId();
     this.getTeachersId();
+  },
+  computed: {
+    evenFilter() {
+      return this.department.filter(evenNumber => {
+        return evenNumber.departments_id % 2 === 0;
+      })
+    },
+    oddFilter() {
+      return this.department.filter(oddNumber => {
+        return oddNumber.departments_id % 2 === 1;
+      })
+    },
   },
   methods: {
     showModal() {
@@ -89,7 +107,6 @@ export default {
     getDepartment() {
       axios.get('/api/department')
               .then((response) => {
-                console.log(response.data)
                 this.department = response.data
               })
     },
