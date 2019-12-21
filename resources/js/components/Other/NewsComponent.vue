@@ -8,7 +8,8 @@
                         params: {id: i.id}}"
                     >
                         <div class="news-description">
-                            <h3 class="news-date">{{i.date}}</h3>
+                            <h3 class="news-date">{{i.date.split('-').reverse().join('.').substr(0,6)
+                                + i.date.split('-').reverse().join('.').substr(7,2)}}</h3>
                             <p class="news-text">{{i.title}}</p>
                             <hr class="news-line">
                         </div>
@@ -45,7 +46,6 @@
             getData() {
                 axios.get('/api/news')
                     .then((response) => {
-                        console.log(response.data);
                         this.data = response.data;
                     })
             },
@@ -57,12 +57,14 @@
     .news-list {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
     }
 
     .news {
         position: relative;
-        width: 30%;
-        margin: 15px 15px;
+        width: 250px;
+        margin: 13px 13px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -103,6 +105,7 @@
     }
 
     .news-date {
+        margin-left: -20px;
         color: #2b2b2b;
         font-size: 50px;
         font-weight: 900;

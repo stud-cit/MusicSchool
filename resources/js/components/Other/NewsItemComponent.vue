@@ -11,16 +11,15 @@
                 <div class="news-item">
                     <div class="news-item-container">
                         <b-carousel
-                            v-if="data.images.length != 0"
+                            v-if="data.images.length"
                             id="carousel-fade"
-                            :interval="4000"
+                            :interval="8000"
                             indicators
-                            fade
+                            controls
                             img-width="1024"
                             img-height="450"
                         >
                             <b-carousel-slide
-                                class="news-item-img"
                                 v-for="(i, index) in data.images"
                                 :key="index"
                                 :img-src="i.file"
@@ -30,7 +29,8 @@
                         <div class="news-item-description">
                             <div class="news-item-heading">
                                 <h3 class="news-item-title"> {{ data.title }}</h3>
-                                <h3 class="news-item-date"> {{ data.date }}</h3>
+                                <h3 class="news-item-date"> {{ data.date.split('-').reverse().join('.').substr(0,6) +
+                                    data.date.split('-').reverse().join('.').substr(7,2)}}</h3>
                             </div>
 
                             <hr class="news-item-line">
@@ -68,8 +68,6 @@
                 axios.get('/api/news/'+this.$route.params.id)
                     .then((response) => {
                         this.data = response.data;
-                        this.data.date = this.data.date.split('-').reverse().join('.');
-                        console.log(this.data)
                     })
             },
         }
