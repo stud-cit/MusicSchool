@@ -138,6 +138,7 @@
 					} else {
 						var form = new FormData;
 						for (let i = 0; i < this.file.length; i++) {
+							/*
 							if (this.file.length < 4){
 								this.file[i].valid = true;
                             }
@@ -147,6 +148,7 @@
 									title: 'Кількість фото не може бути більше трьох',
 								});
                             }
+                            */
 							if (this.file[i].valid) {
 								form.append('file[]', this.file[i]);
 							}

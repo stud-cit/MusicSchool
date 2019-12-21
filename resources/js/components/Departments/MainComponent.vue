@@ -2,25 +2,49 @@
   <div class="departments">
     <b-container>
       <b-row>
-        <div v-for="(block,index) in department" v-bind:key="index" class="card__block">
-          <div class="card__big" @click="showModal">
-            <div class="card__big__img">
-              <img v-bind:src="cardsBlock.imgBig" alt="piano" />
+
+        <div v-for="(block, index) in department" v-bind:key="index" class="card__block">
+          <div v-if="index % 2 == 0" class="card__block">
+            <div class="card__big" @click="showModal(block[0].departments_id)">
+              <div class="card__big__img">
+                <img v-bind:src="cardsBlock.imgBig" alt="piano" />
+              </div>
+              <div class="card__big__body">
+                <div class="card__big__title">{{block[0].name_department}}</div>
+                <div class="card__big__text">{{block[0].departments_info}}</div>
+              </div>
             </div>
-            <div class="card__big__body">
-              <div class="card__big__title">{{block.name_department}}</div>
-              <div class="card__big__text">{{block.departments_info}}</div>
+            <div v-if="block[1]" class="card__small" @click="showModal(block[1].departments_id)">
+              <div class="card__small__title">{{block[1].name_department}}</div>
+              <div class="card__small__img">
+                <img v-bind:src="cardsBlock.imgSmall" alt="skripka" />
+              </div>
+              <div class="card__small__text">{{block[1].departments_info}}</div>
+            </div> 
+          </div>
+
+          <div v-else class="card__block">
+            <div class="card__small" @click="showModal(block[0].departments_id)">
+              <div class="card__small__title">{{block[0].name_department}}</div>
+              <div class="card__small__img">
+                <img v-bind:src="cardsBlock.imgSmall" alt="skripka" />
+              </div>
+              <div class="card__small__text">{{block[0].departments_info}}</div>
+            </div> 
+            <div v-if="block[1]" class="card__big" @click="showModal(block[1].departments_id)">
+              <div class="card__big__img">
+                <img v-bind:src="cardsBlock.imgBig" alt="piano" />
+              </div>
+              <div class="card__big__body">
+                <div class="card__big__title">{{block[1].name_department}}</div>
+                <div class="card__big__text">{{block[1].departments_info}}</div>
+              </div>
             </div>
           </div>
-          <div class="card__small" @click="showModal">
-            <div class="card__small__title">{{block.name_department}}</div>
-            <div class="card__small__img">
-              <img v-bind:src="cardsBlock.imgSmall" alt="skripka" />
-            </div>
-            <div class="card__small__text">{{block.departments_info}}</div>
-          </div>
+
         </div>
       </b-row>
+
       <b-modal
         class="modal"
         modal-class="modal__box"
@@ -36,7 +60,7 @@
           <div class="teachers">
             <div class="teachers__title">Викладачі</div>
             <div class="teachers__img">
-              <router-link :to="{ name: 'teachers', params: {id: 3} }">
+              <router-link :to="{ name: 'teachers', params: {id: this.departmentId} }">
                 <img src="/img/departments/professor.png" alt="professor" />
               </router-link>
             </div>
@@ -47,7 +71,7 @@
           <div class="instruments">
             <div class="instruments__title">Інструменти</div>
             <div class="instruments__img">
-              <router-link :to="{ name: 'instruments', params: {id: 3} }">
+              <router-link :to="{ name: 'instruments', params: {id: this.departmentId} }">
                 <img src="/img/departments/Guitar Player.png" alt="guitar_player" />
               </router-link>
             </div>
@@ -55,6 +79,7 @@
           </div>
         </div>
       </b-modal>
+
     </b-container>
   </div>
 </template>
@@ -65,8 +90,7 @@ export default {
   data() {
     return {
       department: [],
-      instruments: [],
-      teachers: [],
+      departmentId: null,
 
       cardsBlock: {
         imgBig: "/img/departments/piano.png",
@@ -74,36 +98,28 @@ export default {
       },
     };
   },
+
   created() {
     this.getDepartment();
-    this.getInstrumentId();
-    this.getTeachersId();
   },
   methods: {
-    showModal() {
+    showModal(id) {
+      this.departmentId = id;
       this.$refs["my-modal"].show();
     },
     hideModal() {
+      this.departmentId = null;
       this.$refs["my-modal"].hide();
     },
     getDepartment() {
       axios.get('/api/department')
-              .then((response) => {
-                console.log(response.data)
-                this.department = response.data
-              })
-    },
-    getInstrumentId() {
-      axios.get('/api/instruments')
-              .then((response) => {
-                this.instruments = response.data
-              })
-    },
-    getTeachersId() {
-      axios.get('/api/get-teacher')
-              .then((response) => {
-                this.teachers = response.data
-              })
+        .then((response) => {
+          this.department = [].concat.apply([],
+            response.data.map(function(elem, i) {
+              return i % 2 ? [] : [response.data.slice(i, i + 2)];
+            })
+          );
+        })
     }
   }
 };
@@ -118,7 +134,7 @@ export default {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  margin-bottom: 35px;
+  margin-bottom: 25px;
 }
 .card__block:nth-child(2n) {
   display: flex;
@@ -316,13 +332,14 @@ export default {
     width: 100%;
     flex-flow: row wrap;
     justify-content: space-between;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
   }
   .card__block:nth-child(2n) {
     display: flex;
     flex-flow: row-reverse wrap;
   }
   .card__big {
+    cursor: pointer;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
@@ -350,6 +367,7 @@ export default {
   }
 
   .card__small {
+    cursor: pointer;
     flex-flow: column;
     align-items: center;
     margin: 0;
