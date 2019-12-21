@@ -171,7 +171,7 @@ export default {
 .card__small__title {
   text-transform: uppercase;
   color: #ffffff;
-  margin: 20px 0 20px 0;
+  margin-top: 10px;
   line-height: 80px;
   font-size: 26px;
   font-family: "Montserrat Bold";
@@ -262,8 +262,9 @@ export default {
     padding: 0 !important;
   }
   .modal__dialog {
+    text-align: center;
     margin: 0 auto !important;
-    max-width: 70% !important;
+    max-width: 50% !important;
   }
   .modal__item {
     width: 100%;
@@ -276,7 +277,7 @@ export default {
   .instruments__title {
     text-transform: uppercase;
     text-align: center;
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Montserrat Bold", serif;
   }
   .teachers,
@@ -284,16 +285,16 @@ export default {
     padding: 20px;
   }
 }
-
+@media screen and (min-width: 415px) {
+  .teachers__title,
+  .instruments__title {
+    font-size: 20px;
+  }
+  .modal__dialog {
+    margin: auto !important;
+  }
+}
 @media screen and (min-width: 768px) {
-  .modal__body,
-  .modal__content {
-    display: flex;
-    flex-flow: row wrap;
-  }
-  .modal__item {
-    width: 50%;
-  }
   .teachers,
   .instruments {
     padding: 40px;
@@ -352,9 +353,6 @@ export default {
     width: 37%;
   }
 
-  .card__small__title {
-    margin: 20px 0 20px 0;
-  }
   .card__small__img {
     width: 100%;
   }
@@ -362,6 +360,15 @@ export default {
   .card__small__text {
     margin: 25px 0 40px 0;
     width: 70%;
+  }
+  .modal__body,
+  .modal__content {
+    vertical-align: middle;
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .modal__item {
+    width: 50%;
   }
 }
 </style>
