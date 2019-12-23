@@ -152,7 +152,6 @@
         margin-bottom: 77px;
         font-size: 18px;
     }
-
     /*max-width: 768px*/
     @media (max-width: 768px) {
         .news-item-subwrapper {
@@ -166,16 +165,12 @@
             text-align: right;
         }
     }
-
+    /*max-width: 414px*/
     @media (max-width: 414px) {
         .news-item-subwrapper {
             width: 330px;
             bottom: -52px;
             right: -29px;
-        }
-
-        .news-item-date {
-
         }
     }
 </style>
