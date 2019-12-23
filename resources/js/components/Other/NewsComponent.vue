@@ -1,7 +1,7 @@
 <template>
     <div>
         <page-title title="актуальні" uptitle="новини"></page-title>
-        <section class="history-section mt-50">
+        <section class="news-section mt-50">
             <b-container class="news-list">
                 <div class="news" v-for="i in paginateArray" :key="i.id">
                     <router-link class="news-router" :to="{ name: 'news-item',
@@ -54,10 +54,19 @@
 </script>
 
 <style scoped>
+    .news-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .news-list {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
         align-items: center;
     }
 
@@ -105,7 +114,7 @@
     }
 
     .news-date {
-        margin-left: -20px;
+        margin-left: -10px;
         color: #2b2b2b;
         font-size: 50px;
         font-weight: 900;
@@ -145,5 +154,13 @@
     .news:hover .news-line {
         color: #ffffff;
         background: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+        .news-list {
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
     }
 </style>
