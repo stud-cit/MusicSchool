@@ -60,9 +60,15 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="storyDate" class="col-sm-2 col-form-label">Дата оприлюднення</label>
+                    <label for="editStoryDate" class="col-sm-2 col-form-label">Рік</label>
                     <div class="col-sm-4">
-                        <date-picker v-model="story.date" type="year"></date-picker>
+                        <date-picker v-model="story.date" id="editStoryDate" name="editStoryDate" :editable="false" type="year"
+                                     v-validate="{ required: true }"
+                                     data-vv-as="Рік"></date-picker><br>
+
+                        <span class="text-danger errors" v-if="errors.has('editStoryDate')">
+                                {{ errors.first('editStoryDate') }}
+                        </span>
                     </div>
                 </div>
 
@@ -113,23 +119,35 @@
 					})
 			},
 			save() {
-				var form = new FormData;
-				for(let i = 0; i < this.file.length; i++){
-					if(this.file[i].valid) {
-						form.append('file[]', this.file[i]);
+				this.$validator.validateAll().then((result) => {
+					if (!result) {
+						return;
+					} else {
+						var form = new FormData;
+						for (let i = 0; i < this.file.length; i++) {
+							if (this.file[i].valid) {
+								form.append('file[]', this.file[i]);
+							}
+						}
+						form.append('title', this.story.title);
+						form.append('text', this.story.text);
+						form.append('date', this.story.date.getFullYear());
+						axios.post('/api/story/' + this.$route.params.id, form)
+							.then((response) => {
+								this.file = [];
+								this.story.images = this.story.images.concat(response.data);
+								swal("Інформацію успішно збережено", {
+									icon: "success",
+								});
+							})
+							.catch((error) => {
+								swal({
+									icon: "error",
+									title: 'Помилка',
+								});
+							});
 					}
-				}
-				form.append('title', this.story.title);
-				form.append('text', this.story.text);
-				form.append('date', this.story.date.getFullYear());
-				axios.post('/api/story/'+this.$route.params.id, form)
-					.then((response) => {
-						this.file = [];
-                        this.story.images = this.story.images.concat(response.data);
-                        swal("Інформацію успішно збережено", {
-                            icon: "success",
-                        });
-					})
+                });
 			},
 			delFile(index) {
 				this.file.splice(index, 1);

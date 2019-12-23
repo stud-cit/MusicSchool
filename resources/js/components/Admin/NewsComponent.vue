@@ -38,7 +38,7 @@
                         <div class="col-sm-6">
                             <label class="custom-file w-100">
                                 <input type="file" name="newsImage" v-validate="'image'" class="custom-file-input col-6"
-                                    id="newsImage" ref="newsImage" @change="fieldChange" accept="image/*" multiple required>
+                                    id="newsImage" ref="newsImage" @change="fieldChange" accept="image/*" multiple>
                                 <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
                             </label>
                             <div v-for="(item, index) in file" :key="index">
@@ -60,12 +60,12 @@
                                     value-type="YYYY-MM-DD"
                                     :lang="datepicker.lang"
                                     :editable="false"
-                                     v-validate="{ required: true }"
+                                    v-validate="{ required: true }"
                                     data-vv-as="Дата оприлюднення"
                                 ></date-picker><br>
-                            <span class="text-danger errors" v-if="errors.has('newsDate')">
+                                <span class="text-danger errors" v-if="errors.has('newsDate')">
                                     {{ errors.first('newsDate') }}
-                            </span>                               
+                                </span>
                                 <input style="display:none" type="text" name="date" v-model="date" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                             </div>
                         </div>
@@ -169,7 +169,7 @@
 						form.append('title', this.title);
 						form.append('text', this.text);
 						form.append('date', this.date);
-						if(this.file.length < 4) {
+						//if(this.file.length < 4) {
 							axios.post('/api/news', form)
 								.then((res) => {
 									swal("Інформація спішно додана", {
@@ -186,7 +186,7 @@
 										title: 'Помилка',
 									});
 								});
-						}
+						//}
 					}
 				});
 			},

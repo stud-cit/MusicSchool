@@ -38,7 +38,7 @@
                     <div class="col-sm-6">
                         <label class="custom-file w-100">
                             <input type="file" name="storyImage" v-validate="'image'" class="custom-file-input col-6"
-                                   id="storyImage" ref="storyImage" @change="fieldChange" accept="image/*" multiple required>
+                                   id="storyImage" ref="storyImage" @change="fieldChange" accept="image/*" multiple>
                             <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
                         </label>
                         <div v-for="(item, index) in file" :key="index">
@@ -55,7 +55,7 @@
                     <div class="col-sm-4">
                         <date-picker v-model="date" id="storyDate" name="storyDate" :editable="false" type="year" 
                             v-validate="{ required: true }"
-                               data-vv-as="Рік"></date-picker><br>
+                            data-vv-as="Рік"></date-picker><br>
 
                         <span class="text-danger errors" v-if="errors.has('storyDate')">
                                 {{ errors.first('storyDate') }}

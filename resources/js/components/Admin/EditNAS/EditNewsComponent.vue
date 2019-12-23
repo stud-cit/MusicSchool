@@ -64,11 +64,17 @@
                         <div class="input-row">
                             <div class="input-container">
                                 <date-picker 
-                                    v-model="news.date" 
+                                    v-model="news.date"
+                                    name="editNewsDate"
                                     value-type="YYYY-MM-DD"
                                     :lang="datepicker.lang"
                                     :editable="false"
-                                ></date-picker>
+                                    v-validate="{ required: true }"
+                                    data-vv-as="Дата оприлюднення"
+                                ></date-picker><br>
+                                <span class="text-danger errors" v-if="errors.has('editNewsDate')">
+                                    {{ errors.first('editNewsDate') }}
+                                </span>
                                 <input style="display:none" type="text" name="date" v-model="news.date" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                             </div>
                         </div>

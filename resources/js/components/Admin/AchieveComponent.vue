@@ -42,7 +42,7 @@
                         </label>
                         <img v-if="!errors.has('achieveImage')" class="mt-3 w-50" :src="image">
                        <span class="errors text-danger" v-if="errors.has('achieveImage')">
-							Файл повинен бути зображенням
+							Файл не обрано або невірний формат зображення
 						</span>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                                 :editable="false"
                                 v-validate="{ required: true }"
                                 data-vv-as="Дата оприлюднення"
-                                ></date-picker><br>
+                            ></date-picker><br>
                             <span class="text-danger errors" v-if="errors.has('achieveDate')">
                                     {{ errors.first('achieveDate') }}
                             </span>                               
