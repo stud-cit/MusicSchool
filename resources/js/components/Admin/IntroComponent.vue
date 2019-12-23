@@ -10,7 +10,7 @@
                         <div class="col-9">
                             <label class="custom-file w-100">
                                 <input type="file" class="custom-file-input" id="bg" name="bg" ref="bg" @change="previewFiles($event, 'bg')" accept="image/*" v-validate="'image'">
-                                <span class="custom-file-control">Файл не обрано</span>
+                                <div class="uploadIntroFiles custom-file-control">Файл не обрано</div>
                             </label>
                         </div>
                         <div class="col-3">
@@ -25,7 +25,7 @@
                         <div class="col-9">
                             <label class="custom-file w-100">
                                 <input type="file" class="custom-file-input" id="photo" name="photo" ref="photo" @change="previewFiles($event, 'photo')" accept="image/*" v-validate="'image'">
-                                <span class="custom-file-control">Файл не обрано</span>
+                                <div class="uploadIntroFiles custom-file-control">Файл не обрано</div>
                             </label>
                         </div>
                         <div class="col-3">
@@ -118,7 +118,7 @@ export default {
 				    this.intro[el] = e.target.result;
 			    }
 			    reader.readAsDataURL(input.files[0]);
-			    input.parentNode.querySelector('span').innerHTML = input.files[0].name;
+			    input.parentNode.querySelector('div').innerHTML = input.files[0].name;
 		    }
 	    },
 	    editFile(table, row, type) {
