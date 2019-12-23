@@ -74,28 +74,24 @@
         box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.16);
         background: #ffffff;
     }
-
     .news-item-router {
         margin-bottom: 30px;
         display: flex;
         align-items: center;
         text-decoration: none;
     }
-
     .news-item-router-img {
         margin-right: 24px;
         height: -webkit-fit-content;
         height: -moz-fit-content;
         height: fit-content;
     }
-
     .news-item-router-title {
         padding-top: 5px;
         font-size: 32px;
         text-decoration: none;
         color: #2B2B2B;
     }
-
     .news-item-subwrapper {
         width: 1059px;
         height: -webkit-fill-available;
@@ -109,47 +105,63 @@
         bottom: -80px;
         right: -80px;
     }
-
     .news-item-img {
+        position: relative;
         width: 100%;
         margin-bottom: 44px;
         height: 450px;
     }
-
     .news-item-description {
         padding: 0 45px;
         display: flex;
         flex-direction: column;
         justify-content: start;
     }
-
     .news-item-heading {
         margin-top: 40px;
         display: flex;
         justify-content: space-between;
-
     }
     .news-item-title {
         font-size: 42px;
         font-weight: 800;
         text-transform: uppercase;
     }
-
     .news-item-date {
+        margin-left: 25px;
         font-size: 42px;
         font-weight: 800;
         text-transform: uppercase;
     }
-
     .news-item-line {
         width: 50px;
         height: 1px;
         border-color: #2B2B2B;
         margin-left: 0;
     }
-
     .news-item-text {
         margin-bottom: 77px;
         font-size: 18px;
+    }
+    /*max-width: 768px*/
+    @media (max-width: 768px) {
+        .news-item-subwrapper {
+            width: 584px;
+        }
+        .news-item-heading {
+            flex-direction: column;
+        }
+        .news-item-heading {
+            flex-direction: column-reverse;
+            text-align: right;
+        }
+    }
+    /*max-width: 414px*/
+    @media (max-width: 414px) {
+        .news-item-subwrapper {
+            width: 330px;
+            bottom: -52px;
+            right: -29px;
+        }
     }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <page-title title="досягнення" uptitle="важливі"></page-title>
-        <section class="history-section mt-50">
+        <section class="news-section mt-50">
             <b-container class="news-list">
 
                 <div class="news" v-for="i in paginateArray" :key="i.id">
@@ -52,15 +52,26 @@
 </script>
 
 <style scoped>
+    .news-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     .news-list {
         display: flex;
         flex-wrap: wrap;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        align-items: center;
     }
+
 
     .news {
         position: relative;
-        width: 30%;
-        margin: 15px 15px;
+        width: 250px;
+        margin: 13px 13px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -140,5 +151,13 @@
     .news:hover .news-line {
         color: #ffffff;
         background: #ffffff;
+    }
+    /*max-width: 768px*/
+    @media (max-width: 768px) {
+        .news-list {
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
     }
 </style>
