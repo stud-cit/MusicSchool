@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="актуальні" uptitle="новини"></page-title>
+        <page-title title="новини" uptitle="актуальні"></page-title>
         <section class="history-section mt-50">
             <b-container>
                 <router-link :to="{ name: 'news'}" class="news-item-router">

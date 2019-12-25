@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="досягнення" uptitle="важливі"></page-title>
+        <page-title title="важливі" uptitle="досягнення"></page-title>
         <section class="news-section mt-50">
             <b-container class="news-list">
 
@@ -64,7 +64,6 @@
         -webkit-box-pack: start;
         -ms-flex-pack: start;
         justify-content: flex-start;
-        align-items: center;
     }
 
 
@@ -101,7 +100,6 @@
         justify-content: flex-end;
         width: 100%;
         max-width: 100%;
-        height: 220px;
     }
 
     .news-img {

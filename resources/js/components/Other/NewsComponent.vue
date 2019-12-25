@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="актуальні" uptitle="новини"></page-title>
+        <page-title title="новини" uptitle="актуальні"></page-title>
         <section class="news-section mt-50">
             <b-container class="news-list">
                 <div class="news" v-for="i in paginateArray" :key="i.id">
@@ -65,7 +65,6 @@
         -webkit-box-pack: start;
         -ms-flex-pack: start;
         justify-content: flex-start;
-        align-items: center;
     }
     .news {
         position: relative;
@@ -97,7 +96,7 @@
         justify-content: flex-end;
         width: 100%;
         max-width: 100%;
-        height: 220px;
+        height: auto;
     }
     .news-img {
         display: block;

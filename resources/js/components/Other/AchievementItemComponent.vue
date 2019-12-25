@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="досягнення" uptitle="важливі"></page-title>
+        <page-title title="важливі" uptitle="досягнення"></page-title>
         <section class="history-section mt-50">
             <b-container>
                 <router-link :to="{ name: 'achievements'}" class="news-item-router">
