@@ -181,7 +181,7 @@ export default {
 				})
 					.then((willDelete) => {
 						if (willDelete) {
-							axios.post('/api/delete-instrument/' + id)
+							axios.delete('/api/instrument/' + id)
 								.then((response) => {
 									if (response.status == 200) {
 										this.instruments.splice(index, 1);

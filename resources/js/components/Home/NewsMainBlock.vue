@@ -15,7 +15,7 @@
 
                 <b-row class="news_block">
                     <b-col xl="8" lg="7" md="12" sm ="12" order-lg="2" class="figure">
-                        <img v-if="$props.news.images.length" :src="$props.news.images[0]" alt="">
+                        <img v-if="$props.news.images.length" :src="$props.news.images[0].file" alt="">
                         <img v-else src="/img/empty.png" alt="">
                     </b-col>
                     <b-col xl="4" lg="5" md="12" sm ="12" order-lg="1" class="news_block_all">
