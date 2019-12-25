@@ -40,10 +40,10 @@
                         </label>
                         <div v-for="(item, index) in file" :key="index">
                             <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name}} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
-                            <span class="text-danger"
-                                  v-if="errors.has('storyImage')">Файл повинен бути зображенням
-                            </span>
                         </div>
+                        <span class="text-danger"
+                                v-if="imgError">Історія повинна мати зображення
+                        </span>
                     </div>
                 </div>
 
@@ -90,7 +90,8 @@
 		data() {
 			return {
                 file: [],
-				story: []
+                story: [],
+                imgError: false
 			};
 		},
 		created() {
@@ -99,6 +100,9 @@
 		},
 
 		methods: {
+            validImg() {
+                this.imgError = this.file.length == 0 ? true : false
+            }, 
 			fieldChange(){
 				let changeFile = this.$refs.storyImage.files;
 				for(let i = 0; i < changeFile.length; i++) {
@@ -108,7 +112,8 @@
 						changeFile[i].valid = false;
 					}
 					this.file.push(changeFile[i]);
-				}
+                }
+                this.validImg();
 			},
 
 			getStoryList() {
@@ -119,8 +124,9 @@
 					})
 			},
 			save() {
+                this.validImg();
 				this.$validator.validateAll().then((result) => {
-					if (!result) {
+					if (!result || this.file.length == 0) {
 						return;
 					} else {
 						var form = new FormData;
@@ -150,20 +156,41 @@
                 });
 			},
 			delFile(index) {
-				this.file.splice(index, 1);
+                this.file.splice(index, 1);
+                if (this.file.length == 0) {
+                    this.imgError = true
+                }
 			},
 			delStoryImage(id, index) {
-				if(id) {
-					axios.delete('/api/story-images/' + id)
-						.then(() => {
-							this.file.splice(index, 1);
-							swal("Зображення успішно видалено", {
-								icon: "success",
-							});
-							this.file = [];
-							this.getStoryList();
-						});
-				}
+                if (this.story.images.length <= 1) {
+                    swal({
+                        text: "Історія повинна мати хочаб одне зображення",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    return;
+                }
+                swal({
+                    title: "Бажаєте видалити?",
+                    text: "Після видалення ви не зможете відновити дане зображення",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        axios.delete('/api/story-images/' + id)
+                            .then(() => {
+                                this.file.splice(index, 1);
+                                swal("Зображення успішно видалено", {
+                                    icon: "success",
+                                });
+                                this.file = [];
+                                this.getStoryList();
+                            });
+                    }
+                })
 			}
 		}
 	}
