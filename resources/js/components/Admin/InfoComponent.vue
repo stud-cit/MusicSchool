@@ -105,8 +105,7 @@ export default {
                 phone: '',
                 email: '',
                 address: ''
-            },
-            showButton: true
+            }
         }
     },
 	created() {
@@ -122,11 +121,10 @@ export default {
         },
         edit(event, column) {
             const textElement = document.getElementById(column);
-            if(this.showButton) {
+            if(event.target.innerHTML == "Редагувати") {
                 textElement.removeAttribute('disabled');
                 textElement.focus();
                 event.target.innerHTML = 'Зберегти';
-                this.showButton = false;
             }
             else {
                 textElement.setAttribute('disabled', 'disabled');
@@ -135,11 +133,12 @@ export default {
                     column,
                     value: this.info[column]
                 }).then((response) => {
-		            swal("Інформація оновлена", {
-			            icon: "success"
-		            });
+                    swal("Інформація оновлена", {
+                        icon: "success",
+                        timer: 1000,
+                        button: false
+                    });
 	            })
-                this.showButton = true;
             }
         },
     }
