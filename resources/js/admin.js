@@ -8,7 +8,7 @@ import uk from 'vee-validate/dist/locale/uk';
 
 import HomeComponent from './components/Admin/HomeComponent'
 import AchieveComponent from './components/Admin/AchieveComponent'
-import ContactComponent from './components/Admin/ContactComponent'
+import PageInfoComponent from './components/Admin/PageInfoComponent'
 import DepartmentComponent from './components/Admin/DepartmentComponent'
 import GalleryComponent from './components/Admin/GalleryComponent'
 import InfoComponent from './components/Admin/InfoComponent'
@@ -46,9 +46,9 @@ const router = new VueRouter({
             component: HomeComponent
         },
         {
-            path: '/admin/contact', 
-            name: 'contact', 
-            component: ContactComponent
+            path: '/admin/page-info', 
+            name: 'page-info', 
+            component: PageInfoComponent
         },
         {
             path: '/admin/gallery', 

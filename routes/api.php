@@ -11,6 +11,8 @@ Route::post('delete-gallery', 'GalleryController@deleteFile');
 // Загальна інформація
 
 Route::get('info', 'InfoController@getInfo');
+Route::get('page-info', 'InfoController@getPageInfo');
+Route::post('page-info', 'InfoController@putPageInfo');
 Route::post('update-info', 'InfoController@updateInfo');
 Route::get('main-info', 'InfoController@getMainInfo');
 
