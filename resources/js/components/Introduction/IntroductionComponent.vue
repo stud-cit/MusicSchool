@@ -41,7 +41,7 @@
           })
       },
       getDocuments() {
-        axios.get('/api/get-document')
+        axios.get('/api/document')
           .then((response) => {
             this.document = response.data;
           })

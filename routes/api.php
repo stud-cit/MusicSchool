@@ -75,8 +75,8 @@ Route::post('story', 'NewsStoryController@postStory');
 Route::delete('story-images/{id}', 'NewsStoryController@deleteStoryImage');
 
 //Документы
-Route::get('get-document', 'DocumentController@getDocument');
-Route::post('post-document', 'DocumentController@postDocument');
+Route::get('document', 'DocumentController@getDocument');
+Route::post('document/{id}', 'DocumentController@postDocument');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

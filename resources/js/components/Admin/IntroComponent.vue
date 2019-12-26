@@ -34,6 +34,31 @@
                         <p class="text-danger col-9" v-if="errors.has('photo')">Файл повинен бути зображенням</p>
                     </div>
                     <img v-if="!errors.has('photo')" class="mt-3 w-50" :src="intro.photo">
+
+                    <h3>Документи для ознайомлення</h3>
+                    <div v-for="item in documents" :key="item.documents_id">
+                        <hr>
+                        <label :for="'block'+item.documents_id" class="brtop">Назва {{item.documents_id}} файлу</label>
+                        <div class="row">
+                            <div class="col-9">
+                                <input :name="'block'+item.documents_id" type="text" class="form-control" :id="'block'+item.documents_id" 
+                                    v-model="item.text" 
+                                    disabled
+                                    v-validate="{ required: true}"
+                                    data-vv-as="Текст блоку"
+                                >
+                                <label class="custom-file mt-2 w-100">
+                                    <input type="file" disabled class="custom-file-input" :id="'file'+item.documents_id" :name="'file'+item.documents_id" :ref="'file'+item.documents_id" @change="previewFiles($event, 'file'+item.documents_id)">
+                                    <div class="uploadIntroFiles custom-file-control">{{ item.file.replace("/documents/", '') }}</div>
+                                </label>
+                                <span class="errors text-danger" v-if="errors.has('block'+item.documents_id)">{{ errors.first('block'+item.documents_id) }}</span>
+                            </div>
+                            <div class="col-3">
+                                <button type="button" :disabled="errors.has('block'+item.documents_id)" class="btn btn-outline-secondary edit w-100 px-0" @click='editDocument($event, item.documents_id)'>Редагувати</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                     <div class="col-2"></div>
                     <div class="col-5">
@@ -116,12 +141,14 @@ export default {
                 info: '',
                 photo: '',
             },
+            documents: [],
             form: new FormData
         };
     },
 	created () {
         document.title = "Вступ";
-		this.getIntro();
+        this.getIntro();
+        this.getDocuments();
 	},
     methods: {
 	    previewFiles(event, el) {
@@ -134,7 +161,38 @@ export default {
 			    reader.readAsDataURL(input.files[0]);
 			    input.parentNode.querySelector('div').innerHTML = input.files[0].name;
 		    }
-	    },
+        },
+        
+        editDocument(event, id) {
+            const textElement = document.getElementById("block"+id);
+            const fileElement = document.getElementById("file"+id);
+            if(event.target.innerHTML == "Редагувати") {
+                textElement.removeAttribute('disabled');
+                fileElement.removeAttribute('disabled');
+                fileElement.style.cursor = "pointer";
+                textElement.focus();
+                event.target.innerHTML = 'Зберегти';
+            }
+            else {
+                textElement.setAttribute('disabled', 'disabled');
+                fileElement.setAttribute('disabled', 'disabled');
+                fileElement.style.cursor = "default";
+                event.target.innerHTML = 'Редагувати';
+
+                var form = new FormData;
+                form.append('text', this.documents[id-1].text);
+                form.append('file', fileElement.files[0]);
+                axios.post('/api/document/'+id, form)
+                    .then((response) => {
+                        swal("Інформація оновлена", {
+                            icon: "success",
+                            timer: 1000,
+                            button: false
+                        });
+	            })
+            }
+        },
+
 	    editFile(table, row, type) {
 		    this.form.append('table', table);
 		    this.form.append('row', row);
@@ -199,8 +257,14 @@ export default {
         getIntro() {
 	        axios.get('/api/intro')
 		        .then((response) => {
-			        Object.assign(this.intro, response.data);
+                    Object.assign(this.intro, response.data);
 		        })
+        },
+        getDocuments() {
+            axios.get('/api/document')
+            .then((response) => {
+                this.documents = response.data;
+            })
         }
     }
 }
