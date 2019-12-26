@@ -20,10 +20,10 @@
     <footer-component></footer-component>
 </div>
 <script src="{{ asset('js/app.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script> -->
-<script src="js/google-translate.js"></script>
-<script src="//translate.google.com/translate_a/element.js?cb=TranslateInit"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>--}}
+<script src="js/cookie.js"></script>
+<script src="js/googleTr.js"></script>
+<script src="js/google.js"></script>
 </body>
 </html>

@@ -63,6 +63,12 @@
 						<span class="nav-link-text">Загальна інформація</span>
 					</a>
 				</li>
+				<li class="nav-item" title="Опис сторінок сайту">
+					<a class="nav-link" href="/admin/page-info">
+						<i class="fa fa-fw fa-align-left"></i>
+						<span class="nav-link-text">Опис сторінок сайту</span>
+					</a>
+				</li>
 			</ul>
 
 			<ul class="navbar-nav sidenav-toggler">

@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TeachersTableSeeder::class,
             InstrumentsTableSeeder::class,
             UsersTableSeeder::class,
+            PageInfoTableSeeder::class,
         ]);
     }
 }

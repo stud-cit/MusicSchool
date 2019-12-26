@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="галерея" uptitle="Різноманітність"></page-title>
+        <page-title title="галерея" uptitle="Різноманітність" :description="description"></page-title>
         <section class="gallery-section mt-50">
             <b-container >
                 <div class="btn-group">
@@ -32,12 +32,14 @@
                 category: 'all',
                 data: [],
                 filteredItems: [],
-                paginateArray: []
+                paginateArray: [],
+                description: ''
             }
         },
         created() {
             this.getData();
             this.filterList();
+            this.getInfoPage();
         },
         methods: {
             setFilter(category){
@@ -60,6 +62,12 @@
                         this.data = response.data;
                         this.filteredItems = response.data;
                     })
+            },
+            getInfoPage() {
+                axios.get('/api/page-info/gallery')
+                .then((response) => {
+                    this.description = response.data.text;
+                })
             },
         },
         components: {

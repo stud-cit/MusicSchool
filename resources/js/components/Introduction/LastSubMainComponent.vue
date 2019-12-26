@@ -18,7 +18,7 @@
           >
             <div class="card">
               <div class="card__img">
-                <img v-bind:src="images.img" alt="file with properties" />
+                <a :href="doc.file" :download="doc.text"><img v-bind:src="images.img" /></a>
               </div>
               <div class="card__body">{{ doc.text }}</div>
             </div>

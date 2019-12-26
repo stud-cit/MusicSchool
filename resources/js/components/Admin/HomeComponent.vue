@@ -45,6 +45,11 @@
                 <div class="category-icon"><i class="fa fa-fw fa-info-circle fa-3x"></i></div>
                 Загальна інформація
             </a>
+
+            <a href="/admin/page-info" class="col-8 col-sm-5 col-md-3 category-items" >
+                <div class="category-icon"><i class="fa fa-fw fa-align-left fa-3x"></i></div>
+                Опис сторінок сайту
+            </a>
         </div>
     </div>
 </template>

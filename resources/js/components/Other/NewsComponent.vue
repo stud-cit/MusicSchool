@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="новини" uptitle="актуальні"></page-title>
+        <page-title title="новини" uptitle="актуальні" :description="description"></page-title>
         <section class="news-section mt-50">
             <b-container class="news-list">
                 <div class="news" v-for="i in paginateArray" :key="i.id">
@@ -33,6 +33,7 @@
             return {
                 data: [],
                 paginateArray: [],
+                description: ''
             }
         },
         components: {
@@ -40,6 +41,7 @@
         },
         created() {
             this.getData();
+            this.getInfoPage();
         },
         methods: {
             getData() {
@@ -47,6 +49,12 @@
                     .then((response) => {
                         this.data = response.data;
                     })
+            },
+            getInfoPage() {
+                axios.get('/api/page-info/news')
+                .then((response) => {
+                    this.description = response.data.text;
+                })
             },
         }
     }

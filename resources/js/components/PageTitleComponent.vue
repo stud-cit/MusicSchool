@@ -10,7 +10,7 @@
                         </h1>
                     </b-col>
                     <b-col class="d-none d-xl-block" xl="4">
-                        <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text simply dummy text dum</div>
+                        <div class="text">{{description}}</div>
                     </b-col>
                 </b-row>
 
@@ -23,7 +23,8 @@
     export default {
         props:{
           uptitle: String,
-          title: String
+          title: String,
+          description: String
         },
         data() {
             return {
