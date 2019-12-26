@@ -7,7 +7,7 @@
                     <hr>
                     <label for="info_school" class="brtop">Коротка інформація про школу</label>
                     <textarea name="info_school" class="form-control" id="info_school" 
-                        v-model="info.info_school" rows="6" 
+                        v-model="info.info_school" rows="6" maxlength="240"
                         disabled 
                         v-validate="{ required: true}"
                         data-vv-as="Коротка інформація про школу"
