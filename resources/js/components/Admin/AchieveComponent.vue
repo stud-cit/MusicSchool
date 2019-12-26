@@ -188,7 +188,7 @@ export default {
                     axios.delete('/api/achieve/'+id)
                         .then((response) => {
                             this.achieve.splice(index, 1);
-                            swal("Новина була успішно видалена", {
+                            swal("Зпис був успішно видалений", {
                                 icon: "success",
                             });
                         })

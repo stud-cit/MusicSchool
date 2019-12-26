@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="Найкращі" uptitle="викладачі"></page-title>
+        <page-title title="Найкращі" uptitle="викладачі" :description="description"></page-title>
         <div class="teachers">
             <b-container>
                 <b-row>
@@ -25,22 +25,26 @@
             return {
             	teacher: [],
                 paginateArray: [],
+                description: ''
             }
         },
         created() {
-        	this.getTeachersId();
-        },
-        computed: {
-
+            this.getTeachersId();
+            this.getInfoPage();
         },
         methods: {
         	getTeachersId() {
 		        axios.get('/api/teacher/department/'+this.$route.params.id)
 			        .then((response) => {
                         this.teacher = response.data;
-                        console.log(response.data)
 			        })
-            }
+            },
+            getInfoPage() {
+                axios.get('/api/page-info/teachers')
+                .then((response) => {
+                    this.description = response.data.text;
+                })
+            },
         },
         components: {
             paginate,

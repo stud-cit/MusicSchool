@@ -28,6 +28,11 @@ class InfoController extends Controller
         return response()->json($data);
     }
 
+    function getPageInfoId($page) {
+        $data = PageInfo::select('text')->where('page', $page)->first();
+        return response()->json($data);
+    }
+
     function putPageInfo(Request $request) {
         PageInfo::where("page", $request->page)->update(['text' => $request->text]);
         return response('ok', 200);

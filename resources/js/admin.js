@@ -19,6 +19,7 @@ import IntroComponent from './components/Admin/IntroComponent'
 import NewsComponent from './components/Admin/NewsComponent'
 import EditNewsComponent from "./components/Admin/EditNAS/EditNewsComponent";
 import EditAchieveComponent from "./components/Admin/EditNAS/EditAchieveComponent";
+import EditDepartmentComponent from "./components/Admin/EditNAS/EditDepartmentComponent";
 import EditStoryComponent from "./components/Admin/EditNAS/EditStoryComponent";
 import StoryComponent from './components/Admin/StoryComponent'
 import TeacherComponent from './components/Admin/TeacherComponent'
@@ -59,6 +60,11 @@ const router = new VueRouter({
             path: '/admin/department', 
             name: 'department', 
             component: DepartmentComponent
+        },
+        {
+            path: '/admin/department/:id/',
+            name: 'edit-department',
+            component: EditDepartmentComponent
         },
         {
             path: '/admin/info', 

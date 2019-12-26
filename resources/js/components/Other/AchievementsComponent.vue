@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="важливі" uptitle="досягнення"></page-title>
+        <page-title title="важливі" uptitle="досягнення" :description="description"></page-title>
         <section class="news-section mt-50">
             <b-container class="news-list">
 
@@ -32,6 +32,7 @@
             return {
                 data: [],
                 paginateArray: [],
+                description: ''
             }
         },
         components: {
@@ -39,6 +40,7 @@
         },
         created() {
             this.getData();
+            this.getInfoPage();
         },
         methods: {
             getData() {
@@ -46,6 +48,12 @@
                     .then((response) => {
                         this.data = response.data;
                     })
+            },
+            getInfoPage() {
+                axios.get('/api/page-info/achievements')
+                .then((response) => {
+                    this.description = response.data.text;
+                })
             },
         }
     }
