@@ -8,7 +8,7 @@ import uk from 'vee-validate/dist/locale/uk';
 
 import HomeComponent from './components/Admin/HomeComponent'
 import AchieveComponent from './components/Admin/AchieveComponent'
-import ContactComponent from './components/Admin/ContactComponent'
+import PageInfoComponent from './components/Admin/PageInfoComponent'
 import DepartmentComponent from './components/Admin/DepartmentComponent'
 import GalleryComponent from './components/Admin/GalleryComponent'
 import InfoComponent from './components/Admin/InfoComponent'
@@ -19,6 +19,7 @@ import IntroComponent from './components/Admin/IntroComponent'
 import NewsComponent from './components/Admin/NewsComponent'
 import EditNewsComponent from "./components/Admin/EditNAS/EditNewsComponent";
 import EditAchieveComponent from "./components/Admin/EditNAS/EditAchieveComponent";
+import EditDepartmentComponent from "./components/Admin/EditNAS/EditDepartmentComponent";
 import EditStoryComponent from "./components/Admin/EditNAS/EditStoryComponent";
 import StoryComponent from './components/Admin/StoryComponent'
 import TeacherComponent from './components/Admin/TeacherComponent'
@@ -46,9 +47,9 @@ const router = new VueRouter({
             component: HomeComponent
         },
         {
-            path: '/admin/contact', 
-            name: 'contact', 
-            component: ContactComponent
+            path: '/admin/page-info', 
+            name: 'page-info', 
+            component: PageInfoComponent
         },
         {
             path: '/admin/gallery', 
@@ -59,6 +60,11 @@ const router = new VueRouter({
             path: '/admin/department', 
             name: 'department', 
             component: DepartmentComponent
+        },
+        {
+            path: '/admin/department/:id/',
+            name: 'edit-department',
+            component: EditDepartmentComponent
         },
         {
             path: '/admin/info', 

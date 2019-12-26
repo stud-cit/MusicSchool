@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <page-title title="історія школи" uptitle="дивовижна"></page-title>
+        <page-title title="історія школи" uptitle="дивовижна" :description="description"></page-title>
 
         <section class="history-section mt-50">
             <b-container class="history-list">
@@ -42,6 +42,7 @@
             return {
                 data: [],
                 paginateArray: [],
+                description: ''
             }
         },
         components: {
@@ -49,14 +50,20 @@
         },
         created() {
             this.getData();
+            this.getInfoPage();
         },
         methods: {
             getData() {
                 axios.get('/api/story')
                     .then((response) => {
-                        console.log(response.data)
                         this.data = response.data;
                     })
+            },
+            getInfoPage() {
+                axios.get('/api/page-info/history')
+                .then((response) => {
+                    this.description = response.data.text;
+                })
             },
         }
     }

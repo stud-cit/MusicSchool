@@ -23,6 +23,7 @@ class CreateDepartmentsTable extends Migration
             $table->increments('departments_id');
             $table->string('name_department');
             $table->text('departments_info');
+            $table->string('img');
             $table->timestamps();
         });
     }

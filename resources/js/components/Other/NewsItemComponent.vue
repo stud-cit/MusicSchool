@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="новини" uptitle="актуальні"></page-title>
+        <page-title title="новини" uptitle="актуальні" :description="description"></page-title>
         <section class="history-section mt-50">
             <b-container>
                 <router-link :to="{ name: 'news'}" class="news-item-router">
@@ -55,12 +55,14 @@
                     title: '',
                     text: '',
                     date: '',
-                    images: []
+                    images: [],
+                    description: ''
                 },
             }
         },
         created() {
             this.getData();
+            this.getInfoPage();
         },
         methods: {
             getData() {
@@ -68,6 +70,12 @@
                     .then((response) => {
                         this.data = response.data;
                     })
+            },
+            getInfoPage() {
+                axios.get('/api/page-info/news')
+                .then((response) => {
+                    this.description = response.data.text;
+                })
             },
         }
         /*v-for="i in this.$route.params.img"*/

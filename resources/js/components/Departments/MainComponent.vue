@@ -7,7 +7,7 @@
           <div v-if="index % 2 == 0" class="card__block">
             <div class="card__big" @click="showModal(block[0].departments_id)">
               <div class="card__big__img">
-                <img v-bind:src="cardsBlock.imgBig" alt="piano" />
+                <img v-bind:src="block[0].img" alt="piano" />
               </div>
               <div class="card__big__body">
                 <div class="card__big__title">{{block[0].name_department}}</div>
@@ -17,7 +17,7 @@
             <div v-if="block[1]" class="card__small" @click="showModal(block[1].departments_id)">
               <div class="card__small__title">{{block[1].name_department}}</div>
               <div class="card__small__img">
-                <img v-bind:src="cardsBlock.imgSmall" alt="skripka" />
+                <img v-bind:src="block[1].img" alt="skripka" />
               </div>
               <div class="card__small__text">{{block[1].departments_info}}</div>
             </div> 
@@ -27,13 +27,13 @@
             <div class="card__small" @click="showModal(block[0].departments_id)">
               <div class="card__small__title">{{block[0].name_department}}</div>
               <div class="card__small__img">
-                <img v-bind:src="cardsBlock.imgSmall" alt="skripka" />
+                <img v-bind:src="block[0].img" alt="skripka" />
               </div>
               <div class="card__small__text">{{block[0].departments_info}}</div>
             </div> 
             <div v-if="block[1]" class="card__big" @click="showModal(block[1].departments_id)">
               <div class="card__big__img">
-                <img v-bind:src="cardsBlock.imgBig" alt="piano" />
+                <img v-bind:src="block[1].img" alt="piano" />
               </div>
               <div class="card__big__body">
                 <div class="card__big__title">{{block[1].name_department}}</div>

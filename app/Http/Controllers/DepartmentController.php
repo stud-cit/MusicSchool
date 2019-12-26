@@ -11,6 +11,7 @@ class DepartmentController extends Controller
 {
     protected $publicStorageTeachers = "/user-file/teachers/";
     protected $publicStorageInstruments = "/user-file/instruments/";
+    protected $publicStorageDepartments = "/user-file/departments/";
     protected $defaultPhoto = "/img/empty.png";
 
     // Відділи
@@ -22,12 +23,23 @@ class DepartmentController extends Controller
     }
     public function getDepartmentsId($id)
     {
-        $data = Departments::with('department')->find($id);
+        $data = Departments::find($id);
         return response()->json($data);
     }
     public function postDepartments(Request $request)
     {
         $departments = new Departments;
+
+        $this->validate($request, ['filenames.*' => 'mimes:jpeg']);
+
+        if($request->file('img')) {
+            $name = time() . '-' . $request->file('img')->getClientOriginalName();
+            $request->file('img')->move(public_path() . $this->publicStorageDepartments, $name);
+            $departments->img = $this->publicStorageDepartments . $name;
+        } else {
+            $departments->img = $this->defaultPhoto;
+        }
+
         $departments->name_department = $request->name_department;
         $departments->departments_info = $request->departments_info;
         $departments->save();
@@ -37,14 +49,27 @@ class DepartmentController extends Controller
     {
         $departments = Departments::find($id);
 
+        $this->validate($request, ['filenames.*' => 'mimes:jpeg']);
+
+        if($request->file('img')) {
+            $name = time() . '-' . $request->file('img')->getClientOriginalName();
+            $request->file('img')->move(public_path() . $this->publicStorageDepartments, $name);
+            $departments->img = $this->publicStorageDepartments . $name;
+        }
+
         $departments->name_department = $request->name_department;
         $departments->departments_info = $request->departments_info;
         $departments->save();
+        return response('ok', 200);
     }
     public function deleteDepartments($id)
     {
         $departments = Departments::find($id);
+        if($departments->img != $this->defaultPhoto) {
+            unlink(public_path($departments->img));
+        }
         $departments->delete();
+        return response('ok', 200);
     }
 
     // Учителя
