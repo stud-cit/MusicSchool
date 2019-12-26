@@ -12,8 +12,9 @@
                         <p class="title">{{item.title}}</p>
                     </b-col>
                     <b-col cols="12" xl="8" class="content-block" v-if="item.images.length">
-                        <b-carousel id="carousel-fade" fade indicators v-for="photo in item.images" :key="photo.images_id">
+                        <b-carousel id="carousel-fade" fade indicators >
                             <b-carousel-slide
+                                v-for="photo in item.images" :key="photo.images_id"
                                     caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry
                                 Lorem Ipsum is simply dummy text of the printing orem Ipsum is simply dummy"
                                     :img-src="photo.file"
