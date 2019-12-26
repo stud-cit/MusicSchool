@@ -46,6 +46,7 @@
                                 v-model="intro.info" 
                                 id="info" 
                                 rows="6"
+                                maxlength="240"
                                 disabled
                                 v-validate="{ required: true}"
                                 data-vv-as="Загальна інформація"
