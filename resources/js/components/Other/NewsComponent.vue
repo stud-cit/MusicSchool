@@ -94,15 +94,16 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        width: 100%;
+        width: 250px;
         max-width: 100%;
-        height: auto;
+        height: 200px;
     }
     .news-img {
+        object-fit: cover;
         display: block;
         width: 100%;
         max-width: 100%;
-        height: inherit;
+        height: 100%;
     }
     .news-date {
         margin-left: -10px;
