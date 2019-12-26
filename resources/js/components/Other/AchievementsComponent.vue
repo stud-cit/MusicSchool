@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="важливі" uptitle="досягнення"></page-title>
+        <page-title title="досягнення" uptitle="важливі"></page-title>
         <section class="news-section mt-50">
             <b-container class="news-list">
 
