@@ -41,8 +41,8 @@
                         <div v-for="(item, index) in file" :key="index">
                             <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name}} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
                         </div>
-                        <span class="text-danger" v-if="errors.has('newsImage')">
-                            Файл повинен бути зображенням
+                        <span class="text-danger" v-if="errors.has('newsImage') || imgError">
+                            Файл не обрано або невірний формат зображення
                         </span>
                     </div>
                 </div>
@@ -110,6 +110,7 @@
                         }
                     }
                 },
+				imgError: false
 			};
 		},
 		created() {
@@ -118,6 +119,9 @@
 		},
 
 		methods: {
+			validImg() {
+				this.imgError = this.file.length == 0 ? true : false
+			},
 			fieldChange(){
 				let changeFile = this.$refs.newsImage.files;
 				for(let i = 0; i < changeFile.length; i++) {
@@ -129,6 +133,7 @@
 					}
 					this.file.push(changeFile[i]);
 				}
+				this.validImg();
 			},
 
 			getNewsList() {
@@ -138,8 +143,9 @@
                     })
             },
 			save() {
+				this.validImg();
 				this.$validator.validateAll().then((result) => {
-					if (!result) {
+					if (!result || this.file.length == 0) {
 						return;
 					} else {
 						var form = new FormData;
@@ -185,6 +191,9 @@
 			},
 			delFile(index) {
 				this.file.splice(index, 1);
+				if (this.file.length == 0) {
+					this.imgError = true
+				}
 			},
 			delNewsImage(id, index) {
 				if(id) {

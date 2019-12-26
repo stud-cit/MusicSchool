@@ -41,8 +41,8 @@
                         <div v-for="(item, index) in file" :key="index">
                             <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name}} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
                         </div>
-                        <span class="text-danger"
-                                v-if="imgError">Історія повинна мати зображення
+                        <span class="text-danger" v-if="errors.has('storyImage') || imgError">
+                            Файл не обрано або невірний формат зображення
                         </span>
                     </div>
                 </div>
