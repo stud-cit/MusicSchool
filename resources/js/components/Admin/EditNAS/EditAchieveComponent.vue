@@ -32,12 +32,12 @@
                     <label for="achieveImage" class="col-sm-2 col-form-label">Зображення</label>
                     <div class="col-sm-6">
                         <label class="custom-file w-100">
-                            <input type="file" class="custom-file-input col-6" id="achieveImage" name="achieveImage" ref="achieveImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'">
+                            <input type="file" class="custom-file-input col-6" id="achieveImage" name="achieveImage" ref="achieveImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'" required>
                             <span class="custom-file-control">Файл не обрано</span>
                         </label>
                         <img v-if="!errors.has('achieveImage')" class="mt-3 w-50" :src="achieve.photo">
                         <span class="errors text-danger" v-if="errors.has('achieveImage')">
-							Файл повинен бути зображенням
+							Файл не обрано або невірний формат зображення
 						</span>
                     </div>
                 </div>
@@ -46,11 +46,17 @@
                     <div class="input-row">
                         <div class="input-container">
                             <date-picker 
-                                v-model="achieve.date" 
+                                v-model="achieve.date"
+                                name="editAchieveDate"
                                 value-type="YYYY-MM-DD"
                                 :lang="datepicker.lang"
                                 :editable="false"
-                            ></date-picker>
+                                v-validate="{ required: true }"
+                                data-vv-as="Дата оприлюднення"
+                            ></date-picker><br>
+                            <span class="text-danger errors" v-if="errors.has('editAchieveDate')">
+                                    {{ errors.first('editAchieveDate') }}
+                            </span>
                             <input style="display:none" type="text" name="date" v-model="achieve.date" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                         </div>
                     </div>
@@ -66,60 +72,72 @@
     import 'vue2-datepicker/index.css';
 
 	export default {
-        name: "edit-achieve",
-        components: {
-            DatePicker
-        },
+		name: "edit-achieve",
+		components: {
+			DatePicker
+		},
 		data() {
 			return {
-                achieve: [],
-                datepicker: {
-                    lang: {
-                        formatLocale: {
-                            months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
-                            monthsShort: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
-                            weekdays: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
-                            weekdaysShort: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД'],
-                            weekdaysMin: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД']
-                        }
-                    }
-                },
+				achieve: [],
+				datepicker: {
+					lang: {
+						formatLocale: {
+							months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+							monthsShort: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+							weekdays: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
+							weekdaysShort: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД'],
+							weekdaysMin: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД']
+						}
+					}
+				},
 			}
 		},
 		created() {
-            document.title = "Досягнення";
+			document.title = "Досягнення";
 			this.getAchieveList();
 		},
 		methods: {
-            previewFiles(event) {
-                var input = event.target;
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = (e) => {
-                        this.achieve.photo = e.target.result;
-                    }
-                    reader.readAsDataURL(input.files[0]);
-                    input.parentNode.querySelector('span').innerHTML = input.files[0].name;
-                }
-            },
+			previewFiles(event) {
+				var input = event.target;
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.onload = (e) => {
+						this.achieve.photo = e.target.result;
+					}
+					reader.readAsDataURL(input.files[0]);
+					input.parentNode.querySelector('span').innerHTML = input.files[0].name;
+				}
+			},
 			getAchieveList() {
-				axios.get('/api/achieve/'+this.$route.params.id)
+				axios.get('/api/achieve/' + this.$route.params.id)
 					.then((response) => {
-                        this.achieve = response.data;
+						this.achieve = response.data;
 					})
 			},
 			save() {
-				var form = new FormData;
-				form.append('title', this.achieve.title);
-				form.append('text', this.achieve.text);
-                form.append('date', this.achieve.date);
-                form.append('photo', this.$refs.achieveImage.files[0]);
-				axios.post('/api/achieve/'+this.$route.params.id, form)
-					.then((response) => {
-                        swal("Інформацію успішно збережено", {
-                            icon: "success",
-                        });
-					})
+				this.$validator.validateAll().then((result) => {
+					if (!result) {
+						return;
+					} else {
+						var form = new FormData;
+						form.append('title', this.achieve.title);
+						form.append('text', this.achieve.text);
+						form.append('date', this.achieve.date);
+						form.append('photo', this.$refs.achieveImage.files[0]);
+						axios.post('/api/achieve/' + this.$route.params.id, form)
+							.then((response) => {
+								swal("Інформацію успішно збережено", {
+									icon: "success",
+								});
+							})
+							.catch((error) => {
+								swal({
+									icon: "error",
+									title: 'Помилка',
+								});
+							});
+					}
+				});
 			}
 		}
 	}

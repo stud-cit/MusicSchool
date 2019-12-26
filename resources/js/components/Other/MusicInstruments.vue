@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="інструментів" uptitle="Різноманітність"></page-title>
+        <page-title title="інструментів" uptitle="Різноманітність" :description="description"></page-title>
         <section class="instruments-section mt-50">
             <div class="content-block">
                 <div class="content-layout"></div>
@@ -31,23 +31,27 @@
         data() {
             return {
                 instrument: [],
-                paginateArray: []
+                paginateArray: [],
+                description: ''
             }
         },
 	    created() {
-		    this.getInstrumentId();
+            this.getInstrumentId();
+            this.getInfoPage();
 	    },
-        computed: {
-
-
-        },
 	    methods: {
 		    getInstrumentId() {
 			    axios.get('/api/instrument/department/'+this.$route.params.id)
 				    .then((response) => {
 					    this.instrument = response.data;
 				    })
-		    },
+            },
+            getInfoPage() {
+                axios.get('/api/page-info/instruments')
+                .then((response) => {
+                    this.description = response.data.text;
+                })
+            },
 	    },
         components: {
             paginate

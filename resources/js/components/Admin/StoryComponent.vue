@@ -38,15 +38,15 @@
                     <div class="col-sm-6">
                         <label class="custom-file w-100">
                             <input type="file" name="storyImage" v-validate="'image'" class="custom-file-input col-6"
-                                   id="storyImage" ref="storyImage" @change="fieldChange" accept="image/*" multiple required>
+                                   id="storyImage" ref="storyImage" @change="fieldChange" accept="image/*" multiple>
                             <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
                         </label>
                         <div v-for="(item, index) in file" :key="index">
                             <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
-                            <span class="text-danger"
-                                  v-if="errors.has('storyImage')">Файл повинен бути зображенням
-                            </span>
                         </div>
+                        <span class="text-danger" v-if="errors.has('storyImage') || imgError">
+                            Файл не обрано або невірний формат зображення
+                        </span>
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
                     <div class="col-sm-4">
                         <date-picker v-model="date" id="storyDate" name="storyDate" :editable="false" type="year" 
                             v-validate="{ required: true }"
-                               data-vv-as="Рік"></date-picker><br>
+                            data-vv-as="Рік"></date-picker><br>
 
                         <span class="text-danger errors" v-if="errors.has('storyDate')">
                                 {{ errors.first('storyDate') }}
@@ -102,16 +102,20 @@ export default {
 			showForm: false,
 			title: '',
 			text: '',
-			date: '',
+            date: '',
 			file: [],
-            story: []
+            story: [],
+            imgError: false
 		};
 	},
 	created() {
         document.title = "Історії";
 		this.getStoryList();
-	},
+    },
 	methods: {
+        validImg() {
+            this.imgError = this.file.length == 0 ? true : false
+        },
 		fieldChange(){
 			let changeFile = this.$refs.storyImage.files;
 			for(let i = 0; i < changeFile.length; i++) {
@@ -121,12 +125,14 @@ export default {
 					changeFile[i].valid = false;
 				}
 				this.file.push(changeFile[i]);
-			}
+            }
+            this.validImg();
 		},
 
 		postStory() {
+            this.validImg();
 			this.$validator.validateAll().then((result) => {
-				if (!result) {
+				if (!result || this.file.length == 0) {
 					return;
 				} else {
 					var form = new FormData;
@@ -191,6 +197,9 @@ export default {
         },
         delFile(index) {
             this.file.splice(index, 1);
+            if (this.file.length == 0) {
+                this.imgError = true
+            }
         }
 	}
 };

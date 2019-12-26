@@ -1,6 +1,6 @@
 <template>
   <div>
-    <page-title title="про вступ" uptitle="інформація"></page-title>
+    <page-title title="про вступ" uptitle="інформація" :description="description"></page-title>
     <header-component :bg="intro.bg" :blockOne="intro.block1" :blockTwo="intro.block2" :blockThree="intro.block3"></header-component>
     <main-component :intro="intro" :document="document" />
   </div>
@@ -14,7 +14,8 @@
     data() {
       return {
         intro: {},
-        document: {}
+        document: {},
+        description: ''
       }
     },
     components: {
@@ -24,6 +25,7 @@
     created() {
       this.getIntro();
       this.getDocuments();
+      this.getInfoPage();
     },
     methods: {
       getIntro() {
@@ -32,8 +34,14 @@
             this.intro = response.data;
           })
       },
+      getInfoPage() {
+        axios.get('/api/page-info/introduction')
+          .then((response) => {
+            this.description = response.data.text;
+          })
+      },
       getDocuments() {
-        axios.get('/api/get-document')
+        axios.get('/api/document')
           .then((response) => {
             this.document = response.data;
           })

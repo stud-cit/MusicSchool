@@ -41,11 +41,8 @@
                         <div v-for="(item, index) in file" :key="index">
                             <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name}} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
                         </div>
-                        <span class="text-danger" v-if="errors.has('newsImage')">
-                            Файл повинен бути зображенням
-                        </span>
-                        <span class="text-danger" v-if="file.length > 3">
-                                Кількість фото може бути не більше трьох
+                        <span class="text-danger" v-if="errors.has('newsImage') || imgError">
+                            Файл не обрано або невірний формат зображення
                         </span>
                     </div>
                 </div>
@@ -67,11 +64,17 @@
                         <div class="input-row">
                             <div class="input-container">
                                 <date-picker 
-                                    v-model="news.date" 
+                                    v-model="news.date"
+                                    name="editNewsDate"
                                     value-type="YYYY-MM-DD"
                                     :lang="datepicker.lang"
                                     :editable="false"
-                                ></date-picker>
+                                    v-validate="{ required: true }"
+                                    data-vv-as="Дата оприлюднення"
+                                ></date-picker><br>
+                                <span class="text-danger errors" v-if="errors.has('editNewsDate')">
+                                    {{ errors.first('editNewsDate') }}
+                                </span>
                                 <input style="display:none" type="text" name="date" v-model="news.date" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                             </div>
                         </div>
@@ -107,6 +110,7 @@
                         }
                     }
                 },
+				imgError: false
 			};
 		},
 		created() {
@@ -115,6 +119,9 @@
 		},
 
 		methods: {
+			validImg() {
+				this.imgError = this.file.length == 0 ? true : false
+			},
 			fieldChange(){
 				let changeFile = this.$refs.newsImage.files;
 				for(let i = 0; i < changeFile.length; i++) {
@@ -126,6 +133,7 @@
 					}
 					this.file.push(changeFile[i]);
 				}
+				this.validImg();
 			},
 
 			getNewsList() {
@@ -135,12 +143,24 @@
                     })
             },
 			save() {
+				this.validImg();
 				this.$validator.validateAll().then((result) => {
-					if (!result) {
+					if (!result || this.file.length == 0) {
 						return;
 					} else {
 						var form = new FormData;
 						for (let i = 0; i < this.file.length; i++) {
+							/*
+							if (this.file.length < 4){
+								this.file[i].valid = true;
+                            }
+							else {
+								swal({
+									icon: "error",
+									title: 'Кількість фото не може бути більше трьох',
+								});
+                            }
+                            */
 							if (this.file[i].valid) {
 								form.append('file[]', this.file[i]);
 							}
@@ -150,11 +170,15 @@
 						form.append('date', this.news.date);
 							axios.post('/api/news/' + this.$route.params.id, form)
 								.then((response) => {
-									this.file = [];
 									this.news.images = this.news.images.concat(response.data);
-									swal("Інформацію успішно збережено", {
-										icon: "success",
-									});
+									if(this.file.length < 4) {
+										swal("Інформацію успішно збережено", {
+											icon: "success",
+											timer: 1000,
+											button: false
+										});
+										this.file = [];
+									}
 								})
 								.catch((error) => {
 									swal({
@@ -167,6 +191,9 @@
 			},
 			delFile(index) {
 				this.file.splice(index, 1);
+				if (this.file.length == 0) {
+					this.imgError = true
+				}
 			},
 			delNewsImage(id, index) {
 				if(id) {

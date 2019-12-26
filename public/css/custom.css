@@ -96,6 +96,10 @@
     padding: 10px 15px;
     border-radius: 5px;
 }
+.uploadIntroFiles {
+    width: 100%;
+    overflow: hidden;
+}
 .uploadFiles i {
     float: right;
     display: block;

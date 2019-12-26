@@ -7,7 +7,7 @@
                     <hr>
                     <label for="info_school" class="brtop">Коротка інформація про школу</label>
                     <textarea name="info_school" class="form-control" id="info_school" 
-                        v-model="info.info_school" rows="6" 
+                        v-model="info.info_school" rows="6" maxlength="240"
                         disabled 
                         v-validate="{ required: true}"
                         data-vv-as="Коротка інформація про школу"
@@ -105,8 +105,7 @@ export default {
                 phone: '',
                 email: '',
                 address: ''
-            },
-            showButton: true
+            }
         }
     },
 	created() {
@@ -122,11 +121,10 @@ export default {
         },
         edit(event, column) {
             const textElement = document.getElementById(column);
-            if(this.showButton) {
+            if(event.target.innerHTML == "Редагувати") {
                 textElement.removeAttribute('disabled');
                 textElement.focus();
                 event.target.innerHTML = 'Зберегти';
-                this.showButton = false;
             }
             else {
                 textElement.setAttribute('disabled', 'disabled');
@@ -135,11 +133,12 @@ export default {
                     column,
                     value: this.info[column]
                 }).then((response) => {
-		            swal("Інформація оновлена", {
-			            icon: "success"
-		            });
+                    swal("Інформація оновлена", {
+                        icon: "success",
+                        timer: 1000,
+                        button: false
+                    });
 	            })
-                this.showButton = true;
             }
         },
     }

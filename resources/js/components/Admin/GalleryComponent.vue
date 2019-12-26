@@ -46,7 +46,7 @@
 
         <br>
         <div class="row">
-            <silentbox-group v-for="(item, index) in file" :key="index" class="col-4 fotoGallery">
+            <silentbox-group v-for="(item, index) in paginatedData" :key="index" class="col-4 fotoGallery">
 				<div class="silentbox-item">
 					<silentbox-item :src="'/user-file/gallery/'+item.file" class="foto" v-if="item.type == 'img'">
 						<img :src="'/user-file/gallery/'+item.file">
@@ -211,5 +211,17 @@
 <style scoped>
 .fa-download {
 	bottom: 0px;
+}
+
+li{
+	font-size: 20px;
+}
+.fa-long-arrow-left::before{
+	margin-right: 15px;
+	font-size: 35px;
+}
+.fa-long-arrow-right::before{
+	margin-left: 15px;
+	font-size: 35px;
 }
 </style>

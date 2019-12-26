@@ -38,17 +38,14 @@
                         <div class="col-sm-6">
                             <label class="custom-file w-100">
                                 <input type="file" name="newsImage" v-validate="'image'" class="custom-file-input col-6"
-                                    id="newsImage" ref="newsImage" @change="fieldChange" accept="image/*" multiple required>
+                                    id="newsImage" ref="newsImage" @change="fieldChange" accept="image/*" multiple>
                                 <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
                             </label>
                             <div v-for="(item, index) in file" :key="index">
                                 <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
                             </div>
-                            <span class="text-danger" v-if="errors.has('newsImage')">
-                                Файл повинен бути зображенням
-                            </span>
-                            <span class="text-danger" v-if="file.length > 3">
-                                Кількість фото може бути не більше трьох
+                            <span class="text-danger" v-if="errors.has('newsImage') || imgError">
+                                Файл не обрано або невірний формат зображення
                             </span>
                         </div>
                     </div>
@@ -63,12 +60,12 @@
                                     value-type="YYYY-MM-DD"
                                     :lang="datepicker.lang"
                                     :editable="false"
-                                     v-validate="{ required: true }"
+                                    v-validate="{ required: true }"
                                     data-vv-as="Дата оприлюднення"
                                 ></date-picker><br>
-                            <span class="text-danger errors" v-if="errors.has('newsDate')">
+                                <span class="text-danger errors" v-if="errors.has('newsDate')">
                                     {{ errors.first('newsDate') }}
-                            </span>                               
+                                </span>
                                 <input style="display:none" type="text" name="date" v-model="date" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                             </div>
                         </div>
@@ -128,6 +125,7 @@
                         }
                     }
                 },
+				imgError: false
 			};
 		},
 		created() {
@@ -135,26 +133,41 @@
 			this.getNewsList();
 		},
 		methods: {
+			validImg() {
+				this.imgError = this.file.length == 0 ? true : false
+			},
 			fieldChange(){
 				let changeFile = this.$refs.newsImage.files;
 				for(let i = 0; i < changeFile.length; i++) {
-					if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png' && changeFile.length < 4) {
+					if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
 						changeFile[i].valid = true;
 					} else {
 						changeFile[i].valid = false;
 					}
 					this.file.push(changeFile[i]);
 				}
+				this.validImg();
 			},
 
 			postNews() {
+				this.validImg();
 				this.$validator.validateAll().then((result) => {
-					if (!result) {
+					if (!result || this.file.length == 0) {
 						return;
 					} else {
 						var form = new FormData;
-						this.load = true;
 						for(let i = 0; i < this.file.length; i++){
+							/*
+							if (this.file.length < 4){
+								this.file[i].valid = true;
+							}
+							else {
+								swal({
+									icon: "error",
+									title: 'Кількість фото не може бути більше трьох',
+								});
+							}
+							*/
 							if(this.file[i].valid) {
 								form.append('file[]', this.file[i]);
 							}
@@ -162,22 +175,24 @@
 						form.append('title', this.title);
 						form.append('text', this.text);
 						form.append('date', this.date);
-						axios.post('/api/news', form)
-							.then((res) => {
-								this.file = [];
-								swal("Інформація спішно додана", {
-									icon: "success",
-									timer: 1000,
-									button: false
+						//if(this.file.length < 4) {
+							axios.post('/api/news', form)
+								.then((res) => {
+									swal("Інформація спішно додана", {
+										icon: "success",
+										timer: 1000,
+										button: false
+									});
+									this.news.push(res.data);
+									this.file = [];
+								})
+								.catch((error) => {
+									swal({
+										icon: "error",
+										title: 'Помилка',
+									});
 								});
-								this.news.push(res.data);
-							})
-                            .catch((error) => {
-                                swal({
-                                    icon: "error",
-                                    title: 'Помилка',
-                                });
-						});
+						//}
 					}
 				});
 			},
@@ -216,6 +231,9 @@
             },
             delFile(index) {
                 this.file.splice(index, 1);
+	            if (this.file.length == 0) {
+		            this.imgError = true
+	            }
             }
 		}
 	};

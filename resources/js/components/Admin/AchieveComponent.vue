@@ -36,13 +36,14 @@
                     <label for="achieveImage" class="col-sm-2 col-form-label">Зображення</label>
                     <div class="col-sm-6">
                         <label class="custom-file w-100">
-                            <input type="file" class="custom-file-input col-6" id="achieveImage" name="achieveImage" ref="achieveImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'">
+                            <input type="file" class="custom-file-input col-6" id="achieveImage" name="achieveImage" ref="achieveImage" 
+                                @change="previewFiles($event)" accept="image/*" v-validate="'image'" required>
                             <span class="custom-file-control">Файл не обрано</span>
                         </label>
                         <img v-if="!errors.has('achieveImage')" class="mt-3 w-50" :src="image">
-                        <span class="text-danger"
-                                v-if="errors.has('achieveImage')">Файл повинен бути зображенням
-                        </span>
+                       <span class="errors text-danger" v-if="errors.has('achieveImage')">
+							Файл не обрано або невірний формат зображення
+						</span>
                     </div>
                 </div>
 
@@ -58,11 +59,11 @@
                                 :editable="false"
                                 v-validate="{ required: true }"
                                 data-vv-as="Дата оприлюднення"
-                                ></date-picker><br>
+                            ></date-picker><br>
                             <span class="text-danger errors" v-if="errors.has('achieveDate')">
                                     {{ errors.first('achieveDate') }}
                             </span>                               
-                            <input style="display:none" type="text" name="date" v-model="date" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
+                            <input style="display:none" type="text" name="date" v-model="date" v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                         </div>
                     </div>
                 </div>
@@ -187,7 +188,7 @@ export default {
                     axios.delete('/api/achieve/'+id)
                         .then((response) => {
                             this.achieve.splice(index, 1);
-                            swal("Новина була успішно видалена", {
+                            swal("Зпис був успішно видалений", {
                                 icon: "success",
                             });
                         })

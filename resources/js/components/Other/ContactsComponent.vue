@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="Контакти" uptitle="доступні"></page-title>
+        <page-title title="Контакти" uptitle="доступні" :description="description"></page-title>
         <MapComponent/>
     </div>
 </template>
@@ -11,10 +11,23 @@
 
     export default {
         data() {
-            return {};
+            return {
+                description: ''
+            };
         },
          components: {
             MapComponent
+        },
+        created() {
+            this.getInfoPage();
+        },
+        methods: {
+            getInfoPage() {
+                axios.get('/api/page-info/contacts')
+                .then((response) => {
+                    this.description = response.data.text;
+                })
+            },
         }
     }
 </script>

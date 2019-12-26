@@ -24,14 +24,14 @@ class CreateTeachersTable extends Migration
             $table->integer('departments_id')->unsigned();
             $table->string('teacher_surname');
             $table->string('teacher_name');
-            $table->string('teacher_info');
+            $table->text('teacher_info');
             $table->string('photo');
             $table->timestamps();
         });
 
         Schema::table('teachers', function (Blueprint $table) {
             $table->index('departments_id');
-            $table->foreign('departments_id')->references('departments_id')->on('departments');
+            $table->foreign('departments_id')->references('departments_id')->on('departments')->onDelete('cascade');
         });
     }
 

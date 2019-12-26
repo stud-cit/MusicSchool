@@ -30,7 +30,7 @@ class CreateInstrumentsTable extends Migration
 
         Schema::table('instruments', function (Blueprint $table) {
             $table->index('departments_id');
-            $table->foreign('departments_id')->references('departments_id')->on('departments');
+            $table->foreign('departments_id')->references('departments_id')->on('departments')->onDelete('cascade');
         });
     }
 
