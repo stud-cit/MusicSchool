@@ -32,7 +32,7 @@
                     <label for="departmentImage" class="col-sm-2 col-form-label">Зображення</label>
                     <div class="col-sm-6">
                         <label class="custom-file w-100">
-                            <input type="file" class="custom-file-input col-6" id="departmentImage" name="departmentImage" ref="departmentImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'" required>
+                            <input type="file" class="custom-file-input col-6" id="departmentImage" name="departmentImage" ref="departmentImage" @change="previewFiles($event)" accept=".png" v-validate="{ 'ext':['png'] }" required>
                             <span class="custom-file-control">Файл не обрано</span>
                         </label>
                         <img class="mt-3 w-50" :src="department.img">
