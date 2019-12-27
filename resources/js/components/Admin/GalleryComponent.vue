@@ -19,8 +19,10 @@
 						</label>
 						<div v-for="(item, index) in uploadPhotos" :key="index">
 							<div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{ item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="deleteUploadFile(index)"></i></div>
-							<span class="text-danger" v-if="errors.has('foto')">Файл повинен бути зображенням</span>
 						</div>
+						<span class="text-danger" v-if="errors.has('foto')">
+							Файл повинен бути зображенням
+						</span><br>
 						<!-- Временное решение -->
 						<transition name="load">
 							<div v-if="load" style="text-align:center">Завантаження</div>
@@ -139,25 +141,37 @@
 				}
 			},
 			uploadFile() {
-				var form = new FormData;
-				this.load = true;
-				for(let i = 0; i < this.uploadPhotos.length; i++){
-					if(this.uploadPhotos[i].valid) {
-						form.append('pics[]', this.uploadPhotos[i]);
+				this.$validator.validateAll().then((result) => {
+					if (!result) {
+						return;
+					} else {
+						var form = new FormData;
+						this.load = true;
+						for (let i = 0; i < this.uploadPhotos.length; i++) {
+							if (this.uploadPhotos[i].valid) {
+								form.append('pics[]', this.uploadPhotos[i]);
+							}
+						}
+						form.append('type', 'img');
+						axios.post('/api/gallery', form)
+								.then((res) => {
+									this.uploadPhotos = [];
+									this.load = false;
+									this.file = this.file.concat(res.data);
+									swal("Інформація оновлена", {
+										icon: "success",
+										timer: 1000,
+										button: false
+									});
+								})
+								.catch((error) => {
+									swal({
+										icon: "error",
+										title: 'Помилка',
+									});
+								});
 					}
-				}
-				form.append('type', 'img');
-				axios.post('/api/gallery', form)
-					.then((res) => {
-						this.uploadPhotos = [];
-                        this.load = false;
-						this.file = this.file.concat(res.data);
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
-					})
+				});
             },
             postVideo() {
                 axios.post('/api/gallery', {

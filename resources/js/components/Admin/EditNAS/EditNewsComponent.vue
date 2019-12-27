@@ -170,15 +170,13 @@
 						form.append('date', this.news.date);
 							axios.post('/api/news/' + this.$route.params.id, form)
 								.then((response) => {
+									this.file = [];
 									this.news.images = this.news.images.concat(response.data);
-									if(this.file.length < 4) {
 										swal("Інформацію успішно збережено", {
 											icon: "success",
 											timer: 1000,
 											button: false
 										});
-										this.file = [];
-									}
 								})
 								.catch((error) => {
 									swal({
