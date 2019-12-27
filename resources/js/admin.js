@@ -35,15 +35,15 @@ Validator.localize('uk', uk);
 Vue.use(VueRouter);
 
 Vue.use(VeeValidate, {
-  locale: 'uk',
+    locale: 'uk',
 });
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/admin', 
-            name: 'admin', 
+            path: '/admin',
+            name: 'admin',
             component: HomeComponent
         },
         {
@@ -52,13 +52,13 @@ const router = new VueRouter({
             component: PageInfoComponent
         },
         {
-            path: '/admin/gallery', 
-            name: 'gallery', 
+            path: '/admin/gallery',
+            name: 'gallery',
             component: GalleryComponent
         },
         {
-            path: '/admin/department', 
-            name: 'department', 
+            path: '/admin/department',
+            name: 'department',
             component: DepartmentComponent
         },
         {
@@ -72,8 +72,8 @@ const router = new VueRouter({
             component: InfoComponent
         },
         {
-            path: '/admin/instrument', 
-            name: 'instrument', 
+            path: '/admin/instrument',
+            name: 'instrument',
             component: InstrumentComponent
         },
         {
@@ -82,13 +82,13 @@ const router = new VueRouter({
             component: EditInstrumentsComponent
         },
         {
-            path: '/admin/intro', 
-            name: 'intro', 
+            path: '/admin/intro',
+            name: 'intro',
             component: IntroComponent
         },
         {
-            path: '/admin/news', 
-            name: 'news', 
+            path: '/admin/news',
+            name: 'news',
             component: NewsComponent
         },
         {
@@ -107,8 +107,8 @@ const router = new VueRouter({
             component: EditAchieveComponent
         },
         {
-            path: '/admin/story', 
-            name: 'story', 
+            path: '/admin/story',
+            name: 'story',
             component: StoryComponent
         },
         {
@@ -117,18 +117,18 @@ const router = new VueRouter({
             component: EditStoryComponent
         },
         {
-            path: '/admin/teacher', 
-            name: 'teacher', 
+            path: '/admin/teacher',
+            name: 'teacher',
             component: TeacherComponent
         },
         {
-            path: '/admin/teacher/:id/', 
-            name: 'edit-teacher', 
+            path: '/admin/teacher/:id/',
+            name: 'edit-teacher',
             component: EditTeachersComponent
         },
         {
-            path: '/admin/profile/:id', 
-            name: 'profile', 
+            path: '/admin/profile/:id',
+            name: 'profile',
             component: ProfileComponent
         }
     ],
