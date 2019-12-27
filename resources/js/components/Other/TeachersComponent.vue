@@ -1,7 +1,7 @@
 <template>
     <div>
-        <page-title title="Найкращі" uptitle="викладачі" :description="description"></page-title>
-        <div class="teachers">
+        <page-title title="Викладачі" uptitle="найкращі" :description="description"></page-title>
+        <div class="teachers" v-if="teacher != 0">
             <b-container>
                 <b-row>
                     <b-col cols="12" sm="12" md="12" lg="6" xl="6" v-for="(item, index) in paginateArray" :key="item.teachers_id">
