@@ -22,7 +22,7 @@
                         </b-carousel>
                     </b-col>
                     <b-col cols="12" xl="8" class="content-block" v-else>
-                        <img src='/img/empty.png' alt="" class="news-img">
+                        <img src='/img/empty.png' alt="" class="img-fluid w-100">
                     </b-col>
                 </b-row>
 
@@ -73,6 +73,8 @@
 <style lang="sass" scoped>
 
     // page
+    img
+        max-width: 100%
 
     .history-section
         .item-title-block
