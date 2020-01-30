@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\NewsStory;
 use App\Models\Images;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class NewsStoryController extends Controller
 {
@@ -15,7 +16,7 @@ class NewsStoryController extends Controller
     // Новини
 
     function getNews() {
-        $data = NewsStory::with('images')->news()->get();
+        $data = NewsStory::with('images')->news()->orderBy('date', 'DESC')->get();
         return response()->json($data);
     }
 
@@ -43,6 +44,9 @@ class NewsStoryController extends Controller
                     $images->id = $news->id;
                     $images->file = $this->publicStorageNews . $news->id . '/' . $name;
                     $images->save();
+                    $img = Image::make(public_path().$this->publicStorageNews . $news->id . '/' . $name);
+                    $img->save(public_path() . $this->publicStorageNews . $news->id . '/' . $name, 50);
+
                 //}
             }
         }
@@ -65,6 +69,10 @@ class NewsStoryController extends Controller
                     $images->id = $news->id;
                     $images->file = $this->publicStorageNews . $news->id . '/' . $name;
                     $images->save();
+
+                    $img = Image::make(public_path().$this->publicStorageNews . $news->id . '/' . $name);
+                    $img->save(public_path() . $this->publicStorageNews . $news->id . '/' . $name, 50);
+
                     array_push($arrImg, $images);
                 //}
             }
@@ -90,7 +98,7 @@ class NewsStoryController extends Controller
     // Історії 
 
     function getStory() {
-        $data = NewsStory::with('images')->story()->get();
+        $data = NewsStory::with('images')->story()->orderBy('date', 'DESC')->get();
         return response()->json($data);
     }
 
@@ -119,6 +127,10 @@ class NewsStoryController extends Controller
                 $images->id = $story->id;
                 $images->file = $this->publicStorageStory.$story->id.'/'.$name;
                 $images->save();
+
+                $img = Image::make(public_path().$this->publicStorageStory . $story->id . '/' . $name);
+                $img->save(public_path() . $this->publicStorageStory . $story->id . '/' . $name, 50);
+
             }
         }
         return response()->json($story);
@@ -138,6 +150,10 @@ class NewsStoryController extends Controller
                 $images->id = $story->id;
                 $images->file = $this->publicStorageStory.$story->id.'/'.$name;
                 $images->save();
+
+                $img = Image::make(public_path().$this->publicStorageStory . $story->id . '/' . $name);
+                $img->save(public_path() . $this->publicStorageStory . $story->id . '/' . $name, 50);
+
                 array_push($arrImg, $images);
             }
         }

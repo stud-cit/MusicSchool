@@ -11,7 +11,7 @@ class AchieveController extends Controller
     protected $defaultPhoto = "/img/empty.png";
 
     function getAchieve() {
-        $data = Achieve::get();
+        $data = Achieve::orderBy('date', 'DESC')->get();
         return response()->json($data);
     }
 
