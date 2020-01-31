@@ -2,22 +2,21 @@
     <div>
         <page-title title="галерея" uptitle="Різноманітність" :description="description"></page-title>
         <section class="gallery-section mt-50">
-            <b-container >
+            <div class="container" >
                 <div class="btn-group">
                     <button :class="[{active: this.category == 'all'}, 'mr-4']" @click="setFilter('all')">Всі файли</button>
                     <button :class="[{active: this.category == 'img'}, 'mr-4']" @click="setFilter('img')">Фотографії</button>
                     <button :class="{active: this.category == 'video'}" @click="setFilter('video')">Відеоролики</button>
                 </div>
-                <transition-group name="list" tag="div" class="row gallery-list">
-
-                    <b-col cols="12" md="6" xl="4" v-for="item of paginateArray" class="list-item" :key="item.id">
-                        <img v-if="item.type == 'img'" :src="'/user-file/gallery/'+item.file" alt="">
-                        <iframe v-else height="300px" width="100%" :src="'https://www.youtube.com/embed/'+item.file.slice(item.file.length - 11, item.file.length)" frameborder="0" allowfullscreen></iframe>
-                    </b-col>
-
-                </transition-group>
-
-            </b-container>
+                <silentbox-group name="list" tag="div" class="row gallery-list">
+                    <silentbox-item v-for="item of paginateArray" v-if="item.type == 'img'" :key="item.id" :src="'/user-file/gallery/'+item.file" class="col-12 col-md-6 col-xl-4 list-item">
+                        <img :src="'/user-file/gallery/'+item.file">
+                    </silentbox-item>
+                    <div v-else class="col-12 col-md-6 col-xl-4 list-item">
+                        <iframe height="300px" width="100%" :src="'https://www.youtube.com/embed/'+item.file.slice(item.file.length - 11, item.file.length)" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </silentbox-group>
+            </div>
             <paginate :items="filteredItems" @paginateArray="paginateArray = $event"></paginate>
         </section>
     </div>

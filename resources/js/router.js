@@ -15,6 +15,8 @@ import NewsItemComponent from "./components/Other/NewsItemComponent";
 import AchievementItemComponent from "./components/Other/AchievementItemComponent";
 
 Vue.use(Router);
+import VueSilentbox from 'vue-silentbox';
+Vue.use(VueSilentbox);
 
 export default new Router({
     mode: "history",
