@@ -119,11 +119,16 @@
         position: relative;
         width: 100%;
         overflow: hidden;
+        height: 450px;
         margin-bottom: 44px;
     }
     .news-item-img {
-        width: 100%;
-        height: auto;
+        position: absolute;
+        left: 50%;
+        width: auto;
+        height: 450px;
+        transform: translateX(-50%);
+        z-index: 100;
     }
     .news-item-description {
         padding: 0 45px;
