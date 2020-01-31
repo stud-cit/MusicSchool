@@ -23,7 +23,7 @@
                     <div class="form-group row">
                     <label for="newsInfo" class="col-sm-2 col-form-label">Опис новини</label>
                     <div class="col-sm-6">
-                        <textarea name="newsInfo" class="form-control" cols="15" rows="6" v-model="text" id="newsInfo"
+                        <textarea name="newsInfo" class="form-control" maxlength="200" cols="15" rows="6" v-model="text" id="newsInfo"
                                v-validate="{ required: true}"
                                data-vv-as="Опис новини">
                         </textarea>

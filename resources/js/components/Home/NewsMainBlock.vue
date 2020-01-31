@@ -24,7 +24,7 @@
                                 <i class="text_style_mid">{{ $props.news.title }}</i>
                             </div>
                             <div>
-                                <p class="text_common">{{ $props.news.text }}</p>
+                                <p class="text_common">{{ $props.news.text.substring(0,200) }}</p>
                             </div>
                             <div>
                                 <router-link class="news-router" :to="{ name: 'news-item', params: {id: $props.news.id}}">
@@ -72,7 +72,7 @@ export default {
         background-image: url("/img/bl1.png");
         background-size: cover;
         width: 50%;
-        height: 70%;
+        height: 900px;
         min-height: 700px;
         position: absolute;
         margin-top: 150px;
@@ -113,7 +113,7 @@ export default {
     }
     @media (max-width: 1200px) {
         .add_block {
-            height: 60%;
+            height: 80%;
             min-height: 650px;
         }
     }
@@ -133,7 +133,7 @@ export default {
 
     @media (max-width: 768px){
         .add_block {
-            min-height: 850px;
+            height: 800px;
             margin-top: 300px;
         }
     }
@@ -143,7 +143,7 @@ export default {
         }
 
         .add_block {
-            height: 700px;
+            height: 500px;
             margin-top: 300px;
         }
         #block_space_2 {
@@ -176,7 +176,7 @@ export default {
 
     @media (max-width: 350px) {
         .add_block {
-            height: 800px;
+            height: 550px;
             margin-top: 300px;
         }
     }

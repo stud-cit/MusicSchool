@@ -71,7 +71,7 @@
     }
 
     #block_space_2 {
-        margin-bottom: 200px;
+        margin-bottom: 100px;
     }
 
 </style>
