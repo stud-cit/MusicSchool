@@ -32,6 +32,18 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="teacher_patronymic" class="col-sm-2 col-form-label">По батькові</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="teacher_patronymic" v-model="teacher_patronymic" class="form-control" id="teacher_patronymic"
+                            v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){2,}$/i }"
+                                data-vv-as="По батькові">
+                        <span class="errors text-danger" v-if="errors.has('teacher_patronymic')">
+                                {{ errors.first('teacher_patronymic') }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label for="departments_id" class="col-sm-2 col-form-label">Відділ</label>
                     <div class="col-sm-6">
                         <select class="form-control" v-model="departments_id" id="departments_id" name="departments_id"
@@ -62,7 +74,7 @@
                     <label for="teacherImage" class="col-sm-2 col-form-label">Фото викладача</label>
                     <div class="col-sm-6">
 						<label class="custom-file w-100">
-							<input type="file" class="custom-file-input col-6" id="teacherImage" name="teacherImage" 
+							<input type="file" class="custom-file-input col-6" id="teacherImage" name="teacherImage"
 							ref="teacherImage" required @change="previewFiles($event)" accept="image/*" v-validate="'image'">
 							<span class="custom-file-control">Файл не обрано</span>
 						</label>
@@ -82,7 +94,7 @@
 				<tr>
 					<th width="10px" scope="col">№</th>
 					<th width="150px" scope="col">Фото</th>
-					<th scope="col">Прізвище, Ім'я викладача</th>
+					<th scope="col">ПІБ викладача</th>
 					<th scope="col">Відділ</th>
 					<th scope="col">Інформація про викладача</th>
 					<th width="10px" scope="col"></th>
@@ -96,7 +108,7 @@
 						<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
 						<img v-else id="item-image" :src="'../img/empty.png'" class="preview_img figure-img img-fluid">
 					</td>
-					<td>{{ `${item.teacher_surname} ${item.teacher_name}` }}</td>
+					<td>{{ `${item.teacher_surname} ${item.teacher_name} ${item.teacher_patronymic}` }}</td>
 					<td>{{ item.department.name_department }}</td>
 					<td>{{ item.teacher_info }}</td>
 					<td><router-link style="color:#000" :to="{ name: 'edit-teacher', params: {id: item.teachers_id} }"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></router-link></td>
@@ -117,6 +129,7 @@ export default {
 				image: '',
                 teacher_surname: '',
                 teacher_name: '',
+                teacher_patronymic: '',
 				teacher_info: '',
 				departments_id: '',
 				form: new FormData
@@ -151,7 +164,7 @@ export default {
 						this.teachers = response.data;
 					})
 			},
-			
+
 			postTeachers() {
 				this.$validator.validateAll().then((result) => {
 					if (!result) {
@@ -160,6 +173,7 @@ export default {
 						this.form.append('departments_id', this.departments_id);
                         this.form.append('teacher_surname', this.teacher_surname);
                         this.form.append('teacher_name', this.teacher_name);
+                        this.form.append('teacher_patronymic', this.teacher_patronymic);
 						this.form.append('teacher_info', this.teacher_info);
 						this.form.append('photo', this.$refs.teacherImage.files[0]);
 						axios.post('/api/teacher', this.form)
@@ -212,7 +226,7 @@ export default {
 					})
 			}
 		}
-	   
+
 };
 </script>
 

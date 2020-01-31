@@ -90,9 +90,10 @@ class DepartmentController extends Controller
 
     function postTeachers(Request $request) {
         $teachers = new Teachers;
-        $teachers->departments_id = $request->departments_id; 
+        $teachers->departments_id = $request->departments_id;
         $teachers->teacher_surname = $request->teacher_surname;
         $teachers->teacher_name = $request->teacher_name;
+        $teachers->teacher_patronymic = $request->teacher_patronymic;
         $teachers->teacher_info = $request->teacher_info;
         if($request->hasFile('photo')) {
             $file = $request->photo;
@@ -109,6 +110,7 @@ class DepartmentController extends Controller
         $teachers = Teachers::find($id);
         $teachers->teacher_surname = $request->teacher_surname;
         $teachers->teacher_name = $request->teacher_name;
+        $teachers->teacher_patronymic = $request->teacher_patronymic;
         $teachers->teacher_info = $request->teacher_info;
         $teachers->departments_id = $request->departments_id;
         if($request->hasFile('photo')) {
@@ -145,7 +147,7 @@ class DepartmentController extends Controller
 
     function postInstruments(Request $request) {
         $instruments = new Instruments;
-        $instruments->departments_id = $request->departments_id; 
+        $instruments->departments_id = $request->departments_id;
         $instruments->name_instruments = $request->name_instruments;
         $instruments->instruments_info = $request->instruments_info;
         if($request->hasFile('photo')) {

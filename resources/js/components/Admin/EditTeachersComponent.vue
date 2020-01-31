@@ -30,6 +30,18 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="teacher_patronymic" class="col-sm-2 col-form-label">По батькові</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="teacher_patronymic" v-model="teacher.teacher_patronymic" class="form-control" id="teacher_patronymic"
+                            v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){2,}$/i }"
+                                data-vv-as="По батькові">
+                        <span class="errors text-danger" v-if="errors.has('teacher_patronymic')">
+                                {{ errors.first('teacher_patronymic') }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label for="department" class="col-sm-2 col-form-label">Відділ</label>
                     <div class="col-sm-6">
                         <select class="form-control" v-model="teacher.departments_id" id="department" name="department"
@@ -106,6 +118,7 @@
                 var form = new FormData;
 				form.append('teacher_surname', this.teacher.teacher_surname);
                 form.append('teacher_name', this.teacher.teacher_name);
+                form.append('teacher_patronymic', this.teacher.teacher_patronymic);
                 form.append('teacher_info', this.teacher.teacher_info);
                 form.append('departments_id', this.teacher.departments_id);
 				form.append('photo', this.$refs.teacherImage.files[0]);

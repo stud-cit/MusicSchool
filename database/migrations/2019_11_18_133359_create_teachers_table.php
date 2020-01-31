@@ -24,6 +24,7 @@ class CreateTeachersTable extends Migration
             $table->integer('departments_id')->unsigned();
             $table->string('teacher_surname');
             $table->string('teacher_name');
+            $table->string('teacher_patronymic');
             $table->text('teacher_info');
             $table->string('photo');
             $table->timestamps();
