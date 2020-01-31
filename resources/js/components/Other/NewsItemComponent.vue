@@ -14,7 +14,7 @@
                             v-if="data.images.length"
                             id="carousel-fade"
                             :interval="8000"
-                            indicators
+                            controls
                             img-width="1024"
                             img-height="450"
                         >
@@ -82,7 +82,12 @@
     }
 </script>
 
-<style scoped>
+<style>
+    .w-100 {
+        max-height: 400px;
+        object-fit: scale-down;
+        background-color: #2B2B2B;
+    }
     .news-item {
         position: relative;
         margin-bottom: 129px;

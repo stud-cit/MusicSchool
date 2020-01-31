@@ -10,9 +10,26 @@
 
                 <div class="news-item">
                     <div class="news-item-container">
-                        <div class="news-img-wrapper">
-                            <img v-if="data.photo != '/img/empty.png'" :src="data.photo" alt="" class="news-item-img">
-                        </div>
+                        <div class="news-item-container">
+                        <b-carousel
+                            v-if="data.images.length"
+                            id="carousel-1"
+                            v-model="slide"
+                            :interval="4000"
+                            controls
+                            img-width="1024"
+                            img-height="450"
+                        >
+                            <b-carousel-slide
+                                v-for="(i, index) in data.images"
+                                :key="index"
+                                :img-src="i.file"
+                            ></b-carousel-slide>
+
+                        </b-carousel>
+                        <!-- <div class="news-img-wrapper">
+                            <img v-if="data.photo != '/img/empty.png'" :src="data.photo" alt="" class="news-item-img">-->
+                        </div> 
                         <div class="news-item-description">
                             <div class="news-item-heading">
                                 <h3 class="news-item-title"> {{ data.title }}</h3>
@@ -40,9 +57,13 @@
         name: "AchievementItemComponent",
         data() {
             return {
-                data: [],
-                paginateArray: [],
-                description: ''
+                data: {
+                    title: '',
+                    text: '',
+                    date: '',
+                    images: [],
+                    description: ''
+                },
             }
         },
         computed: {
@@ -60,6 +81,7 @@
                 axios.get('/api/achieve/'+this.$route.params.id)
                     .then((response) => {
                         this.data = response.data;
+                        console.log(this.data)
                         this.data.date = this.data.date.slice(2).split('-').reverse().join('.');
                     })
             },
@@ -76,6 +98,11 @@
 </script>
 
 <style scoped>
+    .carousel-control-prev-icon {
+        background-color: black;
+        border-radius: 10px;
+        height: 30px;
+    }
     .news-item {
         position: relative;
         margin-bottom: 129px;

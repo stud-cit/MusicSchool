@@ -323,10 +323,7 @@ export default {
   .card__small__title {
     width: 80%;
   }
-  .teachers,
-  .instruments {
-    padding: 40px;
-  }
+ 
   .teachers__title,
   .instruments__title {
     text-transform: uppercase;

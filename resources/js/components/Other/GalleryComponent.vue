@@ -17,7 +17,7 @@
                     </div>
                 </silentbox-group>
             </div>
-            <paginate :items="filteredItems" @paginateArray="paginateArray = $event"></paginate>
+            <paginate :items="filteredItems" @paginateArray="paginateArray = $event" :perPage="12"></paginate>
         </section>
     </div>
 

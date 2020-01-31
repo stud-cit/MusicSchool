@@ -72,8 +72,7 @@ export default {
         background-image: url("/img/bl1.png");
         background-size: cover;
         width: 50%;
-        height: 900px;
-        min-height: 700px;
+        min-height: 500px;
         position: absolute;
         margin-top: 150px;
     }

@@ -11,8 +11,10 @@
                         <p class="year">{{item.date}}</p>
                         <p class="title">{{item.title}}</p>
                     </b-col>
-                    <b-col cols="12" xl="8" class="content-block" v-if="item.images.length">
-                        <b-carousel id="carousel-fade" fade indicators >
+                    <b-col cols="12" xl="8" class="content-block" v-if="item.images.length ">
+                        <b-carousel 
+                            controls
+                            id="carousel-fade" fade  >
                             <b-carousel-slide
                                 v-for="photo in item.images" :key="photo.images_id"
                                     caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry
