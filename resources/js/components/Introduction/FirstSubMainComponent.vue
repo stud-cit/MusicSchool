@@ -34,7 +34,7 @@
 
 <style scoped>
   .article__block {
-    padding: 60px 0 100px 0;
+    padding: 60px 0 0 0;
   }
   .article__title {
     padding: 0;
