@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="досягнення" uptitle="важливі" :description="description"></page-title>
+        <page-title title="досягнення" uptitle="важливі" :description="data.description"></page-title>
         <section class="history-section mt-50">
             <b-container>
                 <router-link :to="{ name: 'achievements'}" class="news-item-router">
@@ -14,21 +14,17 @@
                         <b-carousel
                             v-if="data.images.length"
                             id="carousel-1"
-                            v-model="slide"
                             :interval="4000"
                             controls
                             img-width="1024"
                             img-height="450"
                         >
-                            <b-carousel-slide
-                                v-for="(i, index) in data.images"
-                                :key="index"
-                                :img-src="i.file"
-                            ></b-carousel-slide>
-
+                            <silentbox-group>
+                                <silentbox-item v-for="(i, index) in data.images" :key="index" :src="i.file">
+                                    <b-carousel-slide :img-src="i.file"></b-carousel-slide>
+                                </silentbox-item>
+                            </silentbox-group>
                         </b-carousel>
-                        <!-- <div class="news-img-wrapper">
-                            <img v-if="data.photo != '/img/empty.png'" :src="data.photo" alt="" class="news-item-img">-->
                         </div> 
                         <div class="news-item-description">
                             <div class="news-item-heading">
@@ -81,7 +77,6 @@
                 axios.get('/api/achieve/'+this.$route.params.id)
                     .then((response) => {
                         this.data = response.data;
-                        console.log(this.data)
                         this.data.date = this.data.date.slice(2).split('-').reverse().join('.');
                     })
             },

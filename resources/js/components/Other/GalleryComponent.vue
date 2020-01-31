@@ -39,6 +39,7 @@
             this.getData();
             this.filterList();
             this.getInfoPage();
+            document.title = "Галерея";
         },
         methods: {
             setFilter(category){

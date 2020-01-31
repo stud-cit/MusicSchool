@@ -20,6 +20,7 @@
         },
         created() {
             this.getInfoPage();
+            document.title = "Контакти";
         },
         methods: {
             getInfoPage() {

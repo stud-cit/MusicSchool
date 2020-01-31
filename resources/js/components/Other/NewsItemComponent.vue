@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="новини" uptitle="актуальні" :description="description"></page-title>
+        <page-title title="новини" uptitle="актуальні" :description="data.description"></page-title>
         <section class="history-section mt-50">
             <b-container>
                 <router-link :to="{ name: 'news'}" class="news-item-router">
@@ -18,12 +18,11 @@
                             img-width="1024"
                             img-height="450"
                         >
-                            <b-carousel-slide
-                                v-for="(i, index) in data.images"
-                                :key="index"
-                                :img-src="i.file"
-                            ></b-carousel-slide>
-
+                            <silentbox-group>
+                                <silentbox-item v-for="(i, index) in data.images" :key="index" :src="i.file">
+                                    <b-carousel-slide :img-src="i.file"></b-carousel-slide>
+                                </silentbox-item>
+                            </silentbox-group>
                         </b-carousel>
                         <div class="news-item-description">
                             <div class="news-item-heading">

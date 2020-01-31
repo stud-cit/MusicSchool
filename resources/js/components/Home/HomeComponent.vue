@@ -41,6 +41,7 @@
         },
         created() {
             this.getData();
+            document.title = "Сумська музична школа №2";
         },
         methods: {
             getData() {

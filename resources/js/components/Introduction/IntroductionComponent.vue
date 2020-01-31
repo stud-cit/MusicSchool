@@ -26,6 +26,7 @@
       this.getIntro();
       this.getDocuments();
       this.getInfoPage();
+      document.title = "Вступ";
     },
     methods: {
       getIntro() {

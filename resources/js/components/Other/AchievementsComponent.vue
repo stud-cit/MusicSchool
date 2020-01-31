@@ -42,6 +42,7 @@
         created() {
             this.getData();
             this.getInfoPage();
+            document.title = "Досягнення";
         },
         methods: {
             getData() {

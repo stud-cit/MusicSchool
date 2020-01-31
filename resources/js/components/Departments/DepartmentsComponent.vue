@@ -20,6 +20,7 @@ export default {
   },
   created() {
     this.getInfoPage();
+    document.title = "Відділи";
   },
   methods: {
     getInfoPage() {
