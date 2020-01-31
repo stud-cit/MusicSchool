@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="Викладачі" uptitle="найкращі" :description="description"></page-title>
+        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
         <div class="teachers" v-if="teacher != 0">
             <b-container>
                 <b-row>
@@ -18,19 +18,20 @@
 <script>
     import TeacherCard from '../Other/TeacherCard.vue';
     import paginate from '../PaginationComponent';
+    import getData from '../mixins/getData';
 
     export default {
         name: "TeachersComponent",
+        mixins: [getData],
         data() {
             return {
             	teacher: [],
-                paginateArray: [],
-                description: ''
+                paginateArray: []
             }
         },
         created() {
             this.getTeachersId();
-            this.getInfoPage();
+            this.getInfoPage('teachers');
         },
         methods: {
         	getTeachersId() {
@@ -38,13 +39,7 @@
 			        .then((response) => {
                         this.teacher = response.data;
 			        })
-            },
-            getInfoPage() {
-                axios.get('/api/page-info/teachers')
-                .then((response) => {
-                    this.description = response.data.text;
-                })
-            },
+            }
         },
         components: {
             paginate,

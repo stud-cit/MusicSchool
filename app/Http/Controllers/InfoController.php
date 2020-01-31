@@ -29,7 +29,7 @@ class InfoController extends Controller
     }
 
     function getPageInfoId($page) {
-        $data = PageInfo::select('text')->where('page', $page)->first();
+        $data = PageInfo::where('page', $page)->first();
         return response()->json($data);
     }
 

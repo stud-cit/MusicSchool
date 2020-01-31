@@ -1,34 +1,26 @@
 <template>
     <div>
-        <page-title title="Контакти" uptitle="доступні" :description="description"></page-title>
+        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
         <MapComponent/>
     </div>
 </template>
 
 <script>
 
-    import MapComponent from './MapComponent.vue'
+    import MapComponent from './MapComponent.vue';
+    import getData from '../mixins/getData';
 
     export default {
+        mixins: [getData],
         data() {
-            return {
-                description: ''
-            };
+            return {};
         },
          components: {
             MapComponent
         },
         created() {
-            this.getInfoPage();
+            this.getInfoPage('contacts');
             document.title = "Контакти";
-        },
-        methods: {
-            getInfoPage() {
-                axios.get('/api/page-info/contacts')
-                .then((response) => {
-                    this.description = response.data.text;
-                })
-            },
         }
     }
 </script>

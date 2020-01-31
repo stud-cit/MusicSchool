@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="досягнення" uptitle="важливі" :description="data.description"></page-title>
+        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
         <section class="history-section mt-50">
             <b-container>
                 <router-link :to="{ name: 'achievements'}" class="news-item-router">
@@ -48,29 +48,27 @@
 
 <script>
     import paginate from '../PaginationComponent';
+    import getData from '../mixins/getData';
 
     export default {
         name: "AchievementItemComponent",
+        mixins: [getData],
         data() {
             return {
                 data: {
                     title: '',
                     text: '',
                     date: '',
-                    images: [],
-                    description: ''
+                    images: []
                 },
             }
-        },
-        computed: {
-
         },
         components: {
             paginate
         },
         created() {
             this.getData();
-            this.getInfoPage();
+            this.getInfoPage('achievements');
         },
         methods: {
             getData() {
@@ -79,13 +77,7 @@
                         this.data = response.data;
                         this.data.date = this.data.date.slice(2).split('-').reverse().join('.');
                     })
-            },
-            getInfoPage() {
-                axios.get('/api/page-info/achievements')
-                .then((response) => {
-                    this.description = response.data.text;
-                })
-            },
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <page-title title="про вступ" uptitle="інформація" :description="description"></page-title>
+    <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
     <header-component :bg="intro.bg" :blockOne="intro.block1" :blockTwo="intro.block2" :blockThree="intro.block3"></header-component>
     <main-component :intro="intro" :document="document" />
   </div>
@@ -9,13 +9,14 @@
 <script>
   import HeaderComponent from "./HeaderComponent.vue";
   import MainComponent from "./MainComponent.vue";
+  import getData from '../mixins/getData';
   export default {
     name: "IntroductionComponent",
+    mixins: [getData],
     data() {
       return {
         intro: {},
-        document: {},
-        description: ''
+        document: {}
       }
     },
     components: {
@@ -25,7 +26,7 @@
     created() {
       this.getIntro();
       this.getDocuments();
-      this.getInfoPage();
+      this.getInfoPage('introduction');
       document.title = "Вступ";
     },
     methods: {
@@ -33,12 +34,6 @@
         axios.get('/api/intro')
           .then((response) => {
             this.intro = response.data;
-          })
-      },
-      getInfoPage() {
-        axios.get('/api/page-info/introduction')
-          .then((response) => {
-            this.description = response.data.text;
           })
       },
       getDocuments() {

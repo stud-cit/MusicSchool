@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <page-title title="історія школи" uptitle="дивовижна" :description="description"></page-title>
+        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
 
         <section class="history-section mt-50">
             <b-container class="history-list">
@@ -38,13 +38,14 @@
 
 <script>
     import paginate from '../PaginationComponent';
+    import getData from '../mixins/getData';
 
     export default {
+        mixins: [getData],
         data() {
             return {
                 data: [],
-                paginateArray: [],
-                description: ''
+                paginateArray: []
             }
         },
         components: {
@@ -52,7 +53,7 @@
         },
         created() {
             this.getData();
-            this.getInfoPage();
+            this.getInfoPage('history');
             document.title = "Історія школи";
         },
         methods: {
@@ -61,13 +62,7 @@
                     .then((response) => {
                         this.data = response.data;
                     })
-            },
-            getInfoPage() {
-                axios.get('/api/page-info/history')
-                .then((response) => {
-                    this.description = response.data.text;
-                })
-            },
+            }
         }
     }
 </script>

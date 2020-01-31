@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="галерея" uptitle="Різноманітність" :description="description"></page-title>
+        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
         <section class="gallery-section mt-50">
             <div class="container" >
                 <div class="btn-group">
@@ -25,20 +25,21 @@
 
 <script>
     import paginate from '../PaginationComponent';
+    import getData from '../mixins/getData';
     export default {
+        mixins: [getData],
         data() {
             return {
                 category: 'all',
                 data: [],
                 filteredItems: [],
-                paginateArray: [],
-                description: ''
+                paginateArray: []
             }
         },
         created() {
             this.getData();
             this.filterList();
-            this.getInfoPage();
+            this.getInfoPage('gallery');
             document.title = "Галерея";
         },
         methods: {
@@ -62,13 +63,7 @@
                         this.data = response.data;
                         this.filteredItems = response.data;
                     })
-            },
-            getInfoPage() {
-                axios.get('/api/page-info/gallery')
-                .then((response) => {
-                    this.description = response.data.text;
-                })
-            },
+            }
         },
         components: {
             paginate,

@@ -139,7 +139,7 @@
                         </div>
                         <div class="card-body p-2">
                             <label for="titleСontacts" class="brtop">Заголовок</label>
-                            <input name="titleСontacts" type="text" class="form-control" v-model="data.gallery.title" id="titleСontacts" disabled v-validate="{required: true}">
+                            <input name="titleСontacts" type="text" class="form-control" v-model="data.contacts.title" id="titleСontacts" disabled v-validate="{required: true}">
                             <div class="text-danger" v-if="errors.has('titleСontacts')">Обов'язкове поле</div>
 
                             <label for="contacts" class="brtop">Опис</label>

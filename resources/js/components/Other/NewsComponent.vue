@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="новини" uptitle="актуальні" :description="description"></page-title>
+        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
         <section class="news-section mt-50">
             <b-container class="news-list">
                 <div class="news" v-for="i in paginateArray" :key="i.id">
@@ -26,14 +26,15 @@
 
 <script>
     import paginate from '../PaginationComponent';
+    import getData from '../mixins/getData';
 
     export default {
         name: "NewsComponent",
+        mixins: [getData],
         data() {
             return {
                 data: [],
-                paginateArray: [],
-                description: ''
+                paginateArray: []
             }
         },
         components: {
@@ -41,7 +42,7 @@
         },
         created() {
             this.getData();
-            this.getInfoPage();
+            this.getInfoPage('news');
             document.title = "Новини";
         },
         methods: {
@@ -50,13 +51,7 @@
                     .then((response) => {
                         this.data = response.data;
                     })
-            },
-            getInfoPage() {
-                axios.get('/api/page-info/news')
-                .then((response) => {
-                    this.description = response.data.text;
-                })
-            },
+            }
         }
     }
 </script>

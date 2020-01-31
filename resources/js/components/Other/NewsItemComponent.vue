@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="новини" uptitle="актуальні" :description="data.description"></page-title>
+        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
         <section class="history-section mt-50">
             <b-container>
                 <router-link :to="{ name: 'news'}" class="news-item-router">
@@ -46,22 +46,23 @@
 </template>
 
 <script>
+    import getData from '../mixins/getData';
     export default {
         name: "NewsItemComponent",
+        mixins: [getData],
         data() {
             return {
                 data: {
                     title: '',
                     text: '',
                     date: '',
-                    images: [],
-                    description: ''
+                    images: []
                 },
             }
         },
         created() {
             this.getData();
-            this.getInfoPage();
+            this.getInfoPage('news');
         },
         methods: {
             getData() {
@@ -69,15 +70,8 @@
                     .then((response) => {
                         this.data = response.data;
                     })
-            },
-            getInfoPage() {
-                axios.get('/api/page-info/news')
-                .then((response) => {
-                    this.description = response.data.text;
-                })
-            },
+            }
         }
-        /*v-for="i in this.$route.params.img"*/
     }
 </script>
 

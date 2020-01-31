@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title title="інструментів" uptitle="Різноманітність" :description="description"></page-title>
+        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
         <section class="instruments-section mt-50">
             <div class="content-block">
                 <div class="content-layout"></div>
@@ -27,17 +27,18 @@
 
 <script>
     import paginate from '../PaginationComponent';
+    import getData from '../mixins/getData';
     export default {
+        mixins: [getData],
         data() {
             return {
                 instrument: [],
-                paginateArray: [],
-                description: ''
+                paginateArray: []
             }
         },
 	    created() {
             this.getInstrumentId();
-            this.getInfoPage();
+            this.getInfoPage('instruments');
 	    },
 	    methods: {
 		    getInstrumentId() {
@@ -45,13 +46,7 @@
 				    .then((response) => {
 					    this.instrument = response.data;
 				    })
-            },
-            getInfoPage() {
-                axios.get('/api/page-info/instruments')
-                .then((response) => {
-                    this.description = response.data.text;
-                })
-            },
+            }
 	    },
         components: {
             paginate

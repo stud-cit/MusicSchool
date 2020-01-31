@@ -1,34 +1,26 @@
 <template>
   <div>
-    <page-title title="відділів" uptitle="різноманітність" :description="description"></page-title>
+    <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
     <MainComponent />
   </div>
 </template>
 
 <script>
 import MainComponent from "./MainComponent";
+import getData from '../mixins/getData';
 
 export default {
   name: "DepartmentsComponent",
+  mixins: [getData],
   data() {
-    return {
-      description: ''
-    }
+    return {}
   },
   components: {
     MainComponent
   },
   created() {
-    this.getInfoPage();
+    this.getInfoPage('departments');
     document.title = "Відділи";
-  },
-  methods: {
-    getInfoPage() {
-      axios.get('/api/page-info/departments')
-        .then((response) => {
-          this.description = response.data.text;
-        })
-    },
   }
 };
 </script>
