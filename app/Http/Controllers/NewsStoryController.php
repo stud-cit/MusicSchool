@@ -12,6 +12,7 @@ class NewsStoryController extends Controller
 {
     protected $publicStorageNews = "/user-file/news/";
     protected $publicStorageStory = "/user-file/story/";
+    protected $publicStorageAchieve = "/user-file/achieve/";
 
     // Новини
 
@@ -95,7 +96,7 @@ class NewsStoryController extends Controller
         }
     }
 
-    // Історії 
+    // Історії
 
     function getStory() {
         $data = NewsStory::with('images')->story()->orderBy('date', 'DESC')->get();
@@ -176,4 +177,84 @@ class NewsStoryController extends Controller
             unlink(public_path($storyImage->file));
         }
     }
+
+    // Досягнення
+
+    function getAchieve() {
+        $data = NewsStory::with('images')->achieve()->orderBy('date', 'DESC')->get();
+        return response()->json($data);
+    }
+
+    function getAchieveId($id) {
+        $data = NewsStory::with('images')->where('id', $id)->first();
+        return response()->json($data);
+    }
+
+    function postAchieve(Request $request) {
+        $achieve = new NewsStory;
+        $achieve->title = $request->title;
+        $achieve->text = $request->text;
+        $achieve->date = $request->date;
+        $achieve->type = NewsStory::ACHIEVE;
+
+        $achieve->save();
+
+        $this->validate($request, ['filenames.*' => 'mimes:jpeg']);
+        if(isset($request->file)) {
+            foreach ($request->file as $file) {
+                $images = new Images;
+                $name = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path() . $this->publicStorageAchieve . $achieve->id, $name);
+                $images->id = $achieve->id;
+                $images->file = $this->publicStorageAchieve . $achieve->id . '/' . $name;
+                $images->save();
+                $img = Image::make(public_path().$this->publicStorageAchieve . $achieve->id . '/' . $name);
+                $img->save(public_path() . $this->publicStorageAchieve . $achieve->id . '/' . $name, 50);
+            }
+        }
+        return response()->json($achieve);
+    }
+
+    function updateAchieve(Request $request, $id) {
+        $achieve = NewsStory::find($id);
+        $achieve->title = $request->title;
+        $achieve->text = $request->text;
+        $achieve->date = $request->date;
+        $arrImg = [];
+        if(isset($request->file)) {
+            foreach ($request->file as $file) {
+                $images = new Images;
+                $name = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path().$this->publicStorageAchieve.$achieve->id, $name);
+                $images->id = $achieve->id;
+                $images->file = $this->publicStorageAchieve.$achieve->id.'/'.$name;
+                $images->save();
+
+                $img = Image::make(public_path().$this->publicStorageAchieve . $achieve->id . '/' . $name);
+                $img->save(public_path() . $this->publicStorageAchieve . $achieve->id . '/' . $name, 50);
+
+                array_push($arrImg, $images);
+            }
+        }
+        $achieve->save();
+        return response()->json($arrImg);
+    }
+
+    function deleteAchieve($id) {
+        $achieve = NewsStory::where('type', 'achieve')->find($id);
+        $achieveFolder = public_path($this->publicStorageAchieve);
+        File::deleteDirectory($achieveFolder.$achieve->id);
+        Images::where("images_id", $id)->delete();
+
+        $achieve->delete();
+        return response('ok', 200);
+    }
+
+    function deleteAchieveImage($id) {
+        $achieveImage = Images::find($id);
+        if($achieveImage->delete()) {
+            unlink(public_path($achieveImage->file));
+        }
+    }
+
 }

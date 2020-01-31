@@ -19,7 +19,7 @@
                     </router-link>
                 </div>
             </b-container>
-            <paginate :items="data" @paginateArray="paginateArray = $event" :perPage="6"></paginate>
+            <paginate :items="data" @paginateArray="paginateArray = $event" :perPage="12"></paginate>
         </section>
     </div>
 </template>
@@ -116,7 +116,7 @@
     .news-date {
         margin-left: -10px;
         color: #2b2b2b;
-        font-size: 50px;
+        font-size: 40px;
         font-weight: 900;
         line-height: 78px;
         transition: color .2s linear;

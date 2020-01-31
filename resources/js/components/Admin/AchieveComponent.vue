@@ -33,17 +33,19 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="achieveImage" class="col-sm-2 col-form-label">Зображення</label>
+                <label for="achieveImage" class="col-sm-2 col-form-label">Зображення</label>
                     <div class="col-sm-6">
                         <label class="custom-file w-100">
-                            <input type="file" class="custom-file-input col-6" id="achieveImage" name="achieveImage" ref="achieveImage" 
-                                @change="previewFiles($event)" accept="image/*" v-validate="'image'" required>
-                            <span class="custom-file-control">Файл не обрано</span>
+                            <input type="file" name="achieveImage" v-validate="'image'" class="custom-file-input col-6"
+                                id="achieveImage" ref="achieveImage" @change="fieldChange" accept="image/*" multiple>
+                            <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
                         </label>
-                        <img v-if="!errors.has('achieveImage')" class="mt-3 w-50" :src="image">
-                       <span class="errors text-danger" v-if="errors.has('achieveImage')">
-							Файл не обрано або невірний формат зображення
-						</span>
+                        <div v-for="(item, index) in file" :key="index">
+                            <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
+                        </div>
+                        <span class="text-danger" v-if="errors.has('achieveImage') || imgError">
+                            Файл не обрано або невірний формат зображення
+                        </span>
                     </div>
                 </div>
 
@@ -51,9 +53,9 @@
                     <label for="achieveDate" class="col-sm-2 col-form-label">Дата оприлюднення</label>
                     <div class="col-sm-6">
                         <div class="input-container">
-                            <date-picker 
+                            <date-picker
                                 v-model="date"
-                                name="achieveDate" 
+                                name="achieveDate"
                                 value-type="YYYY-MM-DD"
                                 :lang="datepicker.lang"
                                 :editable="false"
@@ -62,7 +64,7 @@
                             ></date-picker><br>
                             <span class="text-danger errors" v-if="errors.has('achieveDate')">
                                     {{ errors.first('achieveDate') }}
-                            </span>                               
+                            </span>
                             <input style="display:none" type="text" name="date" v-model="date" v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                         </div>
                     </div>
@@ -109,7 +111,7 @@ export default {
 			title: '',
 			text: '',
             date: '',
-            image: '',
+            file: [],
             achieve: [],
             datepicker: {
                 lang: {
@@ -122,6 +124,7 @@ export default {
                     }
                 }
             },
+            imgError: false
 		};
 	},
 	created() {
@@ -129,46 +132,59 @@ export default {
 		this.getAchieveList();
 	},
 	methods: {
-        previewFiles(event) {
-            var input = event.target;
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = (e) => {
-                    this.image = e.target.result;
+        validImg() {
+            this.imgError = this.file.length == 0 ? true : false
+        },
+        fieldChange(){
+            let changeFile = this.$refs.achieveImage.files;
+            for(let i = 0; i < changeFile.length; i++) {
+                if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
+                    changeFile[i].valid = true;
+                } else {
+                    changeFile[i].valid = false;
                 }
-                reader.readAsDataURL(input.files[0]);
-                input.parentNode.querySelector('span').innerHTML = input.files[0].name;
+                this.file.push(changeFile[i]);
             }
+            this.validImg();
         },
 
-		postAchieve() {
-			this.$validator.validateAll().then((result) => {
-				if (!result) {
-					return;
-				} else {
-					var form = new FormData;
-					form.append('title', this.title);
-					form.append('text', this.text);
+
+
+        postAchieve() {
+            this.validImg();
+            this.$validator.validateAll().then((result) => {
+                if (!result || this.file.length == 0) {
+                    return;
+                } else {
+                    var form = new FormData;
+                    for(let i = 0; i < this.file.length; i++){
+                        if(this.file[i].valid) {
+                            form.append('file[]', this.file[i]);
+                        }
+                    }
+                    form.append('title', this.title);
+                    form.append('text', this.text);
                     form.append('date', this.date);
-                    form.append('photo', this.$refs.achieveImage.files[0]);
-					axios.post('/api/achieve', form)
-						.then((res) => {
-							swal("Інформація успішно додана", {
-								icon: "success",
-								timer: 1000,
-								button: false
+                    axios.post('/api/achieve', form)
+                        .then((res) => {
+                            swal("Інформація спішно додана", {
+                                icon: "success",
+                                timer: 1000,
+                                button: false
                             });
-							this.achieve.push(res.data);
-						})
-						.catch((error) => {
-							swal({
-								icon: "error",
-								title: 'Помилка',
-							});
-						});
-				}
-			});
-		},
+                            this.achieve.push(res.data);
+                            this.file = [];
+                        })
+                        .catch((error) => {
+                            swal({
+                                icon: "error",
+                                title: 'Помилка',
+                            });
+                        });
+                }
+            });
+        },
+
 		getAchieveList() {
 			axios.get('/api/achieve')
 				.then((response) => {

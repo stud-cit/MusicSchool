@@ -59,11 +59,12 @@ Route::delete('news-images/{id}', 'NewsStoryController@deleteNewsImage');
 
 // Досягнення
 
-Route::get('achieve', 'AchieveController@getAchieve');
-Route::get('achieve/{id}', 'AchieveController@getAchieveId')->where(['id' => '^[0-9]+']);
-Route::post('achieve', 'AchieveController@postAchieve');
-Route::post('achieve/{id}', 'AchieveController@updateAchieve');
-Route::delete('achieve/{id}', 'AchieveController@deleteAchieve');
+Route::get('achieve', 'NewsStoryController@getAchieve');
+Route::get('achieve/{id}', 'NewsStoryController@getAchieveId')->where(['id' => '^[0-9]+']);
+Route::post('achieve', 'NewsStoryController@postAchieve');
+Route::post('achieve/{id}', 'NewsStoryController@updateAchieve');
+Route::delete('achieve/{id}', 'NewsStoryController@deleteAchieve');
+Route::delete('achieve-images/{id}', 'NewsStoryController@deleteAchieveImage');
 
 // Історії
 
@@ -72,7 +73,7 @@ Route::get('story/{id}', 'NewsStoryController@getStoryId')->where(['id' => '^[0-
 Route::post('story/{id}', 'NewsStoryController@updateStory')->where(['id' => '^[0-9]+']);
 Route::delete('story/{id}', 'NewsStoryController@deleteStory');
 Route::post('story', 'NewsStoryController@postStory');
-Route::delete('story-images/{id}', 'NewsStoryController@deleteStoryImage');
+Route::delete('story-images/{id}', 'NewsStoryController@delAchieveImage');
 
 //Документы
 Route::get('document', 'DocumentController@getDocument');

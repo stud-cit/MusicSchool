@@ -32,20 +32,35 @@
                     <label for="achieveImage" class="col-sm-2 col-form-label">Зображення</label>
                     <div class="col-sm-6">
                         <label class="custom-file w-100">
-                            <input type="file" class="custom-file-input col-6" id="achieveImage" name="achieveImage" ref="achieveImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'" required>
-                            <span class="custom-file-control">Файл не обрано</span>
+                            <input type="file" name="achieveImage" v-validate="'image'" class="custom-file-input col-6"
+                                   id="achieveImage" ref="achieveImage" @change="fieldChange" accept="image/*" multiple>
+                            <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
                         </label>
-                        <img v-if="!errors.has('achieveImage')" class="mt-3 w-50" :src="achieve.photo">
-                        <span class="errors text-danger" v-if="errors.has('achieveImage')">
-							Файл не обрано або невірний формат зображення
-						</span>
+                        <div v-for="(item, index) in file" :key="index">
+                            <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name}} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
+                        </div>
+                        <span class="text-danger" v-if="errors.has('achieveImage') || imgError">
+                            Файл не обрано або невірний формат зображення
+                        </span>
                     </div>
+                </div>
+
+                <div class="form-group row">
+                    <silentbox-group class="col-3 foto" v-for="(item, index) in achieve.images" :key="item.images_id">
+                        <div class="border fotoGallery">
+                            <i class="fa fa-times-circle btn btn-default p-0" @click="delAchieveImage(item.images_id, index)"></i>
+                            <silentbox-item :src="item.file" class="foto">
+                                <img :src="item.file">
+                            </silentbox-item>
+                            <a :href="item.file" download><i class="fa fa-download"></i></a>
+                        </div>
+                    </silentbox-group>
                 </div>
                 <div class="form-group row">
                     <label for="achieveDate" class="col-sm-2 col-form-label">Дата оприлюднення</label>
                     <div class="input-row">
                         <div class="input-container">
-                            <date-picker 
+                            <date-picker
                                 v-model="achieve.date"
                                 name="editAchieveDate"
                                 value-type="YYYY-MM-DD"
@@ -78,6 +93,7 @@
 		},
 		data() {
 			return {
+                file: [],
 				achieve: [],
 				datepicker: {
 					lang: {
@@ -89,7 +105,8 @@
 							weekdaysMin: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД']
 						}
 					}
-				},
+                },
+                imgError: false
 			}
 		},
 		created() {
@@ -97,6 +114,22 @@
 			this.getAchieveList();
 		},
 		methods: {
+			validImg() {
+				this.imgError = this.file.length == 0 ? true : false
+			},
+			fieldChange(){
+				let changeFile = this.$refs.achieveImage.files;
+				for(let i = 0; i < changeFile.length; i++) {
+					if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
+						changeFile[i].valid = true;
+					}
+					else {
+						changeFile[i].valid = false;
+					}
+					this.file.push(changeFile[i]);
+				}
+				this.validImg();
+			},
 			previewFiles(event) {
 				var input = event.target;
 				if (input.files && input.files[0]) {
@@ -115,29 +148,57 @@
 					})
 			},
 			save() {
+				this.validImg();
 				this.$validator.validateAll().then((result) => {
-					if (!result) {
+					if (!result || this.file.length == 0) {
 						return;
 					} else {
 						var form = new FormData;
+						for (let i = 0; i < this.file.length; i++) {
+							if (this.file[i].valid) {
+								form.append('file[]', this.file[i]);
+							}
+						}
 						form.append('title', this.achieve.title);
 						form.append('text', this.achieve.text);
 						form.append('date', this.achieve.date);
-						form.append('photo', this.$refs.achieveImage.files[0]);
-						axios.post('/api/achieve/' + this.$route.params.id, form)
-							.then((response) => {
-								swal("Інформацію успішно збережено", {
-									icon: "success",
-								});
-							})
-							.catch((error) => {
-								swal({
-									icon: "error",
-									title: 'Помилка',
-								});
-							});
+                        axios.post('/api/achieve/' + this.$route.params.id, form)
+                            .then((response) => {
+                                this.file = [];
+                                this.achieve.images = this.achieve.images.concat(response.data);
+                                    swal("Інформацію успішно збережено", {
+                                        icon: "success",
+                                        timer: 1000,
+                                        button: false
+                                    });
+                            })
+                            .catch((error) => {
+                                swal({
+                                    icon: "error",
+                                    title: 'Помилка',
+                                });
+                            });
 					}
 				});
+            },
+			delFile(index) {
+				this.file.splice(index, 1);
+				if (this.file.length == 0) {
+					this.imgError = true
+				}
+			},
+			delAchieveImage(id, index) {
+				if(id) {
+					axios.delete('/api/achieve-images/' + id)
+						.then(() => {
+							this.file.splice(index, 1);
+							swal("Зображення успішно видалено", {
+								icon: "success",
+							});
+							this.file = [];
+							this.getAchieveList();
+						});
+				}
 			}
 		}
 	}
