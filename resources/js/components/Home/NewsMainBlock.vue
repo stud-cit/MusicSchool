@@ -72,7 +72,7 @@ export default {
         background-image: url("/img/bl1.png");
         background-size: cover;
         width: 50%;
-        min-height: 500px;
+        min-height: 700px;
         position: absolute;
         margin-top: 150px;
     }
@@ -85,7 +85,7 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 95%;
+        height: 60%;
         margin: 30px 5px 5px 5px;
     }
 
