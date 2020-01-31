@@ -7,27 +7,6 @@
                 <div class="col-5">
                     <div class="card">
                         <div class="card-header p-2">
-                            Головна сторінка
-                        </div>
-                        <div class="card-body p-2">
-                            <label for="titleHome" class="brtop">Заголовок</label>
-                            <input name="titleHome" type="text" class="form-control" v-model="data.home.title" id="titleHome" disabled v-validate="{required: true}">
-                            <div class="text-danger" v-if="errors.has('titleHome')">Обов'язкове поле</div>
-
-                            <label for="home" class="brtop">Опис</label>
-                            <textarea name="home" class="form-control" id="home" 
-                                v-model="data.home.text" rows="4" 
-                                disabled 
-                                v-validate="{ required: true}"
-                                data-vv-as="Опис головної сторінки"
-                            ></textarea>
-                            <span class="errors text-danger" v-if="errors.has('home')">Обов'язкове поле</span><br>
-                            <button :disabled="errors.has('home') || errors.has('titleHome')" type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "home", "titleHome")'>Редагувати</button><br><br>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="card">
-                        <div class="card-header p-2">
                             Історія
                         </div>
                         <div class="card-body p-2">
@@ -36,9 +15,9 @@
                             <dix class="text-danger" v-if="errors.has('titleHistory')">Обов'язкове поле</dix>
 
                             <label for="history" class="brtop">Опис</label>
-                            <textarea name="history" class="form-control" id="history" 
-                                v-model="data.history.text" rows="4" 
-                                disabled 
+                            <textarea name="history" class="form-control" id="history"
+                                v-model="data.history.text" rows="4"
+                                disabled
                                 v-validate="{ required: true}"
                                 data-vv-as="Опис сторінки з історією"
                             ></textarea>
@@ -57,9 +36,9 @@
                             <div class="text-danger" v-if="errors.has('titleNews')">Обов'язкове поле</div>
 
                             <label for="news" class="brtop">Опис</label>
-                            <textarea name="news" class="form-control" id="news" 
-                                v-model="data.news.text" rows="4" 
-                                disabled 
+                            <textarea name="news" class="form-control" id="news"
+                                v-model="data.news.text" rows="4"
+                                disabled
                                 v-validate="{ required: true}"
                                 data-vv-as="Опис сторінки з новинами"
                             ></textarea>
@@ -78,9 +57,9 @@
                             <div class="text-danger" v-if="errors.has('titleDepartments')">Обов'язкове поле</div>
 
                             <label for="departments" class="brtop">Опис</label>
-                            <textarea name="departments" class="form-control" id="departments" 
-                                v-model="data.departments.text" rows="4" 
-                                disabled 
+                            <textarea name="departments" class="form-control" id="departments"
+                                v-model="data.departments.text" rows="4"
+                                disabled
                                 v-validate="{ required: true}"
                                 data-vv-as="Опис сторінки з відділами"
                             ></textarea>
@@ -99,9 +78,9 @@
                             <div class="text-danger" v-if="errors.has('titleAchievements')">Обов'язкове поле</div>
 
                             <label for="achievements" class="brtop">Опис</label>
-                            <textarea name="achievements" class="form-control" id="achievements" 
-                                v-model="data.achievements.text" rows="4" 
-                                disabled 
+                            <textarea name="achievements" class="form-control" id="achievements"
+                                v-model="data.achievements.text" rows="4"
+                                disabled
                                 v-validate="{ required: true}"
                                 data-vv-as="Опис сторінки з досягненнями"
                             ></textarea>
@@ -122,9 +101,9 @@
                             <div class="text-danger" v-if="errors.has('titleIntroduction')">Обов'язкове поле</div>
 
                             <label for="introduction" class="brtop">Опис</label>
-                            <textarea name="introduction" class="form-control" id="introduction" 
-                                v-model="data.introduction.text" rows="4" 
-                                disabled 
+                            <textarea name="introduction" class="form-control" id="introduction"
+                                v-model="data.introduction.text" rows="4"
+                                disabled
                                 v-validate="{ required: true}"
                                 data-vv-as="Опис сторінки вступу"
                             ></textarea>
@@ -143,9 +122,9 @@
                             <div class="text-danger" v-if="errors.has('titleGallery')">Обов'язкове поле</div>
 
                             <label for="gallery" class="brtop">Опис</label>
-                            <textarea name="gallery" class="form-control" id="gallery" 
-                                v-model="data.gallery.text" rows="4" 
-                                disabled 
+                            <textarea name="gallery" class="form-control" id="gallery"
+                                v-model="data.gallery.text" rows="4"
+                                disabled
                                 v-validate="{ required: true}"
                                 data-vv-as="Опис головної сторінки"
                             ></textarea>
@@ -164,9 +143,9 @@
                             <div class="text-danger" v-if="errors.has('titleСontacts')">Обов'язкове поле</div>
 
                             <label for="contacts" class="brtop">Опис</label>
-                            <textarea name="contacts" class="form-control" id="contacts" 
-                                v-model="data.contacts.text" rows="4" 
-                                disabled 
+                            <textarea name="contacts" class="form-control" id="contacts"
+                                v-model="data.contacts.text" rows="4"
+                                disabled
                                 v-validate="{ required: true}"
                                 data-vv-as="Опис сторінки з історією"
                             ></textarea>
@@ -185,9 +164,9 @@
                             <div class="text-danger" v-if="errors.has('titleTeachers')">Обов'язкове поле</div>
 
                             <label for="teachers" class="brtop">Опис</label>
-                            <textarea name="teachers" class="form-control" id="teachers" 
-                                v-model="data.teachers.text" rows="4" 
-                                disabled 
+                            <textarea name="teachers" class="form-control" id="teachers"
+                                v-model="data.teachers.text" rows="4"
+                                disabled
                                 v-validate="{ required: true}"
                                 data-vv-as="Опис сторінки з викладачами"
                             ></textarea>
@@ -206,9 +185,9 @@
                             <div class="text-danger" v-if="errors.has('titleInstruments')">Обов'язкове поле</div>
 
                             <label for="instruments" class="brtop">Опис</label>
-                            <textarea name="instruments" class="form-control" id="instruments" 
-                                v-model="data.instruments.text" rows="4" 
-                                disabled 
+                            <textarea name="instruments" class="form-control" id="instruments"
+                                v-model="data.instruments.text" rows="4"
+                                disabled
                                 v-validate="{ required: true}"
                                 data-vv-as="Опис сторінки з інструментами"
                             ></textarea>
