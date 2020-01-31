@@ -10,7 +10,9 @@
 
                 <div class="news-item">
                     <div class="news-item-container">
-                        <img v-if="data.photo != '/img/empty.png'" :src="data.photo" alt="" class="news-item-img">
+                        <div class="news-img-wrapper">
+                            <img v-if="data.photo != '/img/empty.png'" :src="data.photo" alt="" class="news-item-img">
+                        </div>
                         <div class="news-item-description">
                             <div class="news-item-heading">
                                 <h3 class="news-item-title"> {{ data.title }}</h3>
@@ -113,11 +115,15 @@
         bottom: -80px;
         right: -80px;
     }
-    .news-item-img {
+    .news-img-wrapper {
         position: relative;
         width: 100%;
+        overflow: hidden;
         margin-bottom: 44px;
-        height: 450px;
+    }
+    .news-item-img {
+        width: 100%;
+        height: auto;
     }
     .news-item-description {
         padding: 0 45px;
