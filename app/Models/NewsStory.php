@@ -10,6 +10,7 @@ class NewsStory extends Model
     protected $primaryKey = 'id';
     public const NEWS = 'news';
     public const STORY = 'story';
+    public const ACHIEVE = 'achieve';
 
     protected $guarded = ['id'];
 
@@ -21,8 +22,12 @@ class NewsStory extends Model
     public function scopeNews($query) {
         return $query->where('type', self::NEWS);
     }
-    
+
     public function scopeStory($query) {
         return $query->where('type', self::STORY);
+    }
+
+    public function scopeAchieve($query) {
+        return $query->where('type', self::ACHIEVE);
     }
 }

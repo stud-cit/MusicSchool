@@ -63,7 +63,7 @@
                         <label for="achieveDate" class="col-sm-2 col-form-label">Дата оприлюднення</label>
                         <div class="input-row">
                             <div class="input-container">
-                                <date-picker 
+                                <date-picker
                                     v-model="news.date"
                                     name="editNewsDate"
                                     value-type="YYYY-MM-DD"
