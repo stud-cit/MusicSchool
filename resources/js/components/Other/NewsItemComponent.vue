@@ -138,13 +138,13 @@
         justify-content: space-between;
     }
     .news-item-title {
-        font-size: 42px;
+        font-size: 18px;
         font-weight: 800;
         text-transform: uppercase;
     }
     .news-item-date {
         margin-left: 25px;
-        font-size: 42px;
+        font-size: 18px;
         font-weight: 800;
         text-transform: uppercase;
     }
