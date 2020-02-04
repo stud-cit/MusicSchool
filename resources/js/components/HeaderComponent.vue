@@ -20,6 +20,7 @@
                                 <b-nav-item href="/introduction">Вступ</b-nav-item>
                                 <b-nav-item href="/gallery">Галерея</b-nav-item>
                                 <b-nav-item href="/contacts">Контакти</b-nav-item>
+                                <b-nav-item href="http://fest.jazz.sumy.ua">Джаз Вітраж</b-nav-item>
                             </b-navbar-nav>
                             <b-nav-item-dropdown toggle-class="text-dark"  right id="dropdown_style">
                                 <template slot="button-content">
