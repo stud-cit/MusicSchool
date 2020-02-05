@@ -5,7 +5,7 @@
                 <div class="category-icon"><i class="fa fa-fw fa-history fa-3x"></i></div>
                 Історії
             </a>
-            
+
             <a href="/admin/news" class="col-8 col-sm-5 col-md-3 category-items" >
                 <div class="category-icon"><i class="fa fa-fw fa-newspaper-o fa-3x"></i></div>
                 Новини
@@ -49,6 +49,11 @@
             <a href="/admin/page-info" class="col-8 col-sm-5 col-md-3 category-items" >
                 <div class="category-icon"><i class="fa fa-fw fa-align-left fa-3x"></i></div>
                 Опис сторінок сайту
+            </a>
+
+            <a href="/admin/sites" class="col-8 col-sm-5 col-md-3 category-items" >
+                <div class="category-icon"><i class="fa fa-fw fa-align-left fa-3x"></i></div>
+                Опис сайтів
             </a>
         </div>
     </div>

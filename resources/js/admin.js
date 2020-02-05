@@ -24,6 +24,7 @@ import EditStoryComponent from "./components/Admin/EditNAS/EditStoryComponent";
 import StoryComponent from './components/Admin/StoryComponent'
 import TeacherComponent from './components/Admin/TeacherComponent'
 import ProfileComponent from './components/Admin/ProfileComponent'
+import SiteInfoComponent from './components/Admin/SiteInfoComponent'
 
 import VueSilentbox from 'vue-silentbox';
 Vue.use(VueSilentbox);
@@ -47,8 +48,8 @@ const router = new VueRouter({
             component: HomeComponent
         },
         {
-            path: '/admin/page-info', 
-            name: 'page-info', 
+            path: '/admin/page-info',
+            name: 'page-info',
             component: PageInfoComponent
         },
         {
@@ -67,8 +68,8 @@ const router = new VueRouter({
             component: EditDepartmentComponent
         },
         {
-            path: '/admin/info', 
-            name: 'info', 
+            path: '/admin/info',
+            name: 'info',
             component: InfoComponent
         },
         {
@@ -130,6 +131,11 @@ const router = new VueRouter({
             path: '/admin/profile/:id',
             name: 'profile',
             component: ProfileComponent
+        },
+        {
+            path: '/admin/sites',
+            name: 'sites',
+            component: SiteInfoComponent
         }
     ],
 });

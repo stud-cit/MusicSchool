@@ -79,6 +79,11 @@ Route::delete('story-images/{id}', 'NewsStoryController@delAchieveImage');
 Route::get('document', 'DocumentController@getDocument');
 Route::post('document/{id}', 'DocumentController@postDocument');
 
+// Опис сайтів
+
+Route::get('site-info', 'InfoController@getSiteInfo');
+Route::post('site-info', 'InfoController@putSiteInfo');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Info;
 use App\Models\PageInfo;
 use App\Models\NewsStory;
+use App\Models\SiteInfo;
 
 class InfoController extends Controller
 {
@@ -40,5 +41,17 @@ class InfoController extends Controller
 
     function updateInfo(Request $request) {
         Info::where("id", 1)->update([$request->column => $request->value]);
+    }
+
+    // Опис сайтів
+
+    function getSiteInfo() {
+        $data = SiteInfo::get();
+        return response()->json($data);
+    }
+
+    function putSiteInfo(Request $request) {
+        SiteInfo::where("site", $request->site)->update(['text' => $request->text]);
+        return response('ok', 200);
     }
 }

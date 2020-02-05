@@ -68,6 +68,12 @@
 						<i class="fa fa-fw fa-align-left"></i>
 						<span class="nav-link-text">Опис сторінок сайту</span>
 					</a>
+                </li>
+				<li class="nav-item" title="Опис сайтів">
+					<a class="nav-link" href="/admin/sites">
+						<i class="fa fa-fw fa-align-left"></i>
+						<span class="nav-link-text">Опис сайтів</span>
+					</a>
 				</li>
 			</ul>
 
