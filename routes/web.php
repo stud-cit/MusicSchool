@@ -17,4 +17,6 @@ Route::post('post-intro-file', 'IntroController@postIntroFile');
 Route::post('update-intro/{id}/', 'IntroController@updateIntro');
 Route::post('delete-intro/{id}/', 'IntroController@deleteIntro');
 
+Route::get('site-info', 'InfoController@getSiteInfo');
+
 Route::get('/{any}', 'SpaController@index')->where('any', '.*');
