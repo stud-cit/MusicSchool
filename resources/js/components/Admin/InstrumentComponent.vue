@@ -51,7 +51,7 @@
                     <div class="col-sm-6">
 						<label class="custom-file w-100">
 							<input type="file" class="custom-file-input col-6" id="instrumentImage" name="instrumentImage" 
-							ref="instrumentImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'" required>
+							ref="instrumentImage" @change="previewFiles($event)" accept=".jpg, .jpeg, .png, .bmp" v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }" required>
 							<span class="custom-file-control">Файл не обрано</span>
 						</label>
 						<img v-if="!errors.has('instrumentImage')" class="mt-3 w-50" :src="image">

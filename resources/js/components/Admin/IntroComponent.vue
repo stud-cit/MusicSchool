@@ -9,7 +9,8 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" class="custom-file-input" id="bg" name="bg" ref="bg" @change="previewFiles($event, 'bg')" accept="image/*" v-validate="'image'">
+                                <input type="file" class="custom-file-input" id="bg" name="bg" ref="bg" @change="previewFiles($event, 'bg')" accept="image/*" 
+                                    v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
                                 <div class="uploadIntroFiles custom-file-control">Файл не обрано</div>
                             </label>
                         </div>

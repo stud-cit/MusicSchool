@@ -67,7 +67,6 @@
 
     .navbar-light .navbar-nav .nav-link {
         color: black;
-        margin-right: 15px;
     }
 
     .navbar-light .navbar-nav .nav-link:hover {

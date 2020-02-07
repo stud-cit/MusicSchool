@@ -60,7 +60,8 @@
                     <label for="teacherImage" class="col-sm-2 col-form-label">Фото викладача</label>
                     <div class="col-sm-6">
 						<label class="custom-file w-100">
-							<input type="file" class="custom-file-input col-6" id="teacherImage" name="teacherImage" ref="teacherImage" @change="previewFiles($event)" accept="image/*" v-validate="'image'">
+							<input type="file" class="custom-file-input col-6" id="teacherImage" name="teacherImage" ref="teacherImage" @change="previewFiles($event)" accept=".jpg, .jpeg, .png, .bmp" 
+                                v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
 							<span class="custom-file-control">Файл не обрано</span>
 						</label>
 						<img v-if="!errors.has('teacherImage')" class="mt-3 w-50" :src="teacher.photo">

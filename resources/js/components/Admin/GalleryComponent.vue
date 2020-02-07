@@ -14,7 +14,7 @@
 					<div class="col-5">
 						<label for="foto">Фото в оригінальній якості</label>
 						<label class="custom-file w-100">
-							<input type="file" name="foto" v-validate="'image'" class="custom-file-input" id="foto" ref="file" @change="fieldChange()" accept="image/*" multiple>
+							<input type="file" name="foto" v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }" class="custom-file-input" id="foto" ref="file" @change="fieldChange()" accept=".jpg, .jpeg, .png, .bmp" multiple>
 							<span class="custom-file-control">{{ `Кількість обраних файлів: ${uploadPhotos.length}` }}</span>
 						</label>
 						<div v-for="(item, index) in uploadPhotos" :key="index">
