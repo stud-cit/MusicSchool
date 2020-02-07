@@ -34,8 +34,8 @@
                     <label for="storyImage" class="col-sm-2 col-form-label">Зображення для історії</label>
                     <div class="col-sm-6">
                         <label class="custom-file w-100">
-                            <input type="file" name="storyImage" v-validate="'image'" class="custom-file-input col-6"
-                                   id="storyImage" ref="storyImage" @change="fieldChange" accept="image/*" multiple>
+                            <input type="file" name="storyImage" v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }" class="custom-file-input col-6"
+                                   id="storyImage" ref="storyImage" @change="fieldChange" accept=".jpg, .jpeg, .png, .bmp" multiple>
                             <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
                         </label>
                         <div v-for="(item, index) in file" :key="index">
