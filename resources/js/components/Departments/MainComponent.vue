@@ -63,7 +63,6 @@
                 <img src="/img/departments/professor.png" alt="professor" />
               </router-link>
             </div>
-            <div class="teachers__text">typesetting industry Lorem Ipsum is simply dummy text</div>
           </div>
         </div>
         <div class="modal__item">
@@ -74,7 +73,6 @@
                 <img src="/img/departments/Guitar Player.png" alt="guitar_player" />
               </router-link>
             </div>
-            <div class="instruments__text">typesetting industry Lorem Ipsum is simply dummy text</div>
           </div>
         </div>
       </b-modal>
