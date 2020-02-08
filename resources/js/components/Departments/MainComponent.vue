@@ -10,6 +10,7 @@
               </div>
               <div class="card__big__body">
                 <div class="card__big__title">{{block[0].name_department}}</div>
+                <div class="card__big__title">{{block[0].name_department}}</div>
                 <div class="card__big__text">{{block[0].departments_info}}</div>
               </div>
             </div>
@@ -90,8 +91,8 @@ export default {
       departmentId: null,
 
       cardsBlock: {
-        imgBig: "/img/departments/piano.png",
-        imgSmall: "/img/departments/skripka.png"
+        imgBig: "/img/test2.jpg",
+        imgSmall: "/img/teacher.jpg"
       }
     };
   },
@@ -149,12 +150,14 @@ export default {
 
 .card__big__img {
   padding: 40px 0 40px 0;
-  width: 50%;
+  /* width: 50%; */
   text-align: right;
 }
 
 .card__big__img img {
-  width: 60%;
+  /* width: 60%; */
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .card__big__body {
@@ -198,6 +201,11 @@ export default {
   margin: 10px 0 10px 0;
   width: 100%;
   text-align: center;
+}
+
+.card__small__img img {
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .card__small__text {
