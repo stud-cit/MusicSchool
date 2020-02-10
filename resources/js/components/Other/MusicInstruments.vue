@@ -5,6 +5,9 @@
       <div class="content-block">
         <div class="content-layout"></div>
         <b-container>
+            div
+            class="text_block"
+          >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim repudiandae voluptatem, cum suscipit dignissimos itaque officia aliquam numquam veniam provident deserunt id illum perferendis earum rerum nostrum. Nulla expedita rerum commodi cumque repellendus at iure numquam, adipisci, veniam labore dolores. Repellat maiores fuga ipsum praesentium pariatur perferendis alias? Incidunt, eveniet.</div>
           <ul class="instrument-list">
             <li class="list-item" v-for="item of paginateList">
               <div class="description">
