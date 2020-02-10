@@ -15,20 +15,21 @@
 
                 <b-row class="news_block">
                     <b-col xl="8" lg="7" md="12" sm ="12" order-lg="2" class="figure">
-                        <img src="/img/photo_news_1.png" alt="">
+                        <img v-if="$props.news.images.length" :src="$props.news.images[0].file" alt="">
+                        <img v-else src="/img/empty.png" alt="">
                     </b-col>
                     <b-col xl="4" lg="5" md="12" sm ="12" order-lg="1" class="news_block_all">
                         <div class="news_block_inf"  id = "text-style">
                             <div>
-                                <p class="text_style_mid">Проведення музичного конкурсу</p>
+                                <i class="text_style_mid">{{ $props.news.title }}</i>
                             </div>
                             <div>
-                                <p class="text_common">Конкурс на заміщення вакантної посади керівника музичної частини, який проходив у Львівському національному академічному театрі опери та балету
-                                    імені Соломії Крушельницької завершено. Рішенням конкурсної комісії від 6 листопада 2019 року переможцем конкурсу на заміщення вакантної посади
-                                    керівника музичної частини визнано –  Чередніченка Іванна Владимировна...</p>
+                                <p class="text_common">{{ $props.news.text.substring(0,200) }}</p>
                             </div>
                             <div>
-                                <ButtonInformation/>
+                                <router-link class="news-router" :to="{ name: 'news-item', params: {id: $props.news.id}}">
+                                    <ButtonInformation/>
+                                </router-link>
                             </div>
                         </div>
                     </b-col>
@@ -39,20 +40,20 @@
 </template>
 
 <script>
+import ButtonInformation from "./ButtonInformation.vue";
 
-    import ButtonInformation from './ButtonInformation.vue'
-
-    export default {
-        name: 'NewsMainBlock',
-        components: {
-            ButtonInformation
-        },
-        data(){
-            return{
-                btn: "Новость"
-            }
-        }
-    }
+export default {
+  name: "NewsMainBlock",
+  props: ['news'],
+  components: {
+    ButtonInformation
+  },
+  data() {
+    return {
+      btn: "Новость"
+    };
+  }
+};
 </script>
 
 <style scoped>
@@ -63,7 +64,7 @@
 
     .figure img {
         width: 100%;
-        height: 100%;
+        height: 70%;
         object-fit: cover;
     }
 
@@ -71,7 +72,7 @@
         background-image: url("/img/bl1.png");
         background-size: cover;
         width: 50%;
-        height: 80%;
+        min-height: 700px;
         position: absolute;
         margin-top: 150px;
     }
@@ -84,7 +85,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 95%;
+        height: 60%;
         margin: 30px 5px 5px 5px;
     }
 
@@ -109,7 +110,12 @@
         line-height: 30px;
         font-weight: 500;
     }
-
+    @media (max-width: 1200px) {
+        .add_block {
+            height: 80%;
+            min-height: 650px;
+        }
+    }
     @media (max-width: 995px) {
         .figure {
             height: 500px;
@@ -117,20 +123,30 @@
 
         .add_block {
             width: 100%;
+            height: 150%;
             height: 800px;
             margin-top: 300px;
         }
 
     }
 
+    @media (max-width: 768px){
+        .add_block {
+            height: 800px;
+            margin-top: 300px;
+        }
+    }
     @media (max-width: 650px) {
         .figure {
             height: 300px;
         }
 
         .add_block {
-            height: 700px;
+            height: 500px;
             margin-top: 300px;
+        }
+        #block_space_2 {
+            margin-bottom: 100px;
         }
 
     }
@@ -159,7 +175,7 @@
 
     @media (max-width: 350px) {
         .add_block {
-            height: 800px;
+            height: 550px;
             margin-top: 300px;
         }
     }

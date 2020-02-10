@@ -1,45 +1,20 @@
 // other pages
 body
    line-height: 1
+   color: #ffffff
+   font-family: Montserrat
+   font-size: 16px
 .mt-50
    margin-top: 50px
-//page-title
-.title-block
-   background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%)
-   .notes
-      background: url("../img/title-bg-notes.png") no-repeat left 68%
-      padding: 36px 0 32px 0
-   .container
-      .row
-         display: flex
-         align-items: flex-end
-         justify-content: space-between
-   .title
-      color: #ffffff
-      font-family: Montserrat
-      font-size: 70px
-      font-weight: 700
-      line-height: 1.1
-      text-transform: uppercase
-      margin-bottom: 0
-      .uptitle
-         font-size: 54px
-         font-weight: 600
-   .text
-      color: #ffffff
-      font-family: Montserrat
-      font-size: 16px
-      font-weight: 400
+
 
 // carousels history
 .content-block .carousel-caption
-   rigth: 0
    left: 0
    bottom: 0
    width: 100%
-   padding: 25px 35px
+   padding: 25px 30px
    background-color: #2b2b2b
-   max-height: 100px
    h3
       color: #ffffff
       font-family: Montserrat
@@ -57,8 +32,13 @@ body
       height: 14px
       border-radius: 50%
       outline: none
-
-// pagination history
+.content-block .img-fluid
+      width: 100%
+      max-width: 100%
+      height: 500px
+      object-fit: contain
+      object-position: center 0
+// pagination
 
 .pagination
    margin: 50px 0
@@ -77,3 +57,41 @@ body
          border: 1px solid #707070
          color: #b3c2d0
 
+@media (max-width: 991px)
+
+   // carousels history
+
+   .content-block .carousel-caption
+      h3
+         font-size: 12px
+
+@media (max-width: 575px)
+
+   // carousels history
+
+   .content-block .img-fluid
+      height: auto
+      min-height: 320px
+      object-fit: cover
+      object-position: center 0
+   .content-block .carousel-caption
+      max-height: 120px
+      padding: 15px 20px
+   .content-block .carousel-indicators
+      bottom: 120px
+      margin-bottom: 0
+
+//language
+
+.skiptranslate
+   display: none !important
+.goog-te-spinner-pos
+   display: none !important
+.language.show
+   display: flex
+   flex-direction: column
+   justify-content: center
+   min-width: 56px
+   .dropdown-item
+      width: auto
+////////

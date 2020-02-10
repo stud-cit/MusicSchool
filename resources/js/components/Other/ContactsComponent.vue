@@ -1,34 +1,27 @@
 <template>
     <div>
-        <page-title title="Контакти" uptitle="доступні"></page-title>
+        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
         <MapComponent/>
     </div>
 </template>
 
 <script>
 
-    import MapComponent from './MapComponent.vue'
+    import MapComponent from './MapComponent.vue';
+    import getData from '../mixins/getData';
 
     export default {
+        mixins: [getData],
         data() {
-            return {
-
-            };
+            return {};
         },
          components: {
             MapComponent
         },
-        created () {
-
-        },
-        computed: {
-
-        },
-        methods: {
-
-        },
-
-
+        created() {
+            this.getInfoPage('contacts');
+            document.title = "Контакти";
+        }
     }
 </script>
 
