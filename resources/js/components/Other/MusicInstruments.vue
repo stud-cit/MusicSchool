@@ -83,6 +83,14 @@ export default {
                 height: calc(100% - 400px)
                 background-image: linear-gradient(180deg, #e91b47 0%, #6a0017 100%)
                 z-index: -1
+
+                
+            .text_block
+                padding: 70px 50px
+                background-color: #2B2B2B
+                color: #FFFFFF
+                margin-bottom: 50px
+
             .instrument-list
                 z-index: 5
                 list-style: none
