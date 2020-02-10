@@ -1,71 +1,70 @@
 <template>
-    <div>
-        <page-title title="інструментів" uptitle="Різноманітність"></page-title>
-        <section class="instruments-section mt-50">
-            <div class="content-block">
-                <div class="content-layout"></div>
-                <b-container>
-                    <ul class="instrument-list">
-                        <li class="list-item" v-for="item of paginateList">
-                            <div class="description">
-                                <h3 class="item-title">Рояль {{item.id}}</h3>
-                                <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem
-                                    Ipsum is simply dummy text of the printing orem Ipsum is simply
-                                    dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing </p>
-                            </div>
-                            <img src="/img/instruments-1.png" alt="" class="w-100 item-img">
-                        </li>
-                    </ul>
-
-
-                </b-container>
-            </div>
-            <b-pagination
-                    v-model="currentPage"
-                    :total-rows="rows"
-                    :per-page="perPage"
-                    first-text="<<"
-                    prev-text="<"
-                    next-text=">"
-                    last-text=">>"
-                    class="justify-content-center"
-            ></b-pagination>
-        </section>
-
-    </div>
-
+  <div>
+    <page-title title="інструментів" uptitle="Різноманітність"></page-title>
+    <section class="instruments-section mt-50">
+      <div class="content-block">
+        <div class="content-layout"></div>
+        <b-container>
+          <ul class="instrument-list">
+            <li class="list-item" v-for="item of paginateList">
+              <div class="description">
+                <h3 class="item-title">Рояль {{item.id}}</h3>
+                <p class="text">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem
+                  Ipsum is simply dummy text of the printing orem Ipsum is simply
+                  dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing
+                </p>
+              </div>
+              <img src="/img/instruments-1.png" alt class="w-100 item-img" />
+            </li>
+          </ul>
+        </b-container>
+      </div>
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="rows"
+        :per-page="perPage"
+        first-text="<<"
+        prev-text="<"
+        next-text=">"
+        last-text=">>"
+        class="justify-content-center"
+      ></b-pagination>
+    </section>
+  </div>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                perPage: 3,
-                currentPage: 1,
-                items: [
-                    { id: 1 },
-                    { id: 2 },
-                    { id: 3 },
-                    { id: 4 },
-                    { id: 5 },
-                    { id: 6 },
-                    { id: 7 },
-                    { id: 8 },
-                    { id: 9 },
-                ]
-            }
-        },
-        computed: {
-            rows() {
-                return this.items.length
-            },
-            paginateList() {
-                return this.items.slice((this.currentPage-1)*this.perPage, this.currentPage*this.perPage);
-            }
-
-        },
-
+export default {
+  data() {
+    return {
+      perPage: 3,
+      currentPage: 1,
+      items: [
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        { id: 4 },
+        { id: 5 },
+        { id: 6 },
+        { id: 7 },
+        { id: 8 },
+        { id: 9 }
+      ]
+    };
+  },
+  computed: {
+    rows() {
+      return this.items.length;
+    },
+    paginateList() {
+      return this.items.slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
+      );
     }
+  }
+};
 </script>
 
 <style lang="sass" scoped>
