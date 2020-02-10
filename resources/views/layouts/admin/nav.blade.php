@@ -27,16 +27,16 @@
 						<span class="nav-link-text">Відділи</span>
 					</a>
 				</li>
-				<li class="nav-item" title="Вчителі">
+				<li class="nav-item" title="Колектив">
 					<a class="nav-link" href="/admin/teacher">
 						<i class="fa fa-fw fa-users"></i>
-						<span class="nav-link-text">Вчителі</span>
+						<span class="nav-link-text">Колектив</span>
 					</a>
 				</li>
-				<li class="nav-item" title="Інструменти">
+				<li class="nav-item" title="Інформація про відділ">
 					<a class="nav-link" href="/admin/instrument">
 						<i class="fa fa-fw fa-music"></i>
-						<span class="nav-link-text">Інструменти</span>
+						<span class="nav-link-text">Інформація про відділ</span>
 					</a>
 				</li>
 				<li class="nav-item" title="Досягнення">

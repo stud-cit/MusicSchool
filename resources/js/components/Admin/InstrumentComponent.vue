@@ -2,17 +2,17 @@
     <div class="ml-5">
         <div class="row">
             <div class="col-12 mt-1 mb-2">
-                <button type="button" class="btn btn-primary float-left" @click="showInstruments = !showInstruments">Додати інструмент</button>
+                <button type="button" class="btn btn-primary float-left" @click="showInstruments = !showInstruments">Додати інформацію про відділ</button>
             </div>
         </div>
         <form enctype="multipart/form-data" v-if="showInstruments">
             <div class="row">
                 <div class="form-group row">
-                    <label for="name_instruments" class="col-sm-2 col-form-label">Інструмент</label>
+                    <label for="name_instruments" class="col-sm-2 col-form-label">Заголовок</label>
                     <div class="col-sm-6">
                         <input type="text" name="name_instruments" v-model="name_instruments" class="form-control" id="name_instruments"
                             v-validate="{ required: true }"
-                                data-vv-as="Інструмент">
+                                data-vv-as="Заголовок">
                         <span class="errors text-danger" v-if="errors.has('name_instruments')">
                                 {{ errors.first('name_instruments') }}
                         </span>
@@ -20,11 +20,11 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="instruments_info" class="col-sm-2 col-form-label">Інформація про інструмент</label>
+                    <label for="instruments_info" class="col-sm-2 col-form-label">Додаткова інформація</label>
                     <div class="col-sm-6">
                         <textarea name="instruments_info" v-model="instruments_info" class="form-control" id="instruments_info" rows="5"
                             v-validate="{ required: true }"
-                                data-vv-as="Інформація про інструмент"></textarea>
+                                data-vv-as="Інформація"></textarea>
                         <span class="errors text-danger" v-if="errors.has('instruments_info')">
                                 {{ errors.first('instruments_info') }}
                         </span>
@@ -47,10 +47,10 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="instrumentImage" class="col-sm-2 col-form-label">Фото інструменту</label>
+                    <label for="instrumentImage" class="col-sm-2 col-form-label">Фото</label>
                     <div class="col-sm-6">
 						<label class="custom-file w-100">
-							<input type="file" class="custom-file-input col-6" id="instrumentImage" name="instrumentImage" 
+							<input type="file" class="custom-file-input col-6" id="instrumentImage" name="instrumentImage"
 							ref="instrumentImage" @change="previewFiles($event)" accept=".jpg, .jpeg, .png, .bmp" v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }" required>
 							<span class="custom-file-control">Файл не обрано</span>
 						</label>
@@ -70,9 +70,9 @@
 				<tr>
 					<th width="10px" scope="col">№</th>
 					<th width="150px" scope="col">Фото</th>
-					<th scope="col">Інструмент</th>
+					<th scope="col">Заголовок</th>
 					<th scope="col">Відділ</th>
-					<th scope="col">Інформація про інструмент</th>
+					<th scope="col">Додаткова інформація</th>
 					<th width="10px" scope="col"></th>
 					<th width="10px" scope="col"></th>
 				</tr>
@@ -109,7 +109,7 @@ export default {
 			};
         },
         created () {
-			document.title = "Інструменти";
+			document.title = "Інформація про відділ";
             this.getInstruments();
             this.getDepartments();
 		},
@@ -134,10 +134,10 @@ export default {
 			getInstruments(){
 				axios.get('/api/instruments')
 					.then((response) => {
-					   	this.instruments = response.data	
+					   	this.instruments = response.data
 					})
 			},
-			
+
 			postInstruments() {
 				this.$validator.validateAll().then((result) => {
 					if (!result) {
@@ -201,7 +201,7 @@ export default {
 					})
 			}
 		}
-	   
+
 };
 </script>
 

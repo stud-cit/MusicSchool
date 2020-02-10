@@ -2,7 +2,7 @@
      <div class="ml-5">
         <div class="row">
             <div class="col-12 mt-1 mb-2">
-                <button type="button" class="btn btn-primary float-left" @click="showTeacher = !showTeacher">Додати виклалача</button>
+                <button type="button" class="btn btn-primary float-left" @click="showTeacher = !showTeacher">Додати</button>
             </div>
         </div>
         <form enctype="multipart/form-data" v-if="showTeacher">
@@ -59,11 +59,11 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="teacher_info" class="col-sm-2 col-form-label">Інформація про викладача</label>
+                    <label for="teacher_info" class="col-sm-2 col-form-label">Додаткова інформація</label>
                     <div class="col-sm-6">
                         <textarea name="teacher_info" v-model="teacher_info" class="form-control" id="teacher_info" rows="5"
                             v-validate="{ required: true }"
-                                data-vv-as="Інформація про викладача"></textarea>
+                                data-vv-as="Додаткова інформація"></textarea>
                         <span class="errors text-danger" v-if="errors.has('teacher_info')">
                                 {{ errors.first('teacher_info') }}
                         </span>
@@ -71,11 +71,11 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="teacherImage" class="col-sm-2 col-form-label">Фото викладача</label>
+                    <label for="teacherImage" class="col-sm-2 col-form-label">Фото</label>
                     <div class="col-sm-6">
 						<label class="custom-file w-100">
 							<input type="file" class="custom-file-input col-6" id="teacherImage" name="teacherImage"
-							ref="teacherImage" required @change="previewFiles($event)" accept=".jpg, .jpeg, .png, .bmp" 
+							ref="teacherImage" required @change="previewFiles($event)" accept=".jpg, .jpeg, .png, .bmp"
 								v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
 							<span class="custom-file-control">Файл не обрано</span>
 						</label>
@@ -95,9 +95,9 @@
 				<tr>
 					<th width="10px" scope="col">№</th>
 					<th width="150px" scope="col">Фото</th>
-					<th scope="col">ПІБ викладача</th>
+					<th scope="col">ПІБ</th>
 					<th scope="col">Відділ</th>
-					<th scope="col">Інформація про викладача</th>
+					<th scope="col">Додаткова інформація</th>
 					<th width="10px" scope="col"></th>
 					<th width="10px" scope="col"></th>
 				</tr>
@@ -137,7 +137,7 @@ export default {
 			};
         },
         created () {
-			document.title = "Вчителі";
+			document.title = "Колектив";
             this.getTeachers();
             this.getDepartments();
 		},
