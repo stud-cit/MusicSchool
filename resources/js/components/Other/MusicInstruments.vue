@@ -5,6 +5,9 @@
             <div class="content-block">
                 <div class="content-layout"></div>
                 <b-container>
+                    <div class="text_block">
+                        {{ description }}
+                    </div>
                     <ul class="instrument-list">
                         <li class="list-item" v-for="item of paginateArray" :key="item.teachers_id">
                             <div class="description">
@@ -20,7 +23,6 @@
             </div>
             <paginate :items="instrument" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
         </section>
-
     </div>
 
 </template>
@@ -33,14 +35,23 @@
         data() {
             return {
                 instrument: [],
-                paginateArray: []
+                paginateArray: [],
+                description: ''
             }
         },
 	    created() {
             this.getInstrumentId();
+            this.getDepartment();
             this.getInfoPage('instruments');
 	    },
 	    methods: {
+            getDepartment() {
+            axios.get("/api/department/"+this.$route.params.id)
+                .then(response => {
+
+                    this.description = response.data.name_department
+            });
+            },
 		    getInstrumentId() {
 			    axios.get('/api/instrument/department/'+this.$route.params.id)
 				    .then((response) => {
@@ -68,6 +79,14 @@
                 height: calc(100% - 400px)
                 background-image: linear-gradient(180deg, #e91b47 0%, #6a0017 100%)
                 z-index: -1
+
+            .text_block
+                padding: 70px 50px
+                background-color: #2B2B2B
+                color: #FFFFFF
+                margin-bottom: 50px
+                font-size: 20px
+
             .instrument-list
                 z-index: 5
                 padding-left: 0
