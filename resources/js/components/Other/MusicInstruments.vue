@@ -146,6 +146,7 @@ export default {
                 background-color: #2B2B2B
                 color: #FFFFFF
                 margin-bottom: 50px
+                font-size: 20px
 
             .instrument-list
                 z-index: 5
