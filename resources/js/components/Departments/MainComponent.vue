@@ -10,7 +10,6 @@
               </div>
               <div class="card__big__body">
                 <div class="card__big__title">{{block[0].name_department}}</div>
-                <div class="card__big__title">{{block[0].name_department}}</div>
                 <div class="card__big__text">{{block[0].departments_info}}</div>
               </div>
             </div>
