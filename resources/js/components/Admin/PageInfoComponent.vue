@@ -177,7 +177,7 @@
                     <br>
                     <div class="card">
                         <div class="card-header p-2">
-                            Інструменти
+                            Інформація
                         </div>
                         <div class="card-body p-2">
                             <label for="titleInstruments" class="brtop">Заголовок</label>
