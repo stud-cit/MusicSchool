@@ -1,7 +1,8 @@
 <template>
     <div class="all_block" id="text-style">
         <div>
-            <p> 2019 школа №2 | All rights reserved</p>
+            <p> 2020 школа №2 | Created by StudCIT</p>
+
         </div>
     </div>
 </template>

@@ -1,127 +1,60 @@
 <template>
-<<<<<<< HEAD
   <div>
-    <page-title title="інструментів" uptitle="Різноманітність"></page-title>
+    <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
     <section class="instruments-section mt-50">
       <div class="content-block">
         <div class="content-layout"></div>
         <b-container>
-            div
-            class="text_block"
-          >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim repudiandae voluptatem, cum suscipit dignissimos itaque officia aliquam numquam veniam provident deserunt id illum perferendis earum rerum nostrum. Nulla expedita rerum commodi cumque repellendus at iure numquam, adipisci, veniam labore dolores. Repellat maiores fuga ipsum praesentium pariatur perferendis alias? Incidunt, eveniet.</div>
+          <div class="text_block">{{ description }}</div>
           <ul class="instrument-list">
-            <li class="list-item" v-for="item of paginateList">
+            <li class="list-item" v-for="item of paginateArray" :key="item.teachers_id">
               <div class="description">
-                <h3 class="item-title">Рояль {{item.id}}</h3>
-                <p class="text">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem
-                  Ipsum is simply dummy text of the printing orem Ipsum is simply
-                  dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing
-                </p>
+                <h3 class="item-title">{{item.name_instruments}}</h3>
+                <p class="text">{{item.instruments_info}}</p>
               </div>
-              <img src="/img/instruments-1.png" alt class="w-100 item-img" />
+              <img :src="item.photo" alt class="w-100 item-img" />
             </li>
           </ul>
         </b-container>
       </div>
-      <b-pagination
-        v-model="currentPage"
-        :total-rows="rows"
-        :per-page="perPage"
-        first-text="<<"
-        prev-text="<"
-        next-text=">"
-        last-text=">>"
-        class="justify-content-center"
-      ></b-pagination>
+      <paginate :items="instrument" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
     </section>
   </div>
 </template>
 
 <script>
+import paginate from "../PaginationComponent";
+import getData from "../mixins/getData";
 export default {
+  mixins: [getData],
   data() {
     return {
-      perPage: 3,
-      currentPage: 1,
-      items: [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-        { id: 4 },
-        { id: 5 },
-        { id: 6 },
-        { id: 7 },
-        { id: 8 },
-        { id: 9 }
-      ]
+      instrument: [],
+      paginateArray: [],
+      description: ""
     };
   },
-  computed: {
-    rows() {
-      return this.items.length;
+  created() {
+    this.getInstrumentId();
+    this.getDepartment();
+    this.getInfoPage("instruments");
+  },
+  methods: {
+    getDepartment() {
+      axios.get("/api/department/" + this.$route.params.id).then(response => {
+        this.description = response.data.name_department;
+      });
     },
-    paginateList() {
-      return this.items.slice(
-        (this.currentPage - 1) * this.perPage,
-        this.currentPage * this.perPage
-      );
-=======
-    <div>
-        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
-        <section class="instruments-section mt-50">
-            <div class="content-block">
-                <div class="content-layout"></div>
-                <b-container>
-                    <ul class="instrument-list">
-                        <li class="list-item" v-for="item of paginateArray" :key="item.teachers_id">
-                            <div class="description">
-                                <h3 class="item-title">{{item.name_instruments}} </h3>
-                                <p class="text">{{item.instruments_info}} </p>
-                            </div>
-                            <img :src="item.photo" alt="" class="w-100 item-img">
-                        </li>
-                    </ul>
-
-
-                </b-container>
-            </div>
-            <paginate :items="instrument" @paginateArray="paginateArray = $event" :perPage="3"></paginate>
-        </section>
-
-    </div>
-
-</template>
-
-<script>
-    import paginate from '../PaginationComponent';
-    import getData from '../mixins/getData';
-    export default {
-        mixins: [getData],
-        data() {
-            return {
-                instrument: [],
-                paginateArray: []
-            }
-        },
-	    created() {
-            this.getInstrumentId();
-            this.getInfoPage('instruments');
-	    },
-	    methods: {
-		    getInstrumentId() {
-			    axios.get('/api/instrument/department/'+this.$route.params.id)
-				    .then((response) => {
-					    this.instrument = response.data;
-				    })
-            }
-	    },
-        components: {
-            paginate
-        }
-
->>>>>>> 6f8d2a4facddfc61d933d43b6c8fe036a756ce90
+    getInstrumentId() {
+      axios
+        .get("/api/instrument/department/" + this.$route.params.id)
+        .then(response => {
+          this.instrument = response.data;
+        });
     }
+  },
+  components: {
+    paginate
   }
 };
 </script>
@@ -140,7 +73,6 @@ export default {
                 background-image: linear-gradient(180deg, #e91b47 0%, #6a0017 100%)
                 z-index: -1
 
-                
             .text_block
                 padding: 70px 50px
                 background-color: #2B2B2B

@@ -10,7 +10,6 @@
               </div>
               <div class="card__big__body">
                 <div class="card__big__title">{{block[0].name_department}}</div>
-                <div class="card__big__title">{{block[0].name_department}}</div>
                 <div class="card__big__text">{{block[0].departments_info}}</div>
               </div>
             </div>
@@ -67,10 +66,10 @@
         </div>
         <div class="modal__item">
           <div class="instruments">
-            <div class="instruments__title">Інформація</div>
+            <div class="instruments__title">Інформації</div>
             <div class="instruments__img">
               <router-link :to="{ name: 'instruments', params: {id: this.departmentId} }">
-                <img src="/img/departments/information.svg" alt="information" />
+                <img src="/img/departments/information.svg" alt="guitar_player" />
               </router-link>
             </div>
           </div>
