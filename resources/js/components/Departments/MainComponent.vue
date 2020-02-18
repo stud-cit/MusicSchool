@@ -2,6 +2,9 @@
   <div class="departments">
     <b-container>
       <b-row>
+        <div class="text_block">{{ description }}</div>
+      </b-row>
+      <b-row>
         <div v-for="(block, index) in department" v-bind:key="index" class="card__block">
           <div v-if="index % 2 == 0" class="card__block">
             <div class="card__big" @click="showModal(block[0].departments_id)">
@@ -10,7 +13,11 @@
               </div>
               <div class="card__big__body">
                 <div class="card__big__title">{{block[0].name_department}}</div>
-                <div class="card__big__text">{{block[0].departments_info}}</div>
+                <div
+                  v-if="block[0].departments_info.length > 100"
+                  class="card__big__text"
+                >{{block[0].departments_info.slice(0, 100).concat(' ...')}}</div>
+                <div v-else class="card__big__text">{{block[0].departments_info}}</div>
               </div>
             </div>
             <div v-if="block[1]" class="card__small" @click="showModal(block[1].departments_id)">
@@ -18,7 +25,11 @@
               <div class="card__small__img">
                 <img v-bind:src="block[1].img" alt="skripka" />
               </div>
-              <div class="card__small__text">{{block[1].departments_info}}</div>
+              <div
+                v-if="block[1].departments_info.length > 100"
+                class="card__small__text"
+              >{{block[1].departments_info.slice(0, 100).concat(' ...')}}</div>
+              <div v-else class="card__small__text">{{block[1].departments_info}}</div>
             </div>
           </div>
 
@@ -28,7 +39,11 @@
               <div class="card__small__img">
                 <img v-bind:src="block[0].img" alt="skripka" />
               </div>
-              <div class="card__small__text">{{block[0].departments_info}}</div>
+              <div
+                v-if="block[0].departments_info.length > 100"
+                class="card__small__text"
+              >{{block[0].departments_info.slice(0, 100).concat(' ...')}}</div>
+              <div v-else class="card__small__text">{{block[0].departments_info}}</div>
             </div>
             <div v-if="block[1]" class="card__big" @click="showModal(block[1].departments_id)">
               <div class="card__big__img">
@@ -36,7 +51,11 @@
               </div>
               <div class="card__big__body">
                 <div class="card__big__title">{{block[1].name_department}}</div>
-                <div class="card__big__text">{{block[1].departments_info}}</div>
+                <div
+                  v-if="block[1].departments_info.length > 100"
+                  class="card__big__text"
+                >{{block[1].departments_info.slice(0, 100).concat(' ...')}}</div>
+                <div v-else class="card__big__text">{{block[1].departments_info}}</div>
               </div>
             </div>
           </div>
@@ -86,6 +105,8 @@ export default {
     return {
       department: [],
       departmentId: null,
+      description:
+        "fngjhdsfjgsdkflgdfsghsfhgfdjghsdfgfdskhgdjkfshkdgkhdslfhgdfskjgjk",
 
       cardsBlock: {
         imgBig: "/img/test2.jpg",
@@ -93,7 +114,6 @@ export default {
       }
     };
   },
-
   created() {
     this.getDepartment();
   },
@@ -123,6 +143,15 @@ export default {
 <style scope>
 .departments {
   margin-top: 50px;
+}
+
+.text_block {
+  padding: 70px 50px;
+  background-color: #ff2a74;
+  color: #ffffff;
+  margin-bottom: 50px;
+  font-size: 20px;
+  width: 100%;
 }
 .card__block {
   width: 100%;
