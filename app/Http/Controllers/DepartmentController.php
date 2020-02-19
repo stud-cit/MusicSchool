@@ -41,7 +41,7 @@ class DepartmentController extends Controller
         }
 
         $departments->name_department = $request->name_department;
-        $departments->departments_info = $request->departments_info;
+        $departments->departments_info = htmlspecialchars($request->departments_info);
         $departments->save();
         return response()->json($departments);
     }
@@ -58,7 +58,7 @@ class DepartmentController extends Controller
         }
 
         $departments->name_department = $request->name_department;
-        $departments->departments_info = $request->departments_info;
+        $departments->departments_info = htmlspecialchars($request->departments_info);
         $departments->save();
         return response('ok', 200);
     }

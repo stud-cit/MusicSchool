@@ -44,7 +44,7 @@ export default {
   methods: {
     getDepartment() {
       axios.get("/api/department/" + this.$route.params.id).then(response => {
-        this.description = response.data.name_department;
+        this.description = response.data.departments_info;
       });
     },
     getInstrumentId() {
