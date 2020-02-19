@@ -94,13 +94,6 @@ export default {
                     position: relative
                     display: block
                     margin-bottom: 150px
-                    img
-                      
-                      z-index: -1
-                      top:0
-                      left:0
-                      min-width:100%
-                      min-height:100%
                     .description
                         position: absolute
                         left: 0%
