@@ -32,7 +32,7 @@
                                 <b-dropdown-item><img src="site-files/lang/lang__en.png" alt="en" data-google-lang="en" class=" language__img"></b-dropdown-item>
                             </b-nav-item-dropdown>
                         </b-navbar-nav>
-                        
+
                     </b-collapse>
                 </b-navbar>
             </b-col>
@@ -49,16 +49,18 @@
             }
         },
         created() {
-	        if(this.getCookie('googtrans') =='/uk/en'){
-		        this.translate = true;
-	        }
+	        if(document.cookie.indexOf('googtrans=/uk/en') == -1){
+		        this.translate = false;
+	        } else {
+                this.translate = true;
+            }
         },
         methods: {
-	        getCookie(name) {
-		        var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-		        console.log(matches);
-		        return matches[1] ? decodeURIComponent(matches[1]) : undefined;
-	        }
+	        // getCookie(name) {
+		    //     var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+		    //     console.log(matches);
+		    //     return matches[1] ? decodeURIComponent(matches[1]) : undefined;
+	        // }
         }
     }
 </script>
