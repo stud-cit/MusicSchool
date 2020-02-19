@@ -12,7 +12,9 @@
                 <h3 class="item-title">{{item.name_instruments}}</h3>
                 <p class="text">{{item.instruments_info}}</p>
               </div>
-              <img :src="item.photo" alt class="w-100 item-img" />
+              <silentbox-single :src="item.photo">
+                <img :src="item.photo" alt class="w-100 item-img" />
+              </silentbox-single>
             </li>
           </ul>
         </b-container>
@@ -68,8 +70,8 @@ export default {
                 position: absolute
                 width: 66%
                 left: 0
-                top: 200px
-                height: calc(100% - 400px)
+                top: 450px
+                height: calc(100% - 600px)
                 background-image: linear-gradient(180deg, #e91b47 0%, #6a0017 100%)
                 z-index: -1
 
@@ -77,7 +79,7 @@ export default {
                 padding: 70px 50px
                 background-color: #2B2B2B
                 color: #FFFFFF
-                margin-bottom: 50px
+                margin-bottom: 150px
                 font-size: 20px
 
             .instrument-list
@@ -88,10 +90,17 @@ export default {
                 flex-direction: column
                 justify-content: center
                 .list-item
-                    padding-left: 20%
+                    padding-left: 50%
                     position: relative
                     display: block
-                    margin-bottom: 40px
+                    margin-bottom: 150px
+                    img
+                      
+                      z-index: -1
+                      top:0
+                      left:0
+                      min-width:100%
+                      min-height:100%
                     .description
                         position: absolute
                         left: 0%
@@ -99,7 +108,7 @@ export default {
                         transform:  translateY(-50%)
                         box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.16)
                         background-color: #ffffff
-                        padding: 35px 50px
+                        padding: 15px 50px
                         max-width: 580px
                         min-width: 180px
                         .item-title

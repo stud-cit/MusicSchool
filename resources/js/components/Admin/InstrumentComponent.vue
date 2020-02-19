@@ -20,9 +20,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="instruments_info" class="col-sm-2 col-form-label">Додаткова інформація</label>
+                    <label for="instruments_info" class="col-sm-2 col-form-label">Додаткова інформація (має бути не більше 900 символів)</label>
                     <div class="col-sm-6">
-                        <textarea name="instruments_info" v-model="instruments_info" class="form-control" id="instruments_info" rows="5"
+                        <textarea name="instruments_info" v-model="instruments_info" class="form-control" id="instruments_info" rows="5" maxlength="900"
                             v-validate="{ required: true }"
                                 data-vv-as="Інформація"></textarea>
                         <span class="errors text-danger" v-if="errors.has('instruments_info')">

@@ -10,7 +10,7 @@
                         </h1>
                     </b-col>
                     <b-col class="d-none d-xl-block" xl="4">
-                        <div class="text">{{description}}</div>
+                        <div class="text">{{description.substring(0,120)}}</div>
                     </b-col>
                 </b-row>
 

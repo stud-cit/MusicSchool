@@ -85,7 +85,7 @@
         </div>
         <div class="modal__item">
           <div class="instruments">
-            <div class="instruments__title">Інформації</div>
+            <div class="instruments__title">Інформація</div>
             <div class="instruments__img">
               <router-link :to="{ name: 'instruments', params: {id: this.departmentId} }">
                 <img src="/img/departments/information.svg" alt="guitar_player" />

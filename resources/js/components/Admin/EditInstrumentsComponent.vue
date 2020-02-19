@@ -18,10 +18,10 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="instruments_info" class="col-sm-2 col-form-label">Інформація про інструмент</label>
+                    <label for="instruments_info" class="col-sm-2 col-form-label">Інформація про інструмент (має бути не більше 900 символів)</label>
                     <div class="col-sm-6">
                         <textarea name="instruments_info" v-model="instrument.instruments_info" class="form-control" id="instruments_info" rows="5"
-                            v-validate="{ required: true }"
+                            v-validate="{ required: true }" maxlength="900"
                                 data-vv-as="Інформація про інструмент"></textarea>
                         <span class="errors text-danger" v-if="errors.has('instruments_info')">
                                 {{ errors.first('instruments_info') }}

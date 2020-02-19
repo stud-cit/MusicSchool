@@ -81,6 +81,7 @@
                             <textarea name="achievements" class="form-control" id="achievements"
                                 v-model="data.achievements.text" rows="4"
                                 disabled
+                                maxlength="120"
                                 v-validate="{ required: true}"
                                 data-vv-as="Опис сторінки з досягненнями"
                             ></textarea>
