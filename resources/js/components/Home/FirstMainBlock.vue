@@ -11,7 +11,7 @@
                             <p class="text_style_mid">Вас вітає</p>
                             <p class="text_style_big"><small>Сумська</small><br> музича <br> школа №2</p>
                             <p>{{ $props.info }}</p>
-                        </div>composer dump-autoload
+                        </div>
                     </b-col>
                     <b-col lg="6" md="auto" sm ="12">
 
