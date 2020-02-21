@@ -114,7 +114,7 @@
         padding-top: 5px;
         font-size: 32px;
         text-decoration: none;
-        color: #2B2B2B;
+        color: #3d3a3a;
     }
     .news-item-subwrapper {
         width: 1059px;
@@ -169,7 +169,7 @@
     .news-item-line {
         width: 50px;
         height: 1px;
-        border-color: #2B2B2B;
+        border-color: #3d3a3a;
         margin-left: 0;
     }
     .news-item-text {

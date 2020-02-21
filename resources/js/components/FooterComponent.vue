@@ -17,7 +17,7 @@
     .all_block {
         width: 100%;
         height: 100px;
-        background: #2B2B2B;
+        background: #3d3a3a;
         text-align: center;
         vertical-align: middle;
         padding: 40px 0;

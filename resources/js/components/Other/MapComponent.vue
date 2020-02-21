@@ -88,7 +88,7 @@
                 background-color: #ffffff
                 padding: 50px 187px 50px 50px
                 .contacts-title
-                    color: #2b2b2b
+                    color: #3d3a3a
                     font-family: Montserrat
                     font-size: 40px
                     font-weight: 700
@@ -108,14 +108,14 @@
                         p
                             margin-bottom: 0
                         .title
-                            color: #2b2b2b
+                            color: #3d3a3a
                             font-family: Montserrat
                             font-size: 14px
                             font-weight: 400
                             margin: 0
                         .content
                             margin-top: 10px
-                            color: #2b2b2b
+                            color: #3d3a3a
                             font-family: Montserrat
                             font-size: 20px
                             font-weight: 600

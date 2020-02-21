@@ -10,11 +10,8 @@
                     <b-collapse id="nav-collapse" is-nav>
 
                         <b-navbar-nav class="ml-auto">
-                            <b-nav-item-dropdown toggle-class="text-dark" split split-href="#foo/bar" text="Про школу">
-                                <b-dropdown-item href="/history">Історія</b-dropdown-item>
-                                <b-dropdown-item href="/news">Новини</b-dropdown-item>
-                            </b-nav-item-dropdown>
                             <b-navbar-nav>
+                                <b-nav-item href="/history">Про школу</b-nav-item>
                                 <b-nav-item href="/departments">Відділи</b-nav-item>
                                 <b-nav-item href="/achievements">Досягнення</b-nav-item>
                                 <b-nav-item href="/introduction">Вступ</b-nav-item>

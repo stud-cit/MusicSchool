@@ -112,7 +112,7 @@
 
     .news-date {
         margin-left: -10px;
-        color: #2b2b2b;
+        color: #3d3a3a;
         font-size: 40px;
         font-weight: 900;
         line-height: 78px;
@@ -121,7 +121,7 @@
 
     .news-text {
         font-weight: 600;
-        color: #2b2b2b;
+        color: #3d3a3a;
         font-size: 16px;
         font-style: italic;
         line-height: 20px;

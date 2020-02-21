@@ -4,36 +4,7 @@
       <img :src="bg" alt="repetition" />
     </div>
     <div class="header_gradient">
-      <b-container>
-        <b-row class="card__block">
-          <b-col xl="4" lg="4" md="6" sm="10" cols="10">
-            <div class="card">
-              <div class="card__img">
-                <img v-bind:src="images.img1" alt="image" />
-              </div>
-              <div class="card__text">{{ blockOne }}</div>
-            </div>
-          </b-col>
 
-          <b-col xl="4" lg="4" md="6" sm="10" cols="10">
-            <div class="card">
-              <div class="card__img">
-                <img v-bind:src="images.img2" alt="image" />
-              </div>
-              <div class="card__text">{{ blockTwo }}</div>
-            </div>
-          </b-col>
-
-          <b-col xl="4" lg="4" md="6" sm="10" cols="10">
-            <div class="card">
-              <div class="card__img">
-                <img v-bind:src="images.img3" alt="image" />
-              </div>
-              <div class="card__text">{{ blockThree }}</div>
-            </div>
-          </b-col>
-        </b-row>
-      </b-container>
     </div>
   </div>
 </template>

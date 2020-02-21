@@ -77,7 +77,7 @@ export default {
 
             .text_block
                 padding: 70px 50px
-                background-color: #2B2B2B
+                background-color: #6a0017
                 color: #FFFFFF
                 margin-bottom: 150px
                 font-size: 20px
@@ -105,7 +105,7 @@ export default {
                         max-width: 580px
                         min-width: 180px
                         .item-title
-                            color: #2b2b2b
+                            color: #3d3a3a
                             font-family: Montserrat
                             font-size: 32px
                             font-weight: 700

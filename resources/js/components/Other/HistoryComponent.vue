@@ -90,7 +90,7 @@
                 text-transform: uppercase
                 margin-bottom: 10px
             .title
-                color: #2b2b2b
+                color: #3d3a3a
                 font-family: Montserrat
                 font-size: 31px
                 font-weight: 700

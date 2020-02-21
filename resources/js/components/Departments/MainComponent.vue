@@ -147,7 +147,7 @@ export default {
 
 .text_block {
   padding: 70px 50px;
-  background-color: #ff2a74;
+  background-color: #3d3a3a;
   color: #ffffff;
   margin-bottom: 50px;
   font-size: 20px;
@@ -243,7 +243,7 @@ export default {
   text-align: center;
 }
 .teachers {
-  color: #2b2b2b;
+  color: #3d3a3a;
   height: 100%;
   background-color: #ffffff;
   text-align: center;

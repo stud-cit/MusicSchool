@@ -27,7 +27,7 @@
     height: 540px;
 }
 .teacher_card .teacher_img img{
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     height: 100%;
 }
@@ -37,7 +37,7 @@
 .teacher_card .teacher_info h2{
     font-weight: bold;
     font-size: 28px;
-    color: #2B2B2B;
+    color: #3d3a3a;
     text-transform: uppercase;
     margin-bottom: 15px;
 }
