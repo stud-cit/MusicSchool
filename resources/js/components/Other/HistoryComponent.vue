@@ -15,14 +15,14 @@
                         <b-carousel  controls id="carousel-fade" fade>
                             <silentbox-group>
                                 <silentbox-item v-for="photo in item.images" :key="photo.images_id" :src="photo.file">
-                                    <b-carousel-slide :caption="item.text" :img-src="photo.file"></b-carousel-slide>
+                                    <b-carousel-slide style="white-space: pre-wrap;" :caption="item.text" :img-src="photo.file"></b-carousel-slide>
                                 </silentbox-item>
                             </silentbox-group>
                         </b-carousel>
                     </b-col>
                     <b-col cols="12" xl="8" class="content-block" v-else>
                         <b-carousel id="carousel-fade" fade indicators>
-                            <b-carousel-slide :caption="item.text" img-src="/img/empty.png"></b-carousel-slide>
+                            <b-carousel-slide style="white-space: pre-wrap;" :caption="item.text" img-src="/img/empty.png"></b-carousel-slide>
                         </b-carousel>
                     </b-col>
                 </b-row>

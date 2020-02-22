@@ -86,16 +86,20 @@
 					</td>
 					<td>{{ item.name_instruments }}</td>
 					<td>{{ item.department.name_department }}</td>
-					<td>{{ item.instruments_info }}</td>
+					<td style="white-space: pre-wrap;">{{ item.instruments_info }}</td>
 					<td><router-link style="color:#000" :to="{ name: 'edit-instruments', params: {id: item.instruments_id} }"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></router-link></td>
 					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteInstruments(item.instruments_id, index)"></i></td>
 				</tr>
 			</tbody>
 		</table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 
 <script>
+import Spinner from 'vue-spinner-component/src/Spinner.vue';
 export default {
     	data() {
 			return {
@@ -105,8 +109,12 @@ export default {
 				image: '',
 				name_instruments: '',
 				instruments_info: '',
+				preloader: false,
 				form: new FormData
 			};
+		},
+        components: {
+            Spinner
         },
         created () {
 			document.title = "Інформація про відділ";
@@ -143,6 +151,7 @@ export default {
 					if (!result) {
 						return;
 					} else {
+						this.preloader = !this.preloader;
 						const selects = document.querySelectorAll('select');
 						const valOptions = [];
 						for (let index = 0; index < selects.length; index++) {
@@ -154,6 +163,7 @@ export default {
 						this.form.append('photo', this.$refs.instrumentImage.files[0]);
 						axios.post('/api/instrument', this.form)
 							.then((response) => {
+								this.preloader = !this.preloader;
 								this.instruments.push(response.data);
                                 swal("Інформація оновлена", {
                                     icon: "success",
@@ -162,6 +172,7 @@ export default {
 						        });
 							})
 							.catch((error) => {
+								this.preloader = !this.preloader;
 								swal({
 									icon: "error",
 									title: 'Помилка'
@@ -181,9 +192,11 @@ export default {
 				})
 					.then((willDelete) => {
 						if (willDelete) {
+							this.preloader = !this.preloader;
 							axios.delete('/api/instrument/' + id)
 								.then((response) => {
 									if (response.status == 200) {
+										this.preloader = !this.preloader;
 										this.instruments.splice(index, 1);
 									}
 									swal("Інструмент був успішно видалений", {
@@ -191,6 +204,7 @@ export default {
 									});
 								})
 								.catch((error) => {
+									this.preloader = !this.preloader;
 									swal({
 										icon: "error",
 										title: 'Помилка',

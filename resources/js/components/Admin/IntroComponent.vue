@@ -35,91 +35,49 @@
                         <p class="text-danger col-9" v-if="errors.has('photo')">Файл повинен бути зображенням</p>
                     </div>
                     <img v-if="!errors.has('photo')" class="mt-3 w-50" :src="intro.photo">
-
-                    <h3>Документи для ознайомлення</h3>
-                    <div v-for="item in documents" :key="item.documents_id">
-                        <hr>
-                        <label :for="'block'+item.documents_id" class="brtop">Назва {{item.documents_id}} файлу</label>
-                        <div class="row">
-                            <div class="col-9">
-                                <input :name="'block'+item.documents_id" type="text" class="form-control" :id="'block'+item.documents_id" 
-                                    v-model="item.text" 
-                                    disabled
-                                    v-validate="{ required: true}"
-                                    data-vv-as="Текст блоку"
-                                >
-                                <label class="custom-file mt-2 w-100">
-                                    <input type="file" disabled class="custom-file-input" :id="'file'+item.documents_id" :name="'file'+item.documents_id" :ref="'file'+item.documents_id" @change="previewFiles($event, 'file'+item.documents_id)">
-                                    <div class="uploadIntroFiles custom-file-control">{{ item.file.replace("/documents/", '') }}</div>
-                                </label>
-                                <span class="errors text-danger" v-if="errors.has('block'+item.documents_id)">{{ errors.first('block'+item.documents_id) }}</span>
-                            </div>
-                            <div class="col-3">
-                                <button type="button" :disabled="errors.has('block'+item.documents_id)" class="btn btn-outline-secondary edit w-100 px-0" @click='editDocument($event, item.documents_id)'>Редагувати</button>
-                            </div>
-                        </div>
+                    <hr>
+                    <div>
+                        <label for="info" class="brtop">Загальна інформація</label>
+                        <textarea 
+                            name="info" 
+                            class="form-control" 
+                            v-model="intro.info" 
+                            id="info" 
+                            rows="6"
+                            disabled
+                            v-validate="{ required: true}"
+                            data-vv-as="Загальна інформація"
+                        ></textarea>
+                        <span class="errors text-danger" v-if="errors.has('info')">
+                            {{ errors.first('info') }}
+                        </span>
+                        <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "intro", "info")'>Редагувати</button><br><br>
                     </div>
-
                 </div>
                     <div class="col-2"></div>
                     <div class="col-5">
-                        <hr>
-                        <div>
-                            <label for="info" class="brtop">Загальна інформація</label>
-                            <textarea 
-                                name="info" 
-                                class="form-control" 
-                                v-model="intro.info" 
-                                id="info" 
-                                rows="6"
-                                disabled
-                                v-validate="{ required: true}"
-                                data-vv-as="Загальна інформація"
-                            ></textarea>
-                            <span class="errors text-danger" v-if="errors.has('info')">
-                                {{ errors.first('info') }}
-                            </span>
-                            <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "intro", "info")'>Редагувати</button><br><br>
-                        </div>
-                        <hr>
-                        <div>
-                            <label for="block1" class="brtop">Текст першого блоку</label>
-                            <textarea 
-                                name="block1" 
-                                class="form-control" 
-                                v-model="intro.block1" 
-                                id="block1" 
-                                rows="4"
-                                disabled
-                                v-validate="{ required: true}"
-                                data-vv-as="Текст першого блоку"
-                            ></textarea>
-                            <span class="errors text-danger" v-if="errors.has('block1')">
-                                {{ errors.first('block1') }}
-                            </span>
-                            <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "intro", "block1")'>Редагувати</button><br><br>
-                        </div>
-                        <hr>
-                        <div>
-                            <label for="block2" class="brtop">Текст другого блоку</label>
-                            <textarea name="block2" class="form-control" v-model="intro.block2" id="block2" rows="4" disabled
-                                      v-validate="{ required: true}"
-                                      data-vv-as="Текст другого блоку"></textarea>
-                            <span class="errors text-danger" v-if="errors.has('block2')">
-                                {{ errors.first('block2') }}
-                            </span>
-                            <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "intro", "block2")'>Редагувати</button><br><br>
-                        </div>
-                        <hr>
-                        <div>
-                            <label for="block3" class="brtop">Текст третього блоку</label>
-                            <textarea name="block3" class="form-control" v-model="intro.block3" id="block3" rows="4" disabled
-                                      v-validate="{ required: true}"
-                                      data-vv-as="Текст третього блоку"></textarea>
-                            <span class="errors text-danger" v-if="errors.has('block3')">
-                                {{ errors.first('block3') }}
-                            </span>
-                            <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "intro", "block3")'>Редагувати</button><br><br>
+                        <h3>Документи для ознайомлення</h3>
+                        <div v-for="item in documents" :key="item.documents_id">
+                            <hr>
+                            <label :for="'block'+item.documents_id" class="brtop">Назва {{item.documents_id}} файлу</label>
+                            <div class="row">
+                                <div class="col-9">
+                                    <input :name="'block'+item.documents_id" type="text" class="form-control" :id="'block'+item.documents_id" 
+                                        v-model="item.text" 
+                                        disabled
+                                        v-validate="{ required: true}"
+                                        data-vv-as="Текст блоку"
+                                    >
+                                    <label class="custom-file mt-2 w-100">
+                                        <input type="file" disabled class="custom-file-input" :id="'file'+item.documents_id" :name="'file'+item.documents_id" :ref="'file'+item.documents_id" @change="previewFiles($event, 'file'+item.documents_id)">
+                                        <div class="uploadIntroFiles custom-file-control">{{ item.file.replace("/documents/", '') }}</div>
+                                    </label>
+                                    <span class="errors text-danger" v-if="errors.has('block'+item.documents_id)">{{ errors.first('block'+item.documents_id) }}</span>
+                                </div>
+                                <div class="col-3">
+                                    <button type="button" :disabled="errors.has('block'+item.documents_id)" class="btn btn-outline-secondary edit w-100 px-0" @click='editDocument($event, item.documents_id)'>Редагувати</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -134,9 +92,6 @@ export default {
     	return {
     		editing: {},
             intro: {
-    			block1: '',
-                block2: '',
-                block3: '',
                 bg: '',
                 info: '',
                 photo: '',

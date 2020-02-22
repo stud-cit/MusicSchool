@@ -41,7 +41,7 @@
                         <div v-for="(item, index) in file" :key="index">
                             <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name}} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
                         </div>
-                        <span class="text-danger" v-if="errors.has('storyImage') || imgError">
+                        <span class="text-danger" v-if="errors.has('storyImage') && story.images.length == 0">
                             Файл не обрано або невірний формат зображення
                         </span>
                     </div>
@@ -75,23 +75,33 @@
                 <button type="button" class="btn btn-outline-secondary my-2 ml-4 w-25" @click="save">Зберегти</button>
             </div>
         </form>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 
 <script>
+    import Spinner from 'vue-spinner-component/src/Spinner.vue';
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';
 
 	export default {
         name: "edit-story",
         components: {
-            DatePicker
+            DatePicker,
+            Spinner
         },
 		data() {
 			return {
                 file: [],
-                story: [],
-                imgError: false
+                story: {
+                    title: '',
+                    text: '',
+                    date: '',
+                    images: []
+                },
+                preloader: false,
 			};
 		},
 		created() {
@@ -100,9 +110,6 @@
 		},
 
 		methods: {
-            validImg() {
-                this.imgError = this.file.length == 0 ? true : false
-            }, 
 			fieldChange(){
 				let changeFile = this.$refs.storyImage.files;
 				for(let i = 0; i < changeFile.length; i++) {
@@ -113,7 +120,6 @@
 					}
 					this.file.push(changeFile[i]);
                 }
-                this.validImg();
 			},
 
 			getStoryList() {
@@ -124,11 +130,11 @@
 					})
 			},
 			save() {
-                this.validImg();
 				this.$validator.validateAll().then((result) => {
-					if (!result || this.file.length == 0) {
+					if (!result && this.story.images.length == 0) {
 						return;
 					} else {
+                        this.preloader = !this.preloader;
 						var form = new FormData;
 						for (let i = 0; i < this.file.length; i++) {
 							if (this.file[i].valid) {
@@ -140,6 +146,7 @@
 						form.append('date', this.story.date.getFullYear());
 						axios.post('/api/story/' + this.$route.params.id, form)
 							.then((response) => {
+                                this.preloader = !this.preloader;
 								this.file = [];
 								this.story.images = this.story.images.concat(response.data);
 								swal("Інформацію успішно збережено", {
@@ -147,6 +154,7 @@
 								});
 							})
 							.catch((error) => {
+                                this.preloader = !this.preloader;
 								swal({
 									icon: "error",
 									title: 'Помилка',

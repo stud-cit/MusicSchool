@@ -1,10 +1,13 @@
 <template>
     <div>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54" color="#aa0d2f"></Spinner>
+        </div>
         <b-container>
             <b-col cols="12">
                 <b-navbar toggleable="lg">
                     <b-navbar-brand href="/">
-                        <img src="/img/logo.png" alt="" class="logo">
+                        <img :src="logo" width="65px" class="logo">
                     </b-navbar-brand>
                     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
                     <b-collapse id="nav-collapse" is-nav>
@@ -25,8 +28,8 @@
                                     <img v-else src="site-files/lang/lang__en.png" >
                                 </template>
 
-                                <b-dropdown-item id="loool"><img src="site-files/lang/lang__uk.png" alt="uk" data-google-lang="uk" class=" language__img"></b-dropdown-item>
-                                <b-dropdown-item><img src="site-files/lang/lang__en.png" alt="en" data-google-lang="en" class=" language__img"></b-dropdown-item>
+                                <b-dropdown-item id="loool"><img src="/site-files/lang/lang__uk.png" alt="uk" data-google-lang="uk" class=" language__img"></b-dropdown-item>
+                                <b-dropdown-item><img src="/site-files/lang/lang__en.png" alt="en" data-google-lang="en" class=" language__img"></b-dropdown-item>
                             </b-nav-item-dropdown>
                         </b-navbar-nav>
 
@@ -38,26 +41,37 @@
 </template>
 
 <script>
+    import Spinner from 'vue-spinner-component/src/Spinner.vue';
     export default {
         name: 'Header',
         data() {
             return {
-	            translate: false,
+                logo: '',
+                translate: true,
+                preloader: true,
             }
         },
+		components: {
+            Spinner
+		},
         created() {
-	        if(document.cookie.indexOf('googtrans=/uk/en') == -1){
-		        this.translate = false;
-	        } else {
+            if(document.cookie.indexOf('googtrans=/uk/en') == -1) {
+                this.translate = false;
+            } else {
                 this.translate = true;
             }
+            this.getInfo();
         },
         methods: {
-	        // getCookie(name) {
-		    //     var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-		    //     console.log(matches);
-		    //     return matches[1] ? decodeURIComponent(matches[1]) : undefined;
-	        // }
+            getInfo() {
+                axios.get('/api/info')
+                    .then((response) => {
+                        this.logo = response.data.logo
+                    })
+            }
+        },
+        updated() {
+            this.preloader = false;
         }
     }
 </script>
@@ -82,6 +96,18 @@
     .dropdown-item{
         min-width: auto;
         text-align: center;
+    }
+    .preloader {
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #fff;
     }
 </style>
 

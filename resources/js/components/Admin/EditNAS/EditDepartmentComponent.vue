@@ -44,20 +44,25 @@
                 <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="save">Зберегти</button>
             </div>
         </form>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 
 <script>
-    import DatePicker from 'vue2-datepicker';
-    import 'vue2-datepicker/index.css';
-
+	import Spinner from 'vue-spinner-component/src/Spinner.vue';
 	export default {
 		name: "edit-department",
 		data() {
 			return {
+				preloader: false,
 				department: []
 			}
 		},
+		components: {
+            Spinner
+		},	
 		created() {
 			document.title = "Відділ";
 			this.getData();
@@ -85,17 +90,20 @@
 					if (!result && this.department.img == '') {
 						return;
 					} else {
+						this.preloader = !this.preloader;
 						var form = new FormData;
 						form.append('name_department', this.department.name_department);
 						form.append('departments_info', this.department.departments_info);
 						form.append('img', this.$refs.departmentImage.files[0]);
 						axios.post('/api/department/' + this.$route.params.id, form)
 							.then((response) => {
+								this.preloader = !this.preloader;
 								swal("Інформацію успішно збережено", {
 									icon: "success",
 								});
 							})
 							.catch((error) => {
+								this.preloader = !this.preloader;
 								swal({
 									icon: "error",
 									title: 'Помилка',

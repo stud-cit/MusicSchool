@@ -53,12 +53,12 @@
         <table class="table table-bordered">
 			<thead>
 				<tr>
-					<th width="10px" scope="col">№</th>
-					<th width="150px" scope="col">Фото</th>
-					<th scope="col">Назва</th>
-					<th scope="col">Опис</th>
-					<th width="10px" scope="col"></th>
-					<th width="10px" scope="col"></th>
+					<th width="2%" scope="col">№</th>
+					<th width="20%" scope="col">Фото</th>
+					<th width="20%" scope="col">Назва</th>
+					<th width="50%" scope="col">Опис</th>
+					<th width="4%" scope="col"></th>
+					<th width="4%" scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -75,9 +75,13 @@
 				</tr>
 			</tbody>
 		</table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 <script>
+	import Spinner from 'vue-spinner-component/src/Spinner.vue';
 	export default {
 		data() {
 			return {
@@ -86,7 +90,11 @@
 				name_department: '',
 				departments_info: '',
 				image: '',
+				preloader: false
 			};
+		},
+		components: {
+			Spinner
 		},
 		created () {
 			document.title = "Відділи";
@@ -117,12 +125,14 @@
 					if (!result) {
 						return;
 					} else {
+						this.preloader = !this.preloader;
 						var form = new FormData;
 						form.append('name_department', this.name_department);
 						form.append('departments_info', this.departments_info);
 						form.append('img', this.$refs.departmentImage.files[0]);
 						axios.post('/api/department', form)
 							.then((response) => {
+								this.preloader = !this.preloader;
 								this.departments.push(response.data);
                                 swal("Інформація оновлена", {
                                     icon: "success",
@@ -131,6 +141,7 @@
 						        });
 							})
 							.catch((error) => {
+								this.preloader = !this.preloader;
 								swal({
 									icon: "error",
 									title: 'Помилка'
@@ -150,14 +161,17 @@
 				})
 				.then((willDelete) => {
 					if (willDelete) {
+						this.preloader = !this.preloader;
 						axios.delete('/api/department/'+id)
 							.then((response) => {
+								this.preloader = !this.preloader;
 								this.departments.splice(index, 1);
 								swal("Зпис був успішно видалений", {
 									icon: "success",
 								});
 							})
 							.catch((error) => {
+								this.preloader = !this.preloader;
 								swal({
 									icon: "error",
 									title: 'Помилка',

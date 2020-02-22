@@ -41,7 +41,7 @@
                         <div v-for="(item, index) in file" :key="index">
                             <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name}} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
                         </div>
-                        <span class="text-danger" v-if="errors.has('newsImage') || imgError">
+                        <span class="text-danger" v-if="errors.has('newsImage') && news.images.length == 0">
                             Файл не обрано або невірний формат зображення
                         </span>
                     </div>
@@ -79,26 +79,35 @@
                             </div>
                         </div>
                     </div>
-
                 <button type="button" id="overWritePhoto" class="btn btn-outline-secondary my-2 ml-4 w-25" @click="save">Зберегти</button>
             </div>
         </form>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 
 <script>
+    import Spinner from 'vue-spinner-component/src/Spinner.vue';
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';
 
 	export default {
         name: "edit-news",
         components: {
-            DatePicker
+            DatePicker,
+            Spinner
         },
 		data() {
 			return {
 				file: [],
-                news: [],
+                news: {
+                    title: '',
+                    text: '',
+                    date: '',
+                    images: []
+                },
                 datepicker: {
                     lang: {
                         formatLocale: {
@@ -110,7 +119,7 @@
                         }
                     }
                 },
-				imgError: false
+                preloader: false,
 			};
 		},
 		created() {
@@ -119,9 +128,6 @@
 		},
 
 		methods: {
-			validImg() {
-				this.imgError = this.file.length == 0 ? true : false
-			},
 			fieldChange(){
 				let changeFile = this.$refs.newsImage.files;
 				for(let i = 0; i < changeFile.length; i++) {
@@ -133,7 +139,6 @@
 					}
 					this.file.push(changeFile[i]);
 				}
-				this.validImg();
 			},
 
 			getNewsList() {
@@ -143,24 +148,13 @@
                     })
             },
 			save() {
-				this.validImg();
 				this.$validator.validateAll().then((result) => {
-					if (!result || this.file.length == 0) {
+					if (!result && this.news.images.length == 0) {
 						return;
 					} else {
+                        this.preloader = !this.preloader;
 						var form = new FormData;
 						for (let i = 0; i < this.file.length; i++) {
-							/*
-							if (this.file.length < 4){
-								this.file[i].valid = true;
-                            }
-							else {
-								swal({
-									icon: "error",
-									title: 'Кількість фото не може бути більше трьох',
-								});
-                            }
-                            */
 							if (this.file[i].valid) {
 								form.append('file[]', this.file[i]);
 							}
@@ -170,6 +164,7 @@
 						form.append('date', this.news.date);
 							axios.post('/api/news/' + this.$route.params.id, form)
 								.then((response) => {
+                                    this.preloader = !this.preloader;
 									this.file = [];
 									this.news.images = this.news.images.concat(response.data);
 										swal("Інформацію успішно збережено", {
@@ -179,6 +174,7 @@
 										});
 								})
 								.catch((error) => {
+                                    this.preloader = !this.preloader;
 									swal({
 										icon: "error",
 										title: 'Помилка',

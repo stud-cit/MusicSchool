@@ -4,7 +4,7 @@
             <img :src="teacher.photo">
         </div>
         <div class="teacher_info">
-            <h2>{{ teacher.teacher_name }} {{ teacher.teacher_surname }}</h2>
+            <h2>{{ teacher.teacher_name }} {{ teacher.teacher_patronymic }} {{ teacher.teacher_surname }}</h2>
             <span>{{ teacher.teacher_info }}</span>
         </div>
     </div>
@@ -44,5 +44,6 @@
 .teacher_card .teacher_info span{
     font-size: 16px;
     color: #000000BF;
+    white-space: pre-wrap;
 }
 </style>

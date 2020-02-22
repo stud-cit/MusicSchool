@@ -12,6 +12,7 @@ class Info extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'logo',
         'info_school',
         'video',
         'phone',

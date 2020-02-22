@@ -23,7 +23,7 @@
       HeaderComponent,
       MainComponent
     },
-    created() {
+    mounted() {
       this.getIntro();
       this.getDocuments();
       this.getInfoPage('introduction');

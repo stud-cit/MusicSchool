@@ -32,14 +32,23 @@
                     <label for="achieveImage" class="col-sm-2 col-form-label">Зображення</label>
                     <div class="col-sm-6">
                         <label class="custom-file w-100">
-                            <input type="file" name="achieveImage" v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }" class="custom-file-input col-6"
-                                   id="achieveImage" ref="achieveImage" @change="fieldChange" accept=".jpg, .jpeg, .png, .bmp" multiple>
+                            <input 
+                                type="file" 
+                                name="achieveImage" 
+                                accept=".jpg, .jpeg, .png, .bmp" 
+                                v-validate="{ 'ext': ['jpg', 'jpeg', 'png', 'bmp'], required: true }" 
+                                class="custom-file-input col-6"
+                                id="achieveImage" 
+                                ref="achieveImage" 
+                                @change="fieldChange" 
+                                multiple
+                            >
                             <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
                         </label>
                         <div v-for="(item, index) in file" :key="index">
                             <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{item.name}} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
                         </div>
-                        <span class="text-danger" v-if="errors.has('achieveImage') || imgError">
+                        <span class="text-danger" v-if="errors.has('achieveImage') && achieve.images.length == 0">
                             Файл не обрано або невірний формат зображення
                         </span>
                     </div>
@@ -79,22 +88,32 @@
                 <button type="button" class="btn btn-outline-secondary mt-2 ml-4 w-25" @click="save">Зберегти</button>
             </div>
         </form>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 
 <script>
+    import Spinner from 'vue-spinner-component/src/Spinner.vue';
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';
 
 	export default {
 		name: "edit-achieve",
 		components: {
-			DatePicker
+            DatePicker,
+            Spinner
 		},
 		data() {
 			return {
                 file: [],
-				achieve: [],
+				achieve: {
+                    title: '',
+                    text: '',
+                    date: '',
+                    images: []
+                },
 				datepicker: {
 					lang: {
 						formatLocale: {
@@ -106,17 +125,14 @@
 						}
 					}
                 },
-                imgError: false
+                preloader: false,
 			}
-		},
-		created() {
+        },
+		mounted() {
 			document.title = "Досягнення";
 			this.getAchieveList();
 		},
 		methods: {
-			validImg() {
-				this.imgError = this.file.length == 0 ? true : false
-			},
 			fieldChange(){
 				let changeFile = this.$refs.achieveImage.files;
 				for(let i = 0; i < changeFile.length; i++) {
@@ -128,7 +144,6 @@
 					}
 					this.file.push(changeFile[i]);
 				}
-				this.validImg();
 			},
 			previewFiles(event) {
 				var input = event.target;
@@ -148,11 +163,11 @@
 					})
 			},
 			save() {
-				this.validImg();
 				this.$validator.validateAll().then((result) => {
-					if (!result || this.file.length == 0) {
+					if (!result && this.achieve.images.length == 0) {
 						return;
 					} else {
+                        this.preloader = !this.preloader;
 						var form = new FormData;
 						for (let i = 0; i < this.file.length; i++) {
 							if (this.file[i].valid) {
@@ -164,6 +179,7 @@
 						form.append('date', this.achieve.date);
                         axios.post('/api/achieve/' + this.$route.params.id, form)
                             .then((response) => {
+                                this.preloader = !this.preloader;
                                 this.file = [];
                                 this.achieve.images = this.achieve.images.concat(response.data);
                                     swal("Інформацію успішно збережено", {
@@ -173,6 +189,7 @@
                                     });
                             })
                             .catch((error) => {
+                                this.preloader = !this.preloader;
                                 swal({
                                     icon: "error",
                                     title: 'Помилка',
@@ -183,9 +200,6 @@
             },
 			delFile(index) {
 				this.file.splice(index, 1);
-				if (this.file.length == 0) {
-					this.imgError = true
-				}
 			},
 			delAchieveImage(id, index) {
 				if(id) {

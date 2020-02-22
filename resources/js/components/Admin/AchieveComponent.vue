@@ -94,15 +94,20 @@
 				</tr>
 			</tbody>
 		</table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 <script>
+import Spinner from 'vue-spinner-component/src/Spinner.vue';
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 
 export default {
     name: "achieve",
     components: {
+        Spinner,
         DatePicker
     },
 	data() {
@@ -124,6 +129,7 @@ export default {
                     }
                 }
             },
+            preloader: false,
             imgError: false
 		};
 	},
@@ -148,14 +154,13 @@ export default {
             this.validImg();
         },
 
-
-
         postAchieve() {
             this.validImg();
             this.$validator.validateAll().then((result) => {
                 if (!result || this.file.length == 0) {
                     return;
                 } else {
+                    this.preloader = !this.preloader;
                     var form = new FormData;
                     for(let i = 0; i < this.file.length; i++){
                         if(this.file[i].valid) {
@@ -167,6 +172,7 @@ export default {
                     form.append('date', this.date);
                     axios.post('/api/achieve', form)
                         .then((res) => {
+                            this.preloader = !this.preloader;
                             swal("Інформація спішно додана", {
                                 icon: "success",
                                 timer: 1000,
@@ -176,6 +182,7 @@ export default {
                             this.file = [];
                         })
                         .catch((error) => {
+                            this.preloader = !this.preloader;
                             swal({
                                 icon: "error",
                                 title: 'Помилка',
@@ -201,14 +208,17 @@ export default {
             })
             .then((willDelete) => {
                 if (willDelete) {
+                    this.preloader = !this.preloader;
                     axios.delete('/api/achieve/'+id)
                         .then((response) => {
+                            this.preloader = !this.preloader;
                             this.achieve.splice(index, 1);
                             swal("Зпис був успішно видалений", {
                                 icon: "success",
                             });
                         })
                         .catch((error) => {
+                            this.preloader = !this.preloader;
                             swal({
                                 icon: "error",
                                 title: 'Помилка',

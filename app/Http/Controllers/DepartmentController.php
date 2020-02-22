@@ -104,6 +104,7 @@ class DepartmentController extends Controller
             $teachers->photo = $this->defaultPhoto;
         }
         $teachers->save();
+        return response()->json($teachers);
     }
 
     function updateTeachers(Request $request, $id) {

@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="map-section">
-            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2516.9416997838334!2d34.82193111574733!3d50.88778937953813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4128fe1d658233ff%3A0xdf93ebbbc4986ebe!2z0YPQuy4g0JzQsNGA0LrQviDQktC-0LLRh9C-0LosIDMxLCDQodGD0LzRiywg0KHRg9C80YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsIDQwMDAw!5e0!3m2!1sru!2sua!4v1580474550754!5m2!1sru!2sua"  frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10066.866210226486!2d34.824237183472164!3d50.89195625784557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4128fe1d659b5a51%3A0xda77849bb73d6386!2z0JTQldCi0KHQmtCQ0K8g0JzQo9CX0KvQmtCQ0JvQrNCd0JDQryDQqNCa0J7Qm9CQIOKEljI!5e0!3m2!1sru!2sua!4v1582401703281!5m2!1sru!2sua" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
             <div class="contacts-absolute">
                 <b-container >
                     <b-row class="contacts-info">
@@ -25,7 +25,7 @@
                                 <li class="list-item">
                                     <img src="img/contacts-3.png" alt="">
                                     <div class="text">
-                                        <p class="title">Адрес:</p>
+                                        <p class="title">Адреса:</p>
                                         <p class="content">{{ data.address }}</p>
                                     </div>
                                 </li>

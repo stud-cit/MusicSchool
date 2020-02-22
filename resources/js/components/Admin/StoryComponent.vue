@@ -86,16 +86,21 @@
 				</tr>
 			</tbody>
 		</table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 <script>
+import Spinner from 'vue-spinner-component/src/Spinner.vue';
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 
 export default {
     name: "story",
     components: {
-        DatePicker
+        DatePicker,
+        Spinner
     },
 	data() {
 		return {
@@ -105,7 +110,8 @@ export default {
             date: '',
 			file: [],
             story: [],
-            imgError: false
+            imgError: false,
+            preloader: false
 		};
 	},
 	created() {
@@ -135,6 +141,7 @@ export default {
 				if (!result || this.file.length == 0) {
 					return;
 				} else {
+                    this.preloader = !this.preloader;
 					var form = new FormData;
 					this.load = true;
 					for(let i = 0; i < this.file.length; i++){
@@ -147,6 +154,7 @@ export default {
 					form.append('date', this.date.getFullYear());
 					axios.post('/api/story', form)
 						.then((res) => {
+                            this.preloader = !this.preloader;
                             this.file = [];
                             swal("Інформація успішно додана", {
                                 icon: "success",
@@ -154,6 +162,7 @@ export default {
 							this.story.push(res.data);
 						})
 						.catch((error) => {
+                            this.preloader = !this.preloader;
 							swal({
 								icon: "error",
 								title: 'Помилка',
@@ -178,14 +187,17 @@ export default {
             })
             .then((willDelete) => {
                 if (willDelete) {
+                    this.preloader = !this.preloader;
                     axios.delete('/api/story/'+id)
                         .then((response) => {
+                            this.preloader = !this.preloader;
                             this.story.splice(index, 1);
                             swal("Історія була успішно видалена", {
                                 icon: "success",
                             });
                         })
                         .catch((error) => {
+                            this.preloader = !this.preloader;
                             swal({
                                 icon: "error",
                                 title: 'Помилка',

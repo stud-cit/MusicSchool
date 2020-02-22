@@ -10,6 +10,9 @@ use App\Models\SiteInfo;
 
 class InfoController extends Controller
 {
+
+    protected $fileStorage = '/img/';
+
     function getMainInfo() {
         $lastNew = NewsStory::with('images')->news()->orderBy('date', 'DESC')->first();
         $info = Info::first();
@@ -41,6 +44,12 @@ class InfoController extends Controller
 
     function updateInfo(Request $request) {
         Info::where("id", 1)->update([$request->column => $request->value]);
+    }
+
+    function putLogo(Request $request) {
+        $name = $this->fileStorage.uniqid().'.'.$request['logo']->getClientOriginalExtension();
+        $request['logo']->move(public_path().$this->fileStorage, $name);
+        Info::where("id", 1)->update(['logo' => $name]);
     }
 
     // Опис сайтів

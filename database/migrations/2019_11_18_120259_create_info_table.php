@@ -11,6 +11,7 @@ class CreateInfoTable extends Migration
         Schema::create('info', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('logo');
             $table->text('info_school');
             $table->string('video');
             $table->string('phone');

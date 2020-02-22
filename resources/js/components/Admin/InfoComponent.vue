@@ -5,6 +5,21 @@
                 <div class="col-5">
                     <h3>Загальна інформація</h3>
                     <hr>
+                    <label for="logo" class="brtop">Логотип</label>
+                    <div class="row">
+                        <div class="col-9">
+                            <label class="custom-file w-100">
+                                <input type="file" class="custom-file-input" id="logo" name="logo" ref="logo" @change="previewFiles($event, 'logo')" accept=".jpg, .jpeg, .png, .bmp" v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
+                                <span class="custom-file-control">Файл не обрано</span>
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" :disabled="errors.has('logo')" class="btn btn-outline-secondary edit w-100 px-0" @click='editLogo'>Зберегти</button>
+                        </div>
+                        <p class="text-danger col-9" v-if="errors.has('logo')">Файл повинен бути зображенням</p>
+                    </div>
+                    <img v-if="!errors.has('logo')" class="mt-3" style="max-width: 50px" :src="info.logo">
+                    <hr>
                     <label for="info_school" class="brtop">Коротка інформація про школу</label>
                     <textarea name="info_school" class="form-control" id="info_school" 
                         v-model="info.info_school" rows="6" maxlength="240"
@@ -100,6 +115,7 @@ export default {
     data() {
         return {
             info: {
+                logo: '',
                 info_school: '',
                 video: '',
                 phone: '',
@@ -113,11 +129,43 @@ export default {
         this.getInfo();
     },
     methods: {
+        previewFiles(event, el) {
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.info[el] = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+                input.parentNode.querySelector('span').innerHTML = input.files[0].name;
+            }
+        },
 	    getInfo() {
 		    axios.get('/api/info')
 			    .then((response) => {
                     this.info = response.data;
 			    })
+        },
+        editLogo() {
+            var form = new FormData;
+            form.append('logo', this.$refs.logo.files[0]);
+            if(this.$refs.logo.files[0] !== undefined){
+                axios.post('/api/put-logo', form)
+                    .then((response) => {
+                        swal("Інформація оновлена", {
+                            icon: "success",
+                            timer: 1000,
+                            button: false
+                        });
+                    })
+            }
+            else {
+                swal({
+                    icon: "error",
+                    title: 'Помилка',
+                    text: 'Файл не обрано'
+                });
+            }
         },
         edit(event, column) {
             const textElement = document.getElementById(column);

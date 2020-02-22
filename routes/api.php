@@ -16,6 +16,7 @@ Route::get('page-info/{page}', 'InfoController@getPageInfoId');
 Route::post('page-info', 'InfoController@putPageInfo');
 Route::post('update-info', 'InfoController@updateInfo');
 Route::get('main-info', 'InfoController@getMainInfo');
+Route::post('put-logo', 'InfoController@putLogo');
 
 // Відділи
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
-    <MainComponent />
+    <MainComponent :description="page.description" />
   </div>
 </template>
 

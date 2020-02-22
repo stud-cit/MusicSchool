@@ -10,7 +10,7 @@
             <li class="list-item" v-for="item of paginateArray" :key="item.teachers_id">
               <div class="description">
                 <h3 class="item-title">{{item.name_instruments}}</h3>
-                <p class="text">{{item.instruments_info}}</p>
+                <p class="text instruments_info">{{item.instruments_info}}</p>
               </div>
               <silentbox-single :src="item.photo">
                 <img :src="item.photo" alt class="w-100 item-img" />
@@ -81,6 +81,10 @@ export default {
                 color: #FFFFFF
                 margin-bottom: 150px
                 font-size: 20px
+
+            .instruments_info
+                white-space: pre-wrap
+                text-indent: 1.2em
 
             .instrument-list
                 z-index: 5

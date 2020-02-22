@@ -175,6 +175,8 @@
     .news-item-text {
         margin-bottom: 77px;
         font-size: 18px;
+        white-space: pre-wrap;
+        text-indent: 1.2em;
     }
     /*max-width: 768px*/
     @media (max-width: 768px) {

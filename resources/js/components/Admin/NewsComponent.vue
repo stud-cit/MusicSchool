@@ -95,16 +95,21 @@
 				</tr>
 			</tbody>
 		</table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 <script>
+    import Spinner from 'vue-spinner-component/src/Spinner.vue';
     import DatePicker from 'vue2-datepicker';
     import 'vue2-datepicker/index.css';
 
 	export default {
         name: "news",
         components: {
-            DatePicker
+            DatePicker,
+            Spinner
         },
 		data() {
 			return {
@@ -125,7 +130,8 @@
                         }
                     }
                 },
-				imgError: false
+                imgError: false,
+                preloader: false
 			};
 		},
 		created() {
@@ -155,19 +161,9 @@
 					if (!result || this.file.length == 0) {
 						return;
 					} else {
+                        this.preloader = !this.preloader;
 						var form = new FormData;
 						for(let i = 0; i < this.file.length; i++){
-							/*
-							if (this.file.length < 4){
-								this.file[i].valid = true;
-							}
-							else {
-								swal({
-									icon: "error",
-									title: 'Кількість фото не може бути більше трьох',
-								});
-							}
-							*/
 							if(this.file[i].valid) {
 								form.append('file[]', this.file[i]);
 							}
@@ -178,6 +174,7 @@
 						//if(this.file.length < 4) {
 							axios.post('/api/news', form)
 								.then((res) => {
+                                    this.preloader = !this.preloader;
 									swal("Інформація спішно додана", {
 										icon: "success",
 										timer: 1000,
@@ -187,6 +184,7 @@
 									this.file = [];
 								})
 								.catch((error) => {
+                                    this.preloader = !this.preloader;
 									swal({
 										icon: "error",
 										title: 'Помилка',
@@ -212,14 +210,17 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
+                        this.preloader = !this.preloader;
                         axios.delete('/api/news/'+id)
                             .then((response) => {
+                                this.preloader = !this.preloader;
                                 this.news.splice(index, 1);
                                 swal("Новина була успішно видалена", {
                                     icon: "success",
                                 });
                             })
                             .catch((error) => {
+                                this.preloader = !this.preloader;
                                 swal({
                                     icon: "error",
                                     title: 'Помилка',

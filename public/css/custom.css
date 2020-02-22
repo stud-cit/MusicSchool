@@ -114,6 +114,19 @@
 	padding-top: 2px;
 }
 
+.preloader {
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+}
+
 .chekbox-two .checkbox{cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;user-select:none}
 .chekbox-two .checkbox > input[type="checkbox"]{position:absolute;opacity:0;z-index:-1}
 .checkbox__icon{display:inline-block;color:#999}

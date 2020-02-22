@@ -93,13 +93,13 @@
         <table class="table table-bordered">
 			<thead>
 				<tr>
-					<th width="10px" scope="col">№</th>
-					<th width="150px" scope="col">Фото</th>
-					<th scope="col">ПІБ</th>
-					<th scope="col">Відділ</th>
-					<th scope="col">Додаткова інформація</th>
-					<th width="10px" scope="col"></th>
-					<th width="10px" scope="col"></th>
+					<th width="2%" scope="col">№</th>
+					<th width="15%" scope="col">Фото</th>
+					<th width="15%" scope="col">ПІБ</th>
+					<th width="20%" scope="col">Відділ</th>
+					<th width="40%" scope="col">Додаткова інформація</th>
+					<th width="4%" scope="col"></th>
+					<th width="4%" scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -117,10 +117,14 @@
 				</tr>
 			</tbody>
 		</table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 
 <script>
+import Spinner from 'vue-spinner-component/src/Spinner.vue';
 export default {
     	data() {
 			return {
@@ -133,8 +137,12 @@ export default {
                 teacher_patronymic: '',
 				teacher_info: '',
 				departments_id: '',
+				preloader: false,
 				form: new FormData
 			};
+		},
+        components: {
+            Spinner
         },
         created () {
 			document.title = "Колектив";
@@ -171,6 +179,7 @@ export default {
 					if (!result) {
 						return;
 					} else {
+						this.preloader = !this.preloader;
 						this.form.append('departments_id', this.departments_id);
                         this.form.append('teacher_surname', this.teacher_surname);
                         this.form.append('teacher_name', this.teacher_name);
@@ -180,7 +189,8 @@ export default {
 						axios.post('/api/teacher', this.form)
 							.then((response) => {
 								this.teachers = [];
-                                this.getTeachers();
+								this.getTeachers();
+								this.preloader = false;
                                 swal("Інформація оновлена", {
                                     icon: "success",
                                     timer: 1000,
@@ -188,6 +198,7 @@ export default {
 						        });
 							})
 							.catch((error) => {
+								this.preloader = false;
 								swal({
 									icon: "error",
 									title: 'Помилка'
@@ -207,9 +218,11 @@ export default {
 				})
 					.then((willDelete) => {
 						if (willDelete) {
+							this.preloader = !this.preloader;
 							axios.delete('/api/teacher/' + id)
 								.then((response) => {
 									if (response.status == 200) {
+										this.preloader = false;
 										this.teachers.splice(index, 1);
 									}
 									swal("Запис успішно видалено", {
@@ -217,6 +230,7 @@ export default {
 									});
 								})
 								.catch((error) => {
+									this.preloader = false;
 									swal({
 										icon: "error",
 										title: 'Помилка',

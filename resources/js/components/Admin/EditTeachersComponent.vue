@@ -57,6 +57,19 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="teacherInfo" class="col-sm-2 col-form-label">Додаткова інформація</label>
+                    <div class="col-sm-6">
+                        <textarea name="teacherInfo" class="form-control" cols="15" rows="6" v-model="teacher.teacher_info" id="teacherInfo"
+                                  v-validate="{ required: true}"
+                                  data-vv-as="Додаткова інформація">
+                        </textarea>
+                        <span class="errors text-danger" v-if="errors.has('teacherInfo')">
+                            {{ errors.first('teacherInfo') }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label for="teacherImage" class="col-sm-2 col-form-label">Фото викладача</label>
                     <div class="col-sm-6">
 						<label class="custom-file w-100">

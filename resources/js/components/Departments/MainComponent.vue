@@ -101,13 +101,13 @@
 <script>
 export default {
   name: "MainComponent",
+  props:{
+    description: String
+  },
   data() {
     return {
       department: [],
       departmentId: null,
-      description:
-        "fngjhdsfjgsdkflgdfsghsfhgfdjghsdfgfdskhgdjkfshkdgkhdslfhgdfskjgjk",
-
       cardsBlock: {
         imgBig: "/img/test2.jpg",
         imgSmall: "/img/teacher.jpg"
@@ -146,6 +146,7 @@ export default {
 }
 
 .text_block {
+  white-space: pre-wrap;
   padding: 70px 50px;
   background-color: #3d3a3a;
   color: #ffffff;

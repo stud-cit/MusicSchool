@@ -155,6 +155,8 @@
         margin-left: 0;
     }
     .news-item-text {
+        white-space: pre-wrap;
+        text-indent: 1.2em;
         margin-bottom: 77px;
         font-size: 18px;
     }

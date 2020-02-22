@@ -31,9 +31,6 @@
 export default {
   name: "FirstSubMainComponent",
   props: ["info", "photo"],
-  computed: {
-    
-  }
 };
 </script>
 
@@ -59,6 +56,8 @@ export default {
   font-size: 18px;
   margin: 40px 0;
   text-align: justify;
+  white-space: pre-wrap;
+  text-indent: 1.2em;
 }
 
 .article__img.col-xl-12 {
