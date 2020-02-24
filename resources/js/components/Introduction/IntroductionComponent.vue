@@ -1,6 +1,6 @@
 <template>
   <div>
-    <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
+    <page-title :title="page.title" :uptitle="page.uptitle" :shirt_text="page.shirt_text" :description="page.description"></page-title>
     <header-component :bg="intro.bg" :blockOne="intro.block1" :blockTwo="intro.block2" :blockThree="intro.block3"></header-component>
     <main-component :intro="intro" :document="document" />
   </div>

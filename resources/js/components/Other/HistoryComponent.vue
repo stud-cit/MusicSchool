@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
+        <page-title :title="page.title" :uptitle="page.uptitle" :shirt_text="page.shirt_text" :description="page.description"></page-title>
 
         <section class="history-section mt-50">
             <b-container class="history-list">

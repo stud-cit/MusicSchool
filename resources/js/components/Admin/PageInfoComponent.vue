@@ -15,7 +15,7 @@
                             <div class="text-danger" v-if="errors.has('titleHistory')">Обов'язкове поле</div>
 
                             <label for="shirtHistory" class="brtop">Короткий опис (має бути не більше 120 символів)</label>
-                            <input name="shirtHistory" type="text" class="form-control" v-model="data.departments.shirt_text" id="shirtHistory" maxlength="120" disabled v-validate="{required: true}">
+                            <input name="shirtHistory" type="text" class="form-control" v-model="data.history.shirt_text" id="shirtHistory" maxlength="120" disabled v-validate="{required: true}">
                             <div class="text-danger" v-if="errors.has('shirtHistory')">Обов'язкове поле</div>
 
                             <label for="history" class="brtop">Детальний опис</label>
@@ -40,7 +40,7 @@
                             <div class="text-danger" v-if="errors.has('titleNews')">Обов'язкове поле</div>
 
                             <label for="shirtNews" class="brtop">Короткий опис (має бути не більше 120 символів)</label>
-                            <input name="shirtNews" type="text" class="form-control" v-model="data.departments.shirt_text" id="shirtNews" maxlength="120" disabled v-validate="{required: true}">
+                            <input name="shirtNews" type="text" class="form-control" v-model="data.news.shirt_text" id="shirtNews" maxlength="120" disabled v-validate="{required: true}">
                             <div class="text-danger" v-if="errors.has('shirtNews')">Обов'язкове поле</div>
 
                             <label for="news" class="brtop">Детальний опис</label>
@@ -90,7 +90,7 @@
                             <div class="text-danger" v-if="errors.has('titleAchievements')">Обов'язкове поле</div>
 
                             <label for="shirtAchievements" class="brtop">Короткий опис (має бути не більше 120 символів)</label>
-                            <input name="shirtAchievements" type="text" class="form-control" v-model="data.departments.shirt_text" id="shirtAchievements" maxlength="120" disabled v-validate="{required: true}">
+                            <input name="shirtAchievements" type="text" class="form-control" v-model="data.achievements.shirt_text" id="shirtAchievements" maxlength="120" disabled v-validate="{required: true}">
                             <div class="text-danger" v-if="errors.has('shirtAchievements')">Обов'язкове поле</div>
 
                             <label for="achievements" class="brtop">Детальний опис</label>
@@ -117,7 +117,7 @@
                             <div class="text-danger" v-if="errors.has('titleIntroduction')">Обов'язкове поле</div>
                             
                             <label for="shirtIntroduction" class="brtop">Короткий опис (має бути не більше 120 символів)</label>
-                            <input name="shirtIntroduction" type="text" class="form-control" v-model="data.departments.shirt_text" id="shirtIntroduction" maxlength="120" disabled v-validate="{required: true}">
+                            <input name="shirtIntroduction" type="text" class="form-control" v-model="data.introduction.shirt_text" id="shirtIntroduction" maxlength="120" disabled v-validate="{required: true}">
                             <div class="text-danger" v-if="errors.has('shirtIntroduction')">Обов'язкове поле</div>
 
                             <label for="introduction" class="brtop">Детальний опис</label>
@@ -142,7 +142,7 @@
                             <div class="text-danger" v-if="errors.has('titleGallery')">Обов'язкове поле</div>
 
                             <label for="shirtGallery" class="brtop">Короткий опис (має бути не більше 120 символів)</label>
-                            <input name="shirtGallery" type="text" class="form-control" v-model="data.departments.shirt_text" id="shirtGallery" maxlength="120" disabled v-validate="{required: true}">
+                            <input name="shirtGallery" type="text" class="form-control" v-model="data.gallery.shirt_text" id="shirtGallery" maxlength="120" disabled v-validate="{required: true}">
                             <div class="text-danger" v-if="errors.has('shirtGallery')">Обов'язкове поле</div>
 
                             <label for="gallery" class="brtop">Детальний опис</label>
@@ -167,7 +167,7 @@
                             <div class="text-danger" v-if="errors.has('titleСontacts')">Обов'язкове поле</div>
 
                             <label for="shirtСontacts" class="brtop">Короткий опис (має бути не більше 120 символів)</label>
-                            <input name="shirtСontacts" type="text" class="form-control" v-model="data.departments.shirt_text" id="shirtСontacts" maxlength="120" disabled v-validate="{required: true}">
+                            <input name="shirtСontacts" type="text" class="form-control" v-model="data.contacts.shirt_text" id="shirtСontacts" maxlength="120" disabled v-validate="{required: true}">
                             <div class="text-danger" v-if="errors.has('shirtСontacts')">Обов'язкове поле</div>
 
                             <label for="contacts" class="brtop">Детальний опис</label>
@@ -192,7 +192,7 @@
                             <div class="text-danger" v-if="errors.has('titleTeachers')">Обов'язкове поле</div>
 
                             <label for="shirtTeachers" class="brtop">Короткий опис (має бути не більше 120 символів)</label>
-                            <input name="shirtTeachers" type="text" class="form-control" v-model="data.departments.shirt_text" id="shirtTeachers" maxlength="120" disabled v-validate="{required: true}">
+                            <input name="shirtTeachers" type="text" class="form-control" v-model="data.teachers.shirt_text" id="shirtTeachers" maxlength="120" disabled v-validate="{required: true}">
                             <div class="text-danger" v-if="errors.has('shirtTeachers')">Обов'язкове поле</div>
 
                             <label for="teachers" class="brtop">Детальний опис</label>
@@ -217,7 +217,7 @@
                             <div class="text-danger" v-if="errors.has('titleInstruments')">Обов'язкове поле</div>
 
                             <label for="shirtInstruments" class="brtop">Короткий опис (має бути не більше 120 символів)</label>
-                            <input name="shirtInstruments" type="text" class="form-control" v-model="data.departments.shirt_text" id="shirtInstruments" maxlength="120" disabled v-validate="{required: true}">
+                            <input name="shirtInstruments" type="text" class="form-control" v-model="data.instruments.shirt_text" id="shirtInstruments" maxlength="120" disabled v-validate="{required: true}">
                             <div class="text-danger" v-if="errors.has('shirtInstruments')">Обов'язкове поле</div>
 
                             <label for="instruments" class="brtop">Детальний опис</label>
