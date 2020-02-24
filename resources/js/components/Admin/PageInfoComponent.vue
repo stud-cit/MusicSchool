@@ -77,7 +77,7 @@
                             <input name="titleAchievements" type="text" class="form-control" v-model="data.achievements.title" id="titleAchievements" disabled v-validate="{required: true}">
                             <div class="text-danger" v-if="errors.has('titleAchievements')">Обов'язкове поле</div>
 
-                            <label for="achievements" class="brtop">Опис</label>
+                            <label for="achievements" class="brtop">Опис (має бути не більше 120 символів)</label>
                             <textarea name="achievements" class="form-control" id="achievements"
                                 v-model="data.achievements.text" rows="4"
                                 disabled

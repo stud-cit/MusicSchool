@@ -17,10 +17,10 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="departmentInfo" class="col-sm-2 col-form-label">Інформація про відділ</label>
+                    <label for="departmentInfo" class="col-sm-2 col-form-label">Інформація про відділ (має бути не більше 875 символів)</label>
                     <div class="col-sm-6">
                         <textarea name="departmentInfo" class="form-control" cols="15" rows="6" v-model="department.departments_info" id="departmentInfo"
-                                  v-validate="{ required: true}"
+                                  v-validate="{ required: true}" maxlength="875"
                                   data-vv-as="Інформація про відділ">
                         </textarea>
                         <span class="errors text-danger" v-if="errors.has('departmentInfo')">

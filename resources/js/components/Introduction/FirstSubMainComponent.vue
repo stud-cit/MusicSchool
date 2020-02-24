@@ -12,7 +12,9 @@
         <b-row>
           <b-col xl="12" lg="12" md="12" sm="12" cols="12" class="article__img">
             <div class="article__img">
-              <img :src="photo" />
+              <silentbox-single :src="photo">
+                <img :src="photo" class="w-100 item-img"/>
+              </silentbox-single>
             </div>
           </b-col>
         </b-row>
@@ -35,6 +37,11 @@ export default {
 </script>
 
 <style >
+#silentbox-overlay__embed img, #silentbox-overlay__embed iframe {
+  background-color: transparent;
+  width: auto;
+  height: auto;
+}
 .article__block {
   padding: 60px 0 0 0;
 }

@@ -59,10 +59,10 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="teacher_info" class="col-sm-2 col-form-label">Додаткова інформація</label>
+                    <label for="teacher_info" class="col-sm-2 col-form-label">Додаткова інформація (має бути не більше 500 символів)</label>
                     <div class="col-sm-6">
                         <textarea name="teacher_info" v-model="teacher_info" class="form-control" id="teacher_info" rows="5"
-                            v-validate="{ required: true }"
+                            v-validate="{ required: true }" maxlength="500"
                                 data-vv-as="Додаткова інформація"></textarea>
                         <span class="errors text-danger" v-if="errors.has('teacher_info')">
                                 {{ errors.first('teacher_info') }}
