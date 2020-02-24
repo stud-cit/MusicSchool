@@ -10,7 +10,7 @@
                         </h1>
                     </b-col>
                     <b-col class="d-none d-xl-block" xl="4">
-                        <div class="text">{{description.substring(0,120)}}</div>
+                        <div class="text">{{shirt_text.substring(0,120)}}</div>
                     </b-col>
                 </b-row>
 
@@ -24,7 +24,7 @@
         props:{
           uptitle: String,
           title: String,
-          description: String
+          shirt_text: String,
         },
         data() {
             return {

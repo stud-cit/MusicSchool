@@ -56,15 +56,19 @@
                             <input name="titleDepartments" type="text" class="form-control" v-model="data.departments.title" id="titleDepartments" disabled v-validate="{required: true}">
                             <div class="text-danger" v-if="errors.has('titleDepartments')">Обов'язкове поле</div>
 
-                            <label for="departments" class="brtop">Опис</label>
+                            <label for="shirtDepartments" class="brtop">Короткий опис</label>
+                            <input name="shirtDepartments" type="text" class="form-control" v-model="data.departments.shirt_text" id="shirtDepartments" disabled v-validate="{required: true}">
+                            <div class="text-danger" v-if="errors.has('shirtDepartments')">Обов'язкове поле</div>
+
+                            <label for="departments" class="brtop">Детальний опис</label>
                             <textarea name="departments" class="form-control" id="departments"
                                 v-model="data.departments.text" rows="4"
                                 disabled
-                                v-validate="{ required: true}"
-                                data-vv-as="Опис сторінки з відділами"
+                                v-validate="{ required: false}"
+                                data-vv-as="Детальний опис сторінки з відділами"
                             ></textarea>
-                            <span class="errors text-danger" v-if="errors.has('departments')">Обов'язкове поле</span><br>
-                            <button :disabled="errors.has('departments') || errors.has('titleDepartments')" type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "departments", "titleDepartments")'>Редагувати</button><br><br>
+                            <br>
+                            <button :disabled="errors.has('departments') || errors.has('shirtDepartments') || errors.has('titleDepartments')" type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "departments", "shirtDepartments", "titleDepartments")'>Редагувати</button><br><br>
                         </div>
                     </div>
                     <br>
@@ -211,7 +215,7 @@ export default {
                 home: {text: '', title: ''},
                 history: {text: '', title: ''},
                 news: {text: '', title: ''},
-                departments: {text: '', title: ''},
+                departments: {text: '', shirt_text: '', title: ''},
                 achievements: {text: '', title: ''},
                 introduction: {text: '', title: ''},
                 gallery: {text: '', title: ''},
@@ -230,26 +234,30 @@ export default {
 		    axios.get('/api/page-info')
 			    .then((response) => {
                     response.data.map(item => {
-                        this.data[item.page] = {text: item.text, title: item.title}
+                        this.data[item.page] = {text: item.text, shirt_text: item.shirt_text, title: item.title} 
                     });
                 })
         },
-        edit(event, page, title) {
+        edit(event, page, shirt, title) {
             const textElement = document.getElementById(page);
+            const shirtTextElement = document.getElementById(shirt);
             const titleElement = document.getElementById(title);
             if(event.target.innerHTML == "Редагувати") {
                 textElement.removeAttribute('disabled');
+                shirtTextElement.removeAttribute('disabled');
                 titleElement.removeAttribute('disabled');
                 textElement.focus();
                 event.target.innerHTML = 'Зберегти';
             }
             else {
                 textElement.setAttribute('disabled', 'disabled');
+                shirtTextElement.setAttribute('disabled', 'disabled');
                 titleElement.setAttribute('disabled', 'disabled');
                 event.target.innerHTML = 'Редагувати';
                 axios.post('/api/page-info', {
                     page,
                     text: this.data[page].text,
+                    shirt_text: this.data[page].shirt_text,
                     title: this.data[page].title
                 }).then((response) => {
                     swal("Інформація оновлена", {

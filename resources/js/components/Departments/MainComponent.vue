@@ -1,7 +1,7 @@
 <template>
   <div class="departments">
     <b-container>
-      <b-row>
+      <b-row v-if="description != null">
         <div class="text_block">{{ description }}</div>
       </b-row>
       <b-row>

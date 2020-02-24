@@ -38,7 +38,7 @@ class InfoController extends Controller
     }
 
     function putPageInfo(Request $request) {
-        PageInfo::where("page", $request->page)->update(['text' => $request->text, 'title' => $request->title]);
+        PageInfo::where("page", $request->page)->update(['text' => $request->text, 'shirt_text' => $request->shirt_text, 'title' => $request->title]);
         return response('ok', 200);
     }
 
