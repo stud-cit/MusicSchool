@@ -4,7 +4,8 @@ export default {
             page: {
                 description: '',
                 title: '',
-                uptitle: ''
+                uptitle: '',
+                shirt_text: ''
             }
         }
     },
@@ -18,6 +19,7 @@ export default {
                 info.pop();
                 this.page.uptitle = info.join(' ');
                 this.page.description = response.data.text;
+                this.page.shirt_text = response.data.shirt_text;
             })
         },
     }

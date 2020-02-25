@@ -16,7 +16,8 @@ class CreatePageInfoTable extends Migration
         Schema::create('page_info', function (Blueprint $table) {
             $table->string('page');
             $table->string('title');
-            $table->text('text');
+            $table->text('shirt_text');
+            $table->text('text')->nullable();
         });
     }
 

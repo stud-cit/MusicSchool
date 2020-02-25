@@ -1,4 +1,5 @@
 <template>
+<div>
     <div class="title-block">
         <div class="notes">
             <b-container>
@@ -10,7 +11,7 @@
                         </h1>
                     </b-col>
                     <b-col class="d-none d-xl-block" xl="4">
-                        <div class="text">{{description.substring(0,120)}}</div>
+                        <div class="text">{{shirt_text.substring(0,120)}}</div>
                     </b-col>
                 </b-row>
 
@@ -18,27 +19,38 @@
             </b-container>
         </div>
     </div>
+
+    <b-container>
+      <b-row v-if="description != null">
+        <div class="text_block">{{ description }}</div>
+      </b-row>
+    </b-container>
+</div>
 </template>
 <script>
     export default {
         props:{
           uptitle: String,
           title: String,
-          description: String
+          shirt_text: String,
+          description: String,
         },
         data() {
             return {
 
             }
         },
-        computed: {
-
-
-        },
-
     }
 </script>
 <style lang="sass" scoped>
+    .text_block
+        margin-top: 50px
+        white-space: pre-wrap
+        padding: 70px 50px
+        background-color: #3d3a3a
+        color: #ffffff
+        font-size: 20px
+        width: 100%
     .title-block
         background: linear-gradient(180deg, #e91b47 0%, #6a0017 100%)
         .notes

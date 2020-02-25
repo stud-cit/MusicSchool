@@ -4984,6 +4984,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "page-info",
   data: function data() {
@@ -5003,6 +5038,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         departments: {
           text: '',
+          shirt_text: '',
           title: ''
         },
         achievements: {
@@ -5044,27 +5080,32 @@ __webpack_require__.r(__webpack_exports__);
         response.data.map(function (item) {
           _this.data[item.page] = {
             text: item.text,
+            shirt_text: item.shirt_text,
             title: item.title
           };
         });
       });
     },
-    edit: function edit(event, page, title) {
+    edit: function edit(event, page, shirt, title) {
       var textElement = document.getElementById(page);
+      var shirtTextElement = document.getElementById(shirt);
       var titleElement = document.getElementById(title);
 
       if (event.target.innerHTML == "Редагувати") {
         textElement.removeAttribute('disabled');
+        shirtTextElement.removeAttribute('disabled');
         titleElement.removeAttribute('disabled');
         textElement.focus();
         event.target.innerHTML = 'Зберегти';
       } else {
         textElement.setAttribute('disabled', 'disabled');
+        shirtTextElement.setAttribute('disabled', 'disabled');
         titleElement.setAttribute('disabled', 'disabled');
         event.target.innerHTML = 'Редагувати';
         axios.post('/api/page-info', {
           page: page,
           text: this.data[page].text,
+          shirt_text: this.data[page].shirt_text,
           title: this.data[page].title
         }).then(function (response) {
           swal("Інформація оновлена", {
@@ -75489,126 +75530,174 @@ var render = function() {
               _vm._v("\n                        Історія\n                    ")
             ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "card-body p-2" },
-              [
-                _c(
-                  "label",
-                  { staticClass: "brtop", attrs: { for: "titleHistory" } },
-                  [_vm._v("Заголовок")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.history.title,
-                      expression: "data.history.title"
-                    },
-                    {
-                      name: "validate",
-                      rawName: "v-validate",
-                      value: { required: true },
-                      expression: "{required: true}"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    name: "titleHistory",
-                    type: "text",
-                    id: "titleHistory",
-                    disabled: ""
-                  },
-                  domProps: { value: _vm.data.history.title },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.data.history, "title", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm.errors.has("titleHistory")
-                  ? _c("dix", { staticClass: "text-danger" }, [
-                      _vm._v("Обов'язкове поле")
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  { staticClass: "brtop", attrs: { for: "history" } },
-                  [_vm._v("Опис")]
-                ),
-                _vm._v(" "),
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.history.text,
-                      expression: "data.history.text"
-                    },
-                    {
-                      name: "validate",
-                      rawName: "v-validate",
-                      value: { required: true },
-                      expression: "{ required: true}"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    name: "history",
-                    id: "history",
-                    rows: "4",
-                    disabled: "",
-                    "data-vv-as": "Опис сторінки з історією"
-                  },
-                  domProps: { value: _vm.data.history.text },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.data.history, "text", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm.errors.has("history")
-                  ? _c("span", { staticClass: "errors text-danger" }, [
-                      _vm._v("Обов'язкове поле")
-                    ])
-                  : _vm._e(),
-                _c("br"),
-                _vm._v(" "),
-                _c(
-                  "button",
+            _c("div", { staticClass: "card-body p-2" }, [
+              _c(
+                "label",
+                { staticClass: "brtop", attrs: { for: "titleHistory" } },
+                [_vm._v("Заголовок")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
                   {
-                    staticClass:
-                      "btn btn-outline-secondary my-2 px-5 float-right edit",
-                    attrs: {
-                      disabled:
-                        _vm.errors.has("history") ||
-                        _vm.errors.has("titleHistory"),
-                      type: "button"
-                    },
-                    on: {
-                      click: function($event) {
-                        return _vm.edit($event, "history", "titleHistory")
-                      }
-                    }
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.history.title,
+                    expression: "data.history.title"
                   },
-                  [_vm._v("Редагувати")]
-                ),
-                _c("br"),
-                _c("br")
-              ],
-              1
-            )
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: { required: true },
+                    expression: "{required: true}"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "titleHistory",
+                  type: "text",
+                  id: "titleHistory",
+                  disabled: ""
+                },
+                domProps: { value: _vm.data.history.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.data.history, "title", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has("titleHistory")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v("Обов'язкове поле")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "brtop", attrs: { for: "shirtHistory" } },
+                [_vm._v("Короткий опис (має бути не більше 120 символів)")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.history.shirt_text,
+                    expression: "data.history.shirt_text"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: { required: true },
+                    expression: "{required: true}"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "shirtHistory",
+                  type: "text",
+                  id: "shirtHistory",
+                  maxlength: "120",
+                  disabled: ""
+                },
+                domProps: { value: _vm.data.history.shirt_text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.data.history,
+                      "shirt_text",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has("shirtHistory")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v("Обов'язкове поле")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("label", { staticClass: "brtop", attrs: { for: "history" } }, [
+                _vm._v("Детальний опис")
+              ]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.history.text,
+                    expression: "data.history.text"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: { required: false },
+                    expression: "{ required: false}"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "history",
+                  id: "history",
+                  rows: "4",
+                  disabled: "",
+                  "data-vv-as": "Детальний опис сторінки з історією"
+                },
+                domProps: { value: _vm.data.history.text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.data.history, "text", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has("history")
+                ? _c("span", { staticClass: "errors text-danger" }, [
+                    _vm._v("Обов'язкове поле")
+                  ])
+                : _vm._e(),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "btn btn-outline-secondary my-2 px-5 float-right edit",
+                  attrs: {
+                    disabled:
+                      _vm.errors.has("history") ||
+                      _vm.errors.has("titleHistory"),
+                    type: "button"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.edit(
+                        $event,
+                        "history",
+                        "shirtHistory",
+                        "titleHistory"
+                      )
+                    }
+                  }
+                },
+                [_vm._v("Редагувати")]
+              ),
+              _c("br"),
+              _c("br")
+            ])
           ]),
           _vm._v(" "),
           _c("br"),
@@ -75664,8 +75753,54 @@ var render = function() {
                   ])
                 : _vm._e(),
               _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "brtop", attrs: { for: "shirtNews" } },
+                [_vm._v("Короткий опис (має бути не більше 120 символів)")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.news.shirt_text,
+                    expression: "data.news.shirt_text"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: { required: true },
+                    expression: "{required: true}"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "shirtNews",
+                  type: "text",
+                  id: "shirtNews",
+                  maxlength: "120",
+                  disabled: ""
+                },
+                domProps: { value: _vm.data.news.shirt_text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.data.news, "shirt_text", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has("shirtNews")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v("Обов'язкове поле")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
               _c("label", { staticClass: "brtop", attrs: { for: "news" } }, [
-                _vm._v("Опис")
+                _vm._v("Детальний опис")
               ]),
               _vm._v(" "),
               _c("textarea", {
@@ -75679,8 +75814,8 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: { required: true },
-                    expression: "{ required: true}"
+                    value: { required: false },
+                    expression: "{ required: false}"
                   }
                 ],
                 staticClass: "form-control",
@@ -75689,7 +75824,7 @@ var render = function() {
                   id: "news",
                   rows: "4",
                   disabled: "",
-                  "data-vv-as": "Опис сторінки з новинами"
+                  "data-vv-as": "Детальний опис сторінки з новинами"
                 },
                 domProps: { value: _vm.data.news.text },
                 on: {
@@ -75721,7 +75856,7 @@ var render = function() {
                   },
                   on: {
                     click: function($event) {
-                      return _vm.edit($event, "news", "titleNews")
+                      return _vm.edit($event, "news", "shirtNews", "titleNews")
                     }
                   }
                 },
@@ -75787,8 +75922,58 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "label",
+                { staticClass: "brtop", attrs: { for: "shirtDepartments" } },
+                [_vm._v("Короткий опис (має бути не більше 120 символів)")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.departments.shirt_text,
+                    expression: "data.departments.shirt_text"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: { required: true },
+                    expression: "{required: true}"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "shirtDepartments",
+                  type: "text",
+                  id: "shirtDepartments",
+                  maxlength: "120",
+                  disabled: ""
+                },
+                domProps: { value: _vm.data.departments.shirt_text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.data.departments,
+                      "shirt_text",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has("shirtDepartments")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v("Обов'язкове поле")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "label",
                 { staticClass: "brtop", attrs: { for: "departments" } },
-                [_vm._v("Опис")]
+                [_vm._v("Детальний опис")]
               ),
               _vm._v(" "),
               _c("textarea", {
@@ -75802,8 +75987,8 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: { required: true },
-                    expression: "{ required: true}"
+                    value: { required: false },
+                    expression: "{ required: false}"
                   }
                 ],
                 staticClass: "form-control",
@@ -75812,7 +75997,7 @@ var render = function() {
                   id: "departments",
                   rows: "4",
                   disabled: "",
-                  "data-vv-as": "Опис сторінки з відділами"
+                  "data-vv-as": "Детальний опис сторінки з відділами"
                 },
                 domProps: { value: _vm.data.departments.text },
                 on: {
@@ -75825,11 +76010,6 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm.errors.has("departments")
-                ? _c("span", { staticClass: "errors text-danger" }, [
-                    _vm._v("Обов'язкове поле")
-                  ])
-                : _vm._e(),
               _c("br"),
               _vm._v(" "),
               _c(
@@ -75840,12 +76020,18 @@ var render = function() {
                   attrs: {
                     disabled:
                       _vm.errors.has("departments") ||
+                      _vm.errors.has("shirtDepartments") ||
                       _vm.errors.has("titleDepartments"),
                     type: "button"
                   },
                   on: {
                     click: function($event) {
-                      return _vm.edit($event, "departments", "titleDepartments")
+                      return _vm.edit(
+                        $event,
+                        "departments",
+                        "shirtDepartments",
+                        "titleDepartments"
+                      )
                     }
                   }
                 },
@@ -75917,8 +76103,58 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "label",
+                { staticClass: "brtop", attrs: { for: "shirtAchievements" } },
+                [_vm._v("Короткий опис (має бути не більше 120 символів)")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.achievements.shirt_text,
+                    expression: "data.achievements.shirt_text"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: { required: true },
+                    expression: "{required: true}"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "shirtAchievements",
+                  type: "text",
+                  id: "shirtAchievements",
+                  maxlength: "120",
+                  disabled: ""
+                },
+                domProps: { value: _vm.data.achievements.shirt_text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.data.achievements,
+                      "shirt_text",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has("shirtAchievements")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v("Обов'язкове поле")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "label",
                 { staticClass: "brtop", attrs: { for: "achievements" } },
-                [_vm._v("Опис (має бути не більше 120 символів)")]
+                [_vm._v("Детальний опис")]
               ),
               _vm._v(" "),
               _c("textarea", {
@@ -75932,8 +76168,8 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: { required: true },
-                    expression: "{ required: true}"
+                    value: { required: false },
+                    expression: "{ required: false}"
                   }
                 ],
                 staticClass: "form-control",
@@ -75942,8 +76178,7 @@ var render = function() {
                   id: "achievements",
                   rows: "4",
                   disabled: "",
-                  maxlength: "120",
-                  "data-vv-as": "Опис сторінки з досягненнями"
+                  "data-vv-as": "Детальний опис сторінки з досягненнями"
                 },
                 domProps: { value: _vm.data.achievements.text },
                 on: {
@@ -75979,6 +76214,7 @@ var render = function() {
                       return _vm.edit(
                         $event,
                         "achievements",
+                        "shirtAchievements",
                         "titleAchievements"
                       )
                     }
@@ -76052,8 +76288,58 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "label",
+                { staticClass: "brtop", attrs: { for: "shirtIntroduction" } },
+                [_vm._v("Короткий опис (має бути не більше 120 символів)")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.introduction.shirt_text,
+                    expression: "data.introduction.shirt_text"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: { required: true },
+                    expression: "{required: true}"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "shirtIntroduction",
+                  type: "text",
+                  id: "shirtIntroduction",
+                  maxlength: "120",
+                  disabled: ""
+                },
+                domProps: { value: _vm.data.introduction.shirt_text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.data.introduction,
+                      "shirt_text",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has("shirtIntroduction")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v("Обов'язкове поле")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "label",
                 { staticClass: "brtop", attrs: { for: "introduction" } },
-                [_vm._v("Опис")]
+                [_vm._v("Детальний опис")]
               ),
               _vm._v(" "),
               _c("textarea", {
@@ -76067,8 +76353,8 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: { required: true },
-                    expression: "{ required: true}"
+                    value: { required: false },
+                    expression: "{ required: false}"
                   }
                 ],
                 staticClass: "form-control",
@@ -76077,7 +76363,7 @@ var render = function() {
                   id: "introduction",
                   rows: "4",
                   disabled: "",
-                  "data-vv-as": "Опис сторінки вступу"
+                  "data-vv-as": "Детальний опис сторінки вступу"
                 },
                 domProps: { value: _vm.data.introduction.text },
                 on: {
@@ -76113,6 +76399,7 @@ var render = function() {
                       return _vm.edit(
                         $event,
                         "introduction",
+                        "shirtIntroduction",
                         "titleIntroduction"
                       )
                     }
@@ -76178,8 +76465,58 @@ var render = function() {
                   ])
                 : _vm._e(),
               _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "brtop", attrs: { for: "shirtGallery" } },
+                [_vm._v("Короткий опис (має бути не більше 120 символів)")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.gallery.shirt_text,
+                    expression: "data.gallery.shirt_text"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: { required: true },
+                    expression: "{required: true}"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "shirtGallery",
+                  type: "text",
+                  id: "shirtGallery",
+                  maxlength: "120",
+                  disabled: ""
+                },
+                domProps: { value: _vm.data.gallery.shirt_text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.data.gallery,
+                      "shirt_text",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has("shirtGallery")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v("Обов'язкове поле")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
               _c("label", { staticClass: "brtop", attrs: { for: "gallery" } }, [
-                _vm._v("Опис")
+                _vm._v("Детальний опис")
               ]),
               _vm._v(" "),
               _c("textarea", {
@@ -76193,8 +76530,8 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: { required: true },
-                    expression: "{ required: true}"
+                    value: { required: false },
+                    expression: "{ required: false}"
                   }
                 ],
                 staticClass: "form-control",
@@ -76203,7 +76540,7 @@ var render = function() {
                   id: "gallery",
                   rows: "4",
                   disabled: "",
-                  "data-vv-as": "Опис головної сторінки"
+                  "data-vv-as": "Детальний опис головної сторінки"
                 },
                 domProps: { value: _vm.data.gallery.text },
                 on: {
@@ -76236,7 +76573,12 @@ var render = function() {
                   },
                   on: {
                     click: function($event) {
-                      return _vm.edit($event, "gallery", "titleGallery")
+                      return _vm.edit(
+                        $event,
+                        "gallery",
+                        "shirtGallery",
+                        "titleGallery"
+                      )
                     }
                   }
                 },
@@ -76302,8 +76644,58 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "label",
+                { staticClass: "brtop", attrs: { for: "shirtСontacts" } },
+                [_vm._v("Короткий опис (має бути не більше 120 символів)")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.contacts.shirt_text,
+                    expression: "data.contacts.shirt_text"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: { required: true },
+                    expression: "{required: true}"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "shirtСontacts",
+                  type: "text",
+                  id: "shirtСontacts",
+                  maxlength: "120",
+                  disabled: ""
+                },
+                domProps: { value: _vm.data.contacts.shirt_text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.data.contacts,
+                      "shirt_text",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has("shirtСontacts")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v("Обов'язкове поле")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "label",
                 { staticClass: "brtop", attrs: { for: "contacts" } },
-                [_vm._v("Опис")]
+                [_vm._v("Детальний опис")]
               ),
               _vm._v(" "),
               _c("textarea", {
@@ -76317,8 +76709,8 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: { required: true },
-                    expression: "{ required: true}"
+                    value: { required: false },
+                    expression: "{ required: false}"
                   }
                 ],
                 staticClass: "form-control",
@@ -76327,7 +76719,7 @@ var render = function() {
                   id: "contacts",
                   rows: "4",
                   disabled: "",
-                  "data-vv-as": "Опис сторінки з історією"
+                  "data-vv-as": "Детальний опис сторінки з історією"
                 },
                 domProps: { value: _vm.data.contacts.text },
                 on: {
@@ -76360,7 +76752,12 @@ var render = function() {
                   },
                   on: {
                     click: function($event) {
-                      return _vm.edit($event, "contacts", "titleСontacts")
+                      return _vm.edit(
+                        $event,
+                        "contacts",
+                        "shirtСontacts",
+                        "titleСontacts"
+                      )
                     }
                   }
                 },
@@ -76428,8 +76825,58 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "label",
+                { staticClass: "brtop", attrs: { for: "shirtTeachers" } },
+                [_vm._v("Короткий опис (має бути не більше 120 символів)")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.teachers.shirt_text,
+                    expression: "data.teachers.shirt_text"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: { required: true },
+                    expression: "{required: true}"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "shirtTeachers",
+                  type: "text",
+                  id: "shirtTeachers",
+                  maxlength: "120",
+                  disabled: ""
+                },
+                domProps: { value: _vm.data.teachers.shirt_text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.data.teachers,
+                      "shirt_text",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has("shirtTeachers")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v("Обов'язкове поле")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "label",
                 { staticClass: "brtop", attrs: { for: "teachers" } },
-                [_vm._v("Опис")]
+                [_vm._v("Детальний опис")]
               ),
               _vm._v(" "),
               _c("textarea", {
@@ -76443,8 +76890,8 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: { required: true },
-                    expression: "{ required: true}"
+                    value: { required: false },
+                    expression: "{ required: false}"
                   }
                 ],
                 staticClass: "form-control",
@@ -76453,7 +76900,7 @@ var render = function() {
                   id: "teachers",
                   rows: "4",
                   disabled: "",
-                  "data-vv-as": "Опис сторінки з викладачами"
+                  "data-vv-as": "Детальний опис сторінки з викладачами"
                 },
                 domProps: { value: _vm.data.teachers.text },
                 on: {
@@ -76486,7 +76933,12 @@ var render = function() {
                   },
                   on: {
                     click: function($event) {
-                      return _vm.edit($event, "teachers", "titleTeachers")
+                      return _vm.edit(
+                        $event,
+                        "teachers",
+                        "shirtTeachers",
+                        "titleTeachers"
+                      )
                     }
                   }
                 },
@@ -76554,8 +77006,58 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "label",
+                { staticClass: "brtop", attrs: { for: "shirtInstruments" } },
+                [_vm._v("Короткий опис (має бути не більше 120 символів)")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.instruments.shirt_text,
+                    expression: "data.instruments.shirt_text"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: { required: true },
+                    expression: "{required: true}"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "shirtInstruments",
+                  type: "text",
+                  id: "shirtInstruments",
+                  maxlength: "120",
+                  disabled: ""
+                },
+                domProps: { value: _vm.data.instruments.shirt_text },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.data.instruments,
+                      "shirt_text",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has("shirtInstruments")
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v("Обов'язкове поле")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "label",
                 { staticClass: "brtop", attrs: { for: "instruments" } },
-                [_vm._v("Опис")]
+                [_vm._v("Детальний опис")]
               ),
               _vm._v(" "),
               _c("textarea", {
@@ -76569,8 +77071,8 @@ var render = function() {
                   {
                     name: "validate",
                     rawName: "v-validate",
-                    value: { required: true },
-                    expression: "{ required: true}"
+                    value: { required: false },
+                    expression: "{ required: false}"
                   }
                 ],
                 staticClass: "form-control",
@@ -76579,7 +77081,7 @@ var render = function() {
                   id: "instruments",
                   rows: "4",
                   disabled: "",
-                  "data-vv-as": "Опис сторінки з інструментами"
+                  "data-vv-as": "Детальний опис сторінки з інструментами"
                 },
                 domProps: { value: _vm.data.instruments.text },
                 on: {
@@ -76612,7 +77114,12 @@ var render = function() {
                   },
                   on: {
                     click: function($event) {
-                      return _vm.edit($event, "instruments", "titleInstruments")
+                      return _vm.edit(
+                        $event,
+                        "instruments",
+                        "shirtInstruments",
+                        "titleInstruments"
+                      )
                     }
                   }
                 },

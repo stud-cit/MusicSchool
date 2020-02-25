@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-title :title="page.title" :uptitle="page.uptitle" :description="page.description"></page-title>
+        <page-title :title="page.title" :uptitle="page.uptitle" :shirt_text="page.shirt_text" :description="page.description"></page-title>
         <section class="news-section mt-50">
             <b-container class="news-list">
                 <div class="news" v-for="i in paginateArray" :key="i.id">

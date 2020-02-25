@@ -2,9 +2,6 @@
   <div class="departments">
     <b-container>
       <b-row>
-        <div class="text_block">{{ description }}</div>
-      </b-row>
-      <b-row>
         <div v-for="(block, index) in department" v-bind:key="index" class="card__block">
           <div v-if="index % 2 == 0" class="card__block">
             <div class="card__big" @click="showModal(block[0].departments_id)">
@@ -143,16 +140,6 @@ export default {
 <style scope>
 .departments {
   margin-top: 50px;
-}
-
-.text_block {
-  white-space: pre-wrap;
-  padding: 70px 50px;
-  background-color: #3d3a3a;
-  color: #ffffff;
-  margin-bottom: 50px;
-  font-size: 20px;
-  width: 100%;
 }
 .card__block {
   width: 100%;
