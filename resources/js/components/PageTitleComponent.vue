@@ -21,7 +21,7 @@
     </div>
 
     <b-container>
-      <b-row v-if="description != null">
+      <b-row v-if="description">
         <div class="text_block">{{ description }}</div>
       </b-row>
     </b-container>
@@ -45,6 +45,7 @@
 <style lang="sass" scoped>
     .text_block
         margin-top: 50px
+        text-indent: 1.3em
         white-space: pre-wrap
         padding: 70px 50px
         background-color: #3d3a3a

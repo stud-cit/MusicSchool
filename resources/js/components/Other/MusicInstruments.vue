@@ -5,7 +5,7 @@
       <div class="content-block">
         <div class="content-layout"></div>
         <b-container>
-          <div class="text_block">{{ description }}</div>
+          <div class="text_block" style="white-space: pre-wrap">{{ description }}</div>
           <ul class="instrument-list">
             <li class="list-item" v-for="item of paginateArray" :key="item.teachers_id">
               <div class="description">

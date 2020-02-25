@@ -10,7 +10,7 @@
                         <div class="main_text">
                             <p class="text_style_mid">Вас вітає</p>
                             <p class="text_style_big"><small>Сумська</small><br> музича <br> школа №2</p>
-                            <p>{{ $props.info }}</p>
+                            <p style="white-space: pre-wrap;text-indent: 1.3em;">{{ $props.info }}</p>
                         </div>
                     </b-col>
                     <b-col lg="6" md="auto" sm ="12">
