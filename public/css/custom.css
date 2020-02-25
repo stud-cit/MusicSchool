@@ -127,6 +127,21 @@
     background: rgba(0,0,0,0.8);
 }
 
+.nav-active {
+    display:block;
+    padding:.7rem 1rem;
+    color:#ffa407;
+}
+
+.nav-link-text {
+    padding-left: 6px;
+}
+
+.nav-active:hover {
+    text-decoration:none;
+    border-color:#e9ecef #e9ecef #ddd;
+}
+
 .chekbox-two .checkbox{cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;user-select:none}
 .chekbox-two .checkbox > input[type="checkbox"]{position:absolute;opacity:0;z-index:-1}
 .checkbox__icon{display:inline-block;color:#999}

@@ -144,3 +144,10 @@ const app = new Vue({
     el: "#admin",
     router
 });
+
+var el = document.querySelectorAll('.nav-item a');
+    for(var i=0;i<el.length; i++){ 
+	    if(el[i].href==window.location){
+            el[i].className="nav-active";
+	    }
+    }
