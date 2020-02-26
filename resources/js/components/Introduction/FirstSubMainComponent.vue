@@ -5,7 +5,7 @@
         <b-row>
           <div class="article">
             <div class="article__title">
-              <div class="article__title__small">ми чекаємо на вас!</div>
+              <div class="article__title__small">Запрошуємо у світ мистецтва!</div>
             </div>
           </div>
         </b-row>
