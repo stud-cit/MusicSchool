@@ -274,14 +274,17 @@ export default {
             const shirtTextElement = document.getElementById(shirt);
             const titleElement = document.getElementById(title);
             if(event.target.innerHTML == "Редагувати") {
-                textElement.removeAttribute('disabled');
+                if(textElement) {
+                    textElement.removeAttribute('disabled');
+                }
                 shirtTextElement.removeAttribute('disabled');
                 titleElement.removeAttribute('disabled');
-                textElement.focus();
                 event.target.innerHTML = 'Зберегти';
             }
             else {
-                textElement.setAttribute('disabled', 'disabled');
+                if(textElement) {
+                    textElement.setAttribute('disabled', 'disabled');
+                }
                 shirtTextElement.setAttribute('disabled', 'disabled');
                 titleElement.setAttribute('disabled', 'disabled');
                 event.target.innerHTML = 'Редагувати';
