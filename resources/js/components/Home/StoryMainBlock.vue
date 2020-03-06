@@ -6,28 +6,40 @@
 
             <b-container>
                 <b-row>
-                    <b-col cols="4" fluid>
+                    <b-col cols="12">
                         <div>
-                            <p class="text_style_big"><small>Актуальні</small><br>новини</p>
+                            <p class="text_style_big"><small>Актуальне</small><br>про школу</p>
                         </div>
                     </b-col>
                 </b-row>
 
                 <b-row class="news_block">
-                    <b-col xl="8" lg="7" md="12" sm ="12" order-lg="2" class="figure">
-                        <img v-if="$props.news.images.length" :src="$props.news.images[0].file" alt="">
-                        <img v-else src="/img/empty.png" alt="">
+                    <b-col xl="8" lg="7" md="12" sm ="12" order-lg="2" class="figure content-block" v-if="$props.story.images.length > 1">
+                        <b-carousel  controls id="carousel-fade" fade>
+                            <silentbox-group>
+                                <silentbox-item v-for="photo in $props.story.images" :key="photo.images_id" :src="photo.file">
+                                    <b-carousel-slide style="white-space: pre-wrap;" :img-src="photo.file"></b-carousel-slide>
+                                </silentbox-item>
+                            </silentbox-group>
+                        </b-carousel>
+                    </b-col>
+                    <b-col xl="8" lg="7" md="12" sm ="12" order-lg="2" class="figure content-block" v-if="$props.story.images.length == 1">
+                       <b-carousel id="carousel-fade" fade >
+                            <silentbox-single v-for="photo in $props.story.images" :key="photo.images_id" :src="photo.file">
+                                <b-carousel-slide style="white-space: pre-wrap;" :img-src="photo.file"></b-carousel-slide>
+                            </silentbox-single>
+                        </b-carousel>
                     </b-col>
                     <b-col xl="4" lg="5" md="12" sm ="12" order-lg="1" class="news_block_all">
                         <div class="news_block_inf"  id = "text-style">
                             <div>
-                                <i class="text_style_mid">{{ $props.news.title }}</i>
+                                <i class="text_style_mid">{{ $props.story.title }}</i>
                             </div>
                             <div>
-                                <p class="text_common">{{ $props.news.text.substring(0,200) }}</p>
+                                <p class="text_common">{{ $props.story.text.substring(0,200) }}</p>
                             </div>
                             <div>
-                                <router-link class="news-router" :to="{ name: 'news-item', params: {id: $props.news.id}}">
+                                <router-link class="news-router" :to="{ name: 'history', params: {id: $props.story.id}}">
                                     <ButtonInformation/>
                                 </router-link>
                             </div>
@@ -43,14 +55,14 @@
 import ButtonInformation from "./ButtonInformation.vue";
 
 export default {
-  name: "NewsMainBlock",
-  props: ['news'],
+  name: "StoryMainBlock",
+  props: ['story'],
   components: {
     ButtonInformation
   },
   data() {
     return {
-      btn: "Новость"
+      btn: "Про школу"
     };
   }
 };

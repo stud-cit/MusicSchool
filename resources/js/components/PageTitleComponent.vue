@@ -48,7 +48,7 @@
         text-indent: 1.3em
         white-space: pre-wrap
         padding: 70px 50px
-        background-color: #3d3a3a
+        background-color: #6a0017
         color: #ffffff
         font-size: 20px
         width: 100%

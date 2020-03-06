@@ -1,7 +1,7 @@
 <template>
     <div id="home">
         <FirstMainBlock :info="info.info_school"/>
-        <NewsMainBlock :news="news"/>
+        <StoryMainBlock :story="story"/>
         <VideoMainBlock :video="info.video"/>
         <MapComponent/>
     </div>
@@ -12,7 +12,7 @@
 
 <script>
     import FirstMainBlock from './FirstMainBlock.vue'
-    import NewsMainBlock from './NewsMainBlock.vue'
+    import StoryMainBlock from './StoryMainBlock.vue'
     import VideoMainBlock from './VideoMainBlock.vue'
     import MapComponent from '../Other/MapComponent.vue'
     
@@ -21,14 +21,14 @@
         name: 'home',
         components: {
             FirstMainBlock,
-            NewsMainBlock,
+            StoryMainBlock,
             VideoMainBlock,
             MapComponent
           
         },
         data() {
             return {
-                news: {
+                story: {
                     title: '',
                     text: '',
                     images: []
@@ -47,7 +47,7 @@
             getData() {
                 axios.get('/api/main-info')
                     .then((response) => {
-                        this.news = response.data.news;
+                        this.story = response.data.story;
                         this.info = response.data.info;
                     })
             },

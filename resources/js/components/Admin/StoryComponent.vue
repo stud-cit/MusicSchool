@@ -21,10 +21,10 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="storyInfo" class="col-sm-2 col-form-label">Опис історії</label>
+                    <label for="storyInfo" class="col-sm-2 col-form-label">Опис історії (має бути не більше 120 символів)</label>
                     <div class="col-sm-6">
-                        <textarea name="storyInfo" class="form-control" cols="15" rows="6" v-model="text" id="storyInfo"
-                                  v-validate="{ required: true}"
+                        <textarea name="storyInfo" class="form-control" cols="15" rows="6" v-model="text" id="storyInfo" 
+                                maxlength="120"  v-validate="{ required: true}"
                                   data-vv-as="Опис історії">
                         </textarea>
                         <span class="errors text-danger" v-if="errors.has('storyInfo')">

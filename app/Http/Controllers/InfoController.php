@@ -14,10 +14,10 @@ class InfoController extends Controller
     protected $fileStorage = '/img/';
 
     function getMainInfo() {
-        $lastNew = NewsStory::with('images')->news()->orderBy('date', 'DESC')->first();
+        $lastStory = NewsStory::with('images')->story()->orderBy('date', 'DESC')->first();
         $info = Info::first();
         return response()->json([
-            'news' => $lastNew,
+            'story' => $lastStory,
             'info' => $info
         ]);
     }
