@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Intro;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class IntroController extends Controller
 {
@@ -26,6 +27,10 @@ class IntroController extends Controller
             $file = $request->bg->getClientOriginalName();
             $directory = '/' . $request->type;
             $request->bg->move(public_path() . $directory, $file);
+            $img = Image::make(public_path().'/'.$this->publicStorage. '/'. $file)->encode('jpg', 75);
+            $img->resize(null, 800, function ($constraint) {
+                $constraint->aspectRatio();
+              })->save(public_path() .'/'.$this->publicStorage.'/'. $file, 50);
             $res = DB::update('update ' . $request->table . ' set ' . $request->row . ' = "' . $directory . '/' . $file . '" where intro_id = 1');
         }
 
@@ -33,6 +38,10 @@ class IntroController extends Controller
             $file = $request->photo->getClientOriginalName();
             $directory = '/' . $request->type;
             $request->photo->move(public_path() . $directory, $file);
+            $img = Image::make(public_path().'/'.$this->publicStorage. '/'. $file)->encode('jpg', 75);
+            $img->resize(null, 800, function ($constraint) {
+                $constraint->aspectRatio();
+              })->save(public_path() .'/'.$this->publicStorage.'/'. $file, 50);
             $res = DB::update('update ' . $request->table . ' set ' . $request->row . ' = "' . $directory . '/' . $file . '" where intro_id = 1');
         }
     }

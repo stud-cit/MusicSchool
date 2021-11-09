@@ -45,8 +45,10 @@ class NewsStoryController extends Controller
                     $images->id = $news->id;
                     $images->file = $this->publicStorageNews . $news->id . '/' . $name;
                     $images->save();
-                    $img = Image::make(public_path().$this->publicStorageNews . $news->id . '/' . $name);
-                    $img->save(public_path() . $this->publicStorageNews . $news->id . '/' . $name, 50);
+                    $img = Image::make(public_path().$this->publicStorageNews . $news->id . '/' . $name)->encode('jpg', 75);
+                    $img->resize(null, 800, function ($constraint) {
+                        $constraint->aspectRatio();
+                      })->save(public_path() . $this->publicStorageNews . $news->id . '/' . $name, 50);
 
                 //}
             }
@@ -70,9 +72,10 @@ class NewsStoryController extends Controller
                     $images->id = $news->id;
                     $images->file = $this->publicStorageNews . $news->id . '/' . $name;
                     $images->save();
-
-                    $img = Image::make(public_path().$this->publicStorageNews . $news->id . '/' . $name);
-                    $img->save(public_path() . $this->publicStorageNews . $news->id . '/' . $name, 50);
+                    $img = Image::make(public_path().$this->publicStorageNews . $news->id . '/' . $name)->encode('jpg', 75);
+                    $img->resize(null, 800, function ($constraint) {
+                        $constraint->aspectRatio();
+                      })->save(public_path() . $this->publicStorageNews . $news->id . '/' . $name, 50);
 
                     array_push($arrImg, $images);
                 //}
@@ -129,8 +132,10 @@ class NewsStoryController extends Controller
                 $images->file = $this->publicStorageStory.$story->id.'/'.$name;
                 $images->save();
 
-                $img = Image::make(public_path().$this->publicStorageStory . $story->id . '/' . $name);
-                $img->save(public_path() . $this->publicStorageStory . $story->id . '/' . $name, 50);
+                $img = Image::make(public_path().$this->publicStorageStory . $story->id . '/' . $name)->encode('jpg', 75);
+                $img->resize(null, 800, function ($constraint) {
+                    $constraint->aspectRatio();
+                  })->save(public_path() . $this->publicStorageStory . $story->id . '/' . $name, 50);
 
             }
         }
@@ -152,8 +157,10 @@ class NewsStoryController extends Controller
                 $images->file = $this->publicStorageStory.$story->id.'/'.$name;
                 $images->save();
 
-                $img = Image::make(public_path().$this->publicStorageStory . $story->id . '/' . $name);
-                $img->save(public_path() . $this->publicStorageStory . $story->id . '/' . $name, 50);
+                $img = Image::make(public_path().$this->publicStorageStory . $story->id . '/' . $name)->encode('jpg', 75);
+                $img->resize(null, 800, function ($constraint) {
+                    $constraint->aspectRatio();
+                  })->save(public_path() . $this->publicStorageStory . $story->id . '/' . $name, 50);
 
                 array_push($arrImg, $images);
             }
@@ -208,8 +215,10 @@ class NewsStoryController extends Controller
                 $images->id = $achieve->id;
                 $images->file = $this->publicStorageAchieve . $achieve->id . '/' . $name;
                 $images->save();
-                $img = Image::make(public_path().$this->publicStorageAchieve . $achieve->id . '/' . $name);
-                $img->save(public_path() . $this->publicStorageAchieve . $achieve->id . '/' . $name, 50);
+                $img = Image::make(public_path().$this->publicStorageAchieve . $achieve->id . '/' . $name)->encode('jpg', 75);
+                $img->resize(null, 800, function ($constraint) {
+                    $constraint->aspectRatio();
+                  })->save(public_path() . $this->publicStorageAchieve . $achieve->id . '/' . $name, 50);
             }
         }
         return response()->json($achieve);
@@ -230,8 +239,10 @@ class NewsStoryController extends Controller
                 $images->file = $this->publicStorageAchieve.$achieve->id.'/'.$name;
                 $images->save();
 
-                $img = Image::make(public_path().$this->publicStorageAchieve . $achieve->id . '/' . $name);
-                $img->save(public_path() . $this->publicStorageAchieve . $achieve->id . '/' . $name, 50);
+                $img = Image::make(public_path().$this->publicStorageAchieve . $achieve->id . '/' . $name)->encode('jpg', 75);
+                $img->resize(null, 800, function ($constraint) {
+                    $constraint->aspectRatio();
+                  })->save(public_path() . $this->publicStorageAchieve . $achieve->id . '/' . $name, 50);
 
                 array_push($arrImg, $images);
             }

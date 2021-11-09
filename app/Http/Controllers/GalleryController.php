@@ -25,8 +25,10 @@ class GalleryController extends Controller
                 $foto->file = $name;
                 $foto->type = $request->type;
                 $foto->save();
-                $img = Image::make(public_path().$this->publicStorage.$name);
-                $img->save(public_path().$this->publicStorage.$name, 50);
+                $img = Image::make(public_path().$this->publicStorage.$name)->encode('jpg', 75);
+                $img->resize(null, 800, function ($constraint) {
+                    $constraint->aspectRatio();
+                  })->save(public_path().$this->publicStorage.$name, 50);
                 array_push($response, $foto);
             }
             return response()->json($response);

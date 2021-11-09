@@ -6,6 +6,7 @@ use App\Models\Instruments;
 use App\Models\Teachers;
 use Illuminate\Http\Request;
 use App\Models\Departments;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class DepartmentController extends Controller
 {
@@ -36,6 +37,10 @@ class DepartmentController extends Controller
             $name = time() . '-' . $request->file('img')->getClientOriginalName();
             $request->file('img')->move(public_path() . $this->publicStorageDepartments, $name);
             $departments->img = $this->publicStorageDepartments . $name;
+            $img = Image::make(public_path().$this->publicStorageDepartments . '/'.$name)->encode('jpg', 75);
+            $img->resize(null, 800, function ($constraint) {
+                $constraint->aspectRatio();
+              })->save(public_path() . $this->publicStorageDepartments. '/' . $name, 50);
         } else {
             $departments->img = $this->defaultPhoto;
         }
@@ -55,6 +60,10 @@ class DepartmentController extends Controller
             $name = time() . '-' . $request->file('img')->getClientOriginalName();
             $request->file('img')->move(public_path() . $this->publicStorageDepartments, $name);
             $departments->img = $this->publicStorageDepartments . $name;
+            $img = Image::make(public_path().$this->publicStorageDepartments.$name)->encode('jpg', 75);
+            $img->resize(null, 800, function ($constraint) {
+                $constraint->aspectRatio();
+              })->save(public_path() . $this->publicStorageDepartments. $name, 50);
         }
 
         $departments->name_department = $request->name_department;
@@ -98,8 +107,13 @@ class DepartmentController extends Controller
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path() . $this->publicStorageTeachers, $name);
-            $teachers->photo = $this->publicStorageTeachers.$name;
+            $file->move(public_path() . $this->publicStorageTeachers. $teachers->id. '/', $name);
+            $teachers->photo = $this->publicStorageTeachers. $teachers->id.$name;
+            $img = Image::make(public_path().$this->publicStorageTeachers. $teachers->id . '/'.$name)->encode('jpg', 75);
+            $img->resize(null, 800, function ($constraint) {
+                $constraint->aspectRatio();
+              })->save(public_path() . $this->publicStorageTeachers . $teachers->id . '/' . $name, 50);
+
         } else {
             $teachers->photo = $this->defaultPhoto;
         }
@@ -115,11 +129,16 @@ class DepartmentController extends Controller
         $teachers->teacher_info = $request->teacher_info;
         $teachers->departments_id = $request->departments_id;
         if($request->hasFile('photo')) {
-            $name = time() . '-' . $request->file('photo')->getClientOriginalName();
-            $request->file('photo')->move(public_path() . $this->publicStorageTeachers, $name);
-            $teachers->photo = $this->publicStorageTeachers . $name;
+            $file = $request->photo;
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . $this->publicStorageTeachers. $teachers->id, $name);
+            $teachers->photo = $this->publicStorageTeachers. $teachers->id. '/'.$name;
+            $img = Image::make(public_path().$this->publicStorageTeachers. $teachers->id . '/'.$name)->encode('jpg', 75);
+            $img->resize(null, 800, function ($constraint) {
+                $constraint->aspectRatio();
+              })->save(public_path() . $this->publicStorageTeachers . $teachers->id . '/' . $name, 50);
         }
-        $teachers->save();
+        $teachers->save();  
     }
     function deleteTeachers($id) {
         $teachers = Teachers::find($id);
@@ -156,6 +175,10 @@ class DepartmentController extends Controller
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path() . $this->publicStorageInstruments, $name);
             $instruments->photo = $this->publicStorageInstruments.$name;
+            $img = Image::make(public_path().$this->publicStorageInstruments.$name)->encode('jpg', 75);
+            $img->resize(null, 800, function ($constraint) {
+                $constraint->aspectRatio();
+              })->save(public_path() . $this->publicStorageInstruments. $name, 50);
         } else {
             $instruments->photo = $this->defaultPhoto;
         }
@@ -173,6 +196,10 @@ class DepartmentController extends Controller
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path() . $this->publicStorageInstruments, $name);
+            $img = Image::make(public_path().$this->publicStorageInstruments.$name)->encode('jpg', 75);
+            $img->resize(null, 800, function ($constraint) {
+                $constraint->aspectRatio();
+              })->save(public_path() . $this->publicStorageInstruments. $name, 50);
             $instruments->photo = $this->publicStorageInstruments.$name;
         }
         $instruments->save();
