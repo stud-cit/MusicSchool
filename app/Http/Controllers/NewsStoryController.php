@@ -7,6 +7,7 @@ use App\Models\NewsStory;
 use App\Models\Images;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
 
 class NewsStoryController extends Controller
 {
@@ -40,7 +41,7 @@ class NewsStoryController extends Controller
             foreach ($request->file as $file) {
                 //if(count($request->file) < 4) {
                     $images = new Images;
-                    $name = time() . '-' . $file->getClientOriginalName();
+                    $name = date('mdY-His-') . uniqid(). '.' . $file->getClientOriginalExtension();
                     $file->move(public_path() . $this->publicStorageNews . $news->id, $name);
                     $images->id = $news->id;
                     $images->file = $this->publicStorageNews . $news->id . '/' . $name;
@@ -49,6 +50,7 @@ class NewsStoryController extends Controller
                     $img->resize(null, 800, function ($constraint) {
                         $constraint->aspectRatio();
                       })->save(public_path() . $this->publicStorageNews . $news->id . '/' . $name, 50);
+                    // Storage::disk('local')->put( 'public/' . $this->publicStorageNews. $news->id .$name, $name, 'public');
 
                 //}
             }
@@ -67,7 +69,7 @@ class NewsStoryController extends Controller
             foreach ($request->file as $file){
                 //if(count($request->file) < 4) {
                     $images = new Images;
-                    $name = time() . '-' . $file->getClientOriginalName();
+                    $name = date('mdY-His-') . uniqid(). '.' . $file->getClientOriginalExtension();
                     $file->move(public_path() . $this->publicStorageNews . $news->id, $name);
                     $images->id = $news->id;
                     $images->file = $this->publicStorageNews . $news->id . '/' . $name;
@@ -76,7 +78,7 @@ class NewsStoryController extends Controller
                     $img->resize(null, 800, function ($constraint) {
                         $constraint->aspectRatio();
                       })->save(public_path() . $this->publicStorageNews . $news->id . '/' . $name, 50);
-
+                    //   Storage::disk('local')->put( 'public/' . $this->publicStorageNews. $news->id .$name, $name, 'public');
                     array_push($arrImg, $images);
                 //}
             }
@@ -126,17 +128,15 @@ class NewsStoryController extends Controller
         if(isset($request->file)) {
             foreach ($request->file as $file) {
                 $images = new Images;
-                $name = time() . '-' . $file->getClientOriginalName();
+                $name = date('mdY-His-') . uniqid() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path() . $this->publicStorageStory.$story->id, $name);
                 $images->id = $story->id;
                 $images->file = $this->publicStorageStory.$story->id.'/'.$name;
                 $images->save();
-
                 $img = Image::make(public_path().$this->publicStorageStory . $story->id . '/' . $name)->encode('jpg', 75);
                 $img->resize(null, 800, function ($constraint) {
                     $constraint->aspectRatio();
                   })->save(public_path() . $this->publicStorageStory . $story->id . '/' . $name, 50);
-
             }
         }
         return response()->json($story);
@@ -151,12 +151,11 @@ class NewsStoryController extends Controller
         if(isset($request->file)) {
             foreach ($request->file as $file) {
                 $images = new Images;
-                $name = time() . '-' . $file->getClientOriginalName();
+                $name = date('mdY-His-') . uniqid(). '.' . $file->getClientOriginalExtension();
                 $file->move(public_path().$this->publicStorageStory.$story->id, $name);
                 $images->id = $story->id;
                 $images->file = $this->publicStorageStory.$story->id.'/'.$name;
                 $images->save();
-
                 $img = Image::make(public_path().$this->publicStorageStory . $story->id . '/' . $name)->encode('jpg', 75);
                 $img->resize(null, 800, function ($constraint) {
                     $constraint->aspectRatio();
@@ -210,7 +209,7 @@ class NewsStoryController extends Controller
         if(isset($request->file)) {
             foreach ($request->file as $file) {
                 $images = new Images;
-                $name = time() . '-' . $file->getClientOriginalName();
+                $name = date('mdY-His-') . uniqid() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path() . $this->publicStorageAchieve . $achieve->id, $name);
                 $images->id = $achieve->id;
                 $images->file = $this->publicStorageAchieve . $achieve->id . '/' . $name;
@@ -233,7 +232,7 @@ class NewsStoryController extends Controller
         if(isset($request->file)) {
             foreach ($request->file as $file) {
                 $images = new Images;
-                $name = time() . '-' . $file->getClientOriginalName();
+                $name = date('mdY-His-') . uniqid() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path().$this->publicStorageAchieve.$achieve->id, $name);
                 $images->id = $achieve->id;
                 $images->file = $this->publicStorageAchieve.$achieve->id.'/'.$name;

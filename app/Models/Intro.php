@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Intro extends Model
 {
     protected $table = 'intro';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'intro_id';
     public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = [
         'block1',
         'block2',
-        'block2',
+        'block3',
         'bg',
         'info',
         'photo'
     ];
 
-    protected $guarded = ['id'];
+    protected $guarded = ['intro_id'];
 }

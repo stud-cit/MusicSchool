@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Gallery;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
@@ -20,7 +21,7 @@ class GalleryController extends Controller
             $response = [];
             foreach ($uploadedFiles as $file) {
                 $foto = new Gallery;
-                $name = time().'-'.$file->getClientOriginalName();
+                $name = date('mdY-His-') . uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().$this->publicStorage, $name);
                 $foto->file = $name;
                 $foto->type = $request->type;
@@ -29,6 +30,8 @@ class GalleryController extends Controller
                 $img->resize(null, 800, function ($constraint) {
                     $constraint->aspectRatio();
                   })->save(public_path().$this->publicStorage.$name, 50);
+                $img->stream();
+                Storage::disk('local')->put( 'public/' . $this->publicStorage.'/'. $name, $img);
                 array_push($response, $foto);
             }
             return response()->json($response);

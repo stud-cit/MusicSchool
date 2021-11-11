@@ -6,6 +6,7 @@ use App\Models\Instruments;
 use App\Models\Teachers;
 use Illuminate\Http\Request;
 use App\Models\Departments;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class DepartmentController extends Controller
@@ -34,7 +35,7 @@ class DepartmentController extends Controller
         $this->validate($request, ['filenames.*' => 'mimes:jpeg']);
 
         if($request->file('img')) {
-            $name = time() . '-' . $request->file('img')->getClientOriginalName();
+            $name = date('mdY-His-') . uniqid() . '.' . $request->file('img')->getClientOriginalExtension();
             $request->file('img')->move(public_path() . $this->publicStorageDepartments, $name);
             $departments->img = $this->publicStorageDepartments . $name;
             $img = Image::make(public_path().$this->publicStorageDepartments . '/'.$name)->encode('jpg', 75);
@@ -57,7 +58,8 @@ class DepartmentController extends Controller
         $this->validate($request, ['filenames.*' => 'mimes:jpeg']);
 
         if($request->file('img')) {
-            $name = time() . '-' . $request->file('img')->getClientOriginalName();
+            unlink(public_path($departments->img));
+            $name = date('mdY-His-') . uniqid() . '.' . $request->file('img')->getClientOriginalExtension();
             $request->file('img')->move(public_path() . $this->publicStorageDepartments, $name);
             $departments->img = $this->publicStorageDepartments . $name;
             $img = Image::make(public_path().$this->publicStorageDepartments.$name)->encode('jpg', 75);
@@ -106,7 +108,7 @@ class DepartmentController extends Controller
         $teachers->teacher_info = $request->teacher_info;
         if($request->hasFile('photo')) {
             $file = $request->photo;
-            $name = time() . '-' . $file->getClientOriginalName();
+            $name = date('mdY-His-') . uniqid() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . $this->publicStorageTeachers. $teachers->id. '/', $name);
             $teachers->photo = $this->publicStorageTeachers. $teachers->id.$name;
             $img = Image::make(public_path().$this->publicStorageTeachers. $teachers->id . '/'.$name)->encode('jpg', 75);
@@ -129,8 +131,9 @@ class DepartmentController extends Controller
         $teachers->teacher_info = $request->teacher_info;
         $teachers->departments_id = $request->departments_id;
         if($request->hasFile('photo')) {
+            unlink(public_path($teachers->photo));
             $file = $request->photo;
-            $name = time() . '-' . $file->getClientOriginalName();
+            $name = date('mdY-His-') . uniqid() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . $this->publicStorageTeachers. $teachers->id, $name);
             $teachers->photo = $this->publicStorageTeachers. $teachers->id. '/'.$name;
             $img = Image::make(public_path().$this->publicStorageTeachers. $teachers->id . '/'.$name)->encode('jpg', 75);
@@ -172,7 +175,7 @@ class DepartmentController extends Controller
         $instruments->instruments_info = $request->instruments_info;
         if($request->hasFile('photo')) {
             $file = $request->photo;
-            $name = time() . '-' . $file->getClientOriginalName();
+            $name = date('mdY-His-') . uniqid() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . $this->publicStorageInstruments, $name);
             $instruments->photo = $this->publicStorageInstruments.$name;
             $img = Image::make(public_path().$this->publicStorageInstruments.$name)->encode('jpg', 75);
@@ -193,8 +196,9 @@ class DepartmentController extends Controller
         $instruments->instruments_info = $request->instruments_info;
         $instruments->departments_id = $request->departments_id;
         if($request->hasFile('photo')) {
+            unlink(public_path($instruments->photo));
             $file = $request->photo;
-            $name = time() . '-' . $file->getClientOriginalName();
+            $name = date('mdY-His-') . uniqid(). '.' . $file->getClientOriginalExtension();
             $file->move(public_path() . $this->publicStorageInstruments, $name);
             $img = Image::make(public_path().$this->publicStorageInstruments.$name)->encode('jpg', 75);
             $img->resize(null, 800, function ($constraint) {
