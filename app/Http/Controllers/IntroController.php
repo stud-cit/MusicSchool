@@ -24,7 +24,7 @@ class IntroController extends Controller
     public function postIntroFile(Request $request)
     {
         if($request->hasFile('bg')) {
-            $file = date('mdY-His-') . uniqid(). '.' . $request->bg->getClientOriginalExtension();;
+            $file = $request->bg->getClientOriginalName();
             $directory = '/' . $request->type;
             $request->bg->move(public_path() . $directory, $file);
             $img = Image::make(public_path().'/'.$this->publicStorage. '/'. $file)->encode('jpg', 75);
@@ -56,7 +56,7 @@ class IntroController extends Controller
 
         if($request->hasFile('bg')) {
             $file = $request->bg;
-            $name = time() . '-' . uniqid(). $file->getClientOriginalName();
+            $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path() . $this->publicStorage, $name);
             $intro->bg = $this->publicStorage.$name;
         }
